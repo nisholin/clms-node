@@ -2985,6 +2985,15 @@
 .f-r {
 	float: right;
 }
+.overflow-s {
+	overflow: scroll;
+}
+.overflow-y {
+	overflow-y: scroll;
+}
+.cursor-p {
+	cursor: pointer;
+}
 
 
 

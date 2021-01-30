@@ -1,0 +1,117 @@
+<!-- <h1>Helllo Worldddddddddddddddd</h1>
+    <% data.forEach(function(menu) { %>
+        <%= menu.id %> 
+        <%= menu.EIC_PRNO %> 
+        <%= menu.name %> 
+        <%= menu.department %> 
+        <%= menu.designation %> 
+    <% }) %>
+ -->
+ <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">New</button>
+ <br/>
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card" id="table">
+			<div class="card-body">
+				<h4 class="card-title">Shift  Master</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th> # </th>
+							<th>Name </th>
+							<th>From Time </th>
+							<th> To Time </th>
+							<th> Status </th>
+							<th> Created By </th>
+						</tr>
+					</thead>
+					<tbody>
+						
+							<% data.forEach(function(menu) { %>
+								<tr>
+									<tr>
+							  <td> <%= menu.id %>  </td>
+							  <td> <%= menu.shift_name %>  </td>
+							  <td>  <%= menu.from_time %>  </td>
+							  <td>  <%= menu.to_time %> </td>
+							  <td> <%= menu.status %> </td>
+							  <td> <%= menu.created_by %> </td>
+							</tr>
+						  
+						</tr>
+							  <% }) %>
+						  
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!--Form Start -->
+	<div class="card" id="newform">
+	  <div class="card-body">
+		<h4 class="card-title">Shift Master</h4>
+		<p class="card-description">  </p>
+		<form class="forms-sample">
+		  <div class="form-group row">
+			<label for="name" class="col-sm-3 col-form-label">Name</label>
+			<div class="col-sm-9">
+			  <input type="text" class="form-control" id="name" name="name" placeholder="name">
+			</div>
+		  </div>
+		   <div class="form-group row">
+				<label class="col-sm-3 col-form-label">From Time</label>
+				<div class="col-sm-9">
+				  <input type="time" class="form-control" id="from_time" name="from_time"  placeholder="dd/mm/yyyy" />
+				</div>
+			  </div>
+		   <div class="form-group row">
+				<label class="col-sm-3 col-form-label">To Time</label>
+				<div class="col-sm-9">
+				  <input type="time"class="form-control" id="to_time" name="to_time" placeholder="dd/mm/yyyy" />
+				</div>
+			  </div>
+			 <div class="form-group row">
+				<label class="col-sm-3 col-form-label">Status</label>
+				<div class="col-sm-4">
+				  <div class="form-check">
+					<label class="form-check-label">
+					  <input type="radio" class="form-check-input" name="status" id="status" value="" checked> Active </label>
+				  </div>
+				</div>
+				<div class="col-sm-5">
+				  <div class="form-check">
+					<label class="form-check-label">
+					  <input type="radio" class="form-check-input" name="status" id="status" value="option2"> In Active </label>
+				  </div>
+				</div>
+			  </div>
+		 
+		<center>
+		   <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
+		  <button type="button" class="btn btn-gradient-danger btn-fw">Cancel</button>
+		  </center>
+		</form>
+	  </div>
+	</div>
+	
+	<script type="text/javascript">
+
+	  window.onload = function() {
+
+		document.getElementById("newform").style.display = "none";
+
+	  };
+
+	  function addContractor(a) {
+	  
+		if (a == 1) {
+		  document.getElementById("newform").style.display = "block";
+		  document.getElementById("table").style.display = "none";
+		  document.getElementById("addbutton").style.display = "none";
+		} 
+		else {
+		  document.getElementById("newform").style.display = "none";
+		}
+		  
+	  }
+	</script>

@@ -1,4 +1,6 @@
-<div class="card">
+ <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addWorkOrder(1)">New</button>
+ <br/>
+<div class="card" id="newform">
     <div class="card-body">
 
         <h4 class="card-title">Work Order Cat1</h4>
@@ -7,103 +9,103 @@
             <div class="form-group row">
                 <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputContractor_Code"
-                        placeholder="Contractor_Code">
+                    <input type="text" class="form-control" id="Contractor_Code" name="Contractor_Code"
+                        placeholder="Contractor Code">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputVendor No" class="col-sm-3 col-form-label">Vendor No</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputVendor_No" placeholder="Vendor_No">
+                    <input type="text" class="form-control" id="Vendor_No"  name="Vendor_No" placeholder="Vendor No">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputContractor Name" class="col-sm-3 col-form-label">Contractor Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputContractor_Name"
-                        placeholder="Contractor_Name">
+                    <input type="text" class="form-control" id="Contractor_Name" name="Contractor_Name"
+                        placeholder="Contractor Name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputWork order no" class="col-sm-3 col-form-label">Work order No</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputWork_order_no" placeholder="Work _order_no">
+                    <input type="text" class="form-control" id="Work_order_no" name="Work_order_no" placeholder="Work order no">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" id="exampleInputWork_order_date"
-                        placeholder="Work_order_date">
+                    <input type="date" class="form-control" id="Work_order_date" name="Work_order_date"
+                        placeholder="Work order date">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputContractor Value" class="col-sm-3 col-form-label">Contractor Value</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Contractor Value" placeholder="Contractor Value">
+                    <input type="text" class="form-control" id="Contractor_Value" name="Contractor_Value" placeholder="Contractor Value">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputDuration of Month" class="col-sm-3 col-form-label">Duration Date</label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" id="exampleInputDuration_Date" placeholder="Duration_Date">
+                    <input type="date" class="form-control" id="Duration_Date" name="Duration_Date" placeholder="Duration Date">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputContract Duration" class="col-sm-3 col-form-label">Contract Duration </label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" id="exampleInputContract_Duration"
-                        placeholder="Contract_Duration">
+                    <input type="date" class="form-control" id="Contract_Duration" name="Contract_Duration"
+                        placeholder="Contract Duration">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
+                <label for="EIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputEIC_PRNO" placeholder="EIC_PRNO">
+                    <input type="text" class="form-control" id="EIC_PRNO" name="EIC_PRNO" placeholder="EIC PRNO">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputEngineer In Charge" class="col-sm-3 col-form-label">Engineer In Charge</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputEngineer_In_Charge"
-                        placeholder="Engineer_In_Charge">
+                    <input type="text" class="form-control" id="Engineer_In_Charge" name="Engineer_In_Charge"
+                        placeholder="Engineer In Charge">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputJob Desc" class="col-sm-3 col-form-label">Job Desc</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputJob_Desc" placeholder="Job_Desc">
+                    <input type="text" class="form-control" id="Job_Desc" name="Job_Desc" placeholder="Job Desc">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputDepartment" placeholder="Department">
+                    <input type="text" class="form-control" id="Department"  name="Department" placeholder="Department">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputEmployee count" class="col-sm-3 col-form-label">Employee count</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputEmployee_count"
-                        placeholder="Employee _count">
+                    <input type="text" class="form-control" id="Employee_count" name="Employee_count"
+                        placeholder="Employee count">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputCLRA" class="col-sm-3 col-form-label">CLRA</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputCLRA" placeholder="CLRA">
+                    <input type="text" class="form-control" id="CLRA"  name="CLRA" placeholder="CLRA">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputISMW" class="col-sm-3 col-form-label">ISMW</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputISMW" placeholder="ISMW">
+                    <input type="text" class="form-control" id="ISMW" name="ISMW" placeholder="ISMW">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputTotal Workmen" class="col-sm-3 col-form-label">Total Workmen</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="exampleInputTotal_Workmen" placeholder="Total _Workmen">
+                    <input type="text" class="form-control" id="Total_Workmen" name="Total_Workmen" placeholder="Total _Workmen">
                 </div>
             </div>
             <center>
@@ -113,4 +115,71 @@
             </center>
         </form>
     </div>
+</div> 
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card overflow-y" id="table">
+        <div class="card-body">
+            <h4 class="card-title">Work Order</h4>
+            <p class="card-description"> <code>.</code>
+            </p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>CCODE</th>
+                <th>CNAME</th>
+                <th>VENDOR_NO</th>
+                <th>WORK_ORDER</th>
+                <th>WORK_OR_DATE</th>
+                <th>DURATION</th>
+                <th>WORKMEN_TOT</th>
+                <th>STATUS</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% data.forEach(function(work_order){ %>
+                <tr>
+                <td class="py-1"><%= work_order.CCODE   %> </td>
+                <td> <%= work_order.CNAME   %> </td>
+                <td><%= work_order.VENDOR_NO   %> </td>
+                <td> <%= work_order.WORK_ORDER   %> </td>
+                <td> <%= work_order.WORK_OR_DATE   %> </td>
+                <td> <%= work_order.DURATION   %></td>
+                <td> <%= work_order.WORKMEN_TOT   %> </td>
+                <td> <%= work_order.STATUS   %> </td>
+                </tr>
+                        
+                <% }) %>
+                </tbody>
+				</table>
+
+            
+        </div>
+    </div>
 </div>
+
+
+
+
+
+<script type="text/javascript">
+
+  window.onload = function() {
+
+    document.getElementById("newform").style.display = "none";
+
+  };
+
+  function addWorkOrder(a) {
+  
+    if (a == 1) {
+      document.getElementById("newform").style.display = "block";
+	  document.getElementById("table").style.display = "none";
+	  document.getElementById("addbutton").style.display = "none";
+    } else {
+      document.getElementById("newform").style.display = "none";
+    }
+      
+  }
+</script>

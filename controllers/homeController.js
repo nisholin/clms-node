@@ -1,19 +1,12 @@
+var dboperations = require('../database/engineer_table');
+
+
 const indexView = (req, res, next) => {
     res.render('home');
 }
 
 const iconsView = (req, res, next) => {
-    res.render('icons');
-}
-// MENU MASTER
-const engineer = (req, res, next) => {
-    res.render('menu_master/engineer');
-}
-const shift = (req, res, next) => {
-    res.render('menu_master/shift');
-}
-const gate = (req, res, next) => {
-    res.render('menu_master/gate');
+    res.render('icons',);
 }
 //CONTRACTOR
 const contractorNew = (req,res,next) => {
@@ -70,10 +63,6 @@ const eicReport = (req,res,next) => {
 module.exports = {
     indexView,
     iconsView,
-    //Menu Mater
-    engineer,
-    shift,
-    gate,
     //Contractor Master
     contractorNew,
     employeenew,
