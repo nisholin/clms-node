@@ -1,7 +1,7 @@
 const express = require('express');
-//const expressLayouts = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
-let port = 9001;
+let port = 1000;
 const app = express();
 var bodyParser = require('body-parser');
 
@@ -20,6 +20,11 @@ const workorderRoutes = require('./routes/contractor/work_order_master_route');
 const employeeRoutes = require('./routes/contractor/employee_master_route');
 //ADMIN
 const adminRoutes = require('./routes/admin/register_routes');
+//PAYROLL
+const payrollgeneration = require('./routes/payroll/pay_roll_gen_routes');
+const wageslip = require('./routes/payroll/wage_slip_routes');
+const formbwageregister = require('./routes/payroll/form_b_wage_routes');
+
 
 
 
@@ -27,7 +32,7 @@ const adminRoutes = require('./routes/admin/register_routes');
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-//app.use(expressLayouts);
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -54,8 +59,10 @@ app.use(workorderRoutes.routes);
 app.use(employeeRoutes.routes);
 //ADMIN
 app.use(adminRoutes.routes);
-
-
+//PAY ROLL GENERATION
+app.use(payrollgeneration.payroll);
+app.use(wageslip.wageslip);
+app.use(formbwageregister.formbwage);
 
 app.get('/', (req,res)=>{
 

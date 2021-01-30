@@ -38,6 +38,12 @@ const printPass = (req,res,next) => {
 const attendance = (req,res,next) => {
     res.render('attendance/attendance');
 }
+const attendance_in_out = (req,res,next) => {
+    res.render('attendance/attendance_in_out');
+}
+const attendance_edit = (req,res,next) => {
+    res.render('attendance/attendance_edit');
+}
 //PAY ROLL
 const payGeneration = (req,res,next) => {
     res.render('pay_roll/pay_roll_generation');
@@ -75,6 +81,8 @@ module.exports = {
     printPass,
     //Attendance
     attendance,
+    attendance_in_out,
+    attendance_edit,
     //Pay Roll
     payGeneration,
     //Reports

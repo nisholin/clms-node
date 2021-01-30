@@ -2,8 +2,8 @@ var dboperations = require('../../database/gate_table');
 const express = require('express');
 const router = express.Router();
 
-//var config = require('./dbconfig');
-//var sql = require('mssql');
+var config = require('../../database/dbconfig');
+var sql = require('mssql');
 
 
 //gate_Master
@@ -16,21 +16,23 @@ router.get('/gate',(req,res,next)=>{
 });
 
 router.post('/gate/new',(req,res,next)=>{
-	var data = req.body;
-	 /* sql.connect(config,function(err){
-		 var query = "INSERT INTO cpcl_gate_master set ?"
-		  request.query(query,data,function(err,result){
-			 if(err){
-                    console.log("error while querying database -> "+err);
-                    res.send(err);
-                }
-                else{
-                    res.send(result);
-                    sql.close();
-                }
-		  });
-	 })
-	res.send(data);	 */
+    var name = req.body.name;
+    var status = req.body.status;
+    console.log(name);
+    async function getGateValues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into cpcl_gate_master values ('"+name+"','"+status+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    getGateValues();
+	 
 });
 
 

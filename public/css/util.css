@@ -2985,11 +2985,21 @@
 .f-r {
 	float: right;
 }
+/*Overflows*/
 .overflow-s {
 	overflow: scroll;
 }
 .overflow-y {
 	overflow-y: scroll;
+}
+.overflow-x {
+	overflow-x: scroll;
+}
+.overflow-y-hidden {
+	overflow-y: hidden;
+}
+.overflow-x-hidden {
+	overflow-x: hidden;
 }
 .cursor-p {
 	cursor: pointer;

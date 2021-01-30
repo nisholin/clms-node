@@ -19,6 +19,8 @@ const { indexView,
     printPass,
     //Attendance
     attendance,
+    attendance_in_out,
+    attendance_edit,
     //Pay Roll
     payGeneration,
     //Report
@@ -82,6 +84,8 @@ router.get('/passrequestthree', passReqThree);
 router.get('/printpass', printPass);
 //ATTENDANCE
 router.get('/attendance', attendance);
+router.get('/attendance_in_out', attendance_in_out);
+router.get('/attendance_edit', attendance_edit);
 //PAY ROLL
 router.get('/payrollgeneration', payGeneration);
 //REPORTS

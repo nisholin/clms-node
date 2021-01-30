@@ -15,6 +15,6 @@ async function getGateValues(){
 }
 
 //let data = {name: req.body.name, status: req.body.status};
-/* let sql = "update cpcl_gate_master SET name='"+req.body.name+"', status='"+req.body.status+"' where id ="+userId; */
+/* let sql = "update cpcl_gate_master SET name='"+req.body.name+"', status='"+req.body.status+"' where id ="+Id; */
 
 module.exports = {    getGateValues     }

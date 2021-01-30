@@ -1,0 +1,57 @@
+<!--Form Edit-->
+<div class="card dis-none" id="formEdit">
+    <div class="card-body">
+
+      <h4 class="card-title">Engineer Master Edit</h4>
+      
+      <form class="forms-sample">
+          <% editData.forEach(function(edit) { %>
+      <div class="form-group row">
+          <label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
+          <div class="col-sm-9">
+              <input type="text" class="form-control" id="exampleInputEIC_PRNO"
+              value="<%= edit.EIC_PRNO %>">
+          </div>
+        </div>
+      <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+              <input type="text" class="form-control" id="exampleInputName" 
+              value="<%= edit.name %>" />
+              <p>	</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
+          <div class="col-sm-9">
+              <input type="text" class="form-control" id="exampleInputDepartment" 
+              value="<%= edit.department %>">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
+          <div class="col-sm-9">
+              <p>	<%= edit.designation %></p>
+          </div>
+        </div>
+         <div class="form-group row">
+          <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
+          <div class="col-sm-9">
+              <p>	<%= edit.email %></p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+          <div class="col-sm-9">
+              <p>	<%= edit.mobile %></p>
+          </div>
+        </div>
+        <center>
+        <button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+        
+       <button class="btn btn-gradient-danger btn-fw">cancel</button>
+        </center>
+        <% }) %>
+      </form>
+    </div>
+  </div>

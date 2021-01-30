@@ -18,9 +18,9 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
+					<% data.forEach(function(menu) { %>
                         <tr>
-                          <% data.forEach(function(menu) { %>
+                          
                             <td> <%= menu.id %>  </td>
                             <td> <%= menu.EIC_PRNO %>  </td>
                             <td>  <%= menu.name %>  </td>
@@ -28,9 +28,10 @@
                             <td> <%= menu.designation %> </td>
                             <td> <%= menu.designation %> </td>
 							<td><i class="mdi mdi-border-color cursor-p" onclick="addEngineer(2,'<%= menu.id %>')" area-hidden=true></i></td>
-                            <% }) %>
-                        </tr>
-                        
+                            
+						</tr>
+						<% }) %>
+                        <!-- 
                         <tr>
                           <% data.forEach(function(menu) { %>
                             <td> <%= menu.id %>  </td>
@@ -41,8 +42,7 @@
                             <td> <%= menu.designation %> </td>
 							<td><i class="mdi mdi-border-color cursor-p" onclick="addEngineer(2)" area-hidden=true></i></td>
                             <% }) %>
-                        </tr>
-                      </tr>
+                        </tr> -->
                   </tbody>
               </table>
           </div>
@@ -53,7 +53,7 @@
 	  <div class="card-body">
 
 		<h4 class="card-title">Engineer Master</h4>
-		
+		<form class="forms-sample" method="POST" action="/engineer/new">
 		<form class="forms-sample">
 		<div class="form-group row">
 			<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
@@ -91,8 +91,23 @@
 			  <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
 			</div>
 		  </div>
+		   <div class="form-group row">
+				<label class="col-sm-3 col-form-label">Status</label>
+				<div class="col-sm-4">
+				  <div class="form-check">
+					<label class="form-check-label">
+					  <input type="radio" class="form-check-input" name="status" id="status" value="1" checked> Active </label>
+				  </div>
+				</div>
+				<div class="col-sm-5">
+				  <div class="form-check">
+					<label class="form-check-label">
+					  <input type="radio" class="form-check-input" name="status" id="status" value="0"> In Active </label>
+				  </div>
+				</div>
+			  </div>
 		 
-		  <div class="form-group row">
+		 <!--  <div class="form-group row">
 			<label for="exampleInputHead1" class="col-sm-3 col-form-label">Head1</label>
 			<div class="col-sm-9">
 			  <input type="password" class="form-control" id="head1" name="head1" placeholder="Head1">
@@ -103,85 +118,16 @@
 			<div class="col-sm-9">
 			  <input type="password" class="form-control" id="head2" name="head2" placeholder="Head2">
 			</div>
-		  </div>
+		  </div> -->
 		  <center>
-		  <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
+		  <button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
 		  <button  class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
 		  </center>
 		</form>
 	  </div>
 	</div>
 	
-	<!--Form Edit-->
-	<div class="card dis-none" id="formEdit">
-	  <div class="card-body">
-
-		<h4 class="card-title">Engineer Master Edit</h4>
-		
-		<form class="forms-sample">
-			<% data.forEach(function(view) { %>
-		<div class="form-group row">
-			<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="exampleInputEIC_PRNO"
-				value="<%= view.EIC_PRNO %>">
-			</div>
-		  </div>
-		<div class="form-group row">
-			<label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="exampleInputName" 
-				value="<%= view.name %>" />
-				<p>	</p>
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="exampleInputDepartment" 
-				value="<%= view.department %>">
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
-			<div class="col-sm-9">
-				<p>	<%= view.designation %></p>
-			</div>
-		  </div>
-		   <div class="form-group row">
-			<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
-			<div class="col-sm-9">
-				<p>	<%= view.email %></p>
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
-			<div class="col-sm-9">
-				<p>	<%= view.mobile %></p>
-			</div>
-		  </div>
-		 
-		  <div class="form-group row">
-			<label for="exampleInputHead1" class="col-sm-3 col-form-label">Head1</label>
-			<div class="col-sm-9">
-				<p>	<%= view.status %></p>
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputHead2" class="col-sm-3 col-form-label">Head2</label>
-			<div class="col-sm-9">
-				<p>	<%= view.created_on %></p>
-			</div>
-		  </div>
-		  <center>
-		  <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
-		  
-		 <button class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
-		  </center>
-		  <% }) %>
-		</form>
-	  </div>
-	</div>
+	
   
   
   <script type="text/javascript">
