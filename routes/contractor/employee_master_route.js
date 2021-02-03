@@ -15,11 +15,24 @@ const getContactor_employee_values = (req,res,next)=>{
 }
 
 router.get('/employeenew',(req,res,next)=>{
-    dboperations.get_employee_master().then(result=>{
+	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+		dboperations.get_employee_master().then(result=>{
         var data = result[0]; 
         res.render('contractor_master/employeenew',{data})
     })
-});
+    } */
+	dboperations.get_employee_master().then(result=>{
+        var data = result[0]; 
+        res.render('contractor_master/employeenew',{data})
+    })
+}); 
 
 router.post('/employee/add',(req,res,next)=>{
 

@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -33,14 +37,19 @@
 				  <input type="date" class="form-control mb-2 mr-sm-2" id="to_dt" name="to_dt"  placeholder="to date">
 				  <label class="sr-only" for="inlineFormInputName2">Contractor Code</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor_code" name="contractor_code"  placeholder="contractor code">
-				  <button type="search" class="btn btn-gradient-primary mb-2">Search</button> 
-				 <button type="print" class="btn btn-gradient-primary mb-2">Print</button>
-				 <button type="excel" class="btn btn-gradient-primary mb-2">Excel</button>
-
-				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  
+<!-- 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+ -->				  <input type="hidden" name="msent" id="msent" />
+						<td style="padding-left: 10px;"><input type="submit" name="addBranch" id="addBranch" class="btn btn-success" value="SEARCH" onClick="addBranch()"></td>
+						<td width="5%" ><input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-primary"/></td>
+						<td width="5%"><input type="submit" name="myButtonControlID" id="myButtonControlID" class="btn btn-primary" value="EXCEL"></td>
 				</form>
 			  </div>
 			</div>
 		  </div>
+		  
+		  
+		  <!-- Footer Page-->
+<%- include('../nav/footer') %>
 		  
 		  

@@ -8,6 +8,20 @@ var sql = require('mssql');
 
 //gate_Master
 router.get('/gate',(req,res,next)=>{
+	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+		dboperations.getGateValues().then(result=>{
+        var data = result[0];
+        //console.table(data);
+        res.render('menu_master/gate',{data});
+    });
+    }  */
 	dboperations.getGateValues().then(result=>{
         var data = result[0];
         //console.table(data);

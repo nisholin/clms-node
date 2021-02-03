@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -27,16 +31,24 @@
 				<h4 class="card-title">WorkOrder Report</h4>
 				
 				<form class="form-inline">
-				  <label class="sr-only" for="work order">Work Order</label>
+				  <label class="sr-only" for="inlineFormInputName2">Work Order</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="work_order" name="work_order"  placeholder="work_order">
 				  <label class="sr-only" for="inlineFormInputName2">Work Order</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="work_order" name="work_order"  placeholder="work order">
 				  
 				 
-				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+<!-- 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+ -->				  <input type="hidden" name="msent" id="msent" />
+						<td style="padding-left: 10px;"><input type="submit" name="addBranch" id="addBranch" class="btn btn-success" value="SEARCH" onClick="addBranch()"></td>
+						<td width="5%" ><input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-primary"/></td>
+						<td width="5%"><input type="submit" name="myButtonControlID" id="myButtonControlID" class="btn btn-primary" value="EXCEL"></td>
 				</form>
 			  </div>
 			</div>
 		  </div>
+		  
+		  
+		  <!-- Footer Page-->
+<%- include('../nav/footer') %>
 		  
 		  

@@ -1,228 +1,270 @@
- <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">New</button>
- <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="backbutton" onclick="backContractor()">Back</button>
- <br/>
-	<div class="col-lg-12 grid-margin stretch-card" id="table">
-		<div class="card overflow-x overflow-y-hidden">
-			<div class="card-body">
-				<h4 class="card-title">Contractor Master</h4>
+<%- include ('../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
 
-				<table class="table table-striped">
-                    <thead>
-                    <tr>
-                    <th>CCODE</th>
-                    <th>CNAME</th>
-                    <th>ADDRESS</th>
-                    <th>PREFIXCODE</th>
-                    <th>PROPRIETOR</th>
-                    <th>OWNER_NAME</th>
-                    <th>DEPT</th>
-                    <th>PARTNER</th>
-                    <th>EMAIL</th>
-                    <th>ESICODE</th>
-                    <th>PFCODE</th>
-                    <th>PAN</th>
-                    <th>TINNO</th>
-                    <th>MOBILE</th>
-                    <th>STATUS</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-    
-                    <% data.forEach(function(contract){ %>
-                    <tr>
-                    <td class="py-1"><%= contract.contractor_code   %> </td>
-                    <td> <%= contract.contractor_name   %> </td>
-                    <td><%= contract.address   %> </td>
-                    <td> <%= contract.prefix_code   %> </td>
-                    <td> <%= contract.proprietor   %> </td>
-                    <td> <%= contract.owner   %></td>
-                    <td> <%= contract.md   %> </td>
-                    <td> <%= contract.partner   %> </td>
-                    <td> <%= contract.contractor_mail   %> </td>
-                    <td> <%= contract.ESI_Code_No   %> </td>
-                    <td> <%= contract.PF_Code_No   %> </td>
-                    <td> <%= contract.Contractor_PAN_No   %> </td>
-                    <td> <%= contract.Contractor_LIN   %> </td>
-                    <td> <%= contract.Mobile_No   %> </td>
-                    <td> <%= contract.status   %> </td>
-                    </tr>
-                            
-                    <% }) %>
-                    </tbody>
-                    </table>
+		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+			onclick="addContractor(1)">New</button>
+		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="backbutton"
+			onclick="backContractor()">Back</button>
+		<br />
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">
+					<h4 class="card-title">Contractor Master</h4>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>CCODE</th>
+								<th>CNAME</th>
+								<th>ADDRESS</th>
+								<th>PREFIXCODE</th>
+								<th>PROPRIETOR</th>
+								<th>OWNER_NAME</th>
+								<th>DEPT</th>
+								<th>PARTNER</th>
+								<th>EMAIL</th>
+								<th>ESICODE</th>
+								<th>PFCODE</th>
+								<th>PAN</th>
+								<th>TINNO</th>
+								<th>MOBILE</th>
+								<th>STATUS</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<% data.forEach(function(contract){ %>
+								<tr>
+									<td class="py-1">
+										<%= contract.contractor_code %>
+									</td>
+									<td>
+										<%= contract.contractor_name %>
+									</td>
+									<td>
+										<%= contract.address %>
+									</td>
+									<td>
+										<%= contract.prefix_code %>
+									</td>
+									<td>
+										<%= contract.proprietor %>
+									</td>
+									<td>
+										<%= contract.owner %>
+									</td>
+									<td>
+										<%= contract.md %>
+									</td>
+									<td>
+										<%= contract.partner %>
+									</td>
+									<td>
+										<%= contract.contractor_mail %>
+									</td>
+									<td>
+										<%= contract.ESI_Code_No %>
+									</td>
+									<td>
+										<%= contract.PF_Code_No %>
+									</td>
+									<td>
+										<%= contract.Contractor_PAN_No %>
+									</td>
+									<td>
+										<%= contract.Contractor_LIN %>
+									</td>
+									<td>
+										<%= contract.Mobile_No %>
+									</td>
+									<td>
+										<%= contract.status %>
+									</td>
+								</tr>
+
+								<% }) %>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-    </div>
-    <!--Form Start -->    
-    <br/> <br/>
-	<div class="card" id="newform">
-	<div class="card-body">
+		<!--Form Start -->
+		<br /> <br />
+		<div class="card" id="newform">
+			<div class="card-body">
 
-		<h4 class="card-title">Contractor Master</h4>
+				<h4 class="card-title">Contractor Master</h4>
 
-		<form class="forms-sample" method="POST" action="/contractor/new">
-			<div class="form-group row">
-				<label for="Contractor_Code" class="col-sm-3 col-form-label">Contractor Code</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Contractor_Code" name="Contractor_Code"
-						placeholder="Contractor_Code">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Contractor_Name" class="col-sm-3 col-form-label">Contractor Name</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Contractor_Name" name="Contractor_Name"
-						placeholder="Contractor Name">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Address" class="col-sm-3 col-form-label">Address</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Prefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Prefix_Code" name="Prefix_Code" placeholder="Prefix_Code">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="proprietor" class="col-sm-3 col-form-label">Name of the proprietor</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="proprietor" name="proprietor"	placeholder="Name of the proprietor">
-				</div>
-            </div>
-            <div class="form-group row">
-				<label for="owner" class="col-sm-3 col-form-label">owner</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="owner" name="owner" placeholder="Name of the owner">
-				</div>
-            </div>
-            
-            <div class="form-group row">
-				<label for="Name of the proprietor/owner/MD/partner" class="col-sm-3 col-form-label">MD</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="md" name="md" placeholder="Name of the proprietor/owner/MD/partner">
-				</div>
-            </div>
-            <div class="form-group row">
-				<label for="partner" class="col-sm-3 col-form-label">partner</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="partner" name="partner" placeholder="Name of the partner">
-				</div>
-			</div>
+				<form class="forms-sample" method="POST" action="/contractor/new">
+					<div class="form-group row">
+						<label for="Contractor_Code" class="col-sm-3 col-form-label">Contractor Code</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Contractor_Code" name="Contractor_Code"
+								placeholder="Contractor_Code">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Contractor_Name" class="col-sm-3 col-form-label">Contractor Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Contractor_Name" name="Contractor_Name"
+								placeholder="Contractor Name">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Address" class="col-sm-3 col-form-label">Address</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Prefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Prefix_Code" name="Prefix_Code"
+								placeholder="Prefix_Code">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="proprietor" class="col-sm-3 col-form-label">Name of the proprietor</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="proprietor" name="proprietor"
+								placeholder="Name of the proprietor">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="owner" class="col-sm-3 col-form-label">owner</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="owner" name="owner"
+								placeholder="Name of the owner">
+						</div>
+					</div>
 
-			<div class="form-group row">
-				<label for="Contractor_Email_ID" class="col-sm-3 col-form-label">Contractor E-mail
-					ID</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Contractor_Email" name="Contractor_Email"
-						placeholder="Contractor E-mail ID">
-				</div>
+					<div class="form-group row">
+						<label for="Name of the proprietor/owner/MD/partner" class="col-sm-3 col-form-label">MD</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="md" name="md"
+								placeholder="Name of the proprietor/owner/MD/partner">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="partner" class="col-sm-3 col-form-label">partner</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="partner" name="partner"
+								placeholder="Name of the partner">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="Contractor_Email_ID" class="col-sm-3 col-form-label">Contractor E-mail
+							ID</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Contractor_Email" name="Contractor_Email"
+								placeholder="Contractor E-mail ID">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="ESI_Code_No" class="col-sm-3 col-form-label">ESI Code No</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="ESI_Code_No" name="ESI_Code_No"
+								placeholder="ESI Code No">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="PF_Code_No" class="col-sm-3 col-form-label">PF Code No</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="PF_Code_No" name="PF_Code_No"
+								placeholder="PF Code No">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="exampleInputContractor PAN No" class="col-sm-3 col-form-label">Contractor PAN
+							No</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Contractor_PAN_No" name="Contractor_PAN_No"
+								placeholder="Contractor PAN No">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Contractor_LIN LIN" class="col-sm-3 col-form-label">Contractor LIN</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Contractor_LIN" name="Contractor_LIN"
+								placeholder="Contractor LIN">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Mobile_No" class="col-sm-3 col-form-label">Mobile No</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Mobile_No" name="Mobile_No"
+								placeholder="Mobile No">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Name_of_person" class="col-sm-3 col-form-label">Name of person/Mail id who is
+							looking over compliance/HR
+							Department </label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Name_of_person" name="Name_of_person"
+								placeholder="Name of person/Mail id who is looking over compliance/HR Department">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Name_of_person" class="col-sm-3 col-form-label">Mail id who is looking over
+							compliance</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="compliance_Mail_id" name="compliance_Mail_id"
+								placeholder="Name of person/Mail id who is looking over compliance/HR Department">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="Name_of_person" class="col-sm-3 col-form-label">HR
+							Department </label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="hr_department" name="hr_department"
+								placeholder="Name of person/Mail id who is looking over compliance/HR Department">
+						</div>
+					</div>
+					<center>
+						<button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
+
+						<button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
+					</center>
+				</form>
 			</div>
-			<div class="form-group row">
-				<label for="ESI_Code_No" class="col-sm-3 col-form-label">ESI Code No</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="ESI_Code_No" name="ESI_Code_No" placeholder="ESI Code No">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="PF_Code_No" class="col-sm-3 col-form-label">PF Code No</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="PF_Code_No" name="PF_Code_No" placeholder="PF Code No">
-				</div>
-			</div>
+		</div>
 
-			<div class="form-group row">
-				<label for="exampleInputContractor PAN No" class="col-sm-3 col-form-label">Contractor PAN No</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Contractor_PAN_No" name="Contractor_PAN_No"
-						placeholder="Contractor PAN No">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Contractor_LIN LIN" class="col-sm-3 col-form-label">Contractor LIN</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Contractor_LIN" name="Contractor_LIN"
-						placeholder="Contractor LIN">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Mobile_No" class="col-sm-3 col-form-label">Mobile No</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="Mobile_No" name="Mobile_No" placeholder="Mobile No">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Name_of_person"
-					class="col-sm-3 col-form-label">Name of person/Mail id who is looking over compliance/HR
-					Department </label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control"
-						id="Name_of_person" name="Name_of_person"
-						placeholder="Name of person/Mail id who is looking over compliance/HR Department">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Name_of_person"
-					class="col-sm-3 col-form-label">Mail id who is looking over compliance</label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control"
-						id="compliance_Mail_id" name="compliance_Mail_id"
-						placeholder="Name of person/Mail id who is looking over compliance/HR Department">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="Name_of_person"
-					class="col-sm-3 col-form-label">HR
-					Department </label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control"
-						id="hr_department" name="hr_department"
-						placeholder="Name of person/Mail id who is looking over compliance/HR Department">
-				</div>
-			</div>
-			<center>
-				<button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-
-				<button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
-			</center>
-		</form>
-	</div>
-	</div>
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>
 
 
 
+			<script type="text/javascript">
 
-	<script type="text/javascript">
+				window.onload = function () {
 
-	  window.onload = function() {
+					document.getElementById("newform").style.display = "none";
+					document.getElementById("backbutton").style.display = "none";
 
-		document.getElementById("newform").style.display = "none";
-		document.getElementById("backbutton").style.display = "none";
+				};
 
-	  };
+				function addContractor(a) {
 
-	  function addContractor(a) {
-	  
-		if (a == 1) {
-            
-		    document.getElementById("backbutton").style.display = "block";
-		  document.getElementById("newform").style.display = "block";
-		  document.getElementById("table").style.display = "none";
-		  document.getElementById("addbutton").style.display = "none";
-		} 
-		else {
-            backContractor()
-		}
-      }
-      
-      function backContractor()
-      {
-            document.getElementById("table").style.display = "block";
-          document.getElementById("addbutton").style.display = "block";
-          document.getElementById("backbutton").style.display = "none";
-          document.getElementById("newform").style.display = "none";
-      }
-	</script>
+					if (a == 1) {
+
+						document.getElementById("backbutton").style.display = "block";
+						document.getElementById("newform").style.display = "block";
+						document.getElementById("table").style.display = "none";
+						document.getElementById("addbutton").style.display = "none";
+					}
+					else {
+						backContractor()
+					}
+				}
+
+				function backContractor() {
+					document.getElementById("table").style.display = "block";
+					document.getElementById("addbutton").style.display = "block";
+					document.getElementById("backbutton").style.display = "none";
+					document.getElementById("newform").style.display = "none";
+				}
+			</script>

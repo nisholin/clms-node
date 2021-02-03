@@ -1,0 +1,87 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+	
+	<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reports</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+</head>
+<body>
+<div class="content-wrapper">
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">	
+			  <div class="card-body">
+				<h4 class="card-title">WorkOrder Billing</h4>
+				
+				<form class="form-inline">
+				  <label class="sr-only" for="inlineFormInputName2">Contractor</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"  placeholder="contractor">
+				  <label class="sr-only" for="inlineFormInputName2">Sub Contractor</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="sub_contractor" name="sub_contractor"  placeholder="Sub Contractor">
+				  <label class="sr-only" for="inlineFormInputName2">Employee</label>
+				  <input type="date" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="Employee">
+				  <label class="sr-only" for="inlineFormInputName2">Month</label>
+				  <input type="date" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="Month">
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  </form>
+			  
+				</div> 
+				 
+					 <p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					  </p>
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">				
+					
+<table class="table table-bordered"> 				
+<thead>
+<center>
+					
+
+
+</center>
+
+</thead>
+<tbody>
+<tr>
+ 
+					<td>S.NO:</td> 
+					<td>	Emp.No :</td>
+					<td>Employee Name :</td>
+					<td>Gross Wages :</td>
+					<td>Total Deduction:</td>
+					<td>Net wages</td>
+					<td>Signature of Workmen</td>
+					
+</tr> 
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+        <!-- Footer Page-->
+        <%- include('../nav/footer') %>

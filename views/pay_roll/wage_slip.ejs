@@ -1,16 +1,99 @@
-<div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Wageslip</h4>
-      
-      <form class="form-inline">
-        <label class="sr-only" for="inlineFormInputName2">Contractor</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"  placeholder="contractor">
-        <label class="sr-only" for="inlineFormInputName2">Employee</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="employee">
-        <label class="sr-only" for="inlineFormInputName2">Month</label>
-        <input type="date" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="month">
-       
-        <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-      </form>
-    </div>
-  </div>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reports</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+</head>
+
+<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">	
+			  <div class="card-body">
+				<h4 class="card-title">Wageslip</h4>
+				
+				<form class="form-inline">
+				  <label class="sr-only" for="inlineFormInputName2">Contractor</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"  placeholder="contractor">
+				  <label class="sr-only" for="inlineFormInputName2">Employee</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="Employee">
+				  <label class="sr-only" for="inlineFormInputName2">Month</label>
+				  <input type="date" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="Employee">
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  </form>
+			  
+				</div> 
+				 
+					<!--   <div class="template-demo"> -->
+
+
+					   <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					  </p>
+					<!-- </div> -->
+			<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">			
+<table class="table table-bordered"> 				
+<thead>
+<center>
+					
+<h5>'FORM XIX</br>
+[See Rule 78(1)(b)]</br>
+The Contract Labour (Regulation & Abolition) Central Rules, 1971</br>
+Wage Slip';</h5>
+
+</center>
+</thead>
+<tbody>
+<tr>
+ 
+					<td>Name & Address of the Contractor :	ADHI VIGNESH ENGINEERING</td> 
+					</tr>
+					<tr>
+					<td>Nature and location of Work :</td>
+					</tr>
+					<tr>
+					<td>Name and Fathers/Husbands name of the workman :</td>
+					</tr>
+					<tr>
+					<td>For the Week / Fortnight / Month ending :</td>
+					</tr>
+					
+					
+
+
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+
+ 
+ <!-- Footer Page-->
+<%- include('../nav/footer') %>

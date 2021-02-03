@@ -1,16 +1,12 @@
-<!-- <h1>Helllo Worldddddddddddddddd</h1>
-    <% data.forEach(function(menu) { %>
-        <%= menu.id %> 
-        <%= menu.EIC_PRNO %> 
-        <%= menu.name %> 
-        <%= menu.department %> 
-        <%= menu.designation %> 
-    <% }) %>
- -->
- <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">New</button>
- <br/>
+
+<%- include ('../nav/header')  %> 
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">New</button>
 	<div class="col-lg-12 grid-margin stretch-card">
+		
 		<div class="card overflow-x overflow-y-hidden" id="table">
+			
 			<div class="card-body">
 				<h4 class="card-title">Shift  Master</h4>
 				<table class="table table-striped">
@@ -115,3 +111,6 @@
 		  
 	  }
 	</script>
+	
+	<!-- Footer Page-->
+<%- include('../nav/footer') %>

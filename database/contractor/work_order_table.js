@@ -12,13 +12,20 @@ async function get_workOrder(){
         console.log(error);
     }
 }
-/*let data = {Contractor_Code: req.body.Contractor_Code,Vendor_No: req.body.Vendor_No,Contractor_Name: req.body.Contractor_Name,Work_order_no: req.body.Work_order_no,Work_order_date: req.body.Work_order_date,Contractor_Value: req.body.Contractor_Value,Duration_Date: req.body.Duration_Date,Contract_Duration: req.body.Contract_Duration,EIC_PRNO: req.body.EIC_PRNO,Engineer_In_Charge: req.body.Engineer_In_Charge,Job_Desc: req.body.Job_Desc,Department: req.body.Department,Employee_count: req.body.Employee_count,CLRA: req.body.CLRA,ISMW: req.body.ISMW,Total_Workmen: req.body.Total_Workmen
 
-let sql = "update cpcl_work_order_master SET Contractor_Code='"+req.body.Contractor_Code+"',  Vendor_No='"+req.body.Vendor_No+"',Contractor_Name='"+req.body.Contractor_Name+"',Work_order_no='"+req.body.Work_order_no+"',Work_order_date='"+req.body.Work_order_date+"',Contractor_Value='"+req.body.Contractor_Value+"',Duration_Date='"+req.body.Duration_Date+"',Contract_Duration='"+req.body.Contract_Duration+"',EIC_PRNO='"+req.body.EIC_PRNO+"',Engineer_In_Charge='"+req.body.Engineer_In_Charge+"',Job_Desc='"+req.body.Job_Desc+"',Department='"+req.body.Department+"',Employee_count='"+req.body.Employee_count+"',CLRA='"+req.body.CLRA+"',ISMW='"+req.body.ISMW+"',Total_Workmen='"+req.body.Total_Workmen+"' where id ="+Id;*/
+async function get_contractor_code(){
+    try{
+            let pool = await sql.connect(config);
+            let product = await pool.request().query("select contractor_code from cpcl_contractor_master");
+            return product.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
+module.exports ={ 
+    get_workOrder,
+    get_contractor_code
 
-/* 
-INSERT into cpcl_work_order_master(Contractor_Code, Vendor_No, Contractor_Name, Work_order_no, Work_order_date, Contractor_Value, Duration_Date, Contract_Duration, EIC_PRNO, Engineer_In_Charge, Job_Desc, Department, Employee_count, CLRA, ISMW, Total_Workmen)Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)[Contractor_Code, Vendor_No, Contractor_Name, Work_order_no, Work_order_date, Contractor_Value, Duration_Date, Contract_Duration, EIC_PRNO, Engineer_In_Charge, Job_Desc, Department, Employee_count, CLRA, ISMW, Total_Workmen]; */
-
-
-module.exports ={ get_workOrder }
+}

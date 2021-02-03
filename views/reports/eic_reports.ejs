@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Forms</title>
+    <title>Reports</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -19,7 +23,10 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
   <body>
-  <div class="card">
+  <!-- <div class="content-wrapper">
+		<div class="row">
+	 <div class="col-12 grid-margin stretch-card">
+			<div class="card">
 			  <div class="card-body">
 				<h4 class="card-title">EIC Master Report</h4>
 				
@@ -31,9 +38,44 @@
 				  
 				 
 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-				</form>
-			  </div>
-			</div>
-		  </div>
+				
+				</form>  -->
+			  <!--   <div class="template-demo"> -->
+					  
+					 <p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 
+					<!-- </div> -->
+					
+<table class="table table-bordered"> 				
+<thead>
+<tr>
+	  <th>EICPRNO:</th>			 
+      <th colspan="5">EICNAME: null</th>
+      
+</tr>	 
+</thead>
+<tbody>
+<tr>
+ 
+					<td>S.NO</td> 
+					<td>EICPRNO</td>
+					<td>EICNAME</td>
+					<td>EICDESIG</td>
+					<td>EICEMAIL</td>
+					<td>EICMOBILE</td>
+					
+					
+</tr> 
+
+</tbody>
+</table>
+  
+		  <!-- Footer Page-->
+<%- include('../nav/footer') %>
+		  
 		  
 		  

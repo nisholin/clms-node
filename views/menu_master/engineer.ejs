@@ -1,178 +1,201 @@
- <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addEngineer(1)">New</button>
- <br/>
- <!-- <i class="mdi mdi-arrow-left-bold fs-35 cursor-p" id="back" onclick="close()"></i> -->
-    <div class="col-lg-12 stretch-card">
-      <div class="card" id="table">
-          <div class="card-body">
-              <h4 class="card-title">Engineer Master</h4>
-              <table class="table table-striped">
-                  <thead>
-                      <tr>
-                          <th> User </th>
-                          <th> EIC PRNO </th>
-                          <th> Name </th>
-                          <th> Department </th>
-                          <th>Email</th>
-                          <th>Mobile</th>
-						  <th>Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-					<% data.forEach(function(menu) { %>
-                        <tr>
-                          
-                            <td> <%= menu.id %>  </td>
-                            <td> <%= menu.EIC_PRNO %>  </td>
-                            <td>  <%= menu.name %>  </td>
-                            <td>  <%= menu.department %> </td>
-                            <td> <%= menu.designation %> </td>
-                            <td> <%= menu.designation %> </td>
-							<td><i class="mdi mdi-border-color cursor-p" onclick="addEngineer(2,'<%= menu.id %>')" area-hidden=true></i></td>
-                            
-						</tr>
-						<% }) %>
-                        <!-- 
-                        <tr>
-                          <% data.forEach(function(menu) { %>
-                            <td> <%= menu.id %>  </td>
-                            <td> <%= menu.EIC_PRNO %>  </td>
-                            <td>  <%= menu.name %>  </td>
-                            <td>  <%= menu.department %> </td>
-                            <td> <%= menu.designation %> </td>
-                            <td> <%= menu.designation %> </td>
-							<td><i class="mdi mdi-border-color cursor-p" onclick="addEngineer(2)" area-hidden=true></i></td>
-                            <% }) %>
-                        </tr> -->
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
-  <!--Form Data-->
-  <div class="card dis-none" id="newform">
-	  <div class="card-body">
+<%- include ('../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+			onclick="addEngineer(1)">New</button>
+		<br />
+		<!-- <i class="mdi mdi-arrow-left-bold fs-35 cursor-p" id="back" onclick="close()"></i> -->
+		<div class="col-lg-12 stretch-card">
+			<div class="card" id="table">
+				<div class="card-body">
+					<h4 class="card-title">Engineer Master</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th> User </th>
+								<th> EIC PRNO </th>
+								<th> Name </th>
+								<th> Department </th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% data.forEach(function(menu) { %>
+								<tr>
 
-		<h4 class="card-title">Engineer Master</h4>
-		<form class="forms-sample" method="POST" action="/engineer/new">
-		<form class="forms-sample">
-		<div class="form-group row">
-			<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="eic_prno" name="eic_prno" placeholder="EIC PRNO">
-			</div>
-		  </div>
-		<div class="form-group row">
-			<label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="name" name="name"placeholder="Name">
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="department" name="department"placeholder="Department">
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation">
-			</div>
-		  </div>
-		   <div class="form-group row">
-			<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="email" name="email" placeholder="Username">
-			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
-			</div>
-		  </div>
-		   <div class="form-group row">
-				<label class="col-sm-3 col-form-label">Status</label>
-				<div class="col-sm-4">
-				  <div class="form-check">
-					<label class="form-check-label">
-					  <input type="radio" class="form-check-input" name="status" id="status" value="1" checked> Active </label>
-				  </div>
+									<td>
+										<%= menu.id %>
+									</td>
+									<td>
+										<%= menu.EIC_PRNO %>
+									</td>
+									<td>
+										<%= menu.name %>
+									</td>
+									<td>
+										<%= menu.department %>
+									</td>
+									<td>
+										<%= menu.designation %>
+									</td>
+									<td>
+										<%= menu.designation %>
+									</td>
+									<td><i class="mdi mdi-border-color cursor-p"
+											onclick="addEngineer(2,'<%= menu.id %>')" area-hidden=true></i></td>
+
+								</tr>
+								<% }) %>
+									<!-- 
+						   <tr>
+							 <% data.forEach(function(menu) { %>
+							   <td> <%= menu.id %>  </td>
+							   <td> <%= menu.EIC_PRNO %>  </td>
+							   <td>  <%= menu.name %>  </td>
+							   <td>  <%= menu.department %> </td>
+							   <td> <%= menu.designation %> </td>
+							   <td> <%= menu.designation %> </td>
+							   <td><i class="mdi mdi-border-color cursor-p" onclick="addEngineer(2)" area-hidden=true></i></td>
+							   <% }) %>
+						   </tr> -->
+						</tbody>
+					</table>
 				</div>
-				<div class="col-sm-5">
-				  <div class="form-check">
-					<label class="form-check-label">
-					  <input type="radio" class="form-check-input" name="status" id="status" value="0"> In Active </label>
-				  </div>
-				</div>
-			  </div>
-		 
-		 <!--  <div class="form-group row">
-			<label for="exampleInputHead1" class="col-sm-3 col-form-label">Head1</label>
-			<div class="col-sm-9">
-			  <input type="password" class="form-control" id="head1" name="head1" placeholder="Head1">
 			</div>
-		  </div>
-		  <div class="form-group row">
-			<label for="exampleInputHead2" class="col-sm-3 col-form-label">Head2</label>
-			<div class="col-sm-9">
-			  <input type="password" class="form-control" id="head2" name="head2" placeholder="Head2">
+		</div>
+		<!--Form Data-->
+		<div class="card dis-none" id="newform">
+			<div class="card-body">
+
+				<h4 class="card-title">Engineer Master</h4>
+				<form class="forms-sample" method="POST" action="/engineer/new">
+					<form class="forms-sample">
+						<div class="form-group row">
+							<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="eic_prno" name="eic_prno"
+									placeholder="EIC PRNO">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="department" name="department"
+									placeholder="Department">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="designation" name="designation"
+									placeholder="Designation">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Username">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label">Status</label>
+							<div class="col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input type="radio" class="form-check-input" name="status" id="status" value="1"
+											checked> Active </label>
+								</div>
+							</div>
+							<div class="col-sm-5">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input type="radio" class="form-check-input" name="status" id="status"
+											value="0"> In Active </label>
+								</div>
+							</div>
+						</div>
+
+						<!--  <div class="form-group row">
+			   <label for="exampleInputHead1" class="col-sm-3 col-form-label">Head1</label>
+			   <div class="col-sm-9">
+				 <input type="password" class="form-control" id="head1" name="head1" placeholder="Head1">
+			   </div>
+			 </div>
+			 <div class="form-group row">
+			   <label for="exampleInputHead2" class="col-sm-3 col-form-label">Head2</label>
+			   <div class="col-sm-9">
+				 <input type="password" class="form-control" id="head2" name="head2" placeholder="Head2">
+			   </div>
+			 </div> -->
+						<center>
+							<button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+							<button class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
+						</center>
+					</form>
 			</div>
-		  </div> -->
-		  <center>
-		  <button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
-		  <button  class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
-		  </center>
-		</form>
-	  </div>
-	</div>
-	
-	
-  
-  
-  <script type="text/javascript">
+		</div>
+		<!--Footer-->
+		<%- include('../nav/footer') %>
 
-  window.onload = function() {
 
-    document.getElementById("newform").style.display = "none";
-	document.getElementById("formEdit").style.display = "none";
-	//document.getElementById("back").style.display = "none";
-  };
 
-  function addEngineer(a,data) {
-  	//alert(data);
-  
-    if (a == 1) {
-      document.getElementById("newform").style.display = "block";
-	  //document.getElementById("back").style.display = "block";
-	  document.getElementById("table").style.display = "none";
-	  document.getElementById("addbutton").style.display = "none";
-	  document.getElementById("formEdit").style.display = "none";
-    } else if(a == 2) {
-		$.ajax({
-			url: '/engineer/update',
-			type: 'POST',
-			data: { "id": data }
-			}).done(function(response){
-			//callback to handle if it's successful
-		})
-		
-	  document.getElementById("formEdit").style.display = "block";
-	  document.getElementById("table").style.display = "none";
-	  document.getElementById("addbutton").style.display = "none";
-	}
-    else {
-      document.getElementById("newform").style.display = "none";
-    }
-      
-  };
-  
-  function close() {
-	alert("test");
-	document.getElementById("table").style.display = "block";
-	document.getElementById("newform").style.display = "none";
-	//document.getElementById("back").style.display = "none";
-	document.getElementById("addbutton").style.display = "none";
-	document.getElementById("formEdit").style.display = "none";
-  }
-</script>
+			<script type="text/javascript">
+
+				window.onload = function () {
+
+					document.getElementById("newform").style.display = "none";
+					document.getElementById("formEdit").style.display = "none";
+					//document.getElementById("back").style.display = "none";
+				};
+
+				function addEngineer(a, data) {
+					//alert(data);
+
+					if (a == 1) {
+						document.getElementById("newform").style.display = "block";
+						//document.getElementById("back").style.display = "block";
+						document.getElementById("table").style.display = "none";
+						document.getElementById("addbutton").style.display = "none";
+						document.getElementById("formEdit").style.display = "none";
+					} else if (a == 2) {
+						$.ajax({
+							url: '/engineer/update',
+							type: 'POST',
+							data: { "id": data }
+						}).done(function (response) {
+							//callback to handle if it's successful
+						})
+
+						document.getElementById("formEdit").style.display = "block";
+						document.getElementById("table").style.display = "none";
+						document.getElementById("addbutton").style.display = "none";
+					}
+					else {
+						document.getElementById("newform").style.display = "none";
+					}
+
+				};
+
+				function close() {
+					alert("test");
+					document.getElementById("table").style.display = "block";
+					document.getElementById("newform").style.display = "none";
+					//document.getElementById("back").style.display = "none";
+					document.getElementById("addbutton").style.display = "none";
+					document.getElementById("formEdit").style.display = "none";
+				}
+			</script>

@@ -1,0 +1,119 @@
+<%- include ('../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+	
+	<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Forms</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  </head>
+  <body>
+	 <div class="content-wrapper">
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">
+				<h4 class="card-title">Head1</h4>
+				
+				<form class="form-inline">
+				  <label class="sr-only" for="inlineFormInputName2">Contractor Code</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor_code" name="contractor_code"  placeholder="contractor code">
+				  <label class="sr-only" for="inlineFormInputName2">Contractor_name</label> 
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor_name" name="Contractor_name"  placeholder="contractor name">
+				  <label class="sr-only" for="inlineFormInputName2">Work Order No</label>
+				  <input type="date" class="form-control mb-2 mr-sm-2" id="work_order_no" name="work_order_no"  placeholder="work order no">
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  </form>
+			  
+				</div> 
+			  
+			<p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+			<div class="col-lg-12 grid-margin stretch-card" id="table">
+			 <div class="card overflow-x overflow-y-hidden">
+				<div class="card-body"> 
+		  <table class="table table-bordered"> 				
+<thead>
+<tr>
+	  <th>ID</th>
+ <th>Emp_code</th>	  
+      <th>Emp_id</th>
+	    <th>Name</th>
+      <th>Pass From</th>
+	   <th>Pass To</th>
+	   <th>check</th>
+</tr>	 
+</thead>
+<tbody>
+<tr>
+ 
+					<td><input type="text" name="1" id="1" class="form-control" placeholder="1"></td>
+					<td><input type="text" name="Emp_code" id="Emp_code" class="form-control" placeholder="Emp_code"></td>
+					<td><input type="text" name="emp_id" id="emp_id" class="form-control" placeholder="Emp_id"></td>
+					<td><input type="text" name="name" id="name" class="form-control" placeholder="Name"></td>
+					<td><input type="text" name="pass_from" id="pass_from" class="form-control" placeholder="Pass_From"></td>
+					<td><input type="text" name="pass_to" id="pass_to" class="form-control" placeholder="Pass_To"></td>
+					<td><input type="text" name="check" id="check" class="form-control" placeholder="check"></td>
+					
+</tr> 
+
+</tbody>
+</table>
+
+					
+			<!-- <div class="card">
+			  <div class="card-body">
+				
+				<form class="forms-sample">
+				  <div class="form-group row">
+					<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Work Spot</label>
+					<div class="col-sm-9">
+					  <input type="text" class="form-control" id="work_spot" name="work_spot" placeholder="work spot">
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Area Of Work</label>
+					<div class="col-sm-9">
+					  <input type="text" class="form-control" id="area_of_work" name="area_of_work" placeholder="area of work">
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Entry Gate</label>
+					<div class="col-sm-9">
+					  <input type="text" class="form-control" id="entry_gate" name="entry_gate" placeholder="entry gate">
+					</div>
+				  </div>
+				  <div class="form-group row">
+					<label for="exampleInputEmail2" class="col-sm-3 col-form-label">Time Of work</label>
+					<div class="col-sm-9">
+					 <input type="text" class="form-control" id="time_of_work" name="time_of_work" placeholder="time of work">
+					</div>
+				  </div>
+				  
+				</form>
+			  </div>
+			</div> -->
+		  </div>
+		  </div>
+		  </div>
+
+
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>

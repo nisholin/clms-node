@@ -9,6 +9,20 @@ var sql = require('mssql');
 
 
 router.get('/contractornew',(req,res,next)=>{
+	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+		dboperations.contractor_data().then(result=>{
+        var data = result[0];        
+        //console.table(data);
+        res.render('contractor_master/contractornew',{data})
+    })
+    } */ 
 	dboperations.contractor_data().then(result=>{
         var data = result[0];        
         //console.table(data);

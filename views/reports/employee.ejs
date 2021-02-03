@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -17,26 +21,62 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
-  <div class="content-wrapper">
+</head>
+<body>
+<!-- <div class="content-wrapper">
 		<div class="row">
 	 <div class="col-12 grid-margin stretch-card">
 			<div class="card">
 			  <div class="card-body">
-				<h4 class="card-title">Employee</h4>
+				<h4 class="card-title">Employee Master Report</h4>
 				
 				<form class="form-inline">
 				  <label class="sr-only" for="inlineFormInputName2">Employee</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="employee">
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="Employee">
 				  <label class="sr-only" for="inlineFormInputName2">Work Order</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="work_order" name="work_order"  placeholder="work order">
-				  
-				 
 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-				</form>
-			  </div>
-			</div>
-		  </div>
+				  </form> -->
+			  
+				
+				  
+					<!--   <div class="template-demo"> -->
+					  
+					<p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					  </p>
+					<!-- </div> -->
+					
+<table class="table table-bordered"> 				
+<thead>
+<tr>
+	  <th>Cont Code:</th>			 
+      <th colspan="2">Cont Name:null</th>
+      <th colspan="2">Work Order No:null</th>
+</tr>	 
+</thead>
+<tbody>
+<tr>
+ 
+					<td>S.NO</td> 
+					<td>Emp Code</td>
+					<td>Emp Name</td>
+					<td>Dept</td>
+					<td>PO_No</td>
+					
+					
+					
+</tr> 
+
+</tbody>
+</table>
+		  <!-- Footer Page-->
+<%- include('../nav/footer') %>
 		  
 		  

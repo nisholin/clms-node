@@ -1,49 +1,41 @@
-var config = require('../database/dbconfig');
-var sql = require ('mssql');
 
-exports.login = function(req, res){
-    var message ='Login check';
+exports.login_check=(req,res)=>{
+
     var sess = req.session;
-
     if(req.method == "POST"){
         var post = req.body;
-        var name = post.email;
-        var pass = post.pass;
+        var name = post.Username;
+        var pass = post.Password;
 
-        //GET API
-            async function getGateValues(){
-            try{
-            let pool = await sql.connect(config);
-            let products = await pool.request().query("SELECT [user_id],[user_name]  FROM [CLMS_V].[dbo].[user_master] where user_name='"+name+"' and password='"+pass+"'");
-            return products.recordsets;
 
-            }
-            catch(error){
-            console.log(error);
-            }
-            }
-    
-        getGateValues().then(result=>{           
+        console.log(name+pass);
 
-            console.log();
-
-            
-            if(result[0].length)
-            {
-            req.session.userId = result[0].user_id;
-            req.session.user = result[0].user_name;
-            res.redirect('/home');
-            }
-            else
-            {
-                message = 'Wrong Credentials.';
-                res.redirect('/login',{message: message});
-             } 
-
-        });
-          
-        
+        if(name=='admin' && pass==123)
+        {
+            req.session.userId = 'admin';
+            req.session.user_name = 123;
+            res.redirect('/home');        
+        }
+        else
+        {
+            message = 'Wrong Credentials.';
+            res.render('login_page.ejs',{message: message});
+        }
     }
+    
 }
 
+exports.main_page = function(req,res,next){
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+    if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
 
+        res.render('home',{user_Id:user_Id,user_name:user_name});
+    }
+
+}

@@ -1,0 +1,86 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+	
+	<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reports</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+</head>
+					 <body>
+	 <div class="content-wrapper">
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+			
+    <div class="card-body">
+        <h4 class="card-title">Attendance Report</h4>
+
+        <form class="form-inline">
+            <label class="sr-only" for="Contractor">Contractor</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="Contractor" name="Contractor" placeholder="Contractor">
+            <label class="sr-only" for="Month">Month</label>
+			 <input type="text" class="form-control mb-2 mr-sm-2" id="month" name="month" placeholder="Month">
+            <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+        </form>
+    </div>
+					 <p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					  </p>
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">	
+<div class="card-body">		
+					
+<table class="table table-bordered"> 				
+<thead>
+  <p align="left">
+					
+<h5>Shift MIS Report</br>
+For The Contractor:</br>
+For The Date:01-- TO 31--</h5>
+
+</p>
+
+</thead>
+<tbody>
+<tr>
+ 
+					<td>SNO</td> 
+					<td>Contractor Name</td>
+					<td>Employee ID</td>
+					<td>EMPCODE Code</td>
+					<td>Employee Name</td>
+					<td>Shift date</td>
+					<td>Shift</td>
+					<td>IN</td>
+					<td>OUT</td>
+					<td>PO NUM</td>
+</tr> 
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+        <!-- Footer Page-->
+        <%- include('../nav/footer') %>

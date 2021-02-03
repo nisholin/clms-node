@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+
+ <!--<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Forms</title>
+    <title>Reports</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -17,76 +21,60 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
-	
-			<div class="card">
-			<div class="card-body">
-				<h4 class="card-title">Contractor Master</h4>
+</head>
+<body>
+<!-- 
+			  <div class="card-body">
+				<h4 class="card-title">Contractor Master Report</h4>
 				
 				<form class="form-inline">
 				  <label class="sr-only" for="inlineFormInputName2">Contractor</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"  placeholder="contractor">
 				  <label class="sr-only" for="inlineFormInputName2">Work Order</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="work_order" name="work_order"  placeholder="work order">
-				  
-				 
 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-				</form>
-			  </div>
-			</div>
-		  </div>
-		  
-		  
-			 <!--  <div class="card-body">
+				  </form>
 			  
-				<h4 class="card-title">Reports</h4>
+				</div>
+				 -->
+					<!--   <div class="template-demo"> -->
+					
+
+					   <p align="right">
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					  </p>
+					 <p align="right">
+					  <button type="button" class="btn btn-gradient-info btn-icon-text"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					  </p>
+					<!-- </div> -->
+					
+<table class="table table-bordered"> 				
+<thead>
+<tr>
+	  <th>Cont Code:</th>			 
+      <th colspan="2">Cont Name:null</th>
+      <th colspan="3">Work Order No:null</th>
+</tr>	 
+</thead>
+<tbody>
+<tr>
+ 
+					<td>S.NO</td> 
+					<td>Contractor Code</td>
+					<td>Contractor Name</td>
+					<td>Lic NO</td>
+					<td>Rc No</td>
+					<td>Cont Type</td>
+					
+					
+</tr> 
+
+</tbody>
+</table>	
 			
-				<form class="forms-sample">
-				<div class="form-group row">
-					<label for="exampleInputWage Slip" class="col-sm-3 col-form-label">Wage Slip</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleWage_Slip" placeholder="Wage Slip">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputForm B Wage Register" class="col-sm-3 col-form-label">Form B Wage Register</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputForm_B_Wage_Register" placeholder="Form B Wage Register">
-					</div>
-				  </div>
-				   <div class="form-group row">
-					<label for="exampleInputWork order billing" class="col-sm-3 col-form-label">Work order billing</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputWork_order_billing" placeholder="Work  order billing">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputForm D Attendance Register" class="col-sm-3 col-form-label">Form D Attendance Register</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputForm_D_Attendance_Register" placeholder="Form D Attendance Register">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputAttendance Report" class="col-sm-3 col-form-label">Attendance Report</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="Attendance_Report" placeholder="Attendance Report">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputDaily Attendance" class="col-sm-3 col-form-label">Daily Attendance</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputDaily_Attendance" placeholder="Daily  Attendance">
-					</div>
-				  </div>
-				    
-				  <center>
-				  <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
-				  
-				 <button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
-				  </center>
-				</form>
-			  </div>
-			</div>
 		  
-		   -->
+		   <!-- Footer Page-->
+<%- include('../nav/footer') %>

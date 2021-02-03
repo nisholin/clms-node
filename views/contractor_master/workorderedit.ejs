@@ -1,0 +1,283 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+
+        <div class="card" id="newform">
+            <div class="card-body overflow-x">
+
+                <h4 class="card-title">Work Order Cat1</h4>
+
+                <form class="forms-sample" method="POST" action="/workordernew/add">
+                    <div class="form-group row">
+                        <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="contractor_code" name="contractor_code"
+                                onchange="getContName()">
+                                <option>Select</option>
+                                <% for (const i in code) { %>
+                                    <option value="<%= code[i].contractor_code %>">
+                                        <%= code[i].contractor_code %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputContractor Name" class="col-sm-3 col-form-label">Contractor Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Contractor_Name" value=""
+                                name="Contractor_Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputVendor No" class="col-sm-3 col-form-label">Vendor No</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Vendor_No" name="Vendor_No"
+                                placeholder="Vendor No">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputWork order no" class="col-sm-3 col-form-label">Work order No</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Work_order_no" name="Work_order_no"
+                                placeholder="Work order no">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="Work_order_date" name="Work_order_date"
+                                placeholder="Work order date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputContractor Value" class="col-sm-3 col-form-label">Contractor
+                            Value</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Contractor_Value" name="Contractor_Value"
+                                placeholder="Contractor Value">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputDuration of Month" class="col-sm-3 col-form-label">Duration Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="Duration_Date" name="Duration_Date"
+                                placeholder="Duration Date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputContract Duration" class="col-sm-3 col-form-label">Contract Duration
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="Contract_Duration" name="Contract_Duration"
+                                placeholder="Contract Duration">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="EIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="EIC_PRNO" name="EIC_PRNO"
+                                placeholder="EIC PRNO">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEngineer In Charge" class="col-sm-3 col-form-label">Engineer In
+                            Charge</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Engineer_In_Charge" name="Engineer_In_Charge"
+                                placeholder="Engineer In Charge">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputJob Desc" class="col-sm-3 col-form-label">Job Desc</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Job_Desc" name="Job_Desc"
+                                placeholder="Job Desc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Department" name="Department"
+                                placeholder="Department">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmployee count" class="col-sm-3 col-form-label">Employee count</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Employee_count" name="Employee_count"
+                                placeholder="Employee count">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputCLRA" class="col-sm-3 col-form-label">CLRA</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="CLRA" name="CLRA" placeholder="CLRA">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputISMW" class="col-sm-3 col-form-label">ISMW</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="ISMW" name="ISMW" placeholder="ISMW">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputISMW" class="col-sm-3 col-form-label">Total Workman</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="ISMW" name="ISMW" value="19" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="wo" class="col-sm-3 col-form-label">Extra Workman</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="extra_workman" name="extra_workman"
+                                onchange="getWorkmanTable()">
+                                <option>Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered dis-none" id="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>RCNO</th>
+                                <th>RC_STR</th>
+                                <th>Licence_No</th>
+                                <th>Period_From</th>
+                                <th>Period_To</th>
+                                <th>Workmen</th>
+                                <th>Total_Workmen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CLRA</td>
+                                <td><input type="text" class="form-control" name="clra_rcno" id="clra_rcno"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="clra_rc_str" id="clra_rc_str"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="clra_lic_no" id="lic_no" placeholder="">
+                                </td>
+                                <td><input type="text" class="form-control" name="clra_period_from" id="period_from"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="clra_period_to" id="period_to"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="clra_workmen" id="workmen" placeholder="">
+                                </td>
+                                <td><input type="text" class="form-control" name="clra_total_workmen" id="total_workmen"
+                                        placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>ISMW</td>
+                                <td><input type="text" class="form-control" name="ismw_rcno" id="ismw_rcno"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="ismw_rc_str" id="ismw_rc_str"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="ismw_lic_no" id="lic_no" placeholder="">
+                                </td>
+                                <td><input type="text" class="form-control" name="ismw_period_from" id="period_from"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="ismw_period_to" id="period_to"
+                                        placeholder=""></td>
+                                <td><input type="text" class="form-control" name="ismw_workmen" id="workmen" placeholder="">
+                                </td>
+                                <td><input type="text" class="form-control" name="ismw_total_workmen" id="total_workmen"
+                                        placeholder=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div class="form-group row">
+                        <label for="wo" class="col-sm-3 col-form-label">Extra Contractor</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="extra_contractor" name="extra_contractor"
+                                onchange="getContractorTable()">
+                                <option>Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="table table-bordered dis-none" id="cont_table">
+                        <thead>
+                            <tr>
+                                <th>Contractor Name:</th>
+                                <th>Licence no</th>
+                                <th>Period from</th>
+                                <th>Period TO</th>
+                                <th>Workmen</th>
+                                <th>Total Workmen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control" name="contractor_name" id="contractor_name"
+                                        placeholder="Contractor Name"></td>
+                                <td><input type="text" class="form-control" name="lic_no" id="lic_no"
+                                        placeholder="Licence no"></td>
+                                <td><input type="text" class="form-control" name="period_from" id="period_from"
+                                        placeholder="Period from"></td>
+                                <td><input type="text" class="form-control" name="period_to" id="period_to"
+                                        placeholder="Period To"></td>
+                                <td><input type="text" class="form-control" name="workmen" id="workmen"
+                                        placeholder="Workmen"></td>
+                                <td><input type="text" class="form-control" name="total_workmen" id="total_workmen"
+                                        placeholder="Total Workmen"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br /><br />
+                    <center>
+                        <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
+
+                        <button class="btn btn-gradient-danger btn-fw">cancel</button>
+                    </center>
+                </form>
+            </div>
+        </div>
+        <!-- Footer Page-->
+        <%- include('../nav/footer') %>
+
+
+
+
+
+            <script type="text/javascript">
+                window.onload = function () {
+                    document.getElementById("table").style.display = "none";
+                    document.getElementById("cont_table").style.display = "none";
+                }
+                function getWorkmanTable() {
+                    var value = document.getElementById("extra_workman").value;
+                    //alert(value);
+                    if (value == 1) {
+                        document.getElementById("table").style.display = "block";
+                    } else {
+                        document.getElementById("table").style.display = "none";
+                    }
+                }
+                function getContractorTable() {
+                    var value = document.getElementById("extra_contractor").value;
+                    //alert(value);
+                    if (value == 1) {
+                        document.getElementById("cont_table").style.display = "block";
+                    } else {
+                        document.getElementById("cont_table").style.display = "none";
+                    }
+                }
+                function getContName() {
+                    var selectedValue = document.getElementById("contractor_code").value;
+                    alert(selectedValue);
+                    $.ajax({
+                        url: '/workordernew/add/getcontractorname',
+                        type: 'POST',
+                        data: { "contractor_code": selectedValue }
+                    }).done(function (response) {
+                        //callback to handle if it's successful
+                    })
+                }
+            </script>
