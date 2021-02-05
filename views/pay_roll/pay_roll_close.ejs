@@ -1,5 +1,36 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
+	<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">	
+			  <div class="card-body">
+				<h4 class="card-title">PayRoll Close</h4>
+				
+				<form class="form-inline">
+				  <label class="sr-only" for="inlineFormInputName2">Year</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="year" name="year"  placeholder="Year">
+				<label class="sr-only" for="inlineFormInputName2">Month</label>
+				  <input type="month" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="Month">
+				
+				 
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  </form>
+			  
+				</div> 
+</head>
+<div class="col-sm-12 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					</div>
+					</div> 
+  </div>
         <!-- Footer Page-->
         <%- include('../nav/footer') %>

@@ -16,7 +16,18 @@ async function get_workOrder(){
 async function get_contractor_code(){
     try{
             let pool = await sql.connect(config);
-            let product = await pool.request().query("select contractor_code from cpcl_contractor_master");
+            let product = await pool.request().query("select contractor_code,contractor_name from cpcl_contractor_master");
+            return product.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function get_engineer_incharge_code(){
+    try{
+            let pool = await sql.connect(config);
+            let product = await pool.request().query(" select EIC_PRNO from cpcl_engineer_master");
             return product.recordsets;
     }
     catch(error){
@@ -26,6 +37,7 @@ async function get_contractor_code(){
 
 module.exports ={ 
     get_workOrder,
-    get_contractor_code
+    get_contractor_code,
+    get_engineer_incharge_code
 
 }

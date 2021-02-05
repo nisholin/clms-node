@@ -2263,8 +2263,13 @@
 .lh-2-8 {line-height: 2.8;}
 .lh-2-9 {line-height: 2.9;}
 
-
-
+/*[ Display ]*/
+.w-9-rem {
+	width: 9rem;
+}
+.w-11-rem {
+	width: 11rem;
+}
 
 
 /*[ SHAPE ]

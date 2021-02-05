@@ -8,7 +8,7 @@ var sql = require('mssql');
 
  
 
-router.get('/form_d_attendance',(req, res)=>{
+router.get('/form_d',(req, res)=>{
 	res.render('pay_roll/form_d_attendance');
 });
 

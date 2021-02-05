@@ -1,5 +1,139 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
-        <!-- Footer Page-->
+   <div class="content-wrapper">
+		<div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+	<div class="card" id="newform">
+	 <div class="card-body">
+			<h4 class="card-title">Paroll Mail Report</h4>
+				
+				<form class="form-inline">
+				  <label class="sr-only" for="contractor">Contractor</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor" placeholder="contractor">
+				  <label class="sr-only" for="employee">Employee</label>
+				  <input type="employee" class="form-control mb-2 mr-sm-2" id="employee" name="employee" placeholder="employee">
+				  
+				  <label class="sr-only" for="to_date">Month</label>
+				  <div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+				
+					</div>
+					<input type="month" class="form-control" id="month" name="month" placeholder="month" >
+				  </div>
+				 
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				</form>
+			  </div>
+	
+			</div>
+		
+		
+		<div class="col-sm-12 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					</div>
+					</div> 
+  </div>
+					  <div class="col-lg-12 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+				<div class="card-body">	
+<table class="table table-bordered">
+		
+
+<!--<tr>
+	   
+    <th>EICPRNO</th>
+    <th colspan="6">EICNAME</th>
+ </tr>-->
+
+	
+     
+      <!--<th>Name and address of Contractor :</th>
+	  <th colspan="2">A K ELECTRICALS</th>
+	   <th>Name and address
+	   of Principal
+	   employer :</th>
+	 <th >CHENNAI PETROLEUM CORPORATION LIMITED MANALI, CHENNAI-600068</th>
+	  <th>Name of Owner LIN</th>
+	  <th></th>-->
+	  
+
+<tbody>
+<tr>
+<div class="form-group">
+					
+</div>
+					
+				
+					<!--<td colspan="3">Wage period</td>
+					<tr>S.No</tr>
+					<tr>Sl. No. in Employee Register</tr>
+					<td>From :01/12/2020 To 31/12/2020</td>
+					<td>(Monthly/Fortnight/Weekly/Daily/Piece Rated)</td>
+					<td>Work order</td>
+					<td>26274636</td>
+					
+					
+					<tr>ID Card No</tr>-->
+						<tr>
+							<td colspan="2">Name and address of Contractor : </td>
+							<td colspan="2">A K ELECTRICALS </td>
+							<td colspan="3">Name and address of Principal employer :</td>
+							<td colspan="4">CHENNAI PETROLEUM CORPORATION LIMITED MANALI, CHENNAI-600068</td>
+							<td colspan="3">Name of Owner LIN</td>
+							<td colspan="3"></td>
+							</tr>
+							<tr>
+							<td colspan="4">Wage period</td>
+							<td colspan="6">From :01/12/2020 To 31/12/2020</td>
+							<td colspan="6">(Monthly/Fortnight/Weekly/Daily/Piece Rated)</td>
+							<td colspan="3">Work order</td>
+							<td colspan="3">'.$work_order_no.'</td>
+							</tr>
+							<tr>
+					
+				<tr>
+				<td colspan="2">s.no</td>
+				<td colspan="1">Sl. No. in Employee Register</td>
+				<td colspan="1">ID Card No</td>
+				<td colspan="3">Name</td>
+				<td colspan="1">Rate of wage</td>
+				<td colspan="1">No. of days Worked</td>
+				<td colspan="1">Basic</td>
+				<td colspan="3">Other Allowance</td>
+				<td colspan="1">Incentive</td>
+				<td colspan="1">Total</td>
+				<td colspan="1">PF</td>
+				<td colspan="3">s.no</td>
+				<td colspan="1">Sl. No. in Employee Register</td>
+				<td colspan="1">ID Card No</td>
+				
+				</tr>
+				
+					
+					
+
+ 
+</tbody>
+</div>
+</div>
+</div>
+
+					
+</table>
+</div>
+					</div> 
+  </div>
+
+					
+  <!-- Footer Page-->
         <%- include('../nav/footer') %>

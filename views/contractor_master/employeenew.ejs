@@ -10,16 +10,41 @@
 
                     <div class="form-group row">
                         <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="ccode" name="ccode" placeholder="ccode">
-                        </div>
+                       <div class="col-sm-9">
+							<input list="ccode" class="form-control" placeholder="Select Contractor Code">
+                            <datalist id="ccode">
+                               
+                                    <option value="CT0023- ITD CEMENTATION INDIA LTD." />
+									<option value="420025-gopi" />
+									<option value="840027-arun" />
+                                   
+                            </datalist> 
+						</div>
+                       
                     </div>
-                    <div class="form-group row">
+                    <!--<div class="form-group row">
                         <label for="cname" class="col-sm-3 col-form-label">Contractor Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="cname" name="cname" placeholder="cname">
                         </div>
-                    </div>
+						</div>-->
+					  
+					  <div class="form-group row">
+					  <label for="file" class="col-sm-3 col-form-label">File upload</label>
+					<!--<label>File upload</label>-->
+					 <div class="col-sm-9">
+					<input type="file" name="img[]" class="file-upload-default">
+					<div class="input-group col-xs-12">
+					  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+					  <span class="input-group-append">
+						<button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+					  </span>
+					</div>
+				  </div>
+				   </div>
+			 
+			 
+                   
                     <div class="form-group row">
                         <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
                         <div class="col-sm-9">
@@ -463,6 +488,20 @@
                 </div>
             </div>
         </div>
+		   <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="assets/js/file-upload.js"></script>
+    <!-- End custom js for this page -->
+
         <!-- Footer Page-->
         <%- include('../nav/footer') %>
 

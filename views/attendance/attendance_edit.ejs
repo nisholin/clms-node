@@ -1,7 +1,99 @@
 <%- include ('../nav/header') %>
-  <!-- Sidebar Page -->
-  <%- include('../nav/sidebar') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+	
+	<div class="content-wrapper">
+		<div class="col-lg-20 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+		<div class="card" id="newform">
+	 <div class="card-body">
+				<h4 class="card-title">Attendence Edit Report</h4>
 
-   
-    <!-- Footer Page-->
-    <%- include('../nav/footer') %>
+				<form class="form-inline">
+					<label class="sr-only" for="late_commers">Late Commers Employee</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="late_commers"
+						placeholder="Late Commers Employee">
+					<label class="sr-only" for="payroll_month">Payroll Month</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="payroll_month" placeholder="payroll month">
+
+					<label class="sr-only" for="po_date">Date</label>
+						<input type="date" class="form-control mb-2 mr-sm-2" id="date" placeholder="date">
+				
+
+					<button type="submit" class="btn btn-gradient-primary mb-2 mr-sm-2">Go</button>
+				</form>
+			</div>
+
+		 <div class="col-sm-12 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					</div>
+					</div> 
+  </div>
+
+		<table class="table table-bordered">
+
+			<thead>
+				<!--<tr>
+
+<th>EICPRNO</th>
+<th colspan="6">EICNAME</th>
+</tr>-->
+
+
+				<th>#</th>
+				<th>CODE</th>
+				<th>NAME</th>
+				<th> SHIFT</th>
+				<th> DATE</th>
+				<th>IN</th>
+				<th>OUT</th>
+				<th>CONTRACTOR</th>
+				<th>GATE</th>
+				<th>PO NUM</th>
+				<th>ACTIONS</th>
+
+
+			</thead>
+			<tbody>
+				<tr>
+					<div class="form-group">
+
+					</div>
+
+					<td>#</td>
+					<td>code</td>
+					<td>name</td>
+					<td>shift</td>
+					<td>date</td>
+					<td>in</td>
+					<td>out</td>
+					<td>contractor</td>
+					<td>gate</td>
+					<td>po num</td>
+					<td> <button type="button" class="btn btn-gradient-dark btn-icon-text"> Edit <i
+								class="mdi mdi-file-check btn-icon-append"></i>
+						</button></td>
+
+
+				</tr>
+
+			</tbody>
+			
+			</body>
+		</table>
+		</div>
+			</div>
+			</div>
+			</div>
+
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>

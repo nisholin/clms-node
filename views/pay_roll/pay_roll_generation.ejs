@@ -2,27 +2,6 @@
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
 
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PayRoll</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-</head>
 <center>
 <h5>PayRoll Generation</h5>
 </center>
@@ -53,18 +32,17 @@
 </tr>	 
 </thead>
 <tbody>
-<tr>
- <td>1</td>
-					<td><input type="text" name="ccode" id="ccode" class="form-control" placeholder="Contractor Code"></td> 
-					<td><input type="text" name="cname" id="cname" class="form-control" placeholder="Contractor Name"></td> 
-					<td><input type="text" name="employee_code" id="employee_code" class="form-control" placeholder="Employee Code"></td> 
-
-					<td><input type="text" name="employee_name" id="employee_name" class="form-control" placeholder="Contractor Name"></td> 
-					<td><input type="text" name="po_num" id="po_num" class="form-control" placeholder="PO NUM"></td> 
-					 
-					<td><input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="No of  Days"></td> 
-					
-</tr> 
+  <tr>
+    <% data.forEach(function(pay_roll_generation) { %>
+      <td> <%= pay_roll_generation.CCODE %>  </td>
+      <td> <%= pay_roll_generation.CNAME %>  </td>
+      <td>  <%= pay_roll_generation.EMPCODE %>  </td>
+      <td>  <%= pay_roll_generation.Employee_Name %> </td>
+      <td> <%= pay_roll_generation.PO_NUM %> </td>
+      <td> <%= pay_roll_generation.work_Days %> </td>
+      
+      <% }) %>
+    </tr> 
 
 </tbody>
 </table>

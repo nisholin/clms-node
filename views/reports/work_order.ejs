@@ -37,11 +37,23 @@
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="work_order" name="work_order"  placeholder="work order">
 				  
 				 
-<!-- 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
- -->				  <input type="hidden" name="msent" id="msent" />
-						<td style="padding-left: 10px;"><input type="submit" name="addBranch" id="addBranch" class="btn btn-success" value="SEARCH" onClick="addBranch()"></td>
-						<td width="5%" ><input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-primary"/></td>
-						<td width="5%"><input type="submit" name="myButtonControlID" id="myButtonControlID" class="btn btn-primary" value="EXCEL"></td>
+ 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+ 				  <input type="hidden" name="msent" id="msent" />
+						
+						<div class="col-sm-12 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					</div>
+					</div> 
+  </div>
 				</form>
 			  </div>
 			</div>

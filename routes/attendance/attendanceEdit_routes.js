@@ -8,12 +8,12 @@ var sql = require('mssql');
 
  
 
-router.get('/attendance_edit',(req, res)=>{
-    dboperations.getpayrollValues().then(result =>{                
+router.get('/a_edit',(req, res)=>{
+  /*   dboperations.getpayrollValues().then(result =>{                
     var data = result[0];
     res.render('attendance/attendance_edit',{data});
-})
-	//res.render('menu_master/engineer');
+}) */
+	res.render('attendance/attendance_edit');
 });
 
 

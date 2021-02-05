@@ -1,66 +1,78 @@
 <%- include ('../nav/header') %>
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
-		<div class="card" id="newform">
-			<div class="card-body">
-				<h4 class="card-title">Daily In-Out Report</h4>
+	
 
+	<div class="content-wrapper">
+		<div class="col-lg-20 grid-margin stretch-card" id="table">
+			<div class="card overflow-x overflow-y-hidden">
+	<div class="card" id="newform">
+	 <div class="card-body">
+			<h4 class="card-title">Daily In-Out Report</h4>
+				
 				<form class="form-inline">
-					<label class="sr-only" for="contractor">Contractor</label>
-					<input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"
-						placeholder="contractor">
-					<label class="sr-only" for="from_date">From Date</label>
-					<input type="date" class="form-control mb-2 mr-sm-2" id="from_date" name="from_date"
-						placeholder="from date">
-
-					<label class="sr-only" for="to_date">To Date</label>
-					<div class="input-group mb-2 mr-sm-2">
-						<div class="input-group-prepend">
-
-						</div>
-						<input type="date" class="form-control" id="to_date" name="to_date" placeholder="to date">
-					</div>
-
-					<button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  <label class="sr-only" for="contractor">Contractor</label>
+				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor" placeholder="contractor">
+				  <label class="sr-only" for="from_date">From Date</label>
+				  <input type="date" class="form-control mb-2 mr-sm-2" id="from_date" name="from_date" placeholder="from date">
+				  
+				  <label class="sr-only" for="to_date">To Date</label>
+				  
+					<input type="date" class="form-control" id="to_date" name="to_date" placeholder="to date" >
+				
+				 
+				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
 				</form>
+			  </div>
+	
 			</div>
-
-		</div>
-
-		</body>
-
-
-		<button type="submit" class="btn btn-success" name="myButtonControlID" id="myButtonControlID" target="_blank"
-			value="" style="color:blue;float:right;margin-right:100px;">EXCEL</button>
-		<p align="right">
-			<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i
-					class="mdi mdi-printer btn-icon-append"></i>
-			</button>
-		</p>
-		<table class="table table-bordered">
-
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>CODE</th>
-					<th>NAME</th>
-					<th> SHIFT</th>
-					<th> DATE</th>
-					<th>IN</th>
-					<th>OUT</th>
-					<th>CONTRACTOR</th>
-					<th>GATE</th>
-					<th>PO NUM</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<div class="form-group">
-
+						
+	  <div class="col-sm-12 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+					  </button>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
 					</div>
+					</div> 
+  </div>
+					  <table class="table table-bordered">
+		
+<thead>
+<!--<tr>
+	   
+    <th>EICPRNO</th>
+    <th colspan="6">EICNAME</th>
+ </tr>-->
 
-					<td>#</td>
-					<td>code</td>
+	
+      <th>#</th>
+      <th>CODE</th>
+	  <th>NAME</th>
+	   <th>	SHIFT</th>
+	 <th>	DATE</th>
+	  <th>IN</th>
+	   <th>OUT</th>
+	    <th>CONTRACTOR</th>
+		 <th>GATE</th>
+		  <th>PO NUM</th>
+		  
+		   
+
+</thead>
+<tbody>
+<tr>
+<div class="form-group">
+					
+</div>
+					
+				<td>#</td>
+					<td>code</td> 
 					<td>name</td>
 					<td>shift</td>
 					<td>date</td>
@@ -69,17 +81,19 @@
 					<td>contractor</td>
 					<td>gate</td>
 					<td>po num</td>
+					
+					
+					
+</tr> 
+ 
+</tbody>
 
 
+</table>
+</div>
+</div>
+</div>
 
-				</tr>
-
-			</tbody>
-			</div>
-			</div>
-			</div>
-			</body>
-		</table>
-
+	
 		<!-- Footer Page-->
 		<%- include('../nav/footer') %>

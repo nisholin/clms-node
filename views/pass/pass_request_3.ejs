@@ -2,27 +2,7 @@
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
 	
-	<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Forms</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
+	
 	 <div class="content-wrapper">
 		<div class="col-lg-12 grid-margin stretch-card" id="table">
 			<div class="card overflow-x overflow-y-hidden">
@@ -32,7 +12,7 @@
 				<form class="form-inline">
 				  <label class="sr-only" for="inlineFormInputName2">Contractor Code</label>
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor_code" name="contractor_code"  placeholder="contractor code">
-				  <label class="sr-only" for="inlineFormInputName2">Contractor_name</label> 
+				  <label class="sr-only" for="inlineFormInputName2">Contractor name</label> 
 				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor_name" name="Contractor_name"  placeholder="contractor name">
 				  <label class="sr-only" for="inlineFormInputName2">Work Order No</label>
 				  <input type="date" class="form-control mb-2 mr-sm-2" id="work_order_no" name="work_order_no"  placeholder="work order no">
@@ -41,11 +21,20 @@
 			  
 				</div> 
 			  
-			<p align="right">
-					 
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+			<div class="col-sm-11 text-right">
+					
+				 	   <div class="w3-show-inline-block">
+  <div class="w3-bar"> 
+					
+					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
 					  </button>
-					  </p>
+					 
+					 
+					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+					  </button>
+					</div>
+					</div> 
+  </div>
 			<div class="col-lg-12 grid-margin stretch-card" id="table">
 			 <div class="card overflow-x overflow-y-hidden">
 				<div class="card-body"> 
@@ -53,8 +42,8 @@
 <thead>
 <tr>
 	  <th>ID</th>
- <th>Emp_code</th>	  
-      <th>Emp_id</th>
+ <th>Emp code</th>	  
+      <th>Emp id</th>
 	    <th>Name</th>
       <th>Pass From</th>
 	   <th>Pass To</th>
@@ -63,14 +52,13 @@
 </thead>
 <tbody>
 <tr>
- 
-					<td><input type="text" name="1" id="1" class="form-control" placeholder="1"></td>
-					<td><input type="text" name="Emp_code" id="Emp_code" class="form-control" placeholder="Emp_code"></td>
-					<td><input type="text" name="emp_id" id="emp_id" class="form-control" placeholder="Emp_id"></td>
-					<td><input type="text" name="name" id="name" class="form-control" placeholder="Name"></td>
-					<td><input type="text" name="pass_from" id="pass_from" class="form-control" placeholder="Pass_From"></td>
-					<td><input type="text" name="pass_to" id="pass_to" class="form-control" placeholder="Pass_To"></td>
-					<td><input type="text" name="check" id="check" class="form-control" placeholder="check"></td>
+ <td>1</td>
+					<td>Emp_code</td>
+					<td>Emp_id</td>
+					<td>Name</td>
+					<td>Pass_From</td>
+					<td>Pass_To</td>
+					<td>check</td>
 					
 </tr> 
 

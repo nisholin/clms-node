@@ -1,4 +1,4 @@
-/* var dboperations = require('../../database/payroll_table');
+var dboperations = require('../../database/payroll_table');
 const express = require('express');
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get('/employee_reports_routes',(req, res)=>{
 
 
 
-module.exports = { empReports : router} */
+module.exports = { empReports : router} 

@@ -31,13 +31,13 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form action="/dashboard">
+				<form id="loginform" class="form-horizontal" role="form" method="post" action="/login_val">
 					<span class="login100-form-title">
 						Member Login
 					</span>
-
+					<div class="alert alert-danger col-sm-12"><%= message %></div>
 					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input type="text" class="input100" id="Username" name="Username" placeholder="Username">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -45,7 +45,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input type="text" class="input100" id="Password" name="Password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -97,13 +97,6 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/js/main.js"></script>
-	<script>
-		function  authLogin(){
-			alert("test");
-			window.location.href = "/dashboard";
-		}
-	</script>
-
 </body>
 
 </html>
