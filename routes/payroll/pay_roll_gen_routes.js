@@ -9,11 +9,20 @@ var sql = require('mssql');
  
 
 router.get('/pay_roll_generation',(req, res)=>{
+	var user_Id = req.session.userId, user_name = req.session.user_name;
+	if(user_Id == null)
+  {
+	  message = 'Wrong Credentials.';
+	  res.render('login.ejs',{message: message});
+	  return;
+  }
+  else{
     /* dboperations.getpayrollValues().then(result =>{                
     var data = result[0];
     res.render('pay_roll/pay_roll_generation');
 }) */
-	res.render('pay_roll/pay_roll_generation');
+	res.render('pay_roll/pay_roll_generation',{user_Id:user_Id,user_name:user_name,data});
+  }
 });
 
 

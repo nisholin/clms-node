@@ -8,7 +8,7 @@ var sql = require('mssql');
 
 //gate_Master
 router.get('/gate',(req,res,next)=>{
-	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -19,14 +19,14 @@ router.get('/gate',(req,res,next)=>{
 		dboperations.getGateValues().then(result=>{
         var data = result[0];
         //console.table(data);
-        res.render('menu_master/gate',{data});
+        res.render('menu_master/gate',{user_Id:user_Id,user_name:user_name,data});
     });
-    }  */
-	dboperations.getGateValues().then(result=>{
+    }  
+	/* dboperations.getGateValues().then(result=>{
         var data = result[0];
         //console.table(data);
         res.render('menu_master/gate',{data});
-    });
+    }); */
 });
 
 router.post('/gate/new',(req,res,next)=>{

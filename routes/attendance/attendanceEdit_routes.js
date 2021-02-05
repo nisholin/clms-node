@@ -9,12 +9,20 @@ var sql = require('mssql');
  
 
 router.get('/a_edit',(req, res)=>{
-  /*   dboperations.getpayrollValues().then(result =>{                
-    var data = result[0];
-    res.render('attendance/attendance_edit',{data});
-}) */
-	res.render('attendance/attendance_edit');
-});
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+		
+        res.render('attendance/attendance_edit',{user_Id:user_Id,user_name:user_name});
+    }
+    });
+ 
+
 
 
 

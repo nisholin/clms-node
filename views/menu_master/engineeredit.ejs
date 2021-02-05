@@ -1,27 +1,108 @@
-<%- include ('nav/header')  %>        
+<%- include ('../nav/header')  %>        
 <!-- Sidebar Page -->
-<%- include('nav/sidebar') %>
+<%- include('../nav/sidebar') %>
 
-<!--Form Edit-->
-<div class="card dis-none" id="formEdit">
+
+<div class="container">
+  <h4 class="card-title">Engineer Master Edit</h4>
+  <% Engineer_edit_data.forEach(function(Engineer_edit_data) { %>
+
+    <%= Engineer_edit_data.id %>
+  <form action="/Engineer_update" method="post">
+    <input type="hidden" value="<%= Engineer_edit_data.id %>" name="id">
+    
+    <div class="form-group row">
+				<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="eic_prno" name="eic_prno" value="<%= Engineer_edit_data.name %>"
+						placeholder="EIC PRNO">
+				</div>
+			</div>
+						<div class="form-group row">
+				<label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+				</div>
+			</div><div class="form-group row">
+				<label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="department" name="department"
+						placeholder="Department">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="designation" name="designation"
+						placeholder="Designation">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="email" name="email" placeholder="Username">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">Status</label>
+				<div class="col-sm-4">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" name="status" id="status" value="1"
+								checked> Active </label>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" name="status" id="status"
+								value="0"> In Active </label>
+					</div>
+				</div>
+			</div>
+			<!-- 
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter Name" value="<%= Engineer_edit_data.name %>" name="name" required>
+	</div> 
+ <div class="form-group">
+      <label for="eic prno">EIC PRNO:</label>
+      <input type="text" class="form-control" id="eic_prno" placeholder="Enter EIC PRNO" value="<%= Engineer_edit_data.eic_prno %>" name="eic_prno" required>
+    </div> 	
+    <div class="form-group">
+      <label for="department">Department:</label>
+      <input type="text" class="form-control" id="department" placeholder="Enter Department" value="<%= Engineer_edit_data.department %>" name="department" required>
+    </div> 
+	 <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter Email" value="<%= Engineer_edit_data.email %>" name="email" required>
+    </div> 
+	<div class="form-group">
+      <label for="mobile">Mobile:</label>
+      <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile" value="<%= Engineer_edit_data.mobile %>" name="mobile" required>
+    </div> 
+  <div class="card dis-none" id="formEdit">
     <div class="card-body">
 
-      <h4 class="card-title">Engineer Master Edit</h4>
-      
-      <form class="forms-sample">
-          <% editData.forEach(function(edit) { %>
+
+   <!--    <form class="forms-sample">
       <div class="form-group row">
           <label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
           <div class="col-sm-9">
-              <input type="text" class="form-control" id="exampleInputEIC_PRNO"
-              value="<%= edit.EIC_PRNO %>">
+              <input type="text" class="form-control" id="exampleInputEIC_PRNO"              value="<%= Engineer_edit_data.EIC_PRNO %>">
           </div>
         </div>
       <div class="form-group row">
           <label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
           <div class="col-sm-9">
               <input type="text" class="form-control" id="exampleInputName" 
-              value="<%= edit.name %>" />
+              value="<%= Engineer_edit_data.name %>" />
               <p>	</p>
           </div>
         </div>
@@ -29,35 +110,36 @@
           <label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
           <div class="col-sm-9">
               <input type="text" class="form-control" id="exampleInputDepartment" 
-              value="<%= edit.department %>">
+              value="<%= Engineer_edit_data.department %>">
           </div>
         </div>
         <div class="form-group row">
           <label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
           <div class="col-sm-9">
-              <p>	<%= edit.designation %></p>
+              <p>	<%= Engineer_edit_data.designation %></p>
           </div>
         </div>
          <div class="form-group row">
           <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
           <div class="col-sm-9">
-              <p>	<%= edit.email %></p>
+              <p>	<%= Engineer_edit_data.email %></p>
           </div>
         </div>
         <div class="form-group row">
           <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
           <div class="col-sm-9">
-              <p>	<%= edit.mobile %></p>
+              <p>	<%= Engineer_edit_data.mobile %></p>
           </div>
-        </div>
-        <center>
-        <button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+        </div> 
         
-       <button class="btn btn-gradient-danger btn-fw">cancel</button>
-        </center>
-        <% }) %>
+        <% }) %> --> -->
+      <center>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </center>
+
       </form>
     </div>
   </div>
   <!-- Footer Page-->
-<%- include('nav/footer') %>
+<%- include('../nav/footer') %>
+

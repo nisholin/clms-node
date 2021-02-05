@@ -14,23 +14,25 @@ exports.login_check=(req,res)=>{
         {
             req.session.userId = 'admin';
             req.session.user_name = 123;
+            console.log(req.session.userId+req.session.user_name)
             res.redirect('/home');        
         }
         else
         {
             message = 'Wrong Credentials.';
-            res.render('login_page.ejs',{message: message});
+           res.render('login',{message: message});
         }
     }
     
 }
 
 exports.main_page = function(req,res,next){
-    var user_Id = req.session.userId, user_name = req.session.user_name;
+    var user_Id = req.session.userId;
+    var user_name = req.session.user_name;
     if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
-        res.render('login.ejs',{message: message});
+        res.render('login',{message: message});
 		return;
     }
     else{

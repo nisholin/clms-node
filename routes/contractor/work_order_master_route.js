@@ -11,7 +11,7 @@ var config = require('../../database/dbconfig');
 
 
 router.get('/workordernew',(req,res,next)=>{
-	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -19,28 +19,35 @@ router.get('/workordernew',(req,res,next)=>{
 		return;
     }
     else{
-		dboperations.get_workOrder().then(result=>{
-        var data = result[0]; 
-        res.render('contractor_master/workordernew',{data})
-    })
-    } */
-    db_operations.get_workOrder().then(result=>{
-        var data = result[0]; 
-        res.render('contractor_master/workordernew',{data})
-    })
+		db_operations.get_workOrder().then(result=>{
+            var data = result[0]; 
+            res.render('contractor_master/workordernew',{user_Id:user_Id,user_name:user_name,data})
+        })
+    }  
 });
 var obj = {};
 router.get('/workordernew/add', function (req, res) {
-    db_operations.get_contractor_code().then(result=>{
-        var name = "please select ccode";
-        var code = result[0];
-        obj.codename =  result[0];
-        db_operations.get_engineer_incharge_code().then(result=>{
-            obj.engcode =  result[0];
-            //res.send(obj.engcode);
-            res.render('contractor_master/workorderedit',obj);
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+        db_operations.get_contractor_code().then(result=>{
+            var name = "please select ccode";
+            var code = result[0];
+            obj.codename =  result[0];
+            obj.user_Id = user_Id;
+            obj.user_name = user_name;
+            db_operations.get_engineer_incharge_code().then(result=>{
+                obj.engcode =  result[0];
+                //res.send(obj.engcode);
+                res.render('contractor_master/workorderedit',obj);
+            });
         });
-    });
+    } 
 });
 /* router.post('/workordernew/add/getcontractorname', function (req, res) {
     var contractor_code = req.body.contractor_code;

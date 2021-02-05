@@ -8,7 +8,7 @@ var sql = require('mssql');
 
 
 router.get('/shift',(req, res, next)=>{
-	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -18,15 +18,12 @@ router.get('/shift',(req, res, next)=>{
     else{
 		shift_table_operations.get_shift_values().then(result =>{
         var data = result[0];
-        res.render('menu_master/shift',{data});
-    })
-    } */ 
-	shift_table_operations.get_shift_values().then(result =>{
-        var data = result[0];
-        res.render('menu_master/shift',{data});
-    })
-});
+        res.render('menu_master/shift',{user_Id:user_Id,user_name:user_name,data});
+    });
+    } 
 
+});
+ 
 router.post('/shift/new',(req,res,next)=>{
     var shift_name = req.body.shift_name;
    

@@ -15,7 +15,7 @@ const getContactor_employee_values = (req,res,next)=>{
 }
 
 router.get('/employeenew',(req,res,next)=>{
-	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -25,13 +25,13 @@ router.get('/employeenew',(req,res,next)=>{
     else{
 		dboperations.get_employee_master().then(result=>{
         var data = result[0]; 
-        res.render('contractor_master/employeenew',{data})
+        res.render('contractor_master/employeenew',{user_Id:user_Id,user_name:user_name,data})
     })
-    } */
-	dboperations.get_employee_master().then(result=>{
+    } 
+	/* dboperations.get_employee_master().then(result=>{
         var data = result[0]; 
         res.render('contractor_master/employeenew',{data})
-    })
+    }) */
 }); 
 
 router.post('/employee/add',(req,res,next)=>{

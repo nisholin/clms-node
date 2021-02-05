@@ -9,7 +9,16 @@ var sql = require('mssql');
  
 
 router.get('/print_pass',(req, res)=>{
-	res.render('pass/print_pass');
+	var user_Id = req.session.userId, user_name = req.session.user_name;
+	if(user_Id == null)
+  {
+	  message = 'Wrong Credentials.';
+	  res.render('login.ejs',{message: message});
+	  return;
+  }
+  else{
+	res.render('pass/print_pass',{user_Id:user_Id,user_name:user_name});
+}
 });
 
 

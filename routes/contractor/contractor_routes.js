@@ -9,7 +9,7 @@ var sql = require('mssql');
 
 
 router.get('/contractornew',(req,res,next)=>{
-	/* var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -17,17 +17,17 @@ router.get('/contractornew',(req,res,next)=>{
 		return;
     }
     else{
-		dboperations.contractor_data().then(result=>{
-        var data = result[0];        
-        //console.table(data);
-        res.render('contractor_master/contractornew',{data})
-    })
-    } */ 
 	dboperations.contractor_data().then(result=>{
         var data = result[0];        
         //console.table(data);
+        res.render('contractor_master/contractornew',{user_Id:user_Id,user_name:user_name,data})
+    }) 
+	}
+	/* dboperations.contractor_data().then(result=>{
+        var data = result[0];        
+        //console.table(data);
         res.render('contractor_master/contractornew',{data})
-    })
+    }) */
 });
 
 router.post('/contractor/new',(req,res,next)=>{

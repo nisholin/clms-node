@@ -15,6 +15,39 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+
+//Session
+const { Cookie } = require('express-session');
+const session = require('express-session');
+app.use(session({
+  secret:'keyboard cat',
+  resave:false,
+  saveUninitialized:true,
+  Cookie:{maxAge:6000}
+}))
+
+
+app.get('/', (req,res)=>{
+
+  if(req.session.userId){
+    res.render('/home');    
+  }
+  else
+  {
+    var message = '';
+    res.render('login',{message:message});
+  }  
+})
+
+const user = require('./routes/login_check');
+app.post('/login_val',user.login_check);
+app.get('/home',user.main_page);
+
+
+
 //Import Routes
 //const homeRoutes = require('./routes/home-routes');
 //MASTERS
@@ -52,11 +85,6 @@ const printpassRoutes = require('./routes/passrequest/print_pass_routes');
 //const inoutroutes = require('./routes/reports/in_out_report_routes');
 //const workorderreportsroutes = require('./routes/reports/work_order_reports_routes');
 //const eicreportsroutes = require('./routes/reports/eic_reports_routes');
-
-
-
-
-
 
 //Use Routes
 //app.use(homeRoutes.routes);
@@ -97,32 +125,12 @@ app.use(printpassRoutes.printpass);
 //app.use(eicreportsroutes.eicReports);
 
 
-
-
-
-//Session
-var session = require('express-session');
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }
-}))
-
-
-app.get('/', (req,res)=>{
-  var message = '';
-  res.render('login_page',{message:message});
-})
-
-const user = require('./routes/login_check');
-app.post('/login_val',user.login_check);
-app.get('/home',user.main_page);
-
 app.get('/logout',(req,res)=>{ 
   req.session.destroy(function(err) {
-    var message = '';
-    res.render('login_page',{message:message});
+
+     var message = 'logged out';
+    res.render('login',{message:message});
+
   });
 });
 

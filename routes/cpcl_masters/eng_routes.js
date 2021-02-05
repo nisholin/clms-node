@@ -9,7 +9,7 @@ var sql = require('mssql');
  
 
 router.get('/engineer',(req, res)=>{
-	/*  var user_Id = req.session.userId, user_name = req.session.user_name;
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -20,33 +20,48 @@ router.get('/engineer',(req, res)=>{
 	{
 		dboperations.getEngvalues().then(result =>{                
 		var data = result[0];
-		res.render('menu_master/engineer',{data});
+		res.render('menu_master/engineer',{user_Id:user_Id,user_name:user_name,data:data});
 		})
-    }  */
-	dboperations.getEngvalues().then(result =>{                
-		var data = result[0];
-		res.render('menu_master/engineer',{data});
-		})
+    } 
+    
 });
 
-router.post('/engineer/update',(req,res)=>{
- var id = req.body;
-    async function Engvalues(){
+
+router.get('/Engineer_edit/:engineerId',(req, res) => {
+
+    const engineerId = req.params.engineerId;
+
+    async function Engineupdate(){
         try{
                 let pool = await sql.connect(config);
-                let products = await pool.request().query("select * from cpcl_engineer_master where id='1'");
+                let products = await pool.request().query(`select * from cpcl_engineer_master where id = ${engineerId}`); 
                 return products.recordsets;
-        }
+            }
         catch(error){
             console.log(error);
         }
-    }
-    Engvalues().then(result =>{                
-        var editData = result[0];
-        console.table(editData);
-        res.render('menu_master/engineeredit',{editData});
-})
-})
+    }   
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    Engineupdate().then(result=>{
+        var Engineer_edit_data = result[0];
+        res.render('menu_master/engineeredit',{user_Id:user_Id,user_name:user_name,Engineer_edit_data:Engineer_edit_data});
+    })
+
+
+});
+
+
+
+router.post('/update',(req, res) => {
+    const userId = req.body.id;
+    let sql = "update cpcl_engineer_master SET name='"+req.body.name+"',  email='"+req.body.email+"',  phone_no='"+req.body.phone_no+"' where id ="+userId;
+    let query = connection.query(sql,(err, results) => {
+      if(err) throw err;
+      res.redirect('/');
+    });
+});
 
 
 router.post('/engineer/new',(req,res,next)=>{
@@ -72,7 +87,7 @@ router.post('/engineer/new',(req,res,next)=>{
         }
     }
     getEngvalues();
-	res.redirect("/engineer")
+	res.redirect("/engineer");
 	 
 });
 
