@@ -44,7 +44,7 @@ router.get('/workordernew/add', function (req, res) {
             db_operations.get_engineer_incharge_code().then(result=>{
                 obj.engcode =  result[0];
                 //res.send(obj.engcode);
-                res.render('contractor_master/workorderedit',obj);
+                res.render('contractor_master/workordernew_form',obj);
             });
         });
     } 
@@ -201,5 +201,34 @@ router.post('/workordernew/add',(req,res,next)=>{
     res.redirect("/workordernew")
 	 
 });
+
+
+//workorder edit
+
+router.get('/work_edit/:shiftid',(req, res) => {
+
+    const shiftId = req.params.shiftid;
+
+    async function Shiftupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_work_order_master where id = ${shiftId}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    Shiftupdate().then(result=>{
+        var work_edit_data = result[0];
+        res.render('contractor_master/workorderedit',{user_Id:user_Id,user_name:user_name,work_edit_data:work_edit_data});
+    })
+
+
+});
+
 
 module.exports = { routes:router}

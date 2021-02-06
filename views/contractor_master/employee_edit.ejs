@@ -1,0 +1,351 @@
+<%- include ('../nav/header')  %>        
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+      <div class="col-md-9 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Contractor Workmen Information Edit</h4>
+            <p class="card-description"> </p>
+            <form class="forms-sample">
+              <div class="form-group row">
+                <label for="code" class="col-sm-3 col-form-label">Contractor Code</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="code" placeholder="code">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Contractor Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="name" placeholder="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="work_order_no" class="col-sm-3 col-form-label">Work Order No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="work_order_no" placeholder="work order no">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Work Order Date</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+			    <div class="form-group row">
+                <label for="no_of_employees" class="col-sm-3 col-form-label">Number Of Employees</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="no_of_employees" placeholder="Number Of Employees">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="sub_contractor" class="col-sm-3 col-form-label">Sub Contractor</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="sub_contractor" placeholder="Sub Contractor">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="sub_con_code" class="col-sm-3 col-form-label">Sub Con Code</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="sub_con_code" placeholder="Sub Con Code">
+                </div>
+              </div>
+            
+              <div class="form-group row">
+                <label for="licence_no" class="col-sm-3 col-form-label">Licence No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="licence_no" placeholder="Licence No">
+                </div>
+              </div>
+             
+              <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="emp_code" placeholder="Employee Code">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Wo validity from</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Wo validity To</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="Wo validity To" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="ci_name" placeholder="CI.Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Father/Husband Name" class="col-sm-3 col-form-label">Father/Husband Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Father/Husband Name" placeholder="Father/Husband Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="designation" class="col-sm-3 col-form-label">Designation</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="designation" placeholder="Designation">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">DOB</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="DOB" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Engaged Date</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="Engaged Date" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="gender" id="gender1"
+                        value="" checked> Male </label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="gender" id="gender2"
+                        value="option2"> Female </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Marital Status</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus1"
+                        value="" checked> Married </label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus2"
+                        value="option2"> Un married</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Present_address" placeholder="Present Address">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="permanent_address" placeholder="Permanent Address">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="phone_no" placeholder="Phone No">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="email_id" placeholder="Email Id">
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Incase Of Emergency</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1"
+                        value="" checked> Inform </label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2"
+                        value="option2"> Not Inform </label>
+                  </div>
+                </div>
+              </div>
+              
+			  
+              <div class="form-group row">
+                <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="nominee_name" placeholder="Nominee Name">
+                </div>
+              </div>
+			  
+			  <div class="form-group row">
+			  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Relationship Of Nominee & DOB</label>
+			  <div class="col-sm-9">
+				<div class="form-group">
+				  <div class="input-group">
+					<div class="input-group-prepend">
+					  <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relation</button>
+					  <div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Brother</a>
+						<a class="dropdown-item" href="#">Sister</a>
+						<a class="dropdown-item" href="#">Husband/Wife</a>
+					    <div role="separator" class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Separated link</a>
+				
+					  </div>
+					</div>
+					<input type="Date" class="form-control" aria-label="Text input with dropdown button" placeholder="DOB">
+				  </div>
+				</div>
+				</div>
+              </div>
+			    <div class="form-group row">
+                <label for="category" class="col-sm-3 col-form-label">Category</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="category" placeholder="Category">
+                </div>
+              </div>
+			   <div class="form-group row">
+                <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="wage_per_day" placeholder="Wage Per Day">
+                </div>
+              </div>
+			  <div class="form-group row">
+                <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Incentive_per_day" placeholder="Incentive Per Day">
+                </div>
+              </div>
+			  	  <div class="form-group row">
+                <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Allowance_per_day" placeholder="Allowance Per Day">
+                </div>
+              </div>
+			   
+  <div class="form-group row">
+                <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Any_other_wages" placeholder="Any Other Wages">
+                </div>
+              </div>
+			  			   
+  <div class="form-group row">
+                <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="UAN" placeholder="UAN">
+                </div>
+              </div>
+			  			  			   
+  <div class="form-group row">
+                <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="ESI_no" placeholder="ESI No">
+                </div>
+              </div>
+			  <div class="form-group row">
+                <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Aadhar_card_no" placeholder="Aadhar Card No">
+                </div>
+              </div>
+			   <div class="form-group row">
+                <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Identical_mark1" placeholder="Identical Mark1">
+                </div>
+              </div>
+			   <div class="form-group row">
+                <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Bank_name" placeholder="Bank Name">
+                </div>
+              </div>
+			   <div class="form-group row">
+                <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Account_no" placeholder="Account No">
+                </div>
+              </div>
+			     <div class="form-group row">
+                <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Blood_grp" placeholder="Blood GRP">
+                </div>
+              </div>
+			     <div class="form-group row">
+                <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Entry_gate" placeholder="Entry Gate">
+                </div>
+              </div>
+			     <div class="form-group row">
+                <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Work_spot" placeholder="Work Spot">
+                </div>
+              </div>
+			       <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Work</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                        value="" checked> Plant</label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                        value="option2"> Non Plant</label>
+                  </div>
+                </div>
+              </div>
+			  <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity From</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+			  <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity To</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+			    <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training From</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+			    <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training To</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                </div>
+              </div>
+			<center>
+				   <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
+				  <button type="button" class="btn btn-gradient-danger btn-fw">Cancel</button>
+				  </center>
+            </form>
+          </div>
+        </div>
+      </div>
+      <%- include('../nav/footer') %>

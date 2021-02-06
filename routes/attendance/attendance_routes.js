@@ -17,7 +17,22 @@ router.get('/attendance',(req, res)=>{
     }
     else{
 		
-		res.render('attendance/attendance',{user_Id:user_Id,user_name:user_name});
+//select query:
+/*async function get_contractor(){
+    try{
+            let pool = await sql.connect(config);
+            let product = await pool.request().query("select contractor_name from cpcl_contractor_master");
+            return product.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+get_contractor();*/
+
+
+res.render('attendance/attendance',{user_Id:user_Id,user_name:user_name});
+
     }
     });
 	

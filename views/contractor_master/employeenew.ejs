@@ -14,7 +14,7 @@
 							<input list="cont_code" class="form-control" name="ccode" id="ccode" placeholder="Select Contractor Code">
                             <datalist id="cont_code">
                                <% contcode.forEach(function(ccode){ %>
-                                    <option value="<%=  ccode.contractor_code %>">
+                                    <option value="<%=  ccode.contractor_code %>"></option>
                                    <%})%>
                             </datalist> 
 						</div>
@@ -439,6 +439,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>id</th>
                                 <th>Contractor Code</th>
                                 <th>Contractor Name</th>
                                 <th> Work Order No</th>
@@ -447,12 +448,17 @@
                                 <th> Wo validity From</th>
                                 <th> Wo validity To</th>
                                 <th> UAN</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <% view.forEach(function(emp_master){ %>
                                 <tr>
+                                    <td>
+                                        <%= emp_master.id %>
+                                    </td>
+                                  
                                     <td class="py-1">
                                         <%= emp_master.CCODE %>
                                     </td>
@@ -477,6 +483,9 @@
                                     <td>
                                         <%= emp_master.UAN %>
                                     </td>
+                                    <td>
+                                        <a href="/emp_edit/<%= emp_master.id %>" class="btn btn-sm btn-primary">Edit</a>
+                                      </td>
                                 </tr>
 
                                 <% }) %>
@@ -520,6 +529,27 @@
                     } else {
                         document.getElementById("newform").style.display = "none";
                     }
+
+                }
+            </script>
+
+            <script>
+                function saveid(e)
+                {
+                  
+/*                    
+$.ajax({
+
+    type:"POST",
+    url:'/employee_edit',
+    data:{"id":e},
+success:function(data)
+{
+    alert("data");
+}
+
+
+}) */
 
                 }
             </script>

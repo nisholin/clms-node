@@ -46,6 +46,9 @@
                 <td> <%= work_order.DURATION   %></td>
                 <td> <%= work_order.WORKMEN_TOT   %> </td>
                 <td> <%= work_order.STATUS   %> </td>
+                <td>
+                  <a href="work_edit/<%= work_order.id %>" class="btn btn-sm btn-primary">Edit</a>
+                </td>
                 </tr>
                         
                 <% }) %>

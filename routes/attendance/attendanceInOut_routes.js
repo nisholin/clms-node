@@ -17,7 +17,20 @@ router.get('/a_in_out',(req, res)=>{
 		return;
     }
     else{
-		
+
+      //SELECT QUERY
+		/*async function get_contractor(){
+  try{
+          let pool = await sql.connect(config);
+          let product = await pool.request().query("select contractor_name from cpcl_contractor_master");//CHANGE SELECT QUERY THAT IS COMMON FOR INSERT,UPDATE
+          return product.recordsets;
+  }
+  catch(error){
+      console.log(error);
+  }
+}
+get_contractor();*/
+
 		res.render('attendance/attendance_in_out',{user_Id:user_Id,user_name:user_name});
     }
 	});
@@ -49,6 +62,7 @@ router.post('/attendance/attendance_in_outnew',(req,res,next)=>{
 	 res.redirect("/attendanceinout")
 });
 */ 
+
 
 
 

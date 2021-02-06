@@ -5,15 +5,19 @@
             <div class="card-body">
 
                 <h4 class="card-title">Work Order Cat1</h4>
-                <% work_edit_data.forEach(function(work_edit_data) { %>
 
-					
                 <form class="forms-sample" method="POST" action="/workordernew/add"> 
                     <div class="form-group row">
                         <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="Contractor_Code" value="<%= work_edit_data.CCODE %>">
-                            
+                            <input list="Contractor_Code" class="form-control" name="Contractor_Code" placeholder="Select Contractor Code">
+                            <datalist id="Contractor_Code">
+                                <% codename.forEach(function(code) { %>
+                                    <option value="<%= code.contractor_code %>">
+                                        <%= code.contractor_name %>" 
+                                    </option>
+                                    <% }) %>
+                            </datalist> 
                         </div>
                     </div>
                     <!-- <div class="form-group row">
@@ -27,7 +31,7 @@
                         <label for="exampleInputVendor No" class="col-sm-3 col-form-label">Vendor No</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Vendor_No" name="Vendor_No"
-                            value="<%= work_edit_data.VENDOR_NO %>"   >
+                                placeholder="Vendor No">
                         </div>
                     </div>
 
@@ -35,14 +39,14 @@
                         <label for="exampleInputWork order no" class="col-sm-3 col-form-label">Work order No</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Work_order_no" name="Work_order_no"
-                            value="<%= work_edit_data.WORK_ORDER %>" >
+                                placeholder="Work order no">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" id="Work_order_date" name="Work_order_date"
-                            value="<%= work_edit_data.WORK_OR_DATE %>" data-date-format='yy-mm-dd'>
+                                placeholder="Work order date" data-date-format='yy-mm-dd'>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,14 +54,14 @@
                             Value</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Contractor_Value" name="Contractor_Value"
-                            value="<%= work_edit_data.CVALUE %>">
+                                placeholder="Contractor Value">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputDuration of Month" class="col-sm-3 col-form-label">Duration Date<br/>(Years)</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="Duration_Date" name="Duration_Date"
-                            value="<%= work_edit_data.DURATION %>"  min="1">
+                                placeholder="Duration Date In Years"  min="1">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -65,62 +69,73 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="Contract_Duration" name="Contract_Duration"
-                            value="<%= work_edit_data.CDURATION %>"  min="1">
+                                placeholder="Contract Duration In Months"  min="1">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="EIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="EIC_PRNO" name="EIC_PRNO"
-                            value="<%= work_edit_data.EIC_PRNO %>">
+                                placeholder="EIC PRNO">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputEngineer In Charge" class="col-sm-3 col-form-label">Engineer In
                             Charge</label>
                         <div class="col-sm-9">
-                           
-                        <input type="text" class="form-control" value="<%= work_edit_data.EIC_PRNO %>" id="Engineer_In_Charge" name="Engineer_In_Charge">
-                            
+                            <!-- <select class="form-control" id="Engineer_In_Charge" name="Engineer_In_Charge">
+                            <option>Select</option>
+                            <% engcode.forEach(function(code) { %>
+                                <option value="<%= code.contractor_code %>">
+                                     <%= code.EIC_PRNO %>
+                                </option>
+                                <% }) %>
+                        </select> -->
+                        <input list="engcode" class="form-control" placeholder="Select Engineer Code">
+                            <datalist id="engcode">
+                                <% engcode.forEach(function(code) { %>
+                                    <option value="<%= code.EIC_PRNO %>" />
+                                    <% }) %>
+                            </datalist> 
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputJob Desc" class="col-sm-3 col-form-label">Job Desc</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Job_Desc" name="Job_Desc"
-                            value="<%= work_edit_data.JOB_DESC %>">
+                                placeholder="Job Desc">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Department" name="Department"
-                            value="<%= work_edit_data.DEPARTMENT %>">
+                                placeholder="Department">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputEmployee count" class="col-sm-3 col-form-label">Employee count</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Employee_count" name="Employee_count"
-                            value="<%= work_edit_data.EMPLOYEE_COUNT %>">
+                                placeholder="Employee count">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputCLRA" class="col-sm-3 col-form-label">CLRA</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="CLRA" name="CLRA"  value="<%= work_edit_data.CLRA %>" oninput="calc();">
+                            <input type="number" class="form-control" id="CLRA" name="CLRA" value="15" max="15" oninput="calc();">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputISMW" class="col-sm-3 col-form-label">ISMW</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="ISMW" name="ISMW"  value="<%= work_edit_data.ISMW %>" oninput="calc();">
+                            <input type="number" class="form-control" id="ISMW" name="ISMW" value="4" max="4" oninput="calc();">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputISMW" class="col-sm-3 col-form-label">Total Workman</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Total_Workmen" name="Total_Workmen"  value="<%= work_edit_data.WORKMEN_TOT %>" readonly>
+                            <input type="text" class="form-control" id="Total_Workmen" value="19" name="Total_Workmen" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -169,7 +184,7 @@
                                         placeholder=""></td>
                                 <td><input type="text" class="form-control w-11-rem" name="clra_workmen" id="workmen" placeholder="">
                                 </td>
-                                <td><input type="text" class="form-control w-11-rem" name="clra_total_workmen" id="total_workmen"
+                                <td><input type="text" class="form-control w-11-rem" name="Total_Workmen" id="total_workmen"
                                         placeholder=""></td>
                             </tr>
                             <tr>
@@ -182,7 +197,7 @@
                                 <td><input type="date" class=" form-control w-11-rem" name="ismw_period_to" id="period_to"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_workmen" id="workmen">
                                 </td>
-                                <td><input type="text" class=" form-control w-11-rem" name="ismw_total_workmen" id="total_workmen"></td>
+                                <td><input type="text" class=" form-control w-11-rem" name="Total_Workmen" id="total_workmen"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -227,13 +242,12 @@
                                         placeholder="Period To"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="e_c_workmen" id="e_c_workmen"
                                         placeholder="Workmen"></td>
-                                <td><input type="text" class=" form-control w-11-rem" name="e_c_total_workmen" id="e_c_total_workmen"
+                                <td><input type="text" class=" form-control w-11-rem" name="Total_Workmen" id="Total_Workmen"
                                     placeholder="Total Workmen"></td>
                             </tr>
                         </tbody>
                     </table>
                     <br /><br />
-                    <% }) %> 
                     <center>
                         <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
 

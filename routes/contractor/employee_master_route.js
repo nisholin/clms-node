@@ -122,4 +122,36 @@ router.post('/employee/add',(req,res,next)=>{
     res.redirect("/employeenew");	 
 });
 
+//employee edit
+
+
+router.get('/emp_edit/:emptid',(req, res) => {
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+    var emp_id = req.params.empid;
+
+    //res.send(emp_id);
+
+    async function employeeupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_employee_master where id = ${emp_id}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    
+
+    employeeupdate().then(result=>{
+        var Shift_edit_data = result[0];
+        res.render('contractor_master/employee_edit',{user_Id:user_Id,user_name:user_name,Shift_edit_data:Shift_edit_data});
+    })
+   
+
+});
+
+
+
 module.exports = { routes:router }
