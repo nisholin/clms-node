@@ -49,6 +49,57 @@ router.post('/gate/new',(req,res,next)=>{
 	 
 });
 
+//gate edit 
+/* 
+router.get('/gate_edit/:gateid' ,(req,res)=>{
+
+    const gate_id=req.params.gate_id;
+    async function gateedit(){
+        try{
+            let pool = await sql.connect(config);
+            let products = await pool.request().query(`select * from cpcl_gate_master where id = ${gate_id}`); 
+            return products.recordsets;
+        }
+    catch(error){
+        console.log(error);
+    }
+}
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+    gateedit().then(result=>{
+        var gate_edit_data = result[0];
+        res.render('menu_master/gateedit',{user_Id:user_Id,user_name:user_name,gate_edit_data:gate_edit_data});
+    })
+    
+
+
+}); */
+
+router.get('/gate_edit/:gateid',(req, res) => {
+
+    const gateId = req.params.gateid;
+
+    async function gateupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_gate_master where id = ${gateId}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    gateupdate().then(result=>{
+        var gate_edit_data = result[0];
+        res.render('menu_master/gateedit',{user_Id:user_Id,user_name:user_name,gate_edit_data:gate_edit_data});
+    })
+
+
+});
+
+
 
 module.exports = { 
 	routes:router

@@ -9,15 +9,15 @@
 	 <div class="card-body">
 				<h4 class="card-title">Attendence Edit Report</h4>
 
-				<form class="form-inline">
+				<form class="form-inline" method="POST" action="attendance/attendance_edit">
 					<label class="sr-only" for="late_commers">Late Commers Employee</label>
-					<input type="text" class="form-control mb-2 mr-sm-2" id="late_commers"
+					<input type="text" class="form-control mb-2 mr-sm-2" id="late_commers" name="late_commers"
 						placeholder="Late Commers Employee">
 					<label class="sr-only" for="payroll_month">Payroll Month</label>
-					<input type="text" class="form-control mb-2 mr-sm-2" id="payroll_month" placeholder="payroll month">
+					<input type="text" class="form-control mb-2 mr-sm-2" id="payroll_month" name="payroll_month" placeholder="payroll month">
 
 					<label class="sr-only" for="po_date">Date</label>
-						<input type="date" class="form-control mb-2 mr-sm-2" id="date" placeholder="date">
+						<input type="date" class="form-control mb-2 mr-sm-2" id="date" name="date" placeholder="date">
 				
 
 					<button type="submit" class="btn btn-gradient-primary mb-2 mr-sm-2">Go</button>

@@ -21,8 +21,34 @@ router.get('/a_edit',(req, res)=>{
         res.render('attendance/attendance_edit',{user_Id:user_Id,user_name:user_name});
     }
     });
- 
 
+/*
+router.post('/attendance/attendance_edit',(req,res,next)=>{
+    var late_commers = req.body.late_commers;
+    var payroll_month = req.body.payroll_month;
+    var date = req.body.date;
+
+    console.log(late_commers);
+	  console.log(payroll_month);
+	  console.log(date);
+	
+    async function getattendanceeditValues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into (late_commers,payroll_month,date) 
+              values ('"+late_commers+"','"+payroll_month+"','"+date+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    getattendanceeditValues();
+	 res.redirect("/attendanceedit")
+});
+*/ 
 
 
 

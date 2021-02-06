@@ -23,6 +23,29 @@ router.get('/wage_slip',(req,res)=>{
 
 
 
+/*router.post('wageslip/wageslip',(req,res,next)=>{
+    var Contractor = req.body.Contractor;
+    var employee = req.body.employee;
+    var month = req.body.month;
+    async function getwageslipvalues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into cpcl_engineer_master (Contractor,employee,month) values ('"+Contractor+"','"+employee+"','"+month+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+  getwageslipvalues();
+	res.redirect("pay_roll/wage_slip");
+	 
+});
+*/
+
+
 module.exports = {
     wageslip : router
 }

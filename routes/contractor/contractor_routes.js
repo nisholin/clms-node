@@ -74,7 +74,57 @@ catch(error)
    res.redirect("/contractornew");
 
 });
+//contractor edit
 
+/* router.get('/shift_edit/:contractorid',(req,res)=>{
+
+const cid=res.params.contractorid;
+
+async function contractorupdate(){
+    try{
+            let pool = await sql.connect(config);
+            let products = await pool.request().query(`select * from cpcl_contractor_master where id = ${cid}`); 
+            return products.recordsets;
+        }
+    catch(error){
+        console.log(error);
+    }
+}   
+
+var user_Id = req.session.userId, user_name = req.session.user_name;
+contractorupdate().then(result=>{
+    var con_edit_data = result[0];
+    res.render('menu_master/contractoredit',{user_Id:user_Id,user_name:user_name,con_edit_data:con_edit_data});
+})
+
+
+}); */
+
+
+router.get('/contractor_edit/:shiftid',(req, res) => {
+
+    const shiftId = req.params.shiftid;
+
+    async function Shiftupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_contractor_master where id = ${shiftId}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    Shiftupdate().then(result=>{
+        var Shift_edit_data = result[0];
+        res.render('menu_master/contractoredit',{user_Id:user_Id,user_name:user_name,Shift_edit_data:Shift_edit_data});
+    })
+
+
+});
 
 module.exports = { 
 	routes:router	

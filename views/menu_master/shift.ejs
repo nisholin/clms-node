@@ -18,6 +18,7 @@
 							<th> To Time </th>
 							<th> Status </th>
 							<th> Created By </th>
+							<th>Action<th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,6 +32,10 @@
 							  <td>  <%= menu.to_time %> </td>
 							  <td> <%= menu.status %> </td>
 							  <td> <%= menu.created_by %> </td>
+							  <td>
+							<a href="shift_edit/<%= menu.id %>" class="btn btn-sm btn-primary">Edit</a>
+						</td>
+						
 							</tr>
 						  
 						</tr>

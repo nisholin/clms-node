@@ -7,6 +7,7 @@ var sql = require('mssql');
 
 
  
+//Engineer table view query
 
 router.get('/engineer',(req, res)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
@@ -26,43 +27,7 @@ router.get('/engineer',(req, res)=>{
     
 });
 
-
-router.get('/Engineer_edit/:engineerId',(req, res) => {
-
-    const engineerId = req.params.engineerId;
-
-    async function Engineupdate(){
-        try{
-                let pool = await sql.connect(config);
-                let products = await pool.request().query(`select * from cpcl_engineer_master where id = ${engineerId}`); 
-                return products.recordsets;
-            }
-        catch(error){
-            console.log(error);
-        }
-    }   
-
-    var user_Id = req.session.userId, user_name = req.session.user_name;
-
-    Engineupdate().then(result=>{
-        var Engineer_edit_data = result[0];
-        res.render('menu_master/engineeredit',{user_Id:user_Id,user_name:user_name,Engineer_edit_data:Engineer_edit_data});
-    })
-
-
-});
-
-
-
-router.post('/update',(req, res) => {
-    const userId = req.body.id;
-    let sql = "update cpcl_engineer_master SET name='"+req.body.name+"',  email='"+req.body.email+"',  phone_no='"+req.body.phone_no+"' where id ="+userId;
-    let query = connection.query(sql,(err, results) => {
-      if(err) throw err;
-      res.redirect('/');
-    });
-});
-
+//New Enginner Creation process
 
 router.post('/engineer/new',(req,res,next)=>{
     var eic_prno = req.body.eic_prno;
@@ -90,6 +55,46 @@ router.post('/engineer/new',(req,res,next)=>{
 	res.redirect("/engineer");
 	 
 });
+
+//single engineer  data edit page   
+
+router.get('/Engineer_edit/:engineerId',(req, res) => {
+
+    const engineerId = req.params.engineerId;
+
+    async function Engineupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_engineer_master where id = ${engineerId}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    Engineupdate().then(result=>{
+        var Engineer_edit_data = result[0];
+        res.render('menu_master/engineeredit',{user_Id:user_Id,user_name:user_name,Engineer_edit_data:Engineer_edit_data});
+    })
+
+
+});
+
+//engineer update process
+
+router.post('/update',(req, res) => {
+    const userId = req.body.id;
+    let sql = "update cpcl_engineer_master SET name='"+req.body.name+"',  email='"+req.body.email+"',  phone_no='"+req.body.phone_no+"' where id ="+userId;
+    let query = connection.query(sql,(err, results) => {
+      if(err) throw err;
+      res.redirect('/');
+    });
+});
+
+
 
 
 

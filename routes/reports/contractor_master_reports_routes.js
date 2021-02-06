@@ -9,7 +9,7 @@ var sql = require('mssql');
  
 
 router.get('/contractor_master_reports',(req, res)=>{
-	res.render('reports/contractor_master_reports');
+	res.render('reports/contractor_master');
  
 });
 

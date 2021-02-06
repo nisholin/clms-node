@@ -13,7 +13,7 @@ const getContactor_employee_values = (req,res,next)=>{
         res.render('contractor_master/employeenew',{data})
     })
 }
-
+employee = {};
 router.get('/employeenew',(req,res,next)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
@@ -24,19 +24,40 @@ router.get('/employeenew',(req,res,next)=>{
     }
     else{
 		dboperations.get_employee_master().then(result=>{
-        var data = result[0]; 
-        res.render('contractor_master/employeenew',{user_Id:user_Id,user_name:user_name,data})
+            employee.user_Id = user_Id;
+            employee.user_name = user_name;
+            var data = result[0]; 
+            employee.view = data;
+        dboperations.get_contractor_code().then(result=>{
+            var ccode = result[0]; 
+            employee.contcode = ccode;
+            res.render('contractor_master/employeenew',employee)
+        }) 
     })
     } 
-	/* dboperations.get_employee_master().then(result=>{
-        var data = result[0]; 
-        res.render('contractor_master/employeenew',{data})
-    }) */
 }); 
 
 router.post('/employee/add',(req,res,next)=>{
 
     var ccode = req.body.ccode;
+    
+    //Image Upload
+    var form = new formidable.IncomingForm();
+    form.parse(req,(err,fileds,files)=>{
+
+        var oldpath  = files.filetoupload.path;
+        var newpath = 'C:/clms-node/Uploads/'+ files.filetoupload.name;
+
+        fs.rename(oldpath,newpath,(err)=>{
+            if(err) throw err;
+            //res.write('file upload and moved');
+            res.end();
+
+        })
+        //res.write('File Uploaded');
+        res.end();
+
+    })
     var cname = req.body.cname;
     var workorder = req.body.workorder;
     var workorder_date = req.body.workorder_date;

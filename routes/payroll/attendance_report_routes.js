@@ -23,4 +23,25 @@ router.get('/a_report',(req, res)=>{
 
 
 
+/*router.post('attendanceReport/attendanceReport',(req,res,next)=>{
+    var Contractor = req.body.Contractor;
+    var month = req.body.month;
+    async function getattendanceReportvalues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into cpcl_engineer_master (Contractor,month) values ('"+Contractor+"','"+month+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    getattendanceReportvalues();
+	res.redirect("pay_roll/attendance_report");
+	 
+});
+*/
+
 module.exports = { attendanceReport : router}

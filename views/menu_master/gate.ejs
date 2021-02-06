@@ -15,7 +15,7 @@
 						<th>user</th>
 						<th> Name </th>
 						<th> Status </th>
-
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,6 +30,9 @@
 							</td>
 							<td >
 								<label class="badge badge-danger"><%= gate.status %></label>
+							</td>
+							<td>
+								<a href="gate_edit/<%= gate.id %>" class="btn btn-sm btn-primary">Edit</a>
 							</td>
 						</tr>
 						<% }) %>

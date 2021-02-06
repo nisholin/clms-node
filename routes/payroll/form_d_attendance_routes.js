@@ -21,6 +21,25 @@ router.get('/form_d',(req, res)=>{
   }
 });
 
-
+/*router.post('formDAttendance/formDAttendance',(req,res,next)=>{
+    var Contractor = req.body.Contractor;
+    var month = req.body.month;
+    async function getformDAttendanceReportvalues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into cpcl_engineer_master (Contractor,month) values ('"+Contractor+"','"+month+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+  getformDAttendanceReportvalues();
+	res.redirect("pay_roll/form_d_attendance");
+	 
+});
+*/
 
 module.exports = { formDAttendance : router}

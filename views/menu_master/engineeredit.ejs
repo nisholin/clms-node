@@ -1,7 +1,9 @@
 <%- include ('../nav/header')  %>        
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
-
+<div class="col-lg-12 stretch-card">
+<div class="card" id="table">
+	<div class="card-body">
 
 <div class="container">
   <h4 class="card-title">Engineer Master Edit</h4>
@@ -14,57 +16,43 @@
     <div class="form-group row">
 				<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="eic_prno" name="eic_prno" value="<%= Engineer_edit_data.name %>"
+					<input type="text" class="form-control" id="eic_prno" name="eic_prno" value="<%= Engineer_edit_data.EIC_PRNO %>"
 						placeholder="EIC PRNO">
 				</div>
 			</div>
 						<div class="form-group row">
 				<label for="exampleInputName" class="col-sm-3 col-form-label">Name</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+					<input type="text" class="form-control" id="name" name="name" value="<%= Engineer_edit_data.name %>" placeholder="Name">
 				</div>
 			</div><div class="form-group row">
 				<label for="exampleInputDepartment" class="col-sm-3 col-form-label">Department</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="department" name="department"
+					<input type="text" class="form-control" id="department" name="department" value="<%= Engineer_edit_data.department %>"
 						placeholder="Department">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="exampleInputDesignation" class="col-sm-3 col-form-label">Designation</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="designation" name="designation"
+					<input type="text" class="form-control" id="designation" name="designation" value="<%= Engineer_edit_data.designation %>"
 						placeholder="Designation">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="email" name="email" placeholder="Username">
+					<input type="text" class="form-control" id="email" name="email" value="<%= Engineer_edit_data.email %>" placeholder="Username">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+					<input type="text" class="form-control" id="mobile" name="mobile" value="<%= Engineer_edit_data.mobile %>" placeholder="Mobile">
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">Status</label>
-				<div class="col-sm-4">
-					<div class="form-check">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="status" id="status" value="1"
-								checked> Active </label>
-					</div>
-				</div>
-				<div class="col-sm-5">
-					<div class="form-check">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="status" id="status"
-								value="0"> In Active </label>
-					</div>
-				</div>
+			
+				
 			</div>
 			<!-- 
     <div class="form-group">
@@ -132,9 +120,9 @@
           </div>
         </div> 
         
-        <% }) %> --> -->
+        <% }) %> -->
       <center>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Update</button>
       </center>
 
       </form>

@@ -21,6 +21,33 @@ router.get('/mail_report',(req, res)=>{
 	}
 });
 
+/* 
+router.post('/pay_roll/mail_reportnew',(req,res,next)=>{
+    var contractor = req.body.contractor;
+    var employee = req.body.employee;
+    var month = req.body.month;
+ 
+    console.log(contractor_code);
+	console.log(employee);
+	console.log(month);
+	
+    async function getmailReportValues(){
+        try{
+            let pool = await sql.connect(config);
+             await pool.request().query("insert into (contractor_code,employee,month) 
+              values ('"+contractor_code+"','"+employee+"','"+month+"')",(req,res)=>{
+                 console.log("successfully inserted");
+             });
+            //return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    getmailReportValues();
+	 res.redirect("/mailReport")
+});
+*/ 
 
 
 module.exports = { mailReport : router}

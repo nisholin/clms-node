@@ -26,7 +26,7 @@ app.use(session({
   secret:'keyboard cat',
   resave:false,
   saveUninitialized:true,
-  Cookie:{maxAge:6000}
+  Cookie:{maxAge:20000}
 }))
 
 
@@ -80,11 +80,11 @@ const passrequesttwoRoutes = require('./routes/passrequest/pass2_routes');
 const passrequestthreeRoutes = require('./routes/passrequest/pass3_routes');
 const printpassRoutes = require('./routes/passrequest/print_pass_routes');
 //REPORTS
-//const contmasterreportroutes = require('./routes/reports/contractor_master_reports_routes');
-//const empreportsroutes = require('./routes/reports/employee_reports_routes');
-//const inoutroutes = require('./routes/reports/in_out_report_routes');
-//const workorderreportsroutes = require('./routes/reports/work_order_reports_routes');
-//const eicreportsroutes = require('./routes/reports/eic_reports_routes');
+const contmasterreportroutes = require('./routes/reports/contractor_master_reports_routes');
+const empreportsroutes = require('./routes/reports/employee_reports_routes');
+const inoutroutes = require('./routes/reports/in_out_report_routes');
+const workorderreportsroutes = require('./routes/reports/work_order_reports_routes');
+const eicreportsroutes = require('./routes/reports/eic_reports_routes');
 
 //Use Routes
 //app.use(homeRoutes.routes);
@@ -118,11 +118,11 @@ app.use(passrequesttwoRoutes.passrequesttwo);
 app.use(passrequestthreeRoutes.passrequestthree);
 app.use(printpassRoutes.printpass);
 //REPORTS
-//app.use(contmasterreportroutes.contMasterReports);
-//app.use(empreportsroutes.empReports);
-//app.use(inoutroutes.inOutReports);
-//app.use(workorderreportsroutes.workOrderReports);
-//app.use(eicreportsroutes.eicReports);
+app.use(contmasterreportroutes.contMasterReports);
+app.use(empreportsroutes.empReports);
+app.use(inoutroutes.inOutReports);
+app.use(workorderreportsroutes.workOrderReports);
+app.use(eicreportsroutes.eicReports);
 
 
 app.get('/logout',(req,res)=>{ 
@@ -137,3 +137,9 @@ app.get('/logout',(req,res)=>{
 
 
 app.listen(port, () => console.log("app is listen-"+port));
+
+/*
+
+
+*/
+
