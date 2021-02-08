@@ -1,96 +1,133 @@
-<%- include ('../nav/header')  %> 
-<!-- Sidebar Page -->
-<%- include('../nav/sidebar') %>
-		  <div class="col-md-9 grid-margin stretch-card">
+<%- include ('../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
 			<div class="card">
-			  <div class="card-body">
-			  
-				<h4 class="card-title">Contractor Master Edit</h4>
-			
-				<form class="forms-sample">
-				<div class="form-group row">
-					<label for="exampleInputContractor_Code" class="col-sm-3 col-form-label">Contractor Code</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputContractor_Code" placeholder="Contractor Code">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">Contractor Name</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputContractor_Name" placeholder="Contractor Name">
-					</div>
-				  </div>
-				   <div class="form-group row">
-					<label for="exampleInputAddress" class="col-sm-3 col-form-label">Address</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputPrefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputPrefix_Code" placeholder="Prefix Code">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputName of the proprietor/owner/MD/partner" class="col-sm-3 col-form-label">Name of the proprietor/owner/MD/partner</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputName of the proprietor/owner/MD/partner" placeholder="Name of the proprietor/owner/MD/partner">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputContractor E-mail ID" class="col-sm-3 col-form-label">Contractor E-mail ID</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputContractor E-mail ID" placeholder="Contractor E-mail ID">
-					</div>
-				  </div>
-				   <div class="form-group row">
-					<label for="exampleInputESI Code No" class="col-sm-3 col-form-label">ESI Code No</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputESI Code No" placeholder="ESI Code No">
-					</div>
-				  </div>
-				  <div class="form-group row">
-					<label for="exampleInputPF Code No" class="col-sm-3 col-form-label">PF Code No</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputPF Code No" placeholder="PF Code No">
-					</div>
-				  </div>
-				 
-				    <div class="form-group row">
-					<label for="exampleInputContractor PAN No" class="col-sm-3 col-form-label">Contractor PAN No</label>
-				  <div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputContractor PAN No" placeholder="Contractor PAN No">
-					</div>
-				  </div>
-				  				    <div class="form-group row">
-					<label for="exampleInputContractor LIN" class="col-sm-3 col-form-label">Contractor LIN</label>
-				  <div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputContractor LIN" placeholder="Contractor LIN">
-					</div>
-				  </div>
-				   <div class="form-group row">
-					<label for="exampleInputMobile_No" class="col-sm-3 col-form-label">Mobile No</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputMobile_No" placeholder="Mobile No">
-					</div>
-				  </div>
-				  			    <div class="form-group row">
-					<label for="exampleInputName of person/Mail id who is looking over compliance/HR Department" class="col-sm-3 col-form-label">Name of person/Mail id who is looking over compliance/HR Department </label>
-				  <div class="col-sm-9">
-					  <input type="text" class="form-control" id="exampleInputName of person/Mail id who is looking over compliance/HR Department" placeholder="Name of person/Mail id who is looking over compliance/HR Department">
-					</div>
-				  </div>
-				
-				  
-				  <center>
-				  <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
-				  
-				 <button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
-				  </center>
-				</form>
-			  </div>
+				<div class="card-body">
+
+					<h4 class="card-title">Contractor Master Edit</h4>
+
+					<% con_edit_data.forEach(function(cont_data){ %>
+						
+						<form class="forms-sample">
+							<div class="form-group row">
+								<label for="exampleInputContractor_Code" class="col-sm-3 col-form-label">Contractor
+									Code</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputContractor_Code"
+										value="<%= cont_data.contractor_code %>" placeholder="Contractor Code">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">Contractor
+									Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputContractor_Name"
+									  value="<%= cont_data.contractor_name %>"	placeholder="Contractor Name">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputAddress" class="col-sm-3 col-form-label">Address</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputAddress"
+									  value="<%= cont_data.address %>"	placeholder="Address">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputPrefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputPrefix_Code"
+									  value="<%= cont_data.prefix_code %>"	placeholder="Prefix Code">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputName of the proprietor/owner/MD/partner"
+									class="col-sm-3 col-form-label">Name of the proprietor/owner/MD/partner</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputName of the proprietor/owner/MD/partner"
+										value="<%= cont_data.proprietor %>" placeholder="Name of the proprietor/owner/MD/partner">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputContractor E-mail ID" class="col-sm-3 col-form-label">Contractor
+									E-mail ID</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputContractor E-mail ID"
+									  value="<%= cont_data.contractor_mail %>"	placeholder="Contractor E-mail ID">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputESI Code No" class="col-sm-3 col-form-label">ESI Code No</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputESI Code No"
+									  value="<%= cont_data.ESI_Code_No %>"	placeholder="ESI Code No">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputPF Code No" class="col-sm-3 col-form-label">PF Code No</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputPF Code No"
+									  value="<%= cont_data.PF_Code_No %>"	placeholder="PF Code No">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="exampleInputContractor PAN No" class="col-sm-3 col-form-label">Contractor
+									PAN No</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputContractor PAN No"
+									  value="<%= cont_data.Contractor_PAN_No %>"	placeholder="Contractor PAN No">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputContractor LIN" class="col-sm-3 col-form-label">Contractor
+									LIN</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputContractor LIN"
+									  value="<%= cont_data.Contractor_LIN %>"	placeholder="Contractor LIN">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputMobile_No" class="col-sm-3 col-form-label">Mobile No</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputMobile_No"
+									  value="<%= cont_data.Mobile_No %>"	placeholder="Mobile No">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Name_of_person" class="col-sm-3 col-form-label">Name of person</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="Name_of_person" name="Name_of_person"
+									  value="<%= cont_data.Name_of_person %>"	placeholder="Name of person">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Name_of_person" class="col-sm-3 col-form-label">Mail id who is looking over
+									compliance</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="compliance_Mail_id" name="compliance_Mail_id"
+									value="<%= cont_data.compliance_Mail_id %>"	placeholder="Mail id who is looking over compliance">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Name_of_person" class="col-sm-3 col-form-label">HR
+									Department </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="hr_department" name="hr_department"
+									value="<%= cont_data.hr_department %>"	placeholder="HR Department">
+								</div>
+							</div>
+
+
+							<center>
+								<button type="button" class="btn btn-gradient-success btn-fw">Save</button>
+
+								<button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
+							</center>
+						</form>
+
+						<% }) %>
+
+				</div>
 			</div>
-		  </div>
-		  <!-- Footer Page-->
-<%- include('../nav/footer') %>
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>

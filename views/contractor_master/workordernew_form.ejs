@@ -133,12 +133,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="exampleInputISMW" class="col-sm-3 col-form-label">Total Workman</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Total_Workmen" value="19" name="Total_Workmen" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
 						<label class="col-sm-3 col-form-label">Extra Workman</label>
 						<div class="col-sm-4">
 						  <div class="form-check">
@@ -166,38 +160,32 @@
                                 <th>Period_From</th>
                                 <th>Period_To</th>
                                 <th>Workmen</th>
-                                <th>Total_Workmen</th>
+                               <!--  <th>Total_Workmen</th> -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>CLRA</td>
-                                <td><input type="text" class="form-control w-11-rem" name="clra_rcno" id="clra_rcno"
-                                        placeholder=""></td>
-                                <td><input type="text" class="form-control w-11-rem" name="clra_rc_str" id="clra_rc_str"
-                                        placeholder=""></td>
-                                <td><input type="text" class="form-control w-11-rem" name="clra_lic_no" id="lic_no">
-                                </td>
-                                <td><input type="date" class="form-control w-11-rem" name="clra_period_from" id="period_from"
-                                        placeholder=""></td>
-                                <td><input type="date" class="form-control w-11-rem" name="clra_period_to" id="period_to"
-                                        placeholder=""></td>
-                                <td><input type="text" class="form-control w-11-rem" name="clra_workmen" id="workmen" placeholder="">
-                                </td>
-                                <td><input type="text" class="form-control w-11-rem" name="Total_Workmen" id="total_workmen"
-                                        placeholder=""></td>
+                                <td><input type="text" class="form-control w-11-rem" name="clra_rcno" id="clra_rcno"></td>
+                                <td><input type="text" class="form-control w-11-rem" name="clra_rc_str" id="clra_rc_str"></td>
+                                <td><input type="text" class="form-control w-11-rem" name="clra_lic_no" id="lic_no"></td>
+                                <td><input type="date" class="form-control w-11-rem" name="clra_period_from" id="period_from"></td>
+                                <td><input type="date" class="form-control w-11-rem" name="clra_period_to" id="period_to"></td>
+                                <td><input type="number" class="form-control w-11-rem" name="clra_workmen" id="clra_workmen" min="0"
+                                    value="0" oninput="calc();"></td>
+                               <!--  <td><input type="text" class="form-control w-11-rem" name="Total_Workmen" id="total_workmen"
+                                        placeholder=""></td> -->
                             </tr>
                             <tr>
                                 <td>ISMW</td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_rcno" id="ismw_rcno"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_rc_str" id="ismw_rc_str"></td>
-                                <td><input type="text" class=" form-control w-11-rem" name="ismw_lic_no" id="lic_no">
-                                </td>
+                                <td><input type="text" class=" form-control w-11-rem" name="ismw_lic_no" id="lic_no"></td>
                                 <td><input type="date" class=" form-control w-11-rem" name="ismw_period_from" id="period_from"></td>
                                 <td><input type="date" class=" form-control w-11-rem" name="ismw_period_to" id="period_to"></td>
-                                <td><input type="text" class=" form-control w-11-rem" name="ismw_workmen" id="workmen">
-                                </td>
-                                <td><input type="text" class=" form-control w-11-rem" name="Total_Workmen" id="total_workmen"></td>
+                                <td><input type="number" class=" form-control w-11-rem" name="ismw_workmen" id="ismw_workmen" min="0"
+                                value="0" oninput="calc();"></td>
+                                <!-- <td><input type="text" class=" form-control w-11-rem" name="ismw_total_workmen" id="total_workmen"></td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -227,7 +215,7 @@
                                 <th>Period from</th>
                                 <th>Period TO</th>
                                 <th>Workmen</th>
-                                <th>Total Workmen</th>
+                                <!-- <th>Total Workmen</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -240,13 +228,20 @@
                                         placeholder="Period from"></td>
                                 <td><input type="date" class=" form-control w-11-rem" name="e_c_period_to" id="e_c_period_to"
                                         placeholder="Period To"></td>
-                                <td><input type="text" class=" form-control w-11-rem" name="e_c_workmen" id="e_c_workmen"
-                                        placeholder="Workmen"></td>
-                                <td><input type="text" class=" form-control w-11-rem" name="Total_Workmen" id="Total_Workmen"
-                                    placeholder="Total Workmen"></td>
+                                <td><input type="number" class=" form-control w-11-rem" name="e_c_workmen" id="e_c_workmen" min="0" 
+                                value="0" oninput="calc();"></td>
+                               <!--  <td><input type="text" class=" form-control w-11-rem" name="e_c_total_workmen" id="Total_Workmen"
+                                    placeholder="Total Workmen"></td> -->
                             </tr>
                         </tbody>
                     </table>
+                    <br/>
+                    <div class="form-group row">
+                        <label for="exampleInputISMW" class="col-sm-3 col-form-label">Total Workman</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Total_Workmen" value="19" name="Total_Workmen" readonly>
+                        </div>
+                    </div>
                     <br /><br />
                     <center>
                         <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
@@ -295,9 +290,20 @@
         function calc() {
             var amount = document.getElementById("CLRA").value;
             var amount = parseInt(amount, 10);
+
             var quantity = document.getElementById("ISMW").value;
             var quantity = parseInt(quantity, 10);
-            var total = amount + quantity;
+
+            var clraworkmen = document.getElementById("clra_workmen").value;
+            var clraworkmen = parseInt(clraworkmen, 10);
+
+            var ismwworkmen = document.getElementById("ismw_workmen").value;
+            var ismwworkmen = parseInt(ismwworkmen, 10);
+
+            var ecworkmen = document.getElementById("e_c_workmen").value;
+            var ecworkmen = parseInt(ecworkmen, 10);
+
+            var total = amount + quantity + clraworkmen + ismwworkmen + ecworkmen;
             document.getElementById("Total_Workmen").value = total;
         }
 

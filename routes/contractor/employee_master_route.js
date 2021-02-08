@@ -52,12 +52,11 @@ router.post('/employee/add',(req,res,next)=>{
             if(err) throw err;
             //res.write('file upload and moved');
             res.end();
-
         })
         //res.write('File Uploaded');
         res.end();
-
     })
+    console.log(form);
     var cname = req.body.cname;
     var workorder = req.body.workorder;
     var workorder_date = req.body.workorder_date;
@@ -105,7 +104,7 @@ router.post('/employee/add',(req,res,next)=>{
     var safety_training_from = req.body.safety_training_from;
     var safety_training_to = req.body.safety_training_to;
     var status = req.body.status;
-    console.log(ccode);
+    //console.log(ccode);
     async function geteEmployeeValues(){
         try{
             let pool = await sql.connect(config);
@@ -118,18 +117,14 @@ router.post('/employee/add',(req,res,next)=>{
             console.log(error);
         }
     }
-    geteEmployeeValues();
+    //geteEmployeeValues();
     res.redirect("/employeenew");	 
 });
 
 //employee edit
-
-
-router.get('/emp_edit/:emptid',(req, res) => {
+router.get('/employee_edit/:empid',(req, res) => {
     var user_Id = req.session.userId, user_name = req.session.user_name;
     var emp_id = req.params.empid;
-
-    //res.send(emp_id);
 
     async function employeeupdate(){
         try{
@@ -142,16 +137,12 @@ router.get('/emp_edit/:emptid',(req, res) => {
         }
     }   
 
-    
-
     employeeupdate().then(result=>{
-        var Shift_edit_data = result[0];
-        res.render('contractor_master/employee_edit',{user_Id:user_Id,user_name:user_name,Shift_edit_data:Shift_edit_data});
+        var Emp_edit_data = result[0];
+        res.render('contractor_master/employee_edit',{user_Id:user_Id,user_name:user_name,Emp_edit_data:Emp_edit_data});
     })
-   
-
 });
 
 
 
-module.exports = { routes:router }
+module.exports = { employee:router }

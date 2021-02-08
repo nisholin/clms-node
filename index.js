@@ -93,9 +93,9 @@ app.use(engRoutes.engineer);
 app.use(shiftRoutes.routes);
 app.use(gateRoutes.routes);
 //CONTRACTOR MASTERS
-app.use(contracorRoutes.routes);
+app.use(contracorRoutes.contractor);
 app.use(workorderRoutes.routes);
-app.use(employeeRoutes.routes);
+app.use(employeeRoutes.employee);
 //ADMIN
 app.use(adminRoutes.routes);
 //PAY ROLL GENERATION

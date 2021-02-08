@@ -9,7 +9,8 @@ var sql = require('mssql');
  
 
 router.get('/contractor_master_reports',(req, res)=>{
-	res.render('reports/contractor_master');
+	var user_Id = req.session.userId, user_name = req.session.user_name;
+	res.render('reports/contractor_master',{user_Id:user_Id,user_name:user_name});
  
 });
 

@@ -1,106 +1,62 @@
 <%- include ('../nav/header') %>
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
+		<div class="content-wrapper">
+			<div class="col-lg-13 grid-margin stretch-card" id="table">
+				<div class="card overflow-x overflow-y-hidden">
+					<div class="card-body">
 
-	<div class="col-md-12 grid-margin stretch-card">
-		<div class="card">
-		  <div class="card-body">
-			<h4 class="card-title">Contractor Pass Request</h4>
-		
-			<form class="forms-sample">
-			  <div class="form-group row">
-				<label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="ccode" name="ccode" placeholder="Contractor Code">
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
-				<div class="col-sm-9">
-				  <input type="email" class="form-control" id="cname" name="cname"  placeholder="Contractor name">
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="workorder_no" class="col-sm-3 col-form-label">Workorder No</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="workorder_no" name="workorder_no" placeholder="Workorder No">
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="pass_from" class="col-sm-3 col-form-label">Pass From</label>
-				<div class="col-sm-9">
-				  <input type="date" class="form-control" id="pass_from" name="pass_from" placeholder="Pass From">
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="pass_to" class="col-sm-3 col-form-label">Pass To</label>
-				<div class="col-sm-9">
-				  <input type="date" class="form-control" id="pass_to" name="pass_to" placeholder="Pass To">
-				</div>
-			  </div>
-				<div class="form-group row">
-				<label for="no_of_pass" class="col-sm-3 col-form-label">Number Of Pass</label>
-				<div class="col-sm-9">
-				   <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass" placeholder="Number Of Pass">
-				</div>
-			  </div>
-				  
-				<div class="form-group row">
-				<label for="pass_type" class="col-sm-3 col-form-label">Pass Type</label>
-				<div class="col-sm-9">
-				  <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-				<option>Fresh</option>
-				<option>Renewal</option>
-				
-			  </select>
-			</div>
-	</div>
-			
-				
-			</form>
-		 
-		</div>
-	
-	<div class="col-lg-12 grid-margin stretch-card" id="table">
-		<div class="card overflow-x overflow-y-hidden">
-			<div class="card-body">	 
-	  <table class="table table-bordered"> 				
-<thead>
-<tr>
-  <th>ID</th>
-<th>Emp code</th>	  
-  <th>Empid</th>
-	<th>Name</th>
- 
-   <th>check</th>
-</tr>	 
-</thead>
-<tbody>
-<tr>
+						<h4 class="card-title">Contractor PassRequest</h4>
 
-				<td>1</td>
-				<td>Emp_code</td>
-				<td>Emp_id</td>
-				<td>Name</td>
-				
-				<td><div class="form-check">
-					  <label class="form-check-label">
-						<input type="checkbox" class="form-check-input" checked>.</label>
+						<form class="form-inline" method="POST" action="/pass/pass_request_1new">
+							<label class="sr-only" for="inlineFormInputName2">Contractor Code</label>
+							<input type="text" class="form-control mb-2 mr-sm-2" id="contractor_code"
+								name="contractor_code" placeholder="contractor code">
+							<label class="sr-only" for="inlineFormInputName2">Contractor_name</label>
+							<input type="text" class="form-control mb-2 mr-sm-2" id="contractor_name"
+								name="Contractor_name" placeholder="contractor name">
+							<label class="sr-only" for="inlineFormInputName2">Workorder No</label>
+							<input type="text" class="form-control mb-2 mr-sm-2" id="workorder_no" name="workorder_no"
+								placeholder="workorder_no">
+							<button type="submit" onclick="showDetails()" class="btn btn-gradient-primary mb-2">Go</button>
+						</form>
 					</div>
-					</td>
-				
-</tr> 
 
-</tbody>
-</table>
-</div>
-<button type="submit" class="btn btn-gradient-primary mb-2">Submit</button> 
-				  </div>
-				  </div>
-				   </div>
-				  </div>
-				
-				  
+
+					<div class="col-sm-11 text-right">
+						<div class="w3-show-inline-block">
+							<div class="w3-bar">
+								<button type="button" class="btn btn-gradient-info btn-icon-text"
+									onclick="window.print();">Print<i class="mdi mdi-printer btn-icon-append"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12 grid-margin stretch-card" id="table">
+						<div class="card overflow-x overflow-y-hidden">
+							<div class="card-body">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Contractor Code</th>
+											<th>Employee Name</th>
+											<th>Name</th>
+											<th>check</th>
+										</tr>
+									</thead>
+									<tbody>
+										<td>1001</td>
+										<td>CT-001</td>
+										<td>Nisho</td>
+										<td>Nisho</td>
+										<td><input type="checkbox" /></td>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 
 					<!-- Footer Page-->
 					<%- include('../nav/footer') %>

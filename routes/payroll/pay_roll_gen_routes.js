@@ -17,11 +17,10 @@ router.get('/pay_roll_generation',(req, res)=>{
 	  return;
   }
   else{
-    /* dboperations.getpayrollValues().then(result =>{                
-    var data = result[0];
-    res.render('pay_roll/pay_roll_generation');
-}) */
-	res.render('pay_roll/pay_roll_generation',{user_Id:user_Id,user_name:user_name,data});
+    dboperations.getpayrollValues().then(result =>{                
+    var pay_roll_gen = result[0];
+    res.render('pay_roll/pay_roll_generation',{user_Id:user_Id,user_name:user_name,pay_roll_gen});
+    }) 
   }
 });
 

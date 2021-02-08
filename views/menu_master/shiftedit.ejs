@@ -2,60 +2,58 @@
 <%- include ('../nav/header')  %>        
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
-		<div class="col-md-6 grid-margin stretch-card">
-			<div class="card">
-			  <div class="card-body">
-				<h4 class="card-title">Shift Master Edit</h4>
-				<p class="card-description">  </p>
-				<% Shift_edit_data.forEach(function(Shift_edit_data) { %>
+	<div class="card">
+		<div class="card-body">
+		<h4 class="card-title">Shift Master Edit</h4>
+		<p class="card-description">  </p>
+		<% Shift_edit_data.forEach(function(Shift_edit_data) { %>
 
-					
+			
 
-				<form class="forms-sample" method="get" action="/shift_update">
-				  <div class="form-group row">
-					<label for="name" class="col-sm-3 col-form-label">Name</label>
-					<div class="col-sm-9">
-					  <input type="text" class="form-control" id="name" value="<%=Shift_edit_data.shift_name %>"placeholder="name">
-					</div>
-				  </div>
-				   <div class="form-group row">
-						<label class="col-sm-3 col-form-label">From Time</label>
-						<div class="col-sm-9">
-						  <input type="text" class="form-control" value="<%=Shift_edit_data.from_time %>" />
-						</div>
-					  </div>
-				   <div class="form-group row">
-						<label class="col-sm-3 col-form-label">To Time</label>
-						<div class="col-sm-9">
-						  <input type="text"class="form-control"  value="<%=Shift_edit_data.to_time %>" />
-						</div>
-					  </div>
-				
-
-				  	 <div class="form-group row">
-						<label class="col-sm-3 col-form-label">Status</label>
-						
-							<div class="col-sm-4">
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="1" checked> Active </label>
-							</div>
-						  </div>
-						  <div class="col-sm-5">
-							<div class="form-check">
-							  <label class="form-check-label">
-								<input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> In Active </label>
-							</div>
-						  </div>
-					  </div>
-					  <% }) %> 
-				<center>
-				   <button type="submit" class="btn btn-gradient-success btn-fw">Submit</button>
-				  
-				  </center>
-				</form>
-			  </div>
+		     <form class="forms-sample" method="post" action="/shiftupdate"> 
+			<div class="form-group row">
+			<label for="name" class="col-sm-3 col-form-label">Name</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="name" value="<%=Shift_edit_data.shift_name %>"placeholder="name">
 			</div>
-		  </div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">From Time</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" value="<%=Shift_edit_data.from_time %>" />
+				</div>
+				</div>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">To Time</label>
+				<div class="col-sm-9">
+					<input type="text"class="form-control"  value="<%=Shift_edit_data.to_time %>" />
+				</div>
+				</div>
+		
+
+				<div class="form-group row">
+				<label class="col-sm-3 col-form-label">Status</label>
+				
+					<div class="col-sm-4">
+					<div class="form-check">
+						<label class="form-check-label">
+						<input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="1" checked> Active </label>
+					</div>
+					</div>
+					<div class="col-sm-5">
+					<div class="form-check">
+						<label class="form-check-label">
+						<input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> In Active </label>
+					</div>
+					</div>
+				</div>
+				<% }) %> 
+		<center>
+			<button type="submit" class="btn btn-gradient-success btn-fw">Submit</button>
+			
+			</center>
+		</form>
+		</div>
+	</div>
 		  
-		  <%- include('../nav/footer') %>
+<%- include('../nav/footer') %>

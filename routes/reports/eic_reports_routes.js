@@ -9,7 +9,8 @@ var sql = require('mssql');
  
 
 router.get('/eic_reports',(req, res)=>{
-	res.render('reports/eic_reports');
+	var user_Id = req.session.userId, user_name = req.session.user_name;
+	res.render('reports/eic_reports',{user_Id:user_Id,user_name:user_name});
 });
 
 

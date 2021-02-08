@@ -28,7 +28,6 @@ router.get('/engineer',(req, res)=>{
 });
 
 //New Enginner Creation process
-
 router.post('/engineer/new',(req,res,next)=>{
     var eic_prno = req.body.eic_prno;
     var name = req.body.name;
@@ -57,7 +56,6 @@ router.post('/engineer/new',(req,res,next)=>{
 });
 
 //single engineer  data edit page   
-
 router.get('/Engineer_edit/:engineerId',(req, res) => {
 
     const engineerId = req.params.engineerId;
@@ -84,14 +82,27 @@ router.get('/Engineer_edit/:engineerId',(req, res) => {
 });
 
 //engineer update process
-
 router.post('/update',(req, res) => {
-    const userId = req.body.id;
-    let sql = "update cpcl_engineer_master SET name='"+req.body.name+"',  email='"+req.body.email+"',  phone_no='"+req.body.phone_no+"' where id ="+userId;
-    let query = connection.query(sql,(err, results) => {
-      if(err) throw err;
-      res.redirect('/');
-    });
+    var data = req.body;
+    console.table(data);
+
+    async function Engineupdate(){
+        try{
+            let pool = await sql.connect(config);
+            let products = await pool.request().query(`update cpcl_engineer_master SET EIC_PRNO='${req.body.eic_prno}',
+            name='${req.body.name}',department='${req.body.department}',designation='${req.body.designation}',
+            email='${req.body.email}',mobile='${req.body.mobile}'   where id ='${req.body.id}'`); 
+            return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+        console.log("Engineer Updated Successfully");
+    } 
+
+    Engineupdate();
+
+    res.redirect('/engineer');
 });
 
 

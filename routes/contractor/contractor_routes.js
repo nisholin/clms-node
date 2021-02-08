@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 var dboperations = require('../../database/contractor/cpcl_contractor_table');
@@ -7,7 +6,7 @@ var config = require('../../database/dbconfig');
 var sql = require('mssql');
 
 
-
+//Contractor View
 router.get('/contractornew',(req,res,next)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
@@ -30,6 +29,7 @@ router.get('/contractornew',(req,res,next)=>{
     }) */
 });
 
+//Contractor Insert
 router.post('/contractor/new',(req,res,next)=>{
     //console.log('hi');
    var contractor_code=req.body.Contractor_Code;
@@ -74,32 +74,54 @@ catch(error)
    res.redirect("/contractornew");
 
 });
-//contractor edit
 
-router.get('/contractor_edit/:contractorid',(req,res)=>{
-
-const cid=res.params.contractorid;
-
-async function contractorupdate(){
-    try{
-            let pool = await sql.connect(config);
-            let products = await pool.request().query(`select * from cpcl_contractor_master where id = ${cid}`); 
-            return products.recordsets;
+//Contractor edit
+router.get('contractor_edit/:contractorid',(req,res)=>{
+    const cid = res.params.contractorid;
+    async function contractorupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_contractor_master where id = ${cid}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
         }
-    catch(error){
-        console.log(error);
-    }
-}   
+    }   
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+    contractorupdate().then(result=>{
+        var con_edit_data = result[0];
+        res.render('contractor_master/contractoredit',{user_Id:user_Id,user_name:user_name,con_edit_data:con_edit_data});
+    })
+});
 
-var user_Id = req.session.userId, user_name = req.session.user_name;
-contractorupdate().then(result=>{
-    var con_edit_data = result[0];
-    res.render('contractor_master/contractoredit',{user_Id:user_Id,user_name:user_name,con_edit_data:con_edit_data});
-})
 
+router.get('/contractor_edit/:contractorid',(req, res) => {
+
+    const cid = req.params.contractorid;
+
+    async function contractorupdate(){
+        try{
+                let pool = await sql.connect(config);
+                let products = await pool.request().query(`select * from cpcl_contractor_master where id = ${cid}`); 
+                return products.recordsets;
+            }
+        catch(error){
+            console.log(error);
+        }
+    }    
+
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+
+    contractorupdate().then(result=>{
+        var con_edit_data = result[0];
+        res.render('contractor_master/contractoredit',{user_Id:user_Id,user_name:user_name,con_edit_data:con_edit_data});
+    })
 
 });
 
+
+
 module.exports = { 
-	routes:router	
+	contractor:router	
 }
