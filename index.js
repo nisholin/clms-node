@@ -128,7 +128,7 @@ app.use(eicreportsroutes.eicReports);
 app.get('/logout',(req,res)=>{ 
   req.session.destroy(function(err) {
 
-     var message = 'logged out';
+    var message = 'logged out';
     res.render('login',{message:message});
 
   });

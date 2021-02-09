@@ -8,7 +8,7 @@
                 <% work_edit_data.forEach(function(work_edit_data) { %>
 
 					
-                <form class="forms-sample" method="POST" action="/workordernew/add"> 
+                <form class="forms-sample" method="POST" action="/workordernew/update"> 
                     <div class="form-group row">
                         <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
                         <div class="col-sm-9">
@@ -235,9 +235,7 @@
                     <br /><br />
                     <% }) %> 
                     <center>
-                        <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-
-                        <button class="btn btn-gradient-danger btn-fw">cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </center>
                 </form>
             </div>

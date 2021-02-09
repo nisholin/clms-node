@@ -61,7 +61,7 @@ router.post('/attendance/attendance_in_outnew',(req,res,next)=>{
     getattendanceinoutValues();
 	 res.redirect("/attendanceinout")
 });
-*/ 
+*/
 
 
 

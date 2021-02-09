@@ -14,6 +14,7 @@ exports.login_check=(req,res)=>{
         {
             req.session.userId = 'admin';
             req.session.user_name = 123;
+            req.session.cont_code = 'CON-001';
             console.log(req.session.userId+req.session.user_name)
             res.redirect('/home');        
         }
@@ -29,6 +30,7 @@ exports.login_check=(req,res)=>{
 exports.main_page = function(req,res,next){
     var user_Id = req.session.userId;
     var user_name = req.session.user_name;
+    var con_code = req.session.cont_code;
     if(user_Id == null)
     {
 		message = 'Wrong Credentials.';
@@ -37,7 +39,7 @@ exports.main_page = function(req,res,next){
     }
     else{
 
-        res.render('home',{user_Id:user_Id,user_name:user_name});
+        res.render('home',{user_Id:user_Id,user_name:user_name,con_code: con_code});
     }
 
 }

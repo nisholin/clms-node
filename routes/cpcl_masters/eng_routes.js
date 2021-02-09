@@ -84,7 +84,7 @@ router.get('/Engineer_edit/:engineerId',(req, res) => {
 //engineer update process
 router.post('/update',(req, res) => {
     var data = req.body;
-    console.table(data);
+    //console.table(data);
 
     async function Engineupdate(){
         try{

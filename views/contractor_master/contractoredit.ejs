@@ -7,13 +7,13 @@
 					<h4 class="card-title">Contractor Master Edit</h4>
 
 					<% con_edit_data.forEach(function(cont_data){ %>
-						
-						<form class="forms-sample">
+					 	 <input type="hidden" value="<%= cont_data.id %>" name="id"> 
+						    <form class="forms-sample" action="/contractornew/update" method="POST">
 							<div class="form-group row">
 								<label for="exampleInputContractor_Code" class="col-sm-3 col-form-label">Contractor
 									Code</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputContractor_Code"
+									<input type="text" class="form-control" id="exampleInputContractor_Code" name="Contractor_Code"
 										value="<%= cont_data.contractor_code %>" placeholder="Contractor Code">
 								</div>
 							</div>
@@ -21,51 +21,75 @@
 								<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">Contractor
 									Name</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputContractor_Name"
+									<input type="text" class="form-control" id="exampleInputContractor_Name" name="Contractor_Name"
 									  value="<%= cont_data.contractor_name %>"	placeholder="Contractor Name">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputAddress" class="col-sm-3 col-form-label">Address</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputAddress"
+									<input type="text" class="form-control" id="exampleInputAddress" name="Address"
 									  value="<%= cont_data.address %>"	placeholder="Address">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputPrefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputPrefix_Code"
+									<input type="text" class="form-control" id="exampleInputPrefix_Code" name="Prefix_Code"
 									  value="<%= cont_data.prefix_code %>"	placeholder="Prefix Code">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="exampleInputName of the proprietor/owner/MD/partner"
-									class="col-sm-3 col-form-label">Name of the proprietor/owner/MD/partner</label>
+								<label for="exampleInputName of the proprietor"
+									class="col-sm-3 col-form-label">Name of the proprietor</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputName of the proprietor/owner/MD/partner"
-										value="<%= cont_data.proprietor %>" placeholder="Name of the proprietor/owner/MD/partner">
+									<input type="text" class="form-control" id="exampleInputName of the proprietor" name="proprietor"
+										value="<%= cont_data.proprietor %>" placeholder="Name of the proprietor">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputOwner"
+									class="col-sm-3 col-form-label">Owner</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputowner" name="owner"
+										value="<%= cont_data.owner %>" placeholder="Owner">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputMD"
+									class="col-sm-3 col-form-label">MD</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputMD" name="md"
+										value="<%= cont_data.md %>" placeholder="Name of the proprietor/owner/MD/partner">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="exampleInputpartner"
+									class="col-sm-3 col-form-label">Partner</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="exampleInputpartner" name="partner"
+										value="<%= cont_data.partner %>" placeholder="Partner">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputContractor E-mail ID" class="col-sm-3 col-form-label">Contractor
 									E-mail ID</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputContractor E-mail ID"
+									<input type="text" class="form-control" id="exampleInputContractor E-mail ID" name="Contractor_Email"
 									  value="<%= cont_data.contractor_mail %>"	placeholder="Contractor E-mail ID">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputESI Code No" class="col-sm-3 col-form-label">ESI Code No</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputESI Code No"
+									<input type="text" class="form-control" id="exampleInputESI Code No" name="ESI_Code_No"
 									  value="<%= cont_data.ESI_Code_No %>"	placeholder="ESI Code No">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputPF Code No" class="col-sm-3 col-form-label">PF Code No</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputPF Code No"
+									<input type="text" class="form-control" id="exampleInputPF Code No" name="PF_Code_No""
 									  value="<%= cont_data.PF_Code_No %>"	placeholder="PF Code No">
 								</div>
 							</div>
@@ -74,7 +98,7 @@
 								<label for="exampleInputContractor PAN No" class="col-sm-3 col-form-label">Contractor
 									PAN No</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputContractor PAN No"
+									<input type="text" class="form-control" id="exampleInputContractor PAN No" name="Contractor_PAN_No"
 									  value="<%= cont_data.Contractor_PAN_No %>"	placeholder="Contractor PAN No">
 								</div>
 							</div>
@@ -82,15 +106,35 @@
 								<label for="exampleInputContractor LIN" class="col-sm-3 col-form-label">Contractor
 									LIN</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputContractor LIN"
+									<input type="text" class="form-control" id="exampleInputContractor LIN" name="Contractor_LIN"
 									  value="<%= cont_data.Contractor_LIN %>"	placeholder="Contractor LIN">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputMobile_No" class="col-sm-3 col-form-label">Mobile No</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="exampleInputMobile_No"
+									<input type="text" class="form-control" id="exampleInputMobile_No" name="Mobile_No"
 									  value="<%= cont_data.Mobile_No %>"	placeholder="Mobile No">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">Status</label>
+
+								<div class="col-sm-4">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input type="radio" class="form-check-input" name="membershipRadios" 
+												id="membershipRadios1" value="1" checked>
+											Active </label>
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input type="radio" class="form-check-input" name="membershipRadios"
+												id="membershipRadios2" value="0"> In Active
+										</label>
+									</div>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -116,16 +160,16 @@
 									value="<%= cont_data.hr_department %>"	placeholder="HR Department">
 								</div>
 							</div>
+							<div class="form-group row">
+				
 
-
+	<% }) %>
 							<center>
-								<button type="button" class="btn btn-gradient-success btn-fw">Save</button>
-
-								<button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
+							<button type="submit" class="btn btn-primary">Update</button>
 							</center>
 						</form>
 
-						<% }) %>
+						
 
 				</div>
 			</div>

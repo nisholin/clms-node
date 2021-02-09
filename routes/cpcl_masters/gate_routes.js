@@ -100,6 +100,29 @@ router.get('/gate_edit/:gateid',(req, res) => {
 });
 
 
+//Gate update process
+router.post('/gate/update',(req, res) => {
+    var data = req.body;
+    console.table(data);
+
+    async function gateupdate(){
+        try{
+            let pool = await sql.connect(config);
+            let products = await pool.request().query(`update cpcl_gate_master SET name='${req.body.name}',
+            status='${req.body.membershipRadios}' where id ='${req.body.id}'`); 
+            return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+        console.log("Gate Updated Successfully");
+    } 
+gateupdate();
+
+    res.redirect('/gate');
+});
+
+
 
 module.exports = { 
 	routes:router

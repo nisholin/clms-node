@@ -79,25 +79,25 @@ router.post('/shift/new',(req,res,next)=>{
 
 
 //Shift update process
-router.post('/update',(req, res) => {
+router.post('/shift/update',(req, res) => {
     var data = req.body;
-    console.table(data);
+    //console.table(data);
 
-    async function Shiftupdate(){
+    async function shiftupdate(){
+
         try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query(`update cpcl_shift_master SET shift_name='${req.body.shift_name}',
-            from_time='${req.body.from_time}',to_time='${req.body.to_time}',status='${req.body.status}',
-            where id ='${req.body.id}'`); 
+            let products = await pool.request().query(`update cpcl_shift_master SET shift_name ='${req.body.shift_name}',
+            from_time ='${req.body.from_time}',to_time ='${req.body.to_time}',status ='${req.body.status}' where id ='${req.body.id}'`); 
             return products.recordsets;
         }
         catch(error){
             console.log(error);
         }
         console.log("Shift Updated Successfully");
-    } 
+    }
 
-   Shiftupdate();
+    shiftupdate();
 
     res.redirect('/shift');
 });

@@ -1,0 +1,155 @@
+<%- include ('../../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../../nav/sidebar') %>
+<!--Form Data-->
+<div class="card" id="newform">
+    <div class="card-body">
+
+        <h4 class="card-title">Contractor Pass Request</h4>
+
+        <!--From Start-->
+
+        <div class="card-body">
+
+            <form class="forms-sample">
+
+            <% contractor_details.forEach(function(cont_details)  { %>
+
+                <div class="form-group row">
+                    <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="contractor_code" name="contractor_code" value="<%= cont_details.contractor_code %>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="cname" name="cname"
+                           value="<%= cont_details.contractor_name %>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="workorder_no" class="col-sm-3 col-form-label">Workorder No</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="workorder_no" name="workorder_no"
+                        value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pass_from" class="col-sm-3 col-form-label">Pass Request From</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="pass_from" name="pass_from"
+                            placeholder="Pass From">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pass_to" class="col-sm-3 col-form-label">Pass Request To</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="pass_to" name="pass_to"
+                            placeholder="Pass To">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="no_of_pass" class="col-sm-3 col-form-label">Number Of Pass</label>
+                    <div class="col-sm-9">
+                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                            placeholder="Number Of Pass">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="no_of_pass" class="col-sm-3 col-form-label">Nature Of Jobs</label>
+                    <div class="col-sm-9">
+                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                            placeholder="Number Of Pass">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="no_of_pass" class="col-sm-3 col-form-label">Job Completion Date</label>
+                    <div class="col-sm-9">
+                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                            placeholder="Number Of Pass">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="no_of_pass" class="col-sm-3 col-form-label">Contractor SAP No</label>
+                    <div class="col-sm-9">
+                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                            placeholder="Number Of Pass">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="pass_type" class="col-sm-3 col-form-label">Pass Type</label>
+                    <div class="col-sm-9">
+                        <select class="form-control form-control-lg" id="exampleFormControlSelect1">
+                            <option>Fresh</option>
+                            <option>Renewal</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card-body overflow-x">
+                <!--Table Start-->
+
+                <table class="table table-bordered"> 				
+                    <thead>
+                        <tr>
+                            <th>Name Of The Contract Worker</th>
+                            <th>Father 'S / Huspand Name</th>
+                            <th>Residential Address</th>
+                            <th>Age / Sex</th>
+                            <th>Work Spot</th>
+                            <th>Safety Pass Validity From</th>
+                            <th>Safety Pass Validity To</th>
+                            <th>Work Order Number</th>
+                            <th>Work Order Date</th>
+                            <th>Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% employee_details.forEach(function(emp_details) { %>
+
+                            <tr>
+                                <td><%= emp_details.CNAME %></td>
+                                <td><%= emp_details.FATHER %></td>
+                                <td><%= emp_details.PRE_ADDRESS %></td>
+                                <td><%= emp_details.DOB %></td>
+                                <td><%= emp_details.WROK_SPOT %></td>
+                                <td><%= emp_details.SAFETY_TRAINING_FROM %></td>
+                                <td><%= emp_details.SAFETY_TRAINING_TO %></td>
+                                <td><%= emp_details.WORK_ORDER_No %></td>
+                                <td><%= emp_details.WORK_OR_DATE %></td>
+                                <td>
+                                    <div class="form-check m-t-0">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input"></label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <% }) %>
+
+                    </tbody>
+                </table>
+                <!--Table End-->
+                </div>
+                <br/><br/>
+                <button type="submit" class="btn btn-gradient-primary mb-2 f-r">Submit</button>
+
+            </form>
+
+            <% }) %>
+
+        </div>
+        <!--From Start-->
+    </div>
+</div>
+
+
+<!--Footer-->
+<%- include('../../nav/footer') %>

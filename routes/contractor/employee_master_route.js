@@ -42,7 +42,7 @@ router.post('/employee/add',(req,res,next)=>{
     var ccode = req.body.ccode;
     
     //Image Upload
-    var form = new formidable.IncomingForm();
+    /* var form = new formidable.IncomingForm();
     form.parse(req,(err,fileds,files)=>{
 
         var oldpath  = files.filetoupload.path;
@@ -55,8 +55,8 @@ router.post('/employee/add',(req,res,next)=>{
         })
         //res.write('File Uploaded');
         res.end();
-    })
-    console.log(form);
+    }) */
+    //console.log(form);
     var cname = req.body.cname;
     var workorder = req.body.workorder;
     var workorder_date = req.body.workorder_date;
@@ -117,7 +117,7 @@ router.post('/employee/add',(req,res,next)=>{
             console.log(error);
         }
     }
-    //geteEmployeeValues();
+    geteEmployeeValues();
     res.redirect("/employeenew");	 
 });
 
@@ -142,6 +142,78 @@ router.get('/employee_edit/:empid',(req, res) => {
         res.render('contractor_master/employee_edit',{user_Id:user_Id,user_name:user_name,Emp_edit_data:Emp_edit_data});
     })
 });
+
+
+
+//Employee update process
+router.post('/employee/update',(req, res) => {
+    var data = req.body;
+    //console.table(data);
+
+    async function employeeupdate(){
+        try{
+            let pool = await sql.connect(config);
+            let products = await pool.request().query(`update cpcl_employee_master SET ccode='${req.body.ccode}',
+cname='${req.body.cname}',
+workorder='${req.body.workorder}',
+workorder_date='${req.body.workorder_date}',
+emp_code='${req.body.emp_code}',
+wo_val_from='${req.body.wo_val_from}',
+wo_val_to='${req.body.wo_val_to}',
+ci_name='${req.body.ci_name}',
+Father='${req.body.Father}',
+Husband='${req.body.Husband}',
+designation='${req.body.designation}',
+dob='${req.body.dob}',
+Engaged_Date='${req.body.Engaged_Date}',
+gender='${req.body.gender}',
+mstatus='${req.body.mstatus}',
+Present_address='${req.body.Present_address}',
+permanent_address='${req.body.permanent_address}',
+phone_no='${req.body.phone_no}'
+email_id='${req.body.email_id}',
+emergency='${req.body.emergency}',
+Emergency_Mobile_Number='${req.body.Emergency_Mobile_Number}',
+nominee_name='${req.body.nominee_name}',
+nominee_relation='${req.body.nominee_relation}',
+nominee_dob='${req.body.nominee_dob}',
+category='${req.body.category}',
+wage_per_day='${req.body.wage_per_day}',
+Incentive_per_day='${req.body.Incentive_per_day}',
+Allowance_per_day='${req.body.Allowance_per_day}',
+Any_other_wages='${req.body.Any_other_wages}',
+uan='${req.body.uan}',ESI_no='${req.body.ESI_no}',
+Aadhar_card_no='${req.body.Aadhar_card_no}', 
+Identical_mark1='${req.body.Identical_mark1}', 
+Bank_name='${req.body.Bank_name}',
+Account_no='${req.body.Account_no}',
+Blood_grp='${req.body.Blood_grp}', 
+Entry_gate='${req.body.Entry_gate}', 
+Work_spot='${req.body.Work_spot}', 
+Area_of_work='${req.body.Area_of_work}',
+pass_val_from='${req.body.pass_val_from}', 
+pass_val_to='${req.body.pass_val_to}',
+safety_training_from='${req.body.safety_training_from}', 
+safety_training_to='${req.body.safety_training_to}',
+status='${req.body.status}'  
+where id ='${req.body.id}'`); 
+            return products.recordsets;
+        }
+        catch(error){
+            console.log(error);
+        }
+        console.log("Employee Updated Successfully");
+    } 
+
+    employeeupdate();
+
+     res.redirect('/employee'); 
+});
+
+
+
+
+
 
 
 

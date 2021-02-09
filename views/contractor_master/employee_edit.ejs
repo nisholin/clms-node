@@ -3,7 +3,7 @@
   <%- include('../nav/sidebar') %>
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Contractor Workmen Information Edit</h4>
+        <h4 class="card-title">Employee Edit</h4>
 
         <% Emp_edit_data.forEach(function(empdata) { %>
 
@@ -346,15 +346,32 @@
                 <input type="text" class="form-control" name="safety_training_to" id="safety_training_to" value="<%= empdata.SAFETY_TRAINING_TO %>" placeholder="Safety Training To" />
               </div>
             </div>
-
+<div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Status</label>
+                        <div class="col-sm-4">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" id="gender1" value="1"
+                                        checked>
+                                    Active </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" id="gender2" value="2">
+                                    Inactive </label>
+                            </div>
+                        </div>
+                    </div>
+                     <% }) %>
             <center>
-              <button type="button" class="btn btn-gradient-success btn-fw">Save</button>
-              <button type="button" class="btn btn-gradient-danger btn-fw">Cancel</button>
+             	<button type="submit" class="btn btn-primary">Update</button>
             </center>
 
           </form>
 
-          <% }) %>
+         
 
       </div>
     </div>
