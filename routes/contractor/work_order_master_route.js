@@ -234,14 +234,62 @@ router.get('/work_edit/:shiftid',(req, res) => {
 
 
 //WorkOrder update process
-router.post('/workordernew/update',(req, res) => {
+ router.post('/workordernew/update',(req, res) => {
     var data = req.body;
     //console.table(data);
+	/* async function workordernewupdate(){
+		try{
+			let pool = await sql.connect(config);
+            let products = await pool.request().query(`update cpcl_work_order_master SET 
+			CCODE='${req.body.Contractor_Code}',
+			CNAME='${req.body.Contractor_Name}',
+            VENDOR_NO='${req.body.Vendor_No}',
+            WORK_ORDER='${req.body.Work_order_no}',
+            WORK_OR_DATE='${req.body.Work_order_date}',
+            CVALUE='${req.body.Contractor_Value}',
+            DURATION='${req.body.Duration_Date}',
+            CDURATION='${req.body.Contract_Duration}',
+            EIC_PRNO='${req.body.EIC_PRNO}',
+            EIC='${req.body.Engineer_In_Charge}',
+            JOB_DESC='${req.body.Job_Desc}',
+            DEPARTMENT='${req.body.Department}',
+            EMPLOYEE_COUNT='${req.body.Employee_count}',
+            CLRA='${req.body.CLRA}',
+			ISMW='${req.body.ISMW}',
+			WORKMEN_TOT='${req.body.Total_Workmen}' where id ='${req.body.id}'`);
+				
+				let products = await pool.request().query(`update clra SET
+				clra_rcno='${req.body.clra_rcno}',
+			clra_rc_str='${req.body.clra_rc_str}',
+			clra_lic_no='${req.body.clra_lic_no}',
+			clra_period_from='${req.body.clra_period_from}',
+			clra_period_to='${req.body.clra_period_to}',
+			clra_workmen='${req.body.clra_workmen}',
+			clra_total_workmen='${req.body.clra_total_workmen}' where id ='${req.body.id}'`);
+				
+				let products = await pool.request().query(`update ismw SET
+				ismw_rcno='${req.body.clra_rcno}',
+			ismw_rc_str='${req.body.clra_rc_str}',
+			ismw_lic_no='${req.body.clra_lic_no}',
+			ismw_period_from='${req.body.clra_period_from}',
+			ismw_period_to='${req.body.clra_period_to}',
+			ismw_workmen='${req.body.clra_workmen}',
+			ismw_total_workmen='${req.body.clra_total_workmen}' where id ='${req.body.id}'`);
+			
+				let products = await pool.request().query(`update work_order_extra_contractor SET
+				extra_workman='${req.body.extra_workman}',
+			extra_contractor='${req.body.extra_contractor}',
+			e_contractor_name='${req.body.e_contractor_name}',
+            e_c_lic_no='${req.body.e_c_lic_no}',
+            e_c_period_from	='${req.body.e_c_period_from}',
+            e_c_period_to='${req.body.e_c_period_to}',
+            e_c_workmen='${req.body.e_c_workmen}' where id ='${req.body.id}'`);  */
 
-    async function workordernewupdate(){
+      async function workordernewupdate(){
         try{
             let pool = await sql.connect(config);
             let products = await pool.request().query(`update cpcl_work_order_master SET CCODE='${req.body.Contractor_Code}',
+			
             VENDOR_NO='${req.body.Vendor_No}',
             WORK_ORDER='${req.body.Work_order_no}',
             WORK_OR_DATE='${req.body.Work_order_date}',

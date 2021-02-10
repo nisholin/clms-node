@@ -11,28 +11,27 @@
 
         <div class="card-body">
 
-            <form class="forms-sample">
+            <form class="forms-sample" method="POST" action="/pass_req_new_1/add">
 
             <% contractor_details.forEach(function(cont_details)  { %>
 
                 <div class="form-group row">
                     <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="contractor_code" name="contractor_code" value="<%= cont_details.contractor_code %>">
+                        <input type="text" class="form-control" id="contractor_code" name="ccode" value="<%= cont_details.contractor_code %>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="cname" name="cname"
+                        <input type="text" class="form-control" id="cname" name="cname"
                            value="<%= cont_details.contractor_name %>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="workorder_no" class="col-sm-3 col-form-label">Workorder No</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="workorder_no" name="workorder_no"
-                        value="">
+                        <input type="text" class="form-control" id="workorder_no" name="workorder_no">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -52,7 +51,7 @@
                 <div class="form-group row">
                     <label for="no_of_pass" class="col-sm-3 col-form-label">Number Of Pass</label>
                     <div class="col-sm-9">
-                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                        <input type="number" class="form-control" id="no_of_pass" name="no_of_pass"
                             placeholder="Number Of Pass">
                     </div>
                 </div>
@@ -60,7 +59,7 @@
                 <div class="form-group row">
                     <label for="no_of_pass" class="col-sm-3 col-form-label">Nature Of Jobs</label>
                     <div class="col-sm-9">
-                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                        <input type="text" class="form-control" id="nature_of_jobs" name="nature_of_jobs"
                             placeholder="Number Of Pass">
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                 <div class="form-group row">
                     <label for="no_of_pass" class="col-sm-3 col-form-label">Job Completion Date</label>
                     <div class="col-sm-9">
-                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                        <input type="date" class="form-control" id="job_completion_date" name="job_completion_date"
                             placeholder="Number Of Pass">
                     </div>
                 </div>
@@ -76,7 +75,7 @@
                 <div class="form-group row">
                     <label for="no_of_pass" class="col-sm-3 col-form-label">Contractor SAP No</label>
                     <div class="col-sm-9">
-                        <input type="no_of_pass" class="form-control" id="no_of_pass" name="no_of_pass"
+                        <input type="text" class="form-control" id="contractor_sap_no" name="contractor_sap_no"
                             placeholder="Number Of Pass">
                     </div>
                 </div>
@@ -84,7 +83,8 @@
                 <div class="form-group row">
                     <label for="pass_type" class="col-sm-3 col-form-label">Pass Type</label>
                     <div class="col-sm-9">
-                        <select class="form-control form-control-lg" id="exampleFormControlSelect1">
+                        <select class="form-control form-control-lg" name="pass_type" id="pass_type">
+
                             <option>Fresh</option>
                             <option>Renewal</option>
 
@@ -115,6 +115,7 @@
                         <% employee_details.forEach(function(emp_details) { %>
 
                             <tr>
+                                <input type="hidden" value="<%= emp_details.CCODE %>" name="ccode">
                                 <td><%= emp_details.CNAME %></td>
                                 <td><%= emp_details.FATHER %></td>
                                 <td><%= emp_details.PRE_ADDRESS %></td>
@@ -127,7 +128,7 @@
                                 <td>
                                     <div class="form-check m-t-0">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"></label>
+                                            <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>')"></label>
                                     </div>
                                 </td>
                             </tr>
@@ -153,3 +154,17 @@
 
 <!--Footer-->
 <%- include('../../nav/footer') %>
+
+
+    <script>
+        function getEmpdetails(ccode) {
+            alert(ccode);
+            $.ajax({
+				url: '/pass_req_new_1/add',
+				type: 'POST',
+				data: { "ccode": ccode }
+			}).done(function (response) {
+				//callback to handle if it's successful
+			})
+        }
+    </script>

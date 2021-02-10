@@ -74,6 +74,7 @@ const payrollcloseroutes = require('./routes/payroll/payroll_close_routes');
 const attendanceroutes = require('./routes/attendance/attendance_routes');
 const attendanceinoutroutes = require('./routes/attendance/attendanceInOut_routes');
 const attendanceeditroutes = require('./routes/attendance/attendanceEdit_routes');
+const attendanceinoutmailroutes = require('./routes/attendance/attendance_in_out_mail_routes');
 //PASS REQUEST
 const passrequestoneRoutes = require('./routes/passrequest/pass1_routes');
 const passrequesttwoRoutes = require('./routes/passrequest/pass2_routes');
@@ -85,6 +86,14 @@ const empreportsroutes = require('./routes/reports/employee_reports_routes');
 const inoutroutes = require('./routes/reports/in_out_report_routes');
 const workorderreportsroutes = require('./routes/reports/work_order_reports_routes');
 const eicreportsroutes = require('./routes/reports/eic_reports_routes');
+
+//ROLE
+
+const roleroutes = require('./routes/role/role_routes');
+
+
+
+
 
 //Use Routes
 //app.use(homeRoutes.routes);
@@ -112,6 +121,7 @@ app.use(payrollcloseroutes.payRollClose);
 app.use(attendanceroutes.attendance);
 app.use(attendanceinoutroutes.attendanceinout);
 app.use(attendanceeditroutes.attendanceedit);
+app.use(attendanceinoutmailroutes.attendanceinoutmail);
 //PASS REQUEST
 app.use(passrequestoneRoutes.passrequestone);
 app.use(passrequesttwoRoutes.passrequesttwo);
@@ -124,6 +134,7 @@ app.use(inoutroutes.inOutReports);
 app.use(workorderreportsroutes.workOrderReports);
 app.use(eicreportsroutes.eicReports);
 
+app.use(roleroutes.role);
 
 app.get('/logout',(req,res)=>{ 
   req.session.destroy(function(err) {

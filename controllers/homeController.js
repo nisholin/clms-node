@@ -64,7 +64,11 @@ const worksOrder = (req,res,next) => {
 const eicReport = (req,res,next) => {
     res.render('reports/eic_reports');
 }
+//role
 
+const role=(req,res,next)=>{
+    res.render('role/role_new');
+}
 
 module.exports = {
     indexView,
@@ -90,5 +94,7 @@ module.exports = {
     employeeMaster,
     inOut,
     worksOrder,
-    eicReport
+    eicReport,
+    //role
+    role
 }

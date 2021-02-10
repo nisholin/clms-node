@@ -40,7 +40,6 @@ router.get('/employeenew',(req,res,next)=>{
 router.post('/employee/add',(req,res,next)=>{
 
     var ccode = req.body.ccode;
-    
     //Image Upload
     /* var form = new formidable.IncomingForm();
     form.parse(req,(err,fileds,files)=>{
@@ -58,7 +57,7 @@ router.post('/employee/add',(req,res,next)=>{
     }) */
     //console.log(form);
     var cname = req.body.cname;
-    var workorder = req.body.workorder;
+    var workorder = req.body.work_order_no;
     var workorder_date = req.body.workorder_date;
    // var no_of_employees = req.body.no_of_employees;
    // var sub_contractor = req.body.sub_contractor;
@@ -108,7 +107,7 @@ router.post('/employee/add',(req,res,next)=>{
     async function geteEmployeeValues(){
         try{
             let pool = await sql.connect(config);
-             await pool.request().query("insert into cpcl_employee_master (CCODE,CNAME,WORK_ORDER_No,WORK_OR_DATE,ECODE,WO_FROM,WO_TO,CI_NAME,FATHER,HUSBAND,DESIGNATION,DOB,ENGAGED_DATE,GENDER,MARITAL_STATUS,PRE_ADDRESS,PERMANENT_ADDRESS,PHONE_NO,EMAIL_ID,EMERGENCY_PERSON,MOBILE_NO,NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_DOB,CAT,WAGE,INCENTIVE,ALLOWANCE,OTHERS,UAN,ESI,AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,STATUS)values ('"+ccode+"','"+cname+"','"+workorder+"','"+workorder_date+"','"+emp_code+"','"+wo_val_from+"','"+wo_val_to+"','"+ci_name+"','"+Father+"','"+Husband+"','"+designation+"','"+dob+"','"+Engaged_Date+"','"+gender+"','"+mstatus+"','"+Present_address+"','"+permanent_address+"','"+phone_no+"','"+email_id+"','"+emergency+"','"+Emergency_Mobile_Number+"','"+nominee_name+"','"+nominee_relation+"''"+nominee_dob+"','"+permanent_address+"','"+category+"','"+wage_per_day+"','"+Incentive_per_day+"','"+Allowance_per_day+"','"+Any_other_wages+"','"+uan+"','"+ESI_no+"','"+Aadhar_card_no+"','"+Identical_mark1+"','"+Bank_name+"','"+Account_no+"','"+Blood_grp+"','"+Entry_gate+"','"+Work_spot+"','"+Area_of_work+"','"+pass_val_from+"','"+pass_val_to+"','"+safety_training_from+"','"+safety_training_to+"','"+status+"')",(req,res)=>{
+             await pool.request().query("insert into cpcl_employee_master (CCODE,CNAME,WORK_ORDER_No,WORK_OR_DATE,ECODE,WO_FROM,WO_TO,CI_NAME,FATHER,HUSBAND,DESIGNATION,DOB,ENGAGED_DATE,GENDER,MARITAL_STATUS,PRE_ADDRESS,PERMANENT_ADDRESS,PHONE_NO,EMAIL_ID,EMERGENCY_PERSON,MOBILE_NO,NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_DOB,CAT,WAGE,INCENTIVE,ALLOWANCE,OTHERS,UAN,ESI,AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,STATUS)values ('"+ccode+"','"+cname+"','"+work_order_no+"','"+workorder_date+"','"+emp_code+"','"+wo_val_from+"','"+wo_val_to+"','"+ci_name+"','"+Father+"','"+Husband+"','"+designation+"','"+dob+"','"+Engaged_Date+"','"+gender+"','"+mstatus+"','"+Present_address+"','"+permanent_address+"','"+phone_no+"','"+email_id+"','"+emergency+"','"+Emergency_Mobile_Number+"','"+nominee_name+"','"+nominee_relation+"''"+nominee_dob+"','"+permanent_address+"','"+category+"','"+wage_per_day+"','"+Incentive_per_day+"','"+Allowance_per_day+"','"+Any_other_wages+"','"+uan+"','"+ESI_no+"','"+Aadhar_card_no+"','"+Identical_mark1+"','"+Bank_name+"','"+Account_no+"','"+Blood_grp+"','"+Entry_gate+"','"+Work_spot+"','"+Area_of_work+"','"+pass_val_from+"','"+pass_val_to+"','"+safety_training_from+"','"+safety_training_to+"','"+status+"')",(req,res)=>{
                  console.log("successfully inserted");
              });
             //return products.recordsets;
@@ -153,49 +152,50 @@ router.post('/employee/update',(req, res) => {
     async function employeeupdate(){
         try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query(`update cpcl_employee_master SET ccode='${req.body.ccode}',
-cname='${req.body.cname}',
-workorder='${req.body.workorder}',
-workorder_date='${req.body.workorder_date}',
-emp_code='${req.body.emp_code}',
-wo_val_from='${req.body.wo_val_from}',
-wo_val_to='${req.body.wo_val_to}',
-ci_name='${req.body.ci_name}',
-Father='${req.body.Father}',
-Husband='${req.body.Husband}',
-designation='${req.body.designation}',
-dob='${req.body.dob}',
-Engaged_Date='${req.body.Engaged_Date}',
-gender='${req.body.gender}',
-mstatus='${req.body.mstatus}',
-Present_address='${req.body.Present_address}',
-permanent_address='${req.body.permanent_address}',
-phone_no='${req.body.phone_no}'
-email_id='${req.body.email_id}',
-emergency='${req.body.emergency}',
-Emergency_Mobile_Number='${req.body.Emergency_Mobile_Number}',
-nominee_name='${req.body.nominee_name}',
-nominee_relation='${req.body.nominee_relation}',
-nominee_dob='${req.body.nominee_dob}',
-category='${req.body.category}',
-wage_per_day='${req.body.wage_per_day}',
-Incentive_per_day='${req.body.Incentive_per_day}',
-Allowance_per_day='${req.body.Allowance_per_day}',
-Any_other_wages='${req.body.Any_other_wages}',
-uan='${req.body.uan}',ESI_no='${req.body.ESI_no}',
-Aadhar_card_no='${req.body.Aadhar_card_no}', 
-Identical_mark1='${req.body.Identical_mark1}', 
-Bank_name='${req.body.Bank_name}',
-Account_no='${req.body.Account_no}',
-Blood_grp='${req.body.Blood_grp}', 
-Entry_gate='${req.body.Entry_gate}', 
-Work_spot='${req.body.Work_spot}', 
-Area_of_work='${req.body.Area_of_work}',
-pass_val_from='${req.body.pass_val_from}', 
-pass_val_to='${req.body.pass_val_to}',
-safety_training_from='${req.body.safety_training_from}', 
-safety_training_to='${req.body.safety_training_to}',
-status='${req.body.status}'  
+            let products = await pool.request().query(`update cpcl_employee_master SET CCODE='${req.body.ccode}',
+CNAME='${req.body.cname}',
+WORK_ORDER_No='${req.body.work_order_no}',
+WORK_OR_DATE='${req.body.workorder_date}',
+ECODE='${req.body.emp_code}',
+WO_FROM='${req.body.wo_val_from}',
+WO_TO='${req.body.wo_val_to}',
+CI_NAME='${req.body.ci_name}',
+FATHER='${req.body.Father}',
+HUSBAND='${req.body.Husband}',
+DESIGNATION='${req.body.designation}',
+DOB='${req.body.dob}',
+ENGAGED_DATE='${req.body.Engaged_Date}',
+GENDER ='${req.body.gender}',
+MARITAL_STATUS='${req.body.mstatus}',
+PRE_ADDRESS='${req.body.Present_address}',
+PERMANENT_ADDRESS='${req.body.permanent_address}',
+PHONE_NO='${req.body.phone_no}'
+EMAIL_ID='${req.body.email_id}',
+EMERGENCY_PERSON='${req.body.emergency}',
+MOBILE_NO='${req.body.Emergency_Mobile_Number}',
+NOMINEE_NAME='${req.body.nominee_name}',
+NOMINEE_RELATION='${req.body.nominee_relation}',
+NOMINEE_DOB='${req.body.nominee_dob}',
+CAT='${req.body.category}',
+WAGE='${req.body.wage_per_day}',
+INCENTIVE='${req.body.Incentive_per_day}',
+ALLOWANCE='${req.body.Allowance_per_day}',
+OTHERS='${req.body.Any_other_wages}',
+UAN='${req.body.uan}',
+ESI='${req.body.ESI_no}',
+AADHAR='${req.body.Aadhar_card_no}', 
+IDENTY_MARK='${req.body.Identical_mark1}', 
+BANK_NAME='${req.body.Bank_name}',
+ACCOUNT_NO='${req.body.Account_no}',
+BLOOD_GROUP='${req.body.Blood_grp}', 
+ENTRY_GATE='${req.body.Entry_gate}', 
+WROK_SPOT='${req.body.Work_spot}', 
+AREA_OF_WORK='${req.body.Area_of_work}',
+PASS_VALID_FROM='${req.body.pass_val_from}', 
+PASS_VALID_TO='${req.body.pass_val_to}',
+SAFETY_TRAINING_FROM='${req.body.safety_training_from}', 
+SAFETY_TRAINING_TO='${req.body.safety_training_to}',
+STATUS='${req.body.status}'  
 where id ='${req.body.id}'`); 
             return products.recordsets;
         }

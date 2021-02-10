@@ -19,7 +19,7 @@ router.get('/passrequest_one', (req, res) => {
 		async function get_contractor() {
 			try {
 				let pool = await sql.connect(config);
-				let products = await pool.request().query("select * from pass_request_master where contractor_code ='" + req.session.cont_code + "'");
+				let products = await pool.request().query("select * from pass_request_master where contractor_code ='" +req.session.cont_code+ "'");
 				return products.recordsets;
 			}
 			catch (error) {
@@ -28,7 +28,7 @@ router.get('/passrequest_one', (req, res) => {
 		}
 		get_contractor().then(result => {
 			var contractor_details = result[0];
-			res.render('pass/pass_req_1/pass_request_1', { user_Id: user_Id, user_name: user_name, contractor_details: contractor_details });
+			res.render('pass/pass_req_1/pass_request_1',{user_Id: user_Id, user_name: user_name,contractor_details: contractor_details });
 		});
 	}
 });
@@ -74,7 +74,7 @@ router.get('/passrequest_one/pass_request_one_new', (req, res) => {
 				var employee_details = result[0];
 				emp.contractor_details = contractor_details;
 				emp.employee_details = employee_details;
-				res.render('pass/pass_req_1/pass_req_1_new', emp);
+				res.render('pass/pass_req_1/pass_req_1_new',emp);
 			});
 
 		});
@@ -117,5 +117,44 @@ router.get('contrat/empselect', (req, res, next) => {
 	});
 	*/
 });
+
+router.post('/pass_req_new_1/add',(req,res)=>{
+	//var data = req.body;
+	//console.log(data);
+	var ccode 				= req.body.ccode;
+	var cname	 			= req.body.cname;
+	var workorder_no 		= req.body.workorder_no;
+	var pass_from 			= req.body.pass_from;
+    var pass_to 			= req.body.pass_to;
+	var no_of_pass 			= req.body.no_of_pass;
+	var nature_of_jobs 		= req.body.nature_of_jobs;
+	var job_completion_date = req.body.job_completion_date;
+	var contractor_sap_no 	= req.body.contractor_sap_no;
+	var pass_type 			= req.body.pass_type;
+	var ccode 				= req.body.ccode;
+	async function get_employee() {
+		try {
+			let pool = await sql.connect(config);
+			await pool.request().query(`insert into pass_request_master
+			 (contractor_code,contractor_name,work_order_no,pass_request_from,pass_request_to,req_pass_count,job_nature,completion_date,
+				cont_sap_no,pass_type)
+			 values ('${ccode}','${cname}','${workorder_no}','${pass_from}','${pass_to}','${no_of_pass}','${nature_of_jobs}','${job_completion_date}',
+			 '${contractor_sap_no}','${pass_type}')`); 
+
+			 await pool.request().query(`insert into pass_request_employee_details (emp_code,status) values ('${ccode}')`);
+		}
+		catch (error) {
+			console.log(error);
+		}
+	}
+	get_employee();
+	console.log("Pass Request Successfully Updated...")
+	res.redirect('/passrequest_one/pass_request_one_new');
+})
+
+
+
+
+
 
 module.exports = { passrequestone: router }

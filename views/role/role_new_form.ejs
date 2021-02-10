@@ -1,0 +1,29 @@
+<div class="card dis-none" id="newform">
+    <div class="card-body">
+    
+        <h4 class="card-title">Role Master</h4>
+        
+        <form class="forms-sample" method="POST" action="/engineer/new">
+                <div class="form-group row">
+                    <label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">Role Name</label>
+                    <div class="col-sm-9">
+                        <input type="text"  id="role_name" name="role_name" class="form-control">
+                    </div>
+                </div>
+                
+                    <div class="col-sm-5">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="status" id="status"
+                                    value="0"> In Active </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <center>
+                    <button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+                    <button class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
+                </center>
+        </form>
+    </div>
+    </div>
