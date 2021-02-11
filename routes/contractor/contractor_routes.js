@@ -130,9 +130,9 @@ router.post('/contractornew/update',(req, res) => {
     async function contractornewupdate(){
         try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query(`update cpcl_contractor_master SET contractor_code='${req.body.Contractor_Code}',
-            contractor_name='${req.body.Contractor_Name}',address='${req.body.Address}',prefix_code='${req.body.Prefix_Code}',
-            proprietor='${req.body.proprietor}',owner='${req.body.owner}',md='${req.body.md}',partner='${req.body.partner}',contractor_mail='${req.body.Contractor_Email}',ESI_Code_No='${req.body.ESI_Code_No}',PF_Code_No='${req.body.PF_Code_No}',Contractor_PAN_No='${req.body.Contractor_PAN_No}',Contractor_LIN='${req.body.Contractor_LIN}',Mobile_No='${req.body.Mobile_No}',Name_of_person='${req.body.Name_of_person}',compliance_Mail_id='${req.body.compliance_Mail_id}',hr_department='${req.body.hr_department}',status='${req.body.membershipRadios}'   where id ='${req.body.id}'`); 
+            let products = await pool.request().query(`update cpcl_contractor_master SET CCODE='${req.body.Contractor_Code}',
+            CNAME='${req.body.Contractor_Name}',ADDRESS1='${req.body.Address}',PREFIXCODE='${req.body.Prefix_Code}',
+            proprietor='${req.body.proprietor}',owner='${req.body.owner}',md='${req.body.md}',partner='${req.body.partner}',contractor_mail='${req.body.Contractor_Email}',ESICODE='${req.body.ESI_Code_No}',PF_Code_No='${req.body.PF_Code_No}',Contractor_PAN_No='${req.body.Contractor_PAN_No}',Contractor_LIN='${req.body.Contractor_LIN}',Mobile_No='${req.body.Mobile_No}',Name_of_person='${req.body.Name_of_person}',compliance_Mail_id='${req.body.compliance_Mail_id}',hr_department='${req.body.hr_department}',status='${req.body.membershipRadios}'   where id ='${req.body.id}'`); 
             return products.recordsets;
         }
         catch(error){

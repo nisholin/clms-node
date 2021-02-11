@@ -22,5 +22,25 @@ router.get('/print_pass',(req, res)=>{
 });
 
 
+router.post('pass_print_view',(req,res)=>{
+	var wo_from_date = req.body.wo_from_date;
+
+	async function get_contractor() {
+		try {
+			let pool = await sql.connect(config);
+			let contractor = await pool.request().query(`select * from cpcl_contractor_master where WO_FROM ='${wo_from_date}'`);
+			return contractor.recordsets;
+		}
+		catch (error) {
+			console.log(error);
+		}
+	}
+	get_contractor().then(result =>{
+		var print_pass_view_deatil = result[0];
+		res.render('pass/print_pass')
+	})
+})
+
+
 
 module.exports = { printpass : router}

@@ -43,10 +43,10 @@ router.get('/role_new_form', (req, res) => {
 		return;
 	}
 	else {
-		async function get_contractor() {
+		async function get_roles() {
 			try {
 				let pool = await sql.connect(config);
-				let contractor = await pool.request().query("select * from cpcl_contractor_master where contractor_code ='" + req.session.cont_code + "'");
+				let contractor = await pool.request().query("select * from menu_master");
 				return contractor.recordsets;
 			}
 			catch (error) {

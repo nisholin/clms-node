@@ -15,18 +15,11 @@
                                 placeholder="Select Contractor Code">
                             <datalist id="cont_code">
                                 <% contcode.forEach(function(ccode){ %>
-                                    <option value="<%=  ccode.contractor_code %>"></option>
+                                    <option value="<%= ccode.contractor_code %>"><%= ccode.contractor_name %></option>
                                     <%})%>
                             </datalist>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="cname" class="col-sm-3 col-form-label">Contractor Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="cname" name="cname" placeholder="cname">
-                        </div>
-						</div>
-
                     <!-- <div class="form-group row">
                         <label for="file" class="col-sm-3 col-form-label">File upload</label>
                         <label>File upload</label>
@@ -59,7 +52,7 @@
                                 placeholder="dd/mm/yyyy" />
                         </div>
                     </div>
-                      /* <div class="form-group row">
+                       <!-- <div class="form-group row">
                         <label for="no_of_employees" class="col-sm-3 col-form-label">Number Of Employees</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="no_of_employees" name="no_of_employees"
@@ -87,13 +80,20 @@
                             <input type="text" class="form-control" id="licence_no" name="licence_no"
                                 placeholder="licence no">
                         </div>
-                    </div>  
-  */
+                    </div>   -->
+  
                     <div class="form-group row">
                         <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="emp_code" name="emp_code"
                                 placeholder="emp code">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="emp_name" name="emp_name"
+                                placeholder="Enter Emp Name">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -473,7 +473,7 @@
                                         <%= emp_master.CCODE %>
                                     </td>
                                     <td>
-                                        <%= emp_master.CNAME %>
+                                        <%= emp_master.ENAME %>
                                     </td>
                                     <td>
                                         <%= emp_master.WORK_ORDER_No %>

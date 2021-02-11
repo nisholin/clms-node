@@ -131,17 +131,17 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 	var job_completion_date = req.body.job_completion_date;
 	var contractor_sap_no 	= req.body.contractor_sap_no;
 	var pass_type 			= req.body.pass_type;
-	var ccode 				= req.body.ccode;
+	
 	async function get_employee() {
 		try {
 			let pool = await sql.connect(config);
 			await pool.request().query(`insert into pass_request_master
 			 (contractor_code,contractor_name,work_order_no,pass_request_from,pass_request_to,req_pass_count,job_nature,completion_date,
-				cont_sap_no,pass_type)
+				cont_sap_no,pass_type,status)
 			 values ('${ccode}','${cname}','${workorder_no}','${pass_from}','${pass_to}','${no_of_pass}','${nature_of_jobs}','${job_completion_date}',
-			 '${contractor_sap_no}','${pass_type}')`); 
+			 '${contractor_sap_no}','${pass_type}',0)`); 
 
-			 await pool.request().query(`insert into pass_request_employee_details (emp_code,status) values ('${ccode}')`);
+			
 		}
 		catch (error) {
 			console.log(error);
@@ -154,7 +154,26 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 
 
 
-
+router.post('/pass_req_new_1/pass_request_employee_details',(req,res)=>{
+	//var data = req.body;
+	
+	var ccode 				= req.body.ccode;
+	var ecode 				= req.body.ecode;
+	//console.log(ecode);
+	async function get_con() {
+		try {
+			let pool = await sql.connect(config);
+			
+			 await pool.request().query(`insert into pass_request_employee_details (con_code,emp_code,status) values ('${ccode}','${ecode}',0)`);
+		}
+		catch (error) {
+			console.log(error);
+		}
+	}
+	get_con();
+	console.log("Pass Request Successfully Updated...")
+	res.redirect('/passrequest_one/pass_request_one_new');
+})
 
 
 module.exports = { passrequestone: router }

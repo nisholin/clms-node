@@ -14,7 +14,7 @@ async function get_employee_master(){
 async function get_contractor_code(){
     try{
     let pool = await sql.connect(config);
-    let product = await pool.request().query("select contractor_code from cpcl_contractor_master");
+    let product = await pool.request().query("select * from cpcl_contractor_master");
     return product.recordsets;
     }
     catch(error){

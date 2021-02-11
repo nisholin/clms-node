@@ -5,35 +5,26 @@
 <div class="card" id="newform">
     <div class="card-body">
 
-        <h4 class="card-title">Contractor Pass Request</h4>
+        <h4 class="card-title">Contractor Pass Request View</h4>
 
         <!--From Start-->
 
         <div class="card-body">
 
             <form class="forms-sample" method="POST" action="/pass_req_new_1/add">
+                <% contractor_details.forEach(function(cont_details)  { %>
 
-            <% contractor_details.forEach(function(cont_details)  { %>
                 <div class="form-group row">
-                    <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
+                    <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
                     <div class="col-sm-9">
-                        <input list="Contractor_Code" class="form-control" name="ccode" id="contractor_code" placeholder="Select Contractor Code">
-                        <datalist id="Contractor_Code">
-                            <% codename.forEach(function(code) { %>
-                                <option value="<%= code.contractor_code %>">
-                                    <%= code.contractor_name %>" 
-                                </option>
-                                <% }) %>
-                        </datalist> 
+                        <input type="text" class="form-control" id="contractor_code" name="ccode" value="<%= cont_details.contractor_code%>" >
                     </div>
-                </div>
-               
                 </div>
                 <div class="form-group row">
                     <label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="cname" name="cname"
-                           value="<%= cont_details.contractor_name %>">
+                           >
                     </div>
                 </div>
                 <div class="form-group row">
@@ -122,11 +113,11 @@
                     </thead>
                     <tbody>
 
-                        <% employee_details.forEach(function(emp_details) { %>
+                       <!--  <% employee_details.forEach(function(emp_details) { %>
 
                             <tr>
-                                 <input type="hidden" value="<%= emp_details.CCODE %>" >
-                                <input type="hidden" value="<%= emp_details.ECODE %>" >
+                                <input type="hidden" value="<%= emp_details.CCODE %>" name="ccode">
+                                <input type="hidden" value="<%= emp_details.ECODE %>" name="ecode">
                                 <td><%= emp_details.ENAME %></td>
                                 <td><%= emp_details.ECODE %></td>
                                 <td><%= emp_details.FATHER %></td>
@@ -141,12 +132,12 @@
                                 <td>
                                     <div class="form-check m-t-0">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>','<%= emp_details.ECODE %>')"></label>
+                                            <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>')"></label>
                                     </div>
                                 </td>
                             </tr>
 
-                            <% }) %>
+                            <% }) %> -->
 
                     </tbody>
                 </table>
@@ -156,7 +147,6 @@
                 <button type="submit" class="btn btn-gradient-primary mb-2 f-r">Submit</button>
 
             </form>
-
             <% }) %>
 
         </div>
@@ -170,17 +160,14 @@
 
 
     <script>
-        function getEmpdetails(ccode,ecode) {
-           // alert(ccode);
-           // alert(ecode);
+        function getEmpdetails(ccode) {
+            alert(ccode);
             $.ajax({
-				url: '/pass_req_new_1/pass_request_employee_details',
+				url: '/pass_req_new_1/add',
 				type: 'POST',
-				data: { "ccode": ccode,"ecode": ecode }
+				data: { "ccode": ccode }
 			}).done(function (response) {
 				//callback to handle if it's successful
 			})
         }
     </script>
-
-    
