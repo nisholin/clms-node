@@ -39,21 +39,20 @@
                         <label for="exampleInputWork order no" class="col-sm-3 col-form-label">Work order No</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Work_order_no" name="Work_order_no"
-                                placeholder="Work order no">
+                            onchange="getWorkOrder()" placeholder="Work order no">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="Work_order_date" name="Work_order_date"
-                                placeholder="Work order date" data-date-format='yy-mm-dd'>
+                            <input type="text" class="form-control" id="Work_order_date" name="Work_order_date"
+                              placeholder="Work order date" data-date-format='yy-mm-dd'>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="exampleInputContractor Value" class="col-sm-3 col-form-label">Contractor
-                            Value</label>
+                        <label for="exampleInputContractor Value" class="col-sm-3 col-form-label">Contractor Value</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Contractor_Value" name="Contractor_Value"
+                            <input type="number" class="form-control" id="Contractor_Value" name="Contractor_Value" min="0"
                                 placeholder="Contractor Value">
                         </div>
                     </div>
@@ -61,7 +60,7 @@
                         <label for="exampleInputDuration of Month" class="col-sm-3 col-form-label">Duration Date<br/>(Years)</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="Duration_Date" name="Duration_Date"
-                                placeholder="Duration Date In Years"  min="1">
+                                placeholder="Duration Date In Years"  min="0">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -69,7 +68,7 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="Contract_Duration" name="Contract_Duration"
-                                placeholder="Contract Duration In Months"  min="1">
+                                placeholder="Contract Duration In Months"  min="1" max="12">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -111,13 +110,6 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Department" name="Department"
                                 placeholder="Department">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="exampleInputEmployee count" class="col-sm-3 col-form-label">Employee count</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Employee_count" name="Employee_count"
-                                placeholder="Employee count">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -254,7 +246,6 @@
         <!-- Footer Page-->
         <%- include('../nav/footer') %>
 
-        <script>$('#Work_order_date').datepicker({ dateFormat: 'yy-mm-dd' }).val();</script>
     <script type="text/javascript">
      
         function getWorkmanTable(a) {
@@ -308,4 +299,36 @@
         }
 
     </script>
+    <script>
+        function getWorkOrder(){
+            var wo_order = document.getElementById("Work_order_no").value;
+            //alert(wo_order);
+            $.ajax({
+                url: '/workorder_no/save',
+                type: 'POST' ,
+                data: {"wo_number" : wo_order}
+            }).done(function (response) {
+				//callback to handle if it's successful
+			})
+        }
+    </script>
+    <!--Hide Future Dates-->
+    <script>
+        $(document).ready(function () {
+        var currentDate = new Date();
+        $('#Work_order_date').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose:true,
+        endDate: "currentDate",
+        //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+        $('#Work_order_date').keyup(function () {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9^-]/g, '');
+            }
+        });
+        });
+    </script> 
     

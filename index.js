@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+var moment = require('moment');
+app.locals.moment = moment; 
 //const expressLayouts = require('express-ejs-layouts');
 // parse application/x-www-form-urlencoded
 // parse application/json
@@ -147,10 +150,12 @@ app.get('/logout',(req,res)=>{
 
 
 
+
+
+
+
+
 app.listen(port, () => console.log("app is listen-"+port));
 
-/*
 
-
-*/
 

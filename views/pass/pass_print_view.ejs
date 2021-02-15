@@ -1,0 +1,414 @@
+<%print_pass_view_deatil.forEach(function(pass)
+ { %>
+
+<head>
+    <!-- Font Awesome -->
+   
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    </head>
+    
+<style>
+    .row {
+        margin-bottom: 30px;
+        margin: 0px;
+    }
+    tr {
+        font-size: 15px;
+        height: 20px;
+    }
+    td {
+        padding: 0px 5px !important;
+    }
+    .h-10 {
+        height: 10px;
+    }
+    .h-30 {
+        height: 30px;
+    }
+    .t-align {
+        text-align: center;
+    }
+    .t-align-end {
+        text-align: end;
+    }
+    .f-w-b {
+        font-weight: bold;
+    }
+    .f-s-10 {
+        font-size: 10px;
+    }
+    .f-s-12 {
+        font-size: 12px;
+    }
+    .f-s-13 {
+        font-size: 13px;
+    }
+    .f-s-14 {
+        font-size: 14px;
+    }
+    .t-decoration {
+        text-decoration: underline;
+    }
+    .print-btn {
+        float: right;
+        margin: 20px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+    }
+    .user-images {
+        width: 102px;
+        height: 102px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .user-image {
+        padding: 5px 0px 3px 10px;
+    }
+    /* print icon css */
+    button.print-button {
+      width: 100px;
+      height: 100px;
+    }
+    span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+      border: solid 4px #333;
+    }
+    span.print-icon::after {
+      border-width: 2px;
+    }
+    
+    button.print-button {
+      position: relative;
+      padding: 10;
+      border: 0;
+      
+      border: none;
+      background: transparent;
+      float: right;
+      margin-top: -90px;
+    }
+    
+    span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+    
+    span.print-icon {
+      position: relative;
+      display: inline-block;  
+      padding: 0;
+      margin-top: 20%;
+    
+      width: 55%;
+      height: 30%;
+      background: #fff;
+      border-radius: 20% 20% 0 0;
+    }
+    
+    span.print-icon::before {
+      content: " ";
+      position: absolute;
+      bottom: 100%;
+      left: 12%;
+      right: 12%;
+      height: 110%;
+    
+      transition: height .2s .15s;
+    }
+    
+    span.print-icon::after {
+      content: " ";
+      position: absolute;
+      top: 55%;
+      left: 12%;
+      right: 12%;
+      height: 0%;
+      background: #fff;
+      background-repeat: no-repeat;
+      background-size: 70% 90%;
+      background-position: center;
+      background-image: linear-gradient(
+        to top,
+        #fff 0, #fff 14%,
+        #333 14%, #333 28%,
+        #fff 28%, #fff 42%,
+        #333 42%, #333 56%,
+        #fff 56%, #fff 70%,
+        #333 70%, #333 84%,
+        #fff 84%, #fff 100%
+      );
+    
+      transition: height .2s, border-width 0s .2s, width 0s .2s;
+    }
+    
+    button.print-button:hover {
+      cursor: pointer;
+    }
+    
+    button.print-button:hover .print-icon::before {
+      height:0px;
+      transition: height .2s;
+    }
+    button.print-button:hover .print-icon::after {
+      height:120%;
+      transition: height .2s .15s, border-width 0s .16s;
+    }
+    .w-10rem {
+        width: 30%;
+    }
+    .mr-b-n-15 {
+        margin-bottom: -15px;
+    }
+    .t-v {
+        transform: rotate(-90deg);
+    }
+    .v-t-position {
+        position: absolute;
+        left: 81%;
+        top: 50%; 
+    }
+    .l-div-a {
+        position: relative;
+        left: 5%;
+    }
+    </style>
+    <body>
+ 
+    <button class="print-button" onclick="printDiv('tblARCNewMember')"><span class="print-icon"></span></button>
+    <div class="col-md-12" style="padding:0px;" id="tblARCNewMember">   
+	
+ 
+<div class="row">
+    <div class="col-sm-6 col-xs-6 l-div-a" style="height: 300px !important;">
+       
+    <table style="border: 1px solid;width: 91%;height: 18rem">
+        
+            <tr style="height: 45px;">
+                <th><img alt=" img" class="user-image" src="images/cpcl.png" height="50" width="50"></th>
+                
+                    <th colspan="3" class="t-align">CONTRACTORS ENTRY PASS <br/>&nbsp;</th>
+                        <!-- <?php echo $row['entry_gate'];?></th>
+                            
+                            <?php
+                            $path="/CLMS/images/employee/photo_upload/";
+                            //$path1="/CLMS/images/employee/signatures/";
+                            $path1="/CLMS/photo/signatures/";
+                            ?> -->
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <td colspan="4">Contractor: <%= pass.contractor_code%></td>
+                <td colspan="4" class="f-w-b">E-Code : <%= pass.ECODE%></td>
+            </tr>
+            <tr>
+                <td colspan="4">Name: <%= pass.ENAME%></td>
+                <td colspan="2" rowspan="5">
+                <img alt=" img" class="user-images" src="/images/user.jpg">
+                <p class="f-s-12 t-v v-t-position">Form-25c</p>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="3">Category:<%= pass.DESIGNATION%>
+               <!--  <?php if($row['designation'] == "CONTRACT WORKMEN")
+                
+                {
+                    
+                    ?>
+                    <?php echo "Workmen";?>
+                    <?php
+                }else { ?>
+                <?php echo $row['designation'];?>
+                <?php
+                }
+                ?> -->
+                </td>
+                <td colspan="5"></td>
+            </tr>
+            <tr class="h-10 f-w-b t-decoration">
+                <td  style="width: 20%;">Validity</td>
+                <td style="width: 8rem;">From </td>
+                <td >To</td>
+             <td colspan="5"></td>
+            </tr> 
+            <tr class="h-10">
+                <td>Entry Pass</td>
+                <td><%= moment(pass.pass_request_from).format('D-M-Y') %></td>
+                <td><%= moment(pass.pass_request_to).format('D-M-Y') %></td>
+                <td colspan="5"></td>
+            </tr>
+            <tr class="h-10">
+                <td>Safety Trng</td>
+                <td><%= moment(pass.SAFETY_TRAINING_FROM).format('D-M-Y') %></td>
+                <td colspan="2"><%= moment(pass.SAFETY_TRAINING_TO).format('D-M-Y') %></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr style="height: 35px;">
+                <td></td>
+                <td></td>
+                <td colspan="6" class="f-s-14 t-align-end"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="6" class="f-s-14 t-align-end">Authorised Signatory</td>
+            </tr> 
+    </table>
+    </div>
+    <div class="col-sm-6 col-xs-6" style="height: 300px !important;">
+        <table style="border: 1px solid;width: 91%;height: 18rem">
+            <tr>
+                <td colspan="3">Father's Name:&nbsp;&nbsp;<%= pass.FATHER%></td>
+                <td ></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td>Blood Group:&nbsp;&nbsp;<%= pass.BLOOD_GROUP%> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td>DOB:&nbsp;&nbsp;<%= moment(pass.DOB).format('D-M-Y') %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td>Gender:&nbsp;&nbsp;<%= pass.gender%></td>
+                <td> </td>
+                <td></td>
+                <td></td>
+                <td ></td>
+            </tr> 
+            <tr>
+                <td colspan="4">Res Address:&nbsp;<%= pass.PRE_ADDRESS%>
+                </td>
+                <td><!--p class="f-s-12 t-v v-t-position">ID189918</p--></td>
+            </tr>
+            <tr>
+                <td colspan="2">ESI-IP NO:&nbsp;<%= pass.ESI%></td>
+                <td colspan="2">UAN:&nbsp;<%= pass.UAN%></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td colspan="4">Work Spot:&nbsp;<%= pass.WORK_SPOT%></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td colspan="4">Work Area:&nbsp;<%= pass.AREA_OF_WORK%></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td colspan="2"><b><img alt=" img" class="w-10rem mr-b-n-15" src="<?php echo $path1.$row['sign'] ;?>"></b></td>
+                <td colspan="2" style="text-align: end;"></td>
+                <td ></td>
+            </tr> 
+            <tr>
+                <td colspan="2">Signature Of Card Holder</td>
+                <td colspan="2" class="t-align">Sign of Contractor</td>
+                <td ></td>
+            </tr> 
+    </table>
+    
+    </div>
+    
+    </div>
+   <% }) %>
+    
+    </div>
+
+</div>
+    <script>
+        function printDiv(tblARCNewMember) {
+            let printContents, popupWin;
+                printContents = document.getElementById('tblARCNewMember').innerHTML;
+                popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+                popupWin.document.open();
+                popupWin.document.write(`
+                  <html>
+                    <head>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                    </head>
+                    <style>
+                        .row {
+                            margin-bottom: 30px;
+                            margin: 0px;
+                        }
+                        tr {
+                            font-size: 13px;
+                            height: 15px;
+                        }
+                        td {
+                            padding: 0px 5px !important;
+                        }
+                        .h-10 {
+                            height: 10px;
+                        }
+                        .t-align {
+                            text-align: center;
+                        }
+                        .f-w-b {
+                            font-weight: bold;
+                        }
+                        .f-s-14 {
+                            font-size: 14px;
+                        }
+                        .t-decoration {
+                            text-decoration: underline;
+                        }
+                        .t-align-end {
+                            text-align: end;
+                        }
+                        .user-images {
+                            width: 102px;
+                            height: 102px;
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                        .user-image {
+                            padding: 5px 0px 3px 10px;
+                        }
+                        .w-10rem {
+                            width: 30%;
+                        }
+                        .mr-b-n-15 {
+                            margin-bottom: -15px;
+                        }
+                        .f-s-10 {
+                            font-size: 10px;
+                        }
+                        .f-s-12 {
+                            font-size: 12px;
+                        }
+                        .t-v {
+                            transform: rotate(-90deg);
+                        }
+                        .v-t-position {
+                            position: absolute;
+                            left: 81%;
+                            top: 50%;
+                        }
+                        .l-div-a {
+                            position: relative;
+                            left: 5%;
+                        }
+                    </style>
+                <body onload="window.print();window.close()">${printContents}</body>
+                  </html>`
+                );
+                popupWin.document.close();
+        
+        }
+        </script>
+        <script src="js/jquery-1.7.2.js"></script>
+    </body>

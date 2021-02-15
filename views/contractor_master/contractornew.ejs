@@ -134,48 +134,41 @@
 					<div class="form-group row">
 						<label for="Contractor_Code" class="col-sm-3 col-form-label">Contractor Code</label>
 						<div class="col-sm-9">
-							<input list="ccode" class="form-control" placeholder="Select Contractor Code">
-                            <datalist id="ccode">
-                               
-                                    <option value="CT0023- ITD CEMENTATION INDIA LTD." />
-									<option value="420025-gopi" />
-									<option value="840027-arun" />
-                                   
-                            </datalist> 
+							<input type="text" class="form-control" name="Contractor_Code" placeholder="Enter Contractor Code" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="Contractor_Name" class="col-sm-3 col-form-label">Contractor Name</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Contractor_Name" name="Contractor_Name"
-								placeholder="Contractor Name">
+								placeholder="Contractor Name" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="Address" class="col-sm-3 col-form-label">Address</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
+							<input type="text" class="form-control" id="Address" name="Address" placeholder="Address" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="Prefix_Code" class="col-sm-3 col-form-label">Prefix Code</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Prefix_Code" name="Prefix_Code"
-								placeholder="Prefix_Code">
+								placeholder="Prefix_Code" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="proprietor" class="col-sm-3 col-form-label">Name of the proprietor</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="proprietor" name="proprietor"
-								placeholder="Name of the proprietor">
+								placeholder="Name of the proprietor" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="owner" class="col-sm-3 col-form-label">owner</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="owner" name="owner"
-								placeholder="Name of the owner">
+								placeholder="Name of the owner" required>
 						</div>
 					</div>
 
@@ -183,14 +176,14 @@
 						<label for="Name of the proprietor/owner/MD/partner" class="col-sm-3 col-form-label">MD</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="md" name="md"
-								placeholder="Name of the proprietor/owner/MD/partner">
+								placeholder="Name of the proprietor/owner/MD/partner" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="partner" class="col-sm-3 col-form-label">partner</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="partner" name="partner"
-								placeholder="Name of the partner">
+								placeholder="Name of the partner" required>
 						</div>
 					</div>
 
@@ -199,21 +192,21 @@
 							ID</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Contractor_Email" name="Contractor_Email"
-								placeholder="Contractor E-mail ID">
+								placeholder="Contractor E-mail ID" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="ESI_Code_No" class="col-sm-3 col-form-label">ESI Code No</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="ESI_Code_No" name="ESI_Code_No"
-								placeholder="ESI Code No">
+								placeholder="ESI Code No" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="PF_Code_No" class="col-sm-3 col-form-label">PF Code No</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="PF_Code_No" name="PF_Code_No"
-								placeholder="PF Code No">
+								placeholder="PF Code No" required>
 						</div>
 					</div>
 
@@ -222,21 +215,21 @@
 							No</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Contractor_PAN_No" name="Contractor_PAN_No"
-								placeholder="Contractor PAN No">
+								placeholder="Contractor PAN No" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="Contractor_LIN LIN" class="col-sm-3 col-form-label">Contractor LIN</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Contractor_LIN" name="Contractor_LIN"
-								placeholder="Contractor LIN">
+								placeholder="Contractor LIN" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="Mobile_No" class="col-sm-3 col-form-label">Mobile No</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Mobile_No" name="Mobile_No"
-								placeholder="Mobile No">
+								placeholder="Mobile No" required>
 						</div>
 					</div>
 						<div class="form-group row">
@@ -245,16 +238,16 @@
 								<div class="col-sm-4">
 									<div class="form-check">
 										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios1" value="1" checked>
+											<input type="radio" class="form-check-input" name="status"
+												id="membershipRadios1" value="1" checked required>
 											Active </label>
 									</div>
 								</div>
 								<div class="col-sm-5">
 									<div class="form-check">
 										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios2" value="0"> In Active
+											<input type="radio" class="form-check-input" name="status"
+												id="membershipRadios2" value="0" required> In Active
 										</label>
 									</div>
 								</div>
@@ -263,7 +256,7 @@
 						<label for="Name_of_person" class="col-sm-3 col-form-label">Name of person</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="Name_of_person" name="Name_of_person"
-								placeholder="Name of person">
+								placeholder="Name of person" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -271,7 +264,7 @@
 							compliance</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="compliance_Mail_id" name="compliance_Mail_id"
-								placeholder="Mail id who is looking over compliance">
+								placeholder="Mail id who is looking over compliance" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -279,7 +272,7 @@
 							Department </label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="hr_department" name="hr_department"
-								placeholder="HR Department">
+								placeholder="HR Department" required>
 						</div>
 					</div>
 					

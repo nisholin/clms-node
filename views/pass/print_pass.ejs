@@ -8,17 +8,21 @@
 			<h4 class="card-title">print pass</h4>
 				
 				<form class="form-inline" method="POST" action="/pass_print_view">
+					
 					<select class="form-control mb-2 mr-sm-2 w-25" id="contractor" name="contractor">
-						<option>Superviser</option>
-						<option>contractor</option>
-					  </select>
-
+						<% detail.forEach(function(pass_detail){ %>
+						<option  value="<%= pass_detail.contractor_code %>"><%= pass_detail.contractor_code%></option>
+						
+						<%})%>
+						</select>
+						
 					<input type="date" class="form-control mb-2 mr-sm-2 w-25" id="wo_from_date" name="wo_from_date">
 				 
 				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  <input type="button" class="btn btn-success" value="ok" onclick="update_status()">
 				</form>
 			  </div>
-			  </div>
+ </div>
 			  
 <!-- Footer Page-->
 <%- include('../nav/footer') %>

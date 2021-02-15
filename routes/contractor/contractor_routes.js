@@ -31,27 +31,29 @@ router.get('/contractornew',(req,res,next)=>{
 
 //Contractor Insert
 router.post('/contractor/new',(req,res,next)=>{
-    //console.log('hi');
-   var contractor_code=req.body.Contractor_Code;
-   var contractor_name=req.body.Contractor_Name;
-   var address=req.body.Address;
-   var prefix_code=req.body.Prefix_Code;
-   var proprietor=req.body.proprietor;
-   var owner=req.body.owner;
-   var md=req.body.md;
-   var partner=req.body.partner;
-   var contractor_mail=req.body.Contractor_Email;
-   var ESI_Code_No=req.body.ESI_Code_No;
-   var PF_Code_No=req.body.PF_Code_No;
-   var Contractor_PAN_No=req.body.Contractor_PAN_No;
-   var Contractor_LIN=req.body.Contractor_LIN;
-   var Mobile_No=req.body.Mobile_No;
-   var Name_of_person=req.body.Name_of_person;
-   var compliance_Mail_id=req.body.compliance_Mail_id;
-   var hr_department=req.body.hr_department;
-   var status=0;
+
+   var contractor_code      =   req.body.Contractor_Code;
+   var prefix_code          =   req.body.Prefix_Code;
+   //var contractor_code = prefix_code +- contractor_no;
+   //console.log(contractor_code);
+   var contractor_name      =   req.body.Contractor_Name;
+   var address              =   req.body.Address;
+   var proprietor           =   req.body.proprietor;
+   var owner                =   req.body.owner;
+   var md                   =   req.body.md;
+   var partner              =   req.body.partner;
+   var contractor_mail      =   req.body.Contractor_Email;
+   var ESI_Code_No          =   req.body.ESI_Code_No;
+   var PF_Code_No           =   req.body.PF_Code_No;
+   var Contractor_PAN_No    =   req.body.Contractor_PAN_No;
+   var Contractor_LIN       =   req.body.Contractor_LIN;
+   var Mobile_No            =   req.body.Mobile_No;
+   var Name_of_person       =   req.body.Name_of_person;
+   var compliance_Mail_id   =   req.body.compliance_Mail_id;
+   var hr_department        =   req.body.hr_department;
+   var status               =   req.body.status;
   
-console.log(req.body);
+//console.log(req.body);
 
    async function insertcontractor(){
     try{
@@ -126,14 +128,22 @@ router.get('/contractor_edit/:contractorid',(req, res) => {
 router.post('/contractornew/update',(req, res) => {
     var data = req.body;
     //console.table(data);
-
+    var hr_department = req.body.hr_department;
+    var id = req.body.status;
+    //console.log(hr_department);
+    //console.log(id);
     async function contractornewupdate(){
         try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query(`update cpcl_contractor_master SET CCODE='${req.body.Contractor_Code}',
-            CNAME='${req.body.Contractor_Name}',ADDRESS1='${req.body.Address}',PREFIXCODE='${req.body.Prefix_Code}',
-            proprietor='${req.body.proprietor}',owner='${req.body.owner}',md='${req.body.md}',partner='${req.body.partner}',contractor_mail='${req.body.Contractor_Email}',ESICODE='${req.body.ESI_Code_No}',PF_Code_No='${req.body.PF_Code_No}',Contractor_PAN_No='${req.body.Contractor_PAN_No}',Contractor_LIN='${req.body.Contractor_LIN}',Mobile_No='${req.body.Mobile_No}',Name_of_person='${req.body.Name_of_person}',compliance_Mail_id='${req.body.compliance_Mail_id}',hr_department='${req.body.hr_department}',status='${req.body.membershipRadios}'   where id ='${req.body.id}'`); 
-            return products.recordsets;
+            await pool.request().query(`update cpcl_contractor_master SET contractor_code='${req.body.Contractor_Code}',
+            contractor_name='${req.body.Contractor_Name}',address='${req.body.Address}',prefix_code='${req.body.Prefix_Code}',
+            proprietor='${req.body.proprietor}',owner='${req.body.owner}',md='${req.body.md}',partner='${req.body.partner}',
+            contractor_mail='${req.body.Contractor_Email}',ESI_Code_No='${req.body.ESI_Code_No}',PF_Code_No='${req.body.PF_Code_No}',
+            Contractor_PAN_No='${req.body.Contractor_PAN_No}',Contractor_LIN='${req.body.Contractor_LIN}',Mobile_No='${req.body.Mobile_No}',
+            status='${req.body.status}',Name_of_person='${req.body.Name_of_person}',
+			compliance_Mail_id='${req.body.compliance_Mail_id}',
+            hr_department='${req.body.hr_department}'   where id='${req.body.id}'`);
+            //return products.recordsets;
         }
         catch(error){
             console.log(error);

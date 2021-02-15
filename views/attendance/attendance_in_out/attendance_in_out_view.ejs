@@ -1,0 +1,52 @@
+<table class="table table-striped table-class" id="table-id">
+        <thead>
+            <tr>
+                <th> # </th>			
+                <th>Employee Code</th>
+                <th>Employee Name</th>
+                <th>Shift</th>
+                <th>date</th>
+                <th>IN</th>
+                <th>Out</th>
+                <th>Contractor Name</th>
+                <th>Gate</th>
+                <th>PO NUM</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% contract_attendance.forEach(function(contractor_attendance){ %>
+                
+                <tr>
+                    <td class="py-1">
+                        <%= contractor_attendance.EMPCODE %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.Employee_Name %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.Shift %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.Shift_date %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.IN %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.Out %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.CNAME %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.Gate %>
+                    </td>
+                    <td>
+                        <%= contractor_attendance.PO_NUM %>
+                    </td>
+                </tr>
+
+                <% }) %>
+        </tbody>
+    </table>

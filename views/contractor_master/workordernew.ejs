@@ -24,13 +24,11 @@
                 <thead>
                 <tr>
                 <th>CCODE</th>
-                <th>CNAME</th>
                 <th>VENDOR_NO</th>
                 <th>WORK_ORDER</th>
                 <th>WORK_OR_DATE</th>
                 <th>DURATION</th>
                 <th>WORKMEN_TOT</th>
-                <th>STATUS</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,15 +36,13 @@
                 <% data.forEach(function(work_order){ %>
                 <tr>
                 <td class="py-1"><%= work_order.CCODE   %> </td>
-                <td> <%= work_order.CNAME   %> </td>
                 <td><%= work_order.VENDOR_NO   %> </td>
                 <td> <%= work_order.WORK_ORDER   %> </td>
-                <td> <%= work_order.WORK_OR_DATE   %> </td>
+                <td> <%= work_order.WORK_OR_DATE.toISOString().substring(0, 10); %>   %> </td>
                 <td> <%= work_order.DURATION   %></td>
                 <td> <%= work_order.WORKMEN_TOT   %> </td>
-                <td> <%= work_order.STATUS   %> </td>
                 <td>
-                  <a href="work_edit/<%= work_order.id %>" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="work_edit/<%= work_order.id %>/<%= work_order.WORK_ORDER   %>" class="btn btn-sm btn-primary">Edit</a>
                 </td>
                 </tr>
                         

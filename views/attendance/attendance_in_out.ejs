@@ -10,9 +10,15 @@
 	 <div class="card-body">
 			<h4 class="card-title">Daily In-Out Report</h4>
 				
-				<form class="form-inline"  method="POST" action="/attendance/attendance_in_outnew">
+				<form class="form-inline">
 				  <label class="sr-only" for="contractor">Contractor</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor" placeholder="contractor">
+				  <select class="form-control mb-2 mr-sm-2" name="contract_code_data" id="contract_code_data">
+					<option value="">Select Contractor</option>
+					<% contractor.forEach(function(contractordatas)  { %>
+					
+					<option value="<%= contractordatas.contractor_code %>"><%= contractordatas.contractor_code %></option>
+					<% }) %>
+				  </select>
 				  <label class="sr-only" for="from_date">From Date</label>
 				  <input type="date" class="form-control mb-2 mr-sm-2" id="from_date" name="from_date" placeholder="from date">
 				  
@@ -21,7 +27,7 @@
 					<input type="date" class="form-control" id="to_date" name="to_date" placeholder="to date" >
 				
 				 
-				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+				  <button type="submit" class="btn btn-gradient-primary mb-2" onclick="getdata()">Go</button>
 				</form>
 			  </div>
 	
@@ -41,54 +47,25 @@
 					</div>
 					</div> 
   </div>
-					  <table class="table table-bordered">
-		
-<thead>
-<!--<tr>
-	   
-    <th>EICPRNO</th>
-    <th colspan="6">EICNAME</th>
- </tr>-->
 
-	
-      <th>#</th>
-      <th>CODE</th>
-	  <th>NAME</th>
-	   <th>	SHIFT</th>
-	 <th>	DATE</th>
-	  <th>IN</th>
-	   <th>OUT</th>
-	    <th>CONTRACTOR</th>
-		 <th>GATE</th>
-		  <th>PO NUM</th>
-		  
-		   
-
+<table  class="table table-striped table-class">
+  <thead>
+	<tr>
+		<th> # </th>			
+		<th>Employee Code</th>
+		<th>Employee Name</th>
+		<th>Shift</th>
+		<th>date</th>
+		<th>IN</th>
+		<th>Out</th>
+		<th>Contractor Name</th>
+		<th>Gate</th>
+		<th>PO NUM</th>
+	</tr>
 </thead>
-<tbody>
-<tr>
-<div class="form-group">
-					
-</div>
-					
-				<td>#</td>
-					<td>code</td> 
-					<td>name</td>
-					<td>shift</td>
-					<td>date</td>
-					<td>in</td>
-					<td>out</td>
-					<td>contractor</td>
-					<td>gate</td>
-					<td>po num</td>
-					
-					
-					
-</tr> 
- 
+<tbody id='address'>
+
 </tbody>
-
-
 </table>
 </div>
 </div>
@@ -97,3 +74,33 @@
 	
 		<!-- Footer Page-->
 		<%- include('../nav/footer') %>
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		<script>
+
+			function getdata(){
+		var contractor_code =document.getElementById("contract_code_data").value;
+		var from_date =document.getElementById("from_date").value;
+		var to_date =document.getElementById("to_date").value;
+				//alert(contractor_code);
+				//alert(from_date);
+				//alert(to_date);
+				var item = v; 
+				
+				$.ajax({
+					type:'GET',
+					data: { contractor_code: contractor_code,from_date: from_date,to_date: to_date },
+					url:'a_in_out_view',
+					success: function(data){
+						console.log(data);
+						 $('#address').empty();
+					 $('address').append("<option disabled selected> Select Address..</option>");
+					 $.each(data, function (index, addressObj) {
+							
+							$('#address').append('<tr><td>' + addressObj.EMPCODE+ '</td><td>' + addressObj.Employee_Name + '</td><td>' + addressObj.Shift + '</td></tr>');
+						});
+					}
+				});
+		
+			}
+		</script>
+		

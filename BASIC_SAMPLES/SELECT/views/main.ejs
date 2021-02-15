@@ -1,0 +1,43 @@
+
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<form action="/add_areas" method="POST">		
+    <br> 
+    <label>Name :</label>
+    <select name="selectUser" id="user" onchange="getdata(this.value)">
+    <option disabled selected> Select User..</option>
+    <% users.forEach((users) => { %>
+    <option value="<%= users.id %>" > <%=users.name %> </option>
+    <%  })  %>
+    </select>
+    <br>
+    <label>Address :</label>
+    <select name="selectAddress" id="address">
+    <option disabled selected> Select Address..</option>
+    </select>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+<script>
+
+    function getdata(v){
+
+        //alert(v);
+        var item = v; 
+        
+        $.ajax({
+            type:'GET',
+            data: { selectedId: item },
+            url:'/users/address',
+            success: function(data){
+                console.log(data);
+                 $('#address').empty();
+             $('address').append("<option disabled selected> Select Address..</option>");
+             $.each(data, function (index, addressObj) {
+                    $('#address').append("<option value = '" + addressObj.id + "' > " + addressObj.region + ". </option > ");
+                });
+            }
+        });
+
+    }
+</script>

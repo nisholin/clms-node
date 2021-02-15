@@ -1,4 +1,5 @@
-<%- include ('../nav/header') %>
+
+   <%- include ('../nav/header') %>
   <!-- Sidebar Page -->
   <%- include('../nav/sidebar') %>
     <div class="card">
@@ -7,18 +8,12 @@
 
         <% Emp_edit_data.forEach(function(empdata) { %>
 
-          <form class="forms-sample">
-
+          <form class="forms-sample" method="POST" action="/employee/update">
+              <input type="hidden" name="id" value="<%= empdata.id %>" />
             <div class="form-group row">
               <label for="code" class="col-sm-3 col-form-label">Contractor Code</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="ccode" id="code" value="<%= empdata.CCODE %>" placeholder="code">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="name" class="col-sm-3 col-form-label">Contractor Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="cname" id="name" value="<%= empdata.CNAME %>">
+                <input type="text" class="form-control" name="ccode" id="code" value="<%= empdata.CCODE %>">
               </div>
             </div>
             <div class="form-group row">
@@ -30,87 +25,69 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Work Order Date</label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" value="<%= empdata.WORK_OR_DATE %>" name="workorder_date">
-              </div>
-            </div>
-             <div class="form-group row">
-              <label for="no_of_employees" class="col-sm-3 col-form-label">Number Of Employees</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="no_of_employees" id="no_of_employees" value="<%= empdata.EMPLOYEE_COUNT %>">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="sub_contractor" class="col-sm-3 col-form-label">Sub Contractor</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.SUB_CONTRACTOR %>" id="sub_contractor" placeholder="Sub Contractor">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="sub_con_code" class="col-sm-3 col-form-label">Sub Con Code</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.SUB_CON_CODE %>" id="sub_con_code" placeholder="Sub Con Code">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="licence_no" class="col-sm-3 col-form-label">Licence No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.LICENCE_NO %>" id="licence_no" placeholder="Licence No">
+                <input type="text" class="form-control" value="<%= empdata.WORK_OR_DATE.toISOString().substring(0, 10); %>" id="workorder_date" name="workorder_date">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.EMPLOYEE_CODE %>" id="emp_code">
+                <input type="text" class="form-control" value="<%= empdata.ECODE %>" name="emp_code" id="emp_code">
               </div>
             </div>
             <div class="form-group row">
+              <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" id="emp_name" name="emp_name"
+                      value="<%= empdata.ENAME %>">
+              </div>
+           </div>
+            <div class="form-group row">
               <label class="col-sm-3 col-form-label">Wo validity from</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.WO_FROM %>" placeholder="dd/mm/yyyy" />
+                <input type="text" class="form-control" id="wo_val_from" name="wo_val_from" value="<%= empdata.WO_FROM.toISOString().substring(0, 10); %>"  >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Wo validity To</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.WO_TO %>" placeholder="Wo validity To" />
+                <input type="text" class="form-control" id="wo_val_to" name="wo_val_to" value="<%= empdata.WO_TO.toISOString().substring(0, 10); %>"  >
               </div>
             </div>
             <div class="form-group row">
               <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.CI_NAME %>" id="ci_name" placeholder="CI.Name">
+                <input type="text" class="form-control" value="<%= empdata.CI_NAME %>" id="ci_name" name="ci_name" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Father Name" class="col-sm-3 col-form-label">Father Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.FATHER %>" id="Father/Husband Name" placeholder="Father Name">
+                <input type="text" class="form-control" value="<%= empdata.FATHER %>" id="Father" >
               </div>
             </div>
 			<div class="form-group row">
               <label for="Husband Name" class="col-sm-3 col-form-label">Husband Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.HUSBAND %>" id="Husband Name" placeholder="Husband Name">
+                <input type="text" class="form-control" value="<%= empdata.HUSBAND %>" id="Husband" name="Husband">
               </div>
             </div>
             <div class="form-group row">
               <label for="designation" class="col-sm-3 col-form-label">Designation</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="designation" value="<%= empdata.DESIGNATION %>" placeholder="Designation">
+                <input type="text" class="form-control" id="designation" name="designation" value="<%= empdata.DESIGNATION %>" >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">DOB</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.DOB %>" placeholder="DOB" />
+                <input type="text" class="form-control" id="dob" name="dob" value="<%= empdata.DOB.toISOString().substring(0, 10); %>" >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Engaged Date</label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" value="<%= empdata.ENGAGED_DATE %>" placeholder=" Date" />
+                <input type="text" class="form-control" id="Engaged_Date" name="Engaged_Date" value="<%= empdata.ENGAGED_DATE.toISOString().substring(0, 10); %>" >
               </div>
             </div>
             <div class="form-group row">
@@ -151,25 +128,25 @@
             <div class="form-group row">
               <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Present_address" value="<%= empdata.PRE_ADDRESS %>" placeholder="Present Address">
+                <input type="text" class="form-control" id="Present_address" name="Present_address" value="<%= empdata.PRE_ADDRESS %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="permanent_address" value="<%= empdata.PERMANENT_ADDRESS %>" placeholder="Permanent Address">
+                <input type="text" class="form-control" id="permanent_address" name="permanent_address" value="<%= empdata.PERMANENT_ADDRESS %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="phone_no" value="<%= empdata.PHONE_NO %>" placeholder="Phone No">
+                <input type="text" class="form-control" id="phone_no" name="phone_no" value="<%= empdata.PHONE_NO %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="email_id" value="<%= empdata.EMAIL_ID %>" placeholder="Email Id">
+                <input type="text" class="form-control" id="email_id" name="email_id" value="<%= empdata.EMAIL_ID %>" >
               </div>
             </div>
 
@@ -179,7 +156,7 @@
               <div class="col-sm-4">
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="<%= empdata.EMERGENCY_PERSON %>"
+                    <input type="radio" class="form-check-input" name="emergency" id="emergency" value="<%= empdata.EMERGENCY_PERSON %>"
                       checked> Inform </label>
                 </div>
               </div>
@@ -195,114 +172,114 @@
  <div class="form-group row">
               <label for="nominee_name" class="col-sm-3 col-form-label">Mobile No</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="mobile_no" value="<%= empdata.MOBILE_NO %>" placeholder="Mobile No">
+                <input type="text" class="form-control" id="Emergency_Mobile_Number" name="Emergency_Mobile_Number" value="<%= empdata.MOBILE_NO %>" >
               </div>
             </div>
 
             <div class="form-group row">
               <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_name" value="<%= empdata.NOMINEE_NAME %>" placeholder="Nominee Name">
+                <input type="text" class="form-control" id="nominee_name" name="nominee_name" value="<%= empdata.NOMINEE_NAME %>" >
               </div>
             </div>
  <div class="form-group row">
               <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Relation</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_relation" value="<%= empdata.NOMINEE_RELATION %>" placeholder="Nominee Relation ">
+                <input type="text" class="form-control" id="nominee_relation" name="nominee_relation" value="<%= empdata.NOMINEE_RELATION %>" >
               </div>
             </div>
 			 <div class="form-group row">
               <label for="nominee_name" class="col-sm-3 col-form-label">Nominee DOB</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_dob" value="<%= empdata.NOMINEE_DOB %>" placeholder="Nominee DOB">
+                <input type="text" class="form-control" id="nominee_dob" name="nominee_dob" value="<%= empdata.NOMINEE_DOB.toISOString().substring(0, 10); %>" >
               </div>
             </div>
            
             <div class="form-group row">
               <label for="category" class="col-sm-3 col-form-label">Category</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="category" value="<%= empdata.CAT %>" placeholder="Category">
+                <input type="text" class="form-control" id="category" name="category" value="<%= empdata.CAT %>">
               </div>
             </div>
             <div class="form-group row">
               <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="wage_per_day" value="<%= empdata.WAGE %>" placeholder="Wage Per Day">
+                <input type="text" class="form-control" id="wage_per_day" name="wage_per_day" value="<%= empdata.WAGE %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Incentive_per_day" value="<%= empdata.INCENTIVE %>" placeholder="Incentive Per Day">
+                <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day" value="<%= empdata.INCENTIVE %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Allowance_per_day" value="<%= empdata.ALLOWANCE %>" placeholder="Allowance Per Day">
+                <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day" value="<%= empdata.ALLOWANCE %>" >
               </div>
             </div>
 
             <div class="form-group row">
               <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Any_other_wages" value="<%= empdata.OTHERS %>" placeholder="Any Other Wages">
+                <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages" value="<%= empdata.OTHERS %>" >
               </div>
             </div>
 
             <div class="form-group row">
               <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="UAN" value="<%= empdata.UAN %>" placeholder="UAN">
+                <input type="text" class="form-control" id="UAN" name="uan" value="<%= empdata.UAN %>">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="ESI_no" value="<%= empdata.ESI %>" placeholder="ESI No">
+                <input type="text" class="form-control" id="ESI_no" name="ESI_no" value="<%= empdata.ESI %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Aadhar_card_no" value="<%= empdata.AADHAR %>" placeholder="Aadhar Card No">
+                <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no" value="<%= empdata.AADHAR %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Identical_mark1" value="<%= empdata.IDENTY_MARK %>" placeholder="Identical Mark1">
+                <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1" value="<%= empdata.IDENTY_MARK %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Bank_name" value="<%= empdata.BANK_NAME %>" placeholder="Bank Name">
+                <input type="text" class="form-control" id="Bank_name" name="Bank_name" value="<%= empdata.BANK_NAME %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Account_no" value="<%= empdata.ACCOUNT_NO %>" placeholder="Account No">
+                <input type="text" class="form-control" id="Account_no" name="Account_no" value="<%= empdata.ACCOUNT_NO %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Blood_grp" value="<%= empdata.BLOOD_GROUP %>" placeholder="Blood GRP">
+                <input type="text" class="form-control" id="Blood_grp" name="Blood_grp" value="<%= empdata.BLOOD_GROUP %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Entry_gate" value="<%= empdata.ENTRY_GATE %>" placeholder="Entry Gate">
+                <input type="text" class="form-control" id="Entry_gate" name="Entry_gate" value="<%= empdata.ENTRY_GATE %>" >
               </div>
             </div>
             <div class="form-group row">
               <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="Work_spot" value="<%= empdata.WROK_SPOT %>" placeholder="Work Spot">
+                <input type="text" class="form-control" id="Work_spot" name="Work_spot" value="<%= empdata.WROK_SPOT %>" >
               </div>
             </div>
             <div class="form-group row">
@@ -325,25 +302,25 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Pass Validity From</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="pass_val_from" id="pass_val_from" value="<%= empdata.PASS_VALID_FROM %>" placeholder="PASS VALID FROM" />
+                <input type="text" class="form-control" name="pass_val_from" id="pass_val_from" value="<%= empdata.PASS_VALID_FROM.toISOString().substring(0, 10); %>" >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Pass Validity To</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="pass_val_to" id="pass_val_to" value="<%= empdata.PASS_VALID_TO %>" placeholder="Pass Validity To" />
+                <input type="text" class="form-control" name="pass_val_to" id="pass_val_to" value="<%= empdata.PASS_VALID_TO.toISOString().substring(0, 10); %>" >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Safety Training From</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="safety_training_from" id="safety_training_from" value="<%= empdata.SAFETY_TRAINING_FROM %>" placeholder=">Safety Training From" />
+                <input type="text" class="form-control" name="safety_training_from" id="safety_training_from" value="<%= empdata.SAFETY_TRAINING_FROM.toISOString().substring(0, 10); %>" >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Safety Training To</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="safety_training_to" id="safety_training_to" value="<%= empdata.SAFETY_TRAINING_TO %>" placeholder="Safety Training To" />
+                <input type="text" class="form-control" name="safety_training_to" id="safety_training_to" value="<%= empdata.SAFETY_TRAINING_TO.toISOString().substring(0, 10); %>" />
               </div>
             </div>
 <div class="form-group row">
@@ -376,3 +353,167 @@
       </div>
     </div>
     <%- include('../nav/footer') %>
+   
+   <!--Hide Future Dates-->
+   <script>
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#safety_training_to').datepicker({
+       format: 'yyyy/mm/dd',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#safety_training_to').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#safety_training_from').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#safety_training_from').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#pass_val_from').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#pass_val_from').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#pass_val_to').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#pass_val_to').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#nominee_dob').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#nominee_dob').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#Engaged_Date').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#Engaged_Date').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#dob').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#dob').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#workorder_date').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#workorder_date').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#wo_val_from').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#wo_val_from').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+       $(document).ready(function () {
+       var currentDate = new Date();
+       $('#wo_val_to').datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose:true,
+       endDate: "currentDate",
+       //maxDate: currentDate
+       }).on('changeDate', function (ev) {
+           $(this).datepicker('hide');
+       });
+       $('#wo_val_to').keyup(function () {
+           if (this.value.match(/[^0-9]/g)) {
+               this.value = this.value.replace(/[^0-9^-]/g, '');
+           }
+       });
+       });
+   </script>

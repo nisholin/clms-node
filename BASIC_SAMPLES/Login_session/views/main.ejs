@@ -1,0 +1,14 @@
+<section id="upload-data-panel">
+    <form id="upload-form" action="/upload/data" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Upload Data</legend>
+            <div>
+                <!-- The name here is important, and will be used later to reference the data -->
+                <input type="file" name="csvdata" accept="text/cvs">
+            </div>
+            <div>
+                <input type="submit" value="Submit"/>
+            </div>
+        </fieldset>
+    </form>
+</section>

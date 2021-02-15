@@ -12,36 +12,39 @@
         <div class="card-body">
 
             <form class="forms-sample" method="POST" action="/pass_req_new_1/add">
-
-            <% contractor_details.forEach(function(cont_details)  { %>
+                
+            
                 <div class="form-group row">
                     <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
                     <div class="col-sm-9">
-                        <input list="Contractor_Code" class="form-control" name="ccode" id="contractor_code" placeholder="Select Contractor Code">
-                        <datalist id="Contractor_Code">
-                            <% codename.forEach(function(code) { %>
-                                <option value="<%= code.contractor_code %>">
-                                    <%= code.contractor_name %>" 
-                                </option>
-                                <% }) %>
-                        </datalist> 
-                    </div>
-                </div>
-               
-                </div>
-                <div class="form-group row">
-                    <label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="cname" name="cname"
-                           value="<%= cont_details.contractor_name %>">
+                        <select  name="Contractor_Code" id="contractor_code" class="form-control" onchange="chage_workno(this.value)">
+                            <option value="">Select Contractor</option>
+                        <% contractor_details.forEach(function(code) { %>
+                            <option value="<%= code.contractor_code %>">
+                                <%= code.contractor_code %>-<%= code.contractor_name %> 
+                            </option>
+                            <% }) %>
+                    </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="workorder_no" class="col-sm-3 col-form-label">Workorder No</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="workorder_no" name="workorder_no">
+                        <select  name="workorder_no" id="workorder_no" class="form-control" onchange="get_employee(this.value)">
+                            <option value="">Select Workorder</option>
+                        
+                    </select>
                     </div>
                 </div>
+                </div>
+              <!--   <div class="form-group row">
+                    <label for="cname" class="col-sm-3 col-form-label">Contractor name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="cname" name="cname"
+                           value="">
+                    </div> 
+                </div>-->
+               
                 <div class="form-group row">
                     <label for="pass_from" class="col-sm-3 col-form-label">Pass Request From</label>
                     <div class="col-sm-9">
@@ -103,10 +106,10 @@
                 <div class="card-body overflow-x">
                 <!--Table Start-->
 
-                <table class="table table-bordered"> 				
+                <table class="table table-bordered" > 				
                     <thead>
                         <tr>
-                            <th>Ename</th>
+                            <th># </th>
                             <th>Ecode</th>
                             <th>Name Of The Contract Worker</th>
                             <th>Father 'S / Huspand Name</th>
@@ -120,34 +123,8 @@
                             <th>Check</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                        <% employee_details.forEach(function(emp_details) { %>
-
-                            <tr>
-                                 <input type="hidden" value="<%= emp_details.CCODE %>" >
-                                <input type="hidden" value="<%= emp_details.ECODE %>" >
-                                <td><%= emp_details.ENAME %></td>
-                                <td><%= emp_details.ECODE %></td>
-                                <td><%= emp_details.FATHER %></td>
-                                <td><%= emp_details.PRE_ADDRESS %></td>
-                                <td><%= emp_details.DOB %></td>
-                                <td><%= emp_details.WROK_SPOT %></td>
-                                <td><%= emp_details.SAFETY_TRAINING_FROM %></td>
-                                <td><%= emp_details.SAFETY_TRAINING_TO %></td>
-                                <td><%= emp_details.WORK_ORDER_No %></td>
-                                <td><%= emp_details.WORK_OR_DATE %></td>
-                                
-                                <td>
-                                    <div class="form-check m-t-0">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>','<%= emp_details.ECODE %>')"></label>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <% }) %>
-
+                    <tbody id="emp">
+                        
                     </tbody>
                 </table>
                 <!--Table End-->
@@ -157,7 +134,7 @@
 
             </form>
 
-            <% }) %>
+         
 
         </div>
         <!--From Start-->
@@ -170,17 +147,45 @@
 
 
     <script>
-        function getEmpdetails(ccode,ecode) {
-           // alert(ccode);
-           // alert(ecode);
+        function chage_workno(v){
+
             $.ajax({
-				url: '/pass_req_new_1/pass_request_employee_details',
-				type: 'POST',
-				data: { "ccode": ccode,"ecode": ecode }
-			}).done(function (response) {
-				//callback to handle if it's successful
-			})
+            type:'POST',
+            data: { "ccode": v },
+            url:'/get/workorder',
+            success: function(data){
+                //console.log(data);
+                 $('#workorder_no').empty();
+             $('#workorder_no').append("<option > Select workorder_no..</option>");
+             $.each(data, function (index, addressObj) {
+                    $('#workorder_no').append("<option value = '" + addressObj.WORK_ORDER + "' > " + addressObj.WORK_ORDER + ". </option > ");
+                    //$('#address').append("<input value = '" + addressObj.WORK_ORDER + "' >");
+                });
+            }
+        });
         }
     </script>
+<script>
+    /* function get_employee(v){
+     //alert(v);
+         $.ajax({
+        type:'POST',
+        data: { "ccode": v },
+        url:'/get/employee',
+        success: function(data){
+            console.log(data);
+           // alert(data);
+             //$('#emp').empty();
+             $.each(data, function (index, addressObj) {
+                  //  $('#emp').append("<input type="text" >");
+                   $('#emp').append('<tr><td>'+addressObj.id+'</td><td>'+addressObj.ECODE+'</td><td>'+addressObj.ENAME+'</td><td>'+addressObj.FATHER+'</td><td>'+addressObj.PRE_ADDRESS+'</td><td>'+addressObj.GENDER+'</td><td>'+addressObj.WROK_SPOT+'</td><td>'+addressObj.SAFETY_TRAINING_FROM+'</td><td>'+addressObj.SAFETY_TRAINING_TO+'</td><td>'+addressObj.WORK_ORDER_No+'</td><td>'+addressObj.WORK_OR_DATE+'</td><td><input type="checkbox" name="check" value="'+addressObj.ECODE+'" id="check"></td></tr>');
+                });
+                //$('#address').append("<input value = '" + addressObj.WORK_ORDER + "' >");
+        }
+            }); 
+        
+    } */
+    
+</script>
 
     

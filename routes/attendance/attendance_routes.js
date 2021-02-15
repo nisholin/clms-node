@@ -70,5 +70,20 @@ router.post('/attendance/new',(req,res,next)=>{
 });
 */ 
 
+module.exports = {
+
+    getUserAddress: (req, res) => {
+        var selecteduser = req.query.selectedId;
+
+        let sql = "SELECT * FROM regions WHERE client_id = '" + selecteduser + "'";
+        let query = connection.query(sql, (err, rows) => {
+        if(err) throw err;
+        res.send(rows);
+    });
+
+
+     }
+}
+
 
 module.exports = { attendance:router}

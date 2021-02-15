@@ -4,6 +4,7 @@ var dboperations = require('../../database/pass/pass_req_table_1');
 
 var config = require('../../database/dbconfig');
 var sql = require('mssql');
+const { response } = require('express');
 
 
 
@@ -19,7 +20,7 @@ router.get('/passrequest_one', (req, res) => {
 		async function get_contractor() {
 			try {
 				let pool = await sql.connect(config);
-				let products = await pool.request().query("select * from pass_request_master where contractor_code ='" +req.session.cont_code+ "'");
+				let products = await pool.request().query("select * from pass_request_master");
 				return products.recordsets;
 			}
 			catch (error) {
@@ -46,16 +47,27 @@ router.get('/passrequest_one/pass_request_one_new', (req, res) => {
 		return;
 	}
 	else {
-		async function get_contractor() {
+		async function get_contractor_detail() {
 			try {
 				let pool = await sql.connect(config);
-				let contractor = await pool.request().query("select * from cpcl_contractor_master where contractor_code ='" + req.session.cont_code + "'");
+				let contractor = await pool.request().query("select * from cpcl_contractor_master");
 				return contractor.recordsets;
 			}
 			catch (error) {
 				console.log(error);
 			}
 		}
+		async function get_workorder_detail() {
+			try {
+				let pool = await sql.connect(config);
+				let employee = await pool.request().query("select * from cpcl_work_order_master");
+				return employee.recordsets;
+			}
+			catch (error) {
+				console.log(error);
+			}
+		}
+
 		async function get_employee() {
 			try {
 				let pool = await sql.connect(config);
@@ -66,18 +78,28 @@ router.get('/passrequest_one/pass_request_one_new', (req, res) => {
 				console.log(error);
 			}
 		}
-		get_contractor().then(result => {
+
+
+
+		get_contractor_detail().then(result => {
 
 			var contractor_details = result[0];
+			
+			get_workorder_detail().then(result => {
+
+			var workdetail = result[0];
+
 
 			get_employee().then(result => {
 				var employee_details = result[0];
 				emp.contractor_details = contractor_details;
+				emp.workdetail=workdetail;
 				emp.employee_details = employee_details;
 				res.render('pass/pass_req_1/pass_req_1_new',emp);
 			});
 
 		});
+	});
 	}
 
 });
@@ -85,7 +107,7 @@ router.get('/passrequest_one/pass_request_one_new', (req, res) => {
 router.get('contrat/empselect', (req, res, next) => {
 
 	var ccode = req.body.contractor_code;
-	console.log(ccode);
+	//console.log(ccode);
 	var cname = req.body.contractor_name;
 	var workorder_no = req.body.workorder_no;
 
@@ -131,8 +153,10 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 	var job_completion_date = req.body.job_completion_date;
 	var contractor_sap_no 	= req.body.contractor_sap_no;
 	var pass_type 			= req.body.pass_type;
-	
-	async function get_employee() {
+	var check_value=req.body;
+
+	console.log(check_value);
+	 /* async function get_employee() {
 		try {
 			let pool = await sql.connect(config);
 			await pool.request().query(`insert into pass_request_master
@@ -149,10 +173,55 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 	}
 	get_employee();
 	console.log("Pass Request Successfully Updated...")
-	res.redirect('/passrequest_one/pass_request_one_new');
+	res.redirect('/passrequest_one/pass_request_one_new');  */
 })
 
+//Onchange Get workorder Details
+router.post('/get/workorder',(req,res)=>{
+    var ccode = req.body.ccode;
+   // console.log(ccode);
 
+    async function getcontractor() {
+        try{
+            let pool = await sql.connect(config);
+            let cont = await pool.request().query( `select * from cpcl_work_order_master where CCODE = '${ccode}'`);
+            return cont.recordsets;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+
+    getcontractor().then(result=>{
+        var contractor = result[0];
+        res.send(contractor);
+    })
+})
+
+//Onchange Get employee Details
+router.post('/get/employee',(req,res)=>{
+    var ccode = req.body.ccode;
+    //console.log(ccode);
+
+    async function getwork() {
+        try{
+            let pool = await sql.connect(config);
+            let cont = await pool.request().query( `select * from cpcl_employee_master where WORK_ORDER_No= '${ccode}'`);
+            return cont.recordsets;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+
+    getwork().then(result=>{
+        var employee = result[0];
+        //res.send(contractor);
+		console.log(employee);
+		res.send(employee)
+		//res.render('pass/pass_req_1/pass_req_1_new',employee);
+    }) 
+})
 
 router.post('/pass_req_new_1/pass_request_employee_details',(req,res)=>{
 	//var data = req.body;

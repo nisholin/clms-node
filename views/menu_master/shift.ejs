@@ -38,8 +38,8 @@
 						<% data.forEach(function(menu) { %>
 							<tr>
 							  <td> <%= menu.shift_name %>  </td>
-							  <td>  <%= menu.from_time %>  </td>
-							  <td>  <%= menu.to_time %> </td>
+							  <td>  <%= menu.from_time.toLocaleTimeString() %>  </td>
+							  <td>  <%= menu.to_time.toLocaleTimeString() %> </td>
 							  <td> <%= menu.status %> </td>
 							  <td> <%= menu.created_by %> </td>
 							  <td>
