@@ -8,8 +8,13 @@ var sql = require('mssql');
 
  
 
+
 router.get('/passrequest_three',(req, res)=>{
+    var emp = {};
 	var user_Id = req.session.userId, user_name = req.session.user_name;
+	var contractor_code = req.session.cont_code;
+	emp.user_Id = user_Id;
+	emp.user_name = user_name;
 	if(user_Id == null)
   {
 	  message = 'Wrong Credentials.';
@@ -17,10 +22,27 @@ router.get('/passrequest_three',(req, res)=>{
 	  return;
   }
   else{
-	res.render('pass/pass_request_3',{user_Id:user_Id,user_name:user_name});
-}
-});
+    async function get_employee() {
+        try {
+            let pool = await sql.connect(config);
+            let employee = await pool.request().query("select * from pass_request_master where status=1");
+            return employee.recordsets;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
+    get_employee().then(result => {
+        var employee_details = result[0];
+        emp.employee_details = employee_details;
+        res.render('pass/pass_request_3',emp);
+    });
+
+	//res.render('pass/pass_request_2',{user_Id:user_Id,user_name:user_name});
+	}
+});
+ 
 
 /*
 router.post('/pass/pass_request_3new',(req,res,next)=>{

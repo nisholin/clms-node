@@ -13,6 +13,7 @@ const getContactor_employee_values = (req,res,next)=>{
         res.render('contractor_master/employeenew',{data})
     })
 }
+// Employee View
 employee = {};
 router.get('/employeenew',(req,res,next)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
@@ -37,6 +38,7 @@ router.get('/employeenew',(req,res,next)=>{
     } 
 }); 
 
+//Add Employee 
 router.post('/employee/add',(req,res,next)=>{
     var data = req.body;
     //console.log(data);
@@ -117,11 +119,11 @@ router.post('/employee/add',(req,res,next)=>{
             console.log(error);
         }
     }
-    geteEmployeeValues();
+    //geteEmployeeValues();
     res.redirect("/employeenew");	 
 });
 
-//employee edit
+//Employee Edit View
 router.get('/employee_edit/:empid',(req, res) => {
     var user_Id = req.session.userId, user_name = req.session.user_name;
     var emp_id = req.params.empid;
@@ -214,7 +216,7 @@ router.post('/employee/update',(req, res) => {
 });
 
 
-//Onchange Get Contractor Details
+// Get Contractor Work Order Number and Contractor Code
 router.post('/get/contractor',(req,res)=>{
     var ccode = req.body.ccode;
     //console.log(ccode);
@@ -233,6 +235,48 @@ router.post('/get/contractor',(req,res)=>{
     getcontractor().then(result=>{
         var contractor = result[0];
         res.send(contractor);
+    })
+})
+
+//Get Work Order Date and Total Count
+router.post('/get/contractor/work_order_date',(req,res)=>{
+    var work_order_number = req.body.wonumber;
+    //console.log(work_order_number);
+
+    async function getWoDate() {
+        try {
+            let pool = await sql.connect(config);
+            let wo_date = await pool.request().query(`select WORK_OR_DATE,WORKMEN_TOT from cpcl_work_order_master where WORK_ORDER = '${req.body.wonumber}'`);
+            return wo_date.recordsets;
+        } catch(error) {
+            console.log(err);
+        }
+    }
+
+    async function getACount() {
+        try {
+            let pool = await sql.connect(config);
+            let avilablecount = await pool.request().query(`select count(*) as avilable_count from [CLMS_V].[dbo].[cpcl_employee_master] 
+            where WORK_ORDER_No = '${req.body.wonumber}'`);
+            return avilablecount.recordsets;
+        } catch(error) {
+            console.log(err);
+        }
+    }
+
+    wormanDeatils = {};
+    getWoDate().then(result=>{
+        var WoDate = result[0];
+        wormanDeatils.WoDate = WoDate;
+        //console.log(WoDate)
+        getACount().then(result=>{
+            var availableCount = result[0];
+            //console.log(WoDate)
+            wormanDeatils.availableCount = availableCount;
+            console.log(wormanDeatils);
+            res.send(wormanDeatils);
+        })
+        //res.send(WoDate);
     })
 })
 

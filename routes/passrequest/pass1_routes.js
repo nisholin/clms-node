@@ -140,10 +140,20 @@ router.get('contrat/empselect', (req, res, next) => {
 	*/
 });
 
+router.post('/pass_req_new_1/add', function(req, res) {
+    //console.log(req.body); //Output=> like { searchid: 'Array of checked checkbox' }
+    console.log(req.body.searchid); // to get array of checked checkbox
+	//console.log(req.body.form_data);
+
+
+});
+
+	/*
 router.post('/pass_req_new_1/add',(req,res)=>{
-	//var data = req.body;
-	//console.log(data);
-	var ccode 				= req.body.ccode;
+	var ccode = req.body.e_id;
+    console.log(ccode);
+
+	//var ccode 				= req.body.ccode;
 	var cname	 			= req.body.cname;
 	var workorder_no 		= req.body.workorder_no;
 	var pass_from 			= req.body.pass_from;
@@ -153,9 +163,10 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 	var job_completion_date = req.body.job_completion_date;
 	var contractor_sap_no 	= req.body.contractor_sap_no;
 	var pass_type 			= req.body.pass_type;
-	var check_value=req.body;
-
-	console.log(check_value);
+	var check_value=	req.body.check;
+	*/
+	
+	//console.log(check_value);
 	 /* async function get_employee() {
 		try {
 			let pool = await sql.connect(config);
@@ -173,9 +184,9 @@ router.post('/pass_req_new_1/add',(req,res)=>{
 	}
 	get_employee();
 	console.log("Pass Request Successfully Updated...")
-	res.redirect('/passrequest_one/pass_request_one_new');  */
+	res.redirect('/passrequest_one/pass_request_one_new');  
 })
-
+*/
 //Onchange Get workorder Details
 router.post('/get/workorder',(req,res)=>{
     var ccode = req.body.ccode;

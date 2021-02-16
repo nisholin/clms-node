@@ -11,7 +11,7 @@
 
         <div class="card-body">
             <% employee_details.forEach(function(pass_detail){ %>
-            <form class="forms-sample" method="POST" action="/pass_approve/approve">
+            <form class="forms-sample" method="GET" action="/pass_approve/approve">
              
 
                 <div class="form-group row">
@@ -103,36 +103,37 @@
                             <th>Safety Pass Validity To</th>
                             <th>Work Order Number</th>
                             <th>Work Order Date</th>
-                            <th>Check</th>
+                           <!--  <th>Check</th> -->
                         </tr>
                     </thead>
                     <tbody>
 
-                       <!--  <% employee_details.forEach(function(emp_details) { %>
+                        <% con_detail.forEach(function(emp_details) { %>
 
                             <tr>
                                 <input type="hidden" value="<%= emp_details.CCODE %>" name="ccode">
                                 <input type="hidden" value="<%= emp_details.ECODE %>" name="ecode">
                                 <td><%= emp_details.ENAME %></td>
                                 <td><%= emp_details.ECODE %></td>
+                                <td><%= emp_details.contractor_name%></td>
                                 <td><%= emp_details.FATHER %></td>
                                 <td><%= emp_details.PRE_ADDRESS %></td>
-                                <td><%= emp_details.DOB %></td>
+                                <td><%= emp_details.GENDER %></td>
                                 <td><%= emp_details.WROK_SPOT %></td>
-                                <td><%= emp_details.SAFETY_TRAINING_FROM %></td>
-                                <td><%= emp_details.SAFETY_TRAINING_TO %></td>
+                                <td><%= moment(emp_details.SAFETY_TRAINING_FROM ).format('DD-MM-Y') %></td>
+                                <td><%= moment(emp_details.SAFETY_TRAINING_TO ).format('DD-MM-Y') %></td>
                                 <td><%= emp_details.WORK_ORDER_No %></td>
-                                <td><%= emp_details.WORK_OR_DATE %></td>
+                                <td><%= moment(emp_details.WORK_OR_DATE ).format('DD-MM-Y') %></td>
                                 
                                 <td>
                                     <div class="form-check m-t-0">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>')"></label>
+                                            <!-- <input type="checkbox" class="form-check-input" onchange="getEmpdetails('<%= emp_details.CCODE %>')">--></label> 
                                     </div>
                                 </td>
                             </tr>
 
-                            <% }) %> -->
+                            <% }) %> 
 
                     </tbody>
                 </table>
@@ -143,7 +144,7 @@
 
             </form>
            
-            <% }) %> -->
+            <% }) %> 
         </div>
         <!--From Start-->
     </div>

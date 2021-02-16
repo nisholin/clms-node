@@ -41,16 +41,30 @@
                     <div class="form-group row">
                         <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="work_order_no" id="work_order_no">
-                                <option disabled selected> Work Oder Comes Here..</option>
+                            <select class="form-control" name="work_order_no" id="work_order_no" onchange="getWoDate(this.value)">
+                                <option  selected>Select Work Order Number</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Work Order Date</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="workorder_date" name="workorder_date"
-                            required/>
+                            <input type="text" class="form-control" id="workorder_date" name="workorder_date"
+                            placeholder="Work Order Date Comes Here..."  required readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Total Work Man</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="workman_total"
+                            placeholder="Total Work Man Comes Here..."  required readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Available Work Man</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="available_workman"
+                            placeholder="Available Work Man Comes Here..."  required readonly/>
                         </div>
                     </div>
                        <!-- <div class="form-group row">
@@ -454,6 +468,7 @@
                                 <th>Contractor Code</th>
                                 <th>Contractor Name</th>
                                 <th> Work Order No</th>
+                                <th> Work Order Date</th>
                                 <th> Employee Code</th>
                                 <th> Employee Name</th>
                                 <th> Wo validity From</th>
@@ -476,10 +491,15 @@
                                         <%= emp_master.WORK_ORDER_No %>
                                     </td>
                                     <td>
+                                        <label class="badge badge-gradient-success"><%= emp_master.WORK_OR_DATE.toISOString().substring(0, 10); %></label>
+                                        
+                                    </td>
+                                    <td>
                                         <%= emp_master.ECODE %>
                                     </td>
                                     <td>
-                                        <%= emp_master.ENAME %>
+                                        <label class="badge badge-gradient-danger"> <%= emp_master.ENAME %></label>
+                                       
                                     </td>
                                     <td>
                                         <%= emp_master.WO_FROM.toISOString().substring(0, 10); %> %>
@@ -520,24 +540,13 @@
                 </div>
             </div>
         </div>
-        <!-- plugins:js -->
-        <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="assets/js/off-canvas.js"></script>
-        <script src="assets/js/hoverable-collapse.js"></script>
-        <script src="assets/js/misc.js"></script>
-        <!-- endinject -->
-        <!-- Custom js for this page -->
-        <script src="assets/js/file-upload.js"></script>
-        <!-- End custom js for this page -->
+        
 
 <!-- Footer Page-->
 <%- include('../nav/footer') %>
 
 
+<!--Onload Funcation-->
 <script type="text/javascript">
 
     window.onload = function () {
@@ -569,6 +578,7 @@
     }
 </script>
 
+<!--Data Bind -->
 <script>
     function getContractorDetails(ccode) {
         //alert(ccode)
@@ -578,17 +588,40 @@
             url:'/get/contractor',
             success: function(data){
                 //console.log(data);
-                 $('#work_order_no').empty();
-             $('work_order_no').append("<option disabled selected> Select Address..</option>");
-             $.each(data, function (index, addressObj) {
+               // $('#work_order_no').empty();
+                //$('work_order_no').append("<option> Select Address..</option>");
+                $.each(data, function (index, addressObj) {
                     $('#work_order_no').append("<option value = '" + addressObj.WORK_ORDER + "' > " + addressObj.WORK_ORDER + " </option > ");
-                    //$('#address').append("<input value = '" + addressObj.WORK_ORDER + "' >");
+                    //$('#workorder_date').append("<input value = '" + addressObj.WORK_OR_DATE + "' >");
                 });
             }
         });
     }
 </script>
 
+<!--Get Work Order Date-->
+<script>
+    function getWoDate(WoNumber) {
+        //var WoNumber = document.getElementById("work_order_no").value;
+        //alert(WoNumber);
+        $.ajax({
+            type:'POST',
+            data: { "wonumber": WoNumber },
+            url:'/get/contractor/work_order_date',
+             success: function(data){
+                //console.log(data);
+                //var wodate = data[0].WORK_OR_DATE;
+                //var worktot = data[0].WORKMEN_TOT;
+                $.each(data, function (index, addressObj) {
+                    //alert(addressObj.avilable_count);
+                 $('#workorder_date').val(addressObj[0].WORK_OR_DATE.substring(0, 10));
+                 $('#workman_total').val(addressObj[0].WORKMEN_TOT);
+                 $('#available_workman').val(addressObj.avilable_count); 
+            });
+            } 
+        }); 
+    }
+</script>
 <!-- Pagination Start-->
 <script>
     getPagination('#table-id');

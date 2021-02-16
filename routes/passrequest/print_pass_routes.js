@@ -47,7 +47,7 @@ console.log(contractor_code);
 		try {
 			let pool = await sql.connect(config);
 			let contractor = await pool.request().query(`
-			select  *,case when e.GENDER=1 then 'MALE' else 'FEMALE' end as gender from pass_request_master p join pass_request_employee_details pq on p.contractor_code=pq.con_code join cpcl_employee_master e 
+			select  * from pass_request_master p join pass_request_employee_details pq on p.contractor_code=pq.con_code join cpcl_employee_master e 
 			on pq.emp_code=e.ECODE where p.status=0 and p.contractor_code='${contractor_code}' and pass_request_from='${wo_from_date}'`);
 			return contractor.recordsets;
 		}

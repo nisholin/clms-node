@@ -16,7 +16,7 @@
 					<option value="">Select Contractor</option>
 					<% contractor.forEach(function(contractordatas)  { %>
 					
-					<option value="<%= contractordatas.contractor_code %>"><%= contractordatas.contractor_code %></option>
+					<option value="<%= contractordatas.CCODE %>"><%= contractordatas.CCODE %></option>
 					<% }) %>
 				  </select>
 				  <label class="sr-only" for="from_date">From Date</label>
@@ -48,7 +48,7 @@
 					</div> 
   </div>
 
-<table  class="table table-striped table-class">
+<table   class="table table-striped table-class">
   <thead>
 	<tr>
 		<th> # </th>			
@@ -63,7 +63,7 @@
 		<th>PO NUM</th>
 	</tr>
 </thead>
-<tbody id='address'>
+<tbody id='in_outdatas'>
 
 </tbody>
 </table>
@@ -74,7 +74,7 @@
 	
 		<!-- Footer Page-->
 		<%- include('../nav/footer') %>
-		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		
 		<script>
 
 			function getdata(){
@@ -82,21 +82,17 @@
 		var from_date =document.getElementById("from_date").value;
 		var to_date =document.getElementById("to_date").value;
 				//alert(contractor_code);
-				//alert(from_date);
+				////alert(from_date);
 				//alert(to_date);
-				var item = v; 
-				
-				$.ajax({
-					type:'GET',
+					$.ajax({
+					type:'POST',
 					data: { contractor_code: contractor_code,from_date: from_date,to_date: to_date },
-					url:'a_in_out_view',
-					success: function(data){
-						console.log(data);
-						 $('#address').empty();
-					 $('address').append("<option disabled selected> Select Address..</option>");
-					 $.each(data, function (index, addressObj) {
-							
-							$('#address').append('<tr><td>' + addressObj.EMPCODE+ '</td><td>' + addressObj.Employee_Name + '</td><td>' + addressObj.Shift + '</td></tr>');
+				    url:'/a_in_out',
+					success: function(attendance_details){
+						//console.log(data);
+						$('#in_outdatas').empty();
+					$.each(attendance_details, function(index, attendancedetails) {
+							$('#in_outdatas').append('<tr><td>' + attendancedetails.EMPCODE+ '</td><td>' + attendancedetails.Employee_Name + '</td><td>' + attendancedetails.Shift + '</td><td>' + attendancedetails.Shift_date + '</td><td>' + attendancedetails.IN + '</td><td>' + attendancedetails.Out + '</td><td>' + attendancedetails.CNAME + '</td><td>' + attendancedetails.Gate + '</td><td>' + attendancedetails.PO_NUM + '</td></tr>');
 						});
 					}
 				});

@@ -24,7 +24,7 @@ router.get('/passrequest_two',(req, res)=>{
     async function get_employee() {
         try {
             let pool = await sql.connect(config);
-            let employee = await pool.request().query("select * from pass_request_master");
+            let employee = await pool.request().query("select * from pass_request_master where status=0");
             return employee.recordsets;
         }
         catch (error) {
@@ -71,29 +71,90 @@ router.get('/pass_approve_view/:pass_id', (req, res) => {
 			}
 		} 
 
+		async function getemp_details(){
+			try {
+				let pool = await sql.connect(config);
+				let employee = await pool.request().query(`select * from pass_request_master p join  pass_request_employee_details pq on p.contractor_code=pq.con_code 
+				join cpcl_employee_master E on pq.emp_code=E.ECODE where pq.con_code='${contractor_code}'`);
+				return employee.recordsets;
+			}
+			catch (error) {
+				console.log(error);
+			}
+
+		}
+
+		getemp_details().then(result =>{
+
+			var con_detail=result[0];
+		
 		get_employee().then(result => {
 				var employee_details = result[0];
-			//	emp.contractor_details = contractor_details;
+				emp.con_detail = con_detail;
 				//emp.employee_details = employee_details;
 				console.log(employee_details);
-				res.render('pass/pass_request_approve_view',{user_Id:user_Id,user_name:user_name,employee_details:employee_details});
+				res.render('pass/pass_request_approve_view',{user_Id:user_Id,user_name:user_name,employee_details:employee_details,con_detail:con_detail});
 			});
  
-	 	
+		});
 	 } 
 	 
 });
 
 //pass upprove
 
-router.get('/pass_approve/approve',(req,res) =>{
+router.get('/pass_approve/approve/',(req,res) =>{
 	var code=req.body.contractor_code;
 	console.log(code);
+	var user_Id = req.session.userId, user_name = req.session.user_name;
+	if (user_Id == null) {
+		message = 'Wrong Credentials.';
+		res.render('login.ejs', { message: message });
+		return;
+	}
+	else {
+	  
+		 async function get_employee() {
+			try {
+				let pool = await sql.connect(config);
+				let employee = await pool.request().query(`update pass_request_master set status=1 where contractor_code='${contractor_code}' and ststus=0`);
+				return employee.recordsets;
+			}
+			catch (error) {
+				console.log(error);
+			}
+		} 
+		async function getemp_details(){
+			try {
+				let pool = await sql.connect(config);
+				let employee = await pool.request().query(`update pass_request_employee_details where con_code='${contractor_code}' and status=0`);
+				return employee.recordsets;
+			}
+			catch (error) {
+				console.log(error);
+			}
 
-})
+		}
 
-/* 
-router.post('/pass/pass_request_2new',(req,res,next)=>{
+		getemp_details().then(result =>{
+
+			var con_detail=result[0];
+		
+		get_employee().then(result => {
+			var employee_details = result[0];
+			emp.con_detail = con_detail;
+			//emp.employee_details = employee_details;
+			console.log(employee_details);
+
+			res.render('pass/pass_request_approve_view',{user_Id:user_Id,user_name:user_name,employee_details:employee_details,con_detail:con_detail});
+		});
+	});
+
+	}
+});
+
+
+/* router.post('/pass/pass_request_2new',(req,res,next)=>{
     var contractor_code = req.body.contractor_code;
     var Contractor_name = req.body.Contractor_name;
     var workorder_no = req.body.workorder_no;
@@ -118,7 +179,7 @@ router.post('/pass/pass_request_2new',(req,res,next)=>{
     getpass_request_2Values();
 	 res.redirect("/pass_request_2")
 });
-*/ 
+ */
 
 
 

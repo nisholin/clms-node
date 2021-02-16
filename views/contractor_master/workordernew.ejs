@@ -29,6 +29,7 @@
                 <th>WORK_OR_DATE</th>
                 <th>DURATION</th>
                 <th>WORKMEN_TOT</th>
+                <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,7 +39,11 @@
                 <td class="py-1"><%= work_order.CCODE   %> </td>
                 <td><%= work_order.VENDOR_NO   %> </td>
                 <td> <%= work_order.WORK_ORDER   %> </td>
-                <td> <%= work_order.WORK_OR_DATE.toISOString().substring(0, 10); %>   %> </td>
+                <td>
+                  <label class="badge badge-gradient-info">
+                    <%= work_order.WORK_OR_DATE.toISOString().substring(0, 10); %>
+                  </label>
+                  </td>
                 <td> <%= work_order.DURATION   %></td>
                 <td> <%= work_order.WORKMEN_TOT   %> </td>
                 <td>

@@ -36,52 +36,32 @@ router.get('/a_in_out',(req, res)=>{
   });
   
   
-router.get('/a_in_out_view',(req,res,next)=>{
+router.post('/a_in_out',(req,res,next)=>{
   var data = req.body;
-  console.log(data);
-  var contract_code_data = req.body.contract_code_data; 
+  //console.log(data);
+  var contract_code_data = req.body.contractor_code; 
   var from_date = req.body.from_date;
   var to_date = req.body.to_date;
- 
-  //console.log(ccode);
+  async function getwork() {
+    try{
+        let pool = await sql.connect(config);
+        let employee_attendance = await pool.request().query( `select id ,CCODE ,CNAME ,EMPCODE ,IDCARDNO ,Employee_Name ,
+        Shift_date ,[Shift] ,[IN] ,Out ,Gate ,PO_NUM ,Status from employee_attendance_jan 
+        where CCODE='${contract_code_data}' and Shift_date between '${from_date}' and '${to_date}' 
+        order by EMPCODE,Employee_Name,PO_NUM`);
+        return employee_attendance.recordsets;
+    }
+    catch(error) {
+        console.log(error)
+    }
+}
+getwork().then(result=>{
+    var attendance_details = result[0];
+//console.log(employee);
+res.send(attendance_details);
 
-
-
-  /* async function geteContractValues(){
-      try{
-          let pool = await sql.connect(config);
-          let products= await pool.request().query(`select * from employee_attendance_jan 
-           where CCODE='${contract_code_data}' and Shift_date between '${from_date}' and '${to_date}' 
-           order by EMPCODE,Employee_Name,PO_NUM`,(req,res)=>{
-              
-           });
-          return products.recordsets;
-      }
-      catch(error){
-          console.log(error);
-      }
-  } */
-  sql.connect(config, function (err) {
-    if (err) console.log(err);
-    // create Request object
-    var request = new sql.Request();
-
-    // query to the database and get the records
-    request.query(`select * from employee_attendance_jan 
-    where CCODE='${contract_code_data}' and Shift_date between '${from_date}' and '${to_date}' 
-    order by EMPCODE,Employee_Name,PO_NUM`, function (err, recordset) {
-          
-      if (err) console.log(err)
-      //var data = recordset;
-      // send records as a response
-      res.send('attendance/attendance_in_out',recordset);
-  });
-  })
-
-  /* var data= geteContractValues().then(result =>{
-    var contract_attendance = result[0];
-    res.send(contract_attendance)
-  }); */
+}) 
+  
 
 });
 

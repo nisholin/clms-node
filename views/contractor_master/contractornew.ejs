@@ -92,7 +92,9 @@
 										<%= contract.Mobile_No %>
 									</td>
 									<td>
-										<%= contract.status %>
+										<label class="badge badge-gradient-warning">
+											<%= contract.status %>
+										</label>
 									</td>
 									<td>
 										<a href="contractor_edit/<%= contract.id %>" class="btn btn-sm btn-primary">Edit</a>
