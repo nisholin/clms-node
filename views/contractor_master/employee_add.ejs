@@ -1,0 +1,732 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Employee Master</h4>
+        <p class="card-description"> </p>
+        <form class="forms-sample"  method="POST" action="/employee/add" autocomplete="off">
+
+            <div class="form-group row">
+                <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
+                <div class="col-sm-9">
+                    <input list="cont_code" class="form-control" name="ccode" id="ccode"
+                    onchange="getuniqcode(this.value)"  required>
+                    <datalist id="cont_code">
+                        <% conDetailsCode.forEach(function(concode){ %>
+                            <option value="<%= concode.contractor_code %>"><%= concode.contractor_name %></option>
+                            <%})%>
+                    </datalist>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
+                <div class="col-sm-9">
+                    <select class="form-control" name="work_order_no" id="work_order_no" onchange="getWoDate(this.value)">
+                        <option  selected>Select Work Order Number</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Work Order Date</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="workorder_date" name="workorder_date"
+                    placeholder="Work Order Date Comes Here..."  required readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Total Work Man</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="workman_total"
+                    placeholder="Total Work Man Comes Here..."   disabled/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Available Work Man</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="available_workman" name="available_work_man"
+                    placeholder="Available Work Man Comes Here..." disabled/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">New Employee Code</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="emp_code" name="emp_code" onkeyup="success()"
+                        placeholder="emp code" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">Card Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="card_number" name="card_number"
+                        placeholder="Card Number" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
+                        placeholder="Card Number" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="emp_name" name="emp_name"
+                        placeholder="Enter Emp Name" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Wo validity from</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="wo_val_from" name="wo_val_from"
+                      placeholder="Choose Wo validity from &#xf073" style="font-family:Arial, FontAwesome" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Wo validity To</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="wo_val_to" name="wo_val_to" 
+                    placeholder="Choose Wo validity To &#xf073" style="font-family:Arial, FontAwesome" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ci_name" name="ci_name" placeholder="ci name" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Father" class="col-sm-3 col-form-label">Father / Husband Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Father" name="Father" placeholder="Father Name" required>
+                </div>
+            </div>
+            <!-- <div class="form-group row">
+                <label for="Husband Name" class="col-sm-3 col-form-label">Husband Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Husband" name="Husband"
+                        placeholder="Husband Name" required>
+                </div>
+            </div> -->
+            <div class="form-group row">
+                <label for="designation" class="col-sm-3 col-form-label">Designation</label>
+                <div class="col-sm-9">
+                   <!--  <input type="text" class="form-control" id="designation" name="designation"
+                        placeholder="designation" required>  -->
+
+                        <select class="form-control" id="designation" name="designation" required>
+                            <option  selected>Select Designation</option>
+                            <option value="Civil">Civil</option>
+                        </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">DOB</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="dob" name="dob" 
+                      placeholder="Choose DOB &#xf073" style="font-family:Arial, FontAwesome" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Engaged Date</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Engaged_Date" name="Engaged_Date" 
+                      placeholder="Coose Engaged Date &#xf073" style="font-family:Arial, FontAwesome" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="1"
+                                checked required>
+                            Male </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="2" required>
+                            Female </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Marital Status</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="1"
+                                 required>
+                            Married </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="2" 
+                            checked required>
+                            Un married</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Present_address" name="Present_address"
+                        placeholder="Present address" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="permanent_address" name="permanent_address"
+                        placeholder="permanent address" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="phone_no" name="phone_no"
+                        placeholder="phone no" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="email_id" name="email_id"
+                        placeholder="email id" required>
+                </div>
+            </div>
+
+
+            <!-- <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Incase Of Emergency</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="emergency" id="emergency"
+                                value="1" checked required> Inform </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="emergency" id="emergency"
+                                value="2" required> Not Inform </label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="form-group row">
+                <label for="Emergency_Mobile_Number" class="col-sm-3 col-form-label">Emergency Mobile Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Emergency_Mobile_Number"
+                        name="Emergency_Mobile_Number" placeholder="Emergency Mobile Number" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_name" name="nominee_name"
+                        placeholder="nominee name" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nominee_relation" class="col-sm-3 col-form-label">Nominee Relation</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_relation" name="nominee_relation"
+                        placeholder="nominee relation" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nominee_dob" class="col-sm-3 col-form-label">Nominee DOB</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_dob" name="nominee_dob"
+                        placeholder="Nominee dob &#xf073" style="font-family:Arial, FontAwesome" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="category" class="col-sm-3 col-form-label">Category</label>
+                <div class="col-sm-9">
+                    <select id="category" name="category"  class="form-control" required>
+                        <option selected>Select Category</option>
+                        <option value="">Bike</option>
+                    </select>
+                    
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
+                <div class="col-sm-9">
+                    <select id="wage_per_day" name="wage_per_day"  class="form-control" required>
+                        <option selected>Select Wage Per day</option>
+                        <option value="">200</option>
+                    </select>
+                  
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day"
+                        placeholder="Incentive per day" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day"
+                        placeholder="Allowance per day" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages"
+                        placeholder="Any other wages" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="uan" name="uan" placeholder="UAN" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ESI_no" name="ESI_no" placeholder="ESI no" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no"
+                        placeholder="Aadhar card no" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1"
+                        placeholder="Identical mark1" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Bank_name" name="Bank_name"
+                        placeholder="Bank name" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Account_no" name="Account_no"
+                        placeholder="Account no" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Ifsc" class="col-sm-3 col-form-label">IFSC CODE</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ifsc_code" name="ifsc_code"
+                        placeholder="Ifsc code" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Blood_grp" name="Blood_grp"
+                        placeholder="Blood grp" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="Entry_gate" name="Entry_gate">
+                        <option selected>Select Entry Gate</option>
+                        <option value="Gate">Gate I</option>
+                    </select>
+                   
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Work_spot" name="Work_spot"
+                        placeholder="Work spot" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Work</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                                value="1" checked required> Plant</label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                                value="2" required> Non Plant</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Place</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="area_of_place" id="area_of_place"
+                    required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity From</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="pass_val_from" id="pass_val_from"
+                      placeholder="Pass Validity From" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity To</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="pass_val_to" id="pass_val_to"
+                      placeholder="Choose Pass Validity To &#xf073" style="font-family:Arial, FontAwesome"  required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training From</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="safety_training_from"
+                       placeholder="Choose Safety Training From &#xf073" style="font-family:Arial, FontAwesome" id="safety_training_from" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training To</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="safety_training_to" id="safety_training_to"
+                      placeholder="Choose Safety Training To &#xf073" style="font-family:Arial, FontAwesome"  required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Payroll</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="1"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="2" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">ESI ELIGIBLE</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="1"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="2" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">PF ELIGIBLE</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="1"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="2" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="status" id="gender1" value="1"
+                                checked required>
+                            Active </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="status" id="gender2" value="2" required>
+                            Inactive </label>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <button type="submit" class="btn btn-gradient-success btn-rounded btn-fw">Save</button>
+                <button class="btn btn-gradient-danger btn-rounded btn-fw">Cancel</button>
+            </center>
+        </form>
+    </div>
+</div>
+    <!-- Footer Page-->
+    <%- include('../nav/footer') %>
+
+    <!--Contractor Data Bind -->
+    <script>
+        function getuniqcode(ccode) {
+           // alert('hello');
+           // alert(ccode)
+            $.ajax({
+                type: 'POST',
+                data: { "ccode": ccode },
+                url: '/get/contractor',
+                success: function (data) {
+                    //console.log(data);
+                    $('#work_order_no').empty();
+                    $('#work_order_no').append("<option>Select Work Order Number</option>");
+
+                    // console.log(data);
+                    //$('#work_order_no').append("Select Work Order Number");
+                    $('#work_order_no').empty();
+                    $('#work_order_no').append("<option>Select Work Order Number</option >"); 
+                    $.each(data, function (index, addressObj) {
+                        $('#work_order_no').append("<option value = '" + addressObj.WORK_ORDER + "' > " + addressObj.WORK_ORDER + " </option > ");
+                        //$('#workorder_date').append("<input value = '" + addressObj.WORK_OR_DATE + "' >");
+                    });
+                }
+            });
+        }
+    </script>
+
+    <!--Get Work Order Date-->
+    <script>
+        function getWoDate(WoNumber) {
+            //var WoNumber = document.getElementById("work_order_no").value;
+           // alert(WoNumber);
+            $.ajax({
+                type: 'POST',
+                data: { "wonumber": WoNumber },
+                url: '/get/contractor/work_order_date',
+                success: function (data) {
+                    //console.log(data);
+                    $('#available_workman').empty();
+                    $('#workman_total').empty();
+                    $('#available_workman').empty();
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        //alert(addressObj.availableCount);
+                        $('#workorder_date').val(data[0].WORK_OR_DATE.substring(0, 10));
+                        $('#workman_total').val(data[0].WORKMEN_TOT);
+                        var WORKMEN_TOT = data[0].WORKMEN_TOT;
+                        var availableCount = data[1].availableCount;
+
+                        if (WORKMEN_TOT == null) {
+                            $('#available_workman').val(availableCount);
+                        } else {
+                            var availableWorkman = Number(WORKMEN_TOT) - Number(availableCount);
+                            $('#available_workman').val(availableWorkman);
+                        }
+
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!--Available Work Man Validation-->
+    <script>
+        function empFormValidation() {
+            if (document.getElementById("available_workman").value === 21) {
+                document.getElementById('Submit').disabled = true;
+                window.alert("Available Work Man 0");
+            } else {
+                document.getElementById('Submit').disabled = false;
+            }
+        }
+    </script>
+
+    <!--Date Format-->
+    <script>
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#wo_val_from').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#wo_val_from').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#wo_val_to').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#wo_val_to').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#dob').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#dob').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#Engaged_Date').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#Engaged_Date').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#nominee_dob').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#nominee_dob').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#pass_val_from').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#pass_val_from').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#pass_val_to').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#pass_val_to').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#safety_training_from').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#safety_training_from').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#safety_training_to').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#safety_training_to').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+        });
+    </script>

@@ -141,12 +141,41 @@ router.get('contrat/empselect', (req, res, next) => {
 });
 
 router.post('/pass_req_new_1/add', function(req, res) {
-    //console.log(req.body); //Output=> like { searchid: 'Array of checked checkbox' }
-    console.log(req.body.searchid); // to get array of checked checkbox
-	//console.log(req.body.form_data);
+    var ccode 				= req.body.ccode;
+	var workorder_no 		= req.body.workorder_no;
+	var pass_from 			= req.body.pass_from;
+    var pass_to 			= req.body.pass_to;
+	var no_of_pass 			= req.body.no_of_pass;
+	var nature_of_jobs 		= req.body.nature_of_jobs;
+	var job_completion_date = req.body.job_completion_date;
+	var contractor_sap_no 	= req.body.contractor_sap_no;
+	var pass_type 			= req.body.pass_type;
+	var favorite 			= req.body.favorite[0];
 
+console.log(favorite);
+	async function get_employee() {
+		try {
+			let pool = await sql.connect(config);
+			await pool.request().query(`insert into pass_request_master
+			 (contractor_code,contractor_name,work_order_no,pass_request_from,pass_request_to,req_pass_count,job_nature,completion_date,
+				cont_sap_no,pass_type,status)
+			 values ('${ccode}','','${workorder_no}','${pass_from}','${pass_to}','${no_of_pass}','${nature_of_jobs}','${job_completion_date}',
+			 '${contractor_sap_no}','${pass_type}',0)`); 
 
+			
+		}
+		catch (error) {
+			console.log(error);
+		}
+	}
+	get_employee();
+	console.log("Pass Request Successfully Updated...")
+	res.redirect('/passrequest_one/pass_request_one_new');  
 });
+	//console.log(req.body.ccode);
+	//console.log(req.body.searchIDs);
+
+/* }); */
 
 	/*
 router.post('/pass_req_new_1/add',(req,res)=>{

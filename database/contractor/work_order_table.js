@@ -5,7 +5,7 @@ var sql = require ('mssql');
 async function get_workOrder(){
     try{
             let pool = await sql.connect(config);
-            let product = await pool.request().query("SELECT [id],[CCODE],[CNAME],[VENDOR_NO],[WORK_ORDER],[WORK_OR_DATE],[CVALUE],[DURATION],[CDURATION],[EIC_PRNO],[EIC],[JOB_DESC],[DEPARTMENT],[EMPLOYEE_COUNT],[CLRA],[ISMW],[WORKMEN_TOT],[EXCESS_CLRA_COUNT],[EXCESS_CLRA_CONT_COUNT],[STATUS],[CREATED_BY],[CREATED_ON],[MODIFIED_BY],[MODIFIED_ON] FROM [CLMS_V].[dbo].[cpcl_work_order_master]");
+            let product = await pool.request().query("SELECT [id],[CCODE],[CNAME],[VENDOR_NO],[WORK_ORDER],[WORK_OR_DATE],[CVALUE],[DURATION],[CDURATION],[EIC_PRNO],[EIC],[JOB_DESC],[DEPARTMENT],[EMPLOYEE_COUNT],[CLRA],[ISMW],[WORKMEN_TOT],[EXCESS_CLRA_COUNT],[EXCESS_CLRA_CONT_COUNT],[STATUS],[CREATED_BY],[CREATED_ON],[MODIFIED_BY],[MODIFIED_ON] FROM cpcl_work_order_master");
             return product.recordsets;
     }
     catch(error){

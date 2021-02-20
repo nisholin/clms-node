@@ -29,11 +29,7 @@ router.get('/employeenew',(req,res,next)=>{
             employee.user_name = user_name;
             var data = result[0]; 
             employee.view = data;
-        dboperations.get_contractor_code().then(result=>{
-            var ccode = result[0]; 
-            employee.contcode = ccode;
-            res.render('contractor_master/employeenew',employee)
-        }) 
+            res.render('contractor_master/employeenew',employee);
     })
     } 
 }); 
@@ -41,7 +37,7 @@ router.get('/employeenew',(req,res,next)=>{
 //Add Employee 
 router.post('/employee/add',(req,res,next)=>{
     var data = req.body;
-    //console.log(data);
+    console.log(data);
     var ccode = req.body.ccode;
     //Image Upload
     /* var form = new formidable.IncomingForm();
@@ -62,6 +58,8 @@ router.post('/employee/add',(req,res,next)=>{
     var emp_name = req.body.emp_name;
     var work_order_no = req.body.work_order_no;
     var workorder_date = req.body.workorder_date;
+    var card_number = req.body.card_number;
+    var old_emp_number = req.body.old_emp_number;
    // var no_of_employees = req.body.no_of_employees;
    // var sub_contractor = req.body.sub_contractor;
    // var sub_con_code = req.body.sub_con_code;
@@ -97,20 +95,25 @@ router.post('/employee/add',(req,res,next)=>{
     var Identical_mark1 = req.body.Identical_mark1;
     var Bank_name = req.body.Bank_name;
     var Account_no = req.body.Account_no;
+    var ifsc_code = req.body.ifsc_code;
     var Blood_grp = req.body.Blood_grp;
     var Entry_gate = req.body.Entry_gate;
     var Work_spot = req.body.Work_spot;
     var Area_of_work = req.body.Area_of_work;
+    var area_of_place = req.body.area_of_place;
     var pass_val_from = req.body.pass_val_from;
     var pass_val_to = req.body.pass_val_to;
     var safety_training_from = req.body.safety_training_from;
     var safety_training_to = req.body.safety_training_to;
+    var payroll = req.body.payroll;
+    var esi_eligible = req.body.esi_eligible;
+    var pf_eligible = req.body.pf_eligible;
     var status = req.body.status;
     //console.log(ccode);
     async function geteEmployeeValues(){
         try{
             let pool = await sql.connect(config);
-             await pool.request().query("insert into cpcl_employee_master (CCODE,ENAME,WORK_ORDER_No,WORK_OR_DATE,ECODE,WO_FROM,WO_TO,CI_NAME,FATHER,HUSBAND,DESIGNATION,DOB,ENGAGED_DATE,GENDER,MARITAL_STATUS,PRE_ADDRESS,PERMANENT_ADDRESS,PHONE_NO,EMAIL_ID,EMERGENCY_PERSON,MOBILE_NO,NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_DOB,CAT,WAGE,INCENTIVE,ALLOWANCE,OTHERS,UAN,ESI,AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,STATUS) values ('"+ccode+"','"+emp_name+"','"+work_order_no+"','"+workorder_date+"','"+emp_code+"','"+wo_val_from+"','"+wo_val_to+"','"+ci_name+"','"+Father+"','"+Husband+"','"+designation+"','"+dob+"','"+Engaged_Date+"','"+gender+"','"+mstatus+"','"+Present_address+"','"+permanent_address+"','"+phone_no+"','"+email_id+"','"+emergency+"','"+Emergency_Mobile_Number+"','"+nominee_name+"','"+nominee_relation+"','"+nominee_dob+"','"+category+"','"+wage_per_day+"','"+Incentive_per_day+"','"+Allowance_per_day+"','"+Any_other_wages+"','"+uan+"','"+ESI_no+"','"+Aadhar_card_no+"','"+Identical_mark1+"','"+Bank_name+"','"+Account_no+"','"+Blood_grp+"','"+Entry_gate+"','"+Work_spot+"','"+Area_of_work+"','"+pass_val_from+"','"+pass_val_to+"','"+safety_training_from+"','"+safety_training_to+"','"+status+"')",(req,res)=>{
+             await pool.request().query("insert into cpcl_employee_master (CCODE,ENAME,WORK_ORDER_No,WORK_OR_DATE,card_number,old_emp_number,ECODE,WO_FROM,WO_TO,CI_NAME,FATHER,DESIGNATION,DOB,ENGAGED_DATE,GENDER,MARITAL_STATUS,PRE_ADDRESS,PERMANENT_ADDRESS,PHONE_NO,EMAIL_ID,EMERGENCY_PERSON,MOBILE_NO,NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_DOB,CAT,WAGE,INCENTIVE,ALLOWANCE,OTHERS,UAN,ESI,AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,ifsc_code,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,area_of_place,PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,payroll,esi_eligible,pf_eligible,STATUS) values ('"+ccode+"','"+emp_name+"','"+work_order_no+"','"+workorder_date+"','"+card_number+"','"+old_emp_number+"','"+emp_code+"','"+wo_val_from+"','"+wo_val_to+"','"+ci_name+"','"+Father+"','"+designation+"','"+dob+"','"+Engaged_Date+"','"+gender+"','"+mstatus+"','"+Present_address+"','"+permanent_address+"','"+phone_no+"','"+email_id+"','"+emergency+"','"+Emergency_Mobile_Number+"','"+nominee_name+"','"+nominee_relation+"','"+nominee_dob+"','"+category+"','"+wage_per_day+"','"+Incentive_per_day+"','"+Allowance_per_day+"','"+Any_other_wages+"','"+uan+"','"+ESI_no+"','"+Aadhar_card_no+"','"+Identical_mark1+"','"+Bank_name+"','"+Account_no+"','"+ifsc_code+"','"+Blood_grp+"','"+Entry_gate+"','"+Work_spot+"','"+Area_of_work+"','"+area_of_place+"','"+pass_val_from+"','"+pass_val_to+"','"+safety_training_from+"','"+safety_training_to+"','"+payroll+"','"+esi_eligible+"','"+pf_eligible+"','"+status+"')",(req,res)=>{
                  console.log("Employee successfully inserted");
              });
             //return products.recordsets;
@@ -119,7 +122,7 @@ router.post('/employee/add',(req,res,next)=>{
             console.log(error);
         }
     }
-    //geteEmployeeValues();
+    geteEmployeeValues();
     res.redirect("/employeenew");	 
 });
 
@@ -127,8 +130,8 @@ router.post('/employee/add',(req,res,next)=>{
 router.get('/employee_edit/:empid',(req, res) => {
     var user_Id = req.session.userId, user_name = req.session.user_name;
     var emp_id = req.params.empid;
-
-    async function employeeupdate(){
+    console.log(emp_id);
+   /*  async function employeeupdate(){
         try{
                 let pool = await sql.connect(config);
                 let products = await pool.request().query(`select * from cpcl_employee_master where id = ${emp_id}`); 
@@ -142,7 +145,7 @@ router.get('/employee_edit/:empid',(req, res) => {
     employeeupdate().then(result=>{
         var Emp_edit_data = result[0];
         res.render('contractor_master/employee_edit',{user_Id:user_Id,user_name:user_name,Emp_edit_data:Emp_edit_data});
-    })
+    }) */
 });
 
 
@@ -232,16 +235,30 @@ router.post('/get/contractor',(req,res)=>{
         }
     }
 
+    async function getprefixcode() {
+        try{
+            let pool = await sql.connect(config);
+            let prefix = await pool.request().query( `select * from cpcl_contractor_master where contractor_code ='${req.body.ccode}'`);
+            return prefix.recordsets;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+
+    //prefixcode=[];
     getcontractor().then(result=>{
         var contractor = result[0];
-        res.send(contractor);
+            res.send(contractor);
+       // })
+        
     })
 })
 
 //Get Work Order Date and Total Count
 router.post('/get/contractor/work_order_date',(req,res)=>{
     var work_order_number = req.body.wonumber;
-    //console.log(work_order_number);
+    console.log(work_order_number);
 
     async function getWoDate() {
         try {
@@ -256,7 +273,7 @@ router.post('/get/contractor/work_order_date',(req,res)=>{
     async function getACount() {
         try {
             let pool = await sql.connect(config);
-            let avilablecount = await pool.request().query(`select count(*) as avilable_count from [CLMS_V].[dbo].[cpcl_employee_master] 
+            let avilablecount = await pool.request().query(`select count(*) as availableCount from cpcl_employee_master
             where WORK_ORDER_No = '${req.body.wonumber}'`);
             return avilablecount.recordsets;
         } catch(error) {
@@ -264,20 +281,52 @@ router.post('/get/contractor/work_order_date',(req,res)=>{
         }
     }
 
-    wormanDeatils = {};
+    
+    wormanDeatils = [];
     getWoDate().then(result=>{
         var WoDate = result[0];
-        wormanDeatils.WoDate = WoDate;
+       // wormanDeatils.push(WoDate);
         //console.log(WoDate)
         getACount().then(result=>{
             var availableCount = result[0];
             //console.log(WoDate)
-            wormanDeatils.availableCount = availableCount;
-            console.log(wormanDeatils);
+            wormanDeatils = WoDate.concat(availableCount);
+            console.log(wormanDeatils)
             res.send(wormanDeatils);
         })
         //res.send(WoDate);
     })
+})
+
+//Get Employee New Form
+condetails = {};
+router.get('/employee/add',(req,res)=>{
+    var user_Id = req.session.userId, user_name = req.session.user_name;
+    if(user_Id == null)
+  {
+      message = 'Wrong Credentials.';
+      res.render('login.ejs',{message: message});
+      return;
+  }
+  else{
+      dboperations.get_contractor_code().then(result=>{
+        condetails.user_Id = user_Id;
+        condetails.user_name = user_name;
+        var conDetailsCode = result[0]; 
+          condetails.conDetailsCode = conDetailsCode;
+          res.render('contractor_master/employee_add',condetails);
+  })
+  } 
+
+
+
+
+   /*  dboperations.get_contractor_code().then(result=>{
+        var conDetails = result[0]; 
+        console.log(conDetails);
+        res.render('contractor_master/employee_add',conDetails);
+    })  */
+    
 })
 
 

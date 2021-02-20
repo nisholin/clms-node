@@ -90,7 +90,7 @@ onclick="addEngineer(1)">New</button>
 
 	<h4 class="card-title">Engineer Master</h4>
 	
-	<form class="forms-sample" method="POST" action="/engineer/new">
+	<form class="forms-sample" method="POST" action="/engineer/new" name="EngForm" onsubmit="return engFormValidation()">
 			<div class="form-group row">
 				<label for="exampleInputEIC PRNO" class="col-sm-3 col-form-label">EIC PRNO</label>
 				<div class="col-sm-9">
@@ -149,7 +149,7 @@ onclick="addEngineer(1)">New</button>
 			</div>
 			
 			<center>
-				<button type="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+				<button type="Submit" value="send" name="Submit" class="btn btn-gradient-success btn-fw">Save</button>
 				<button class="btn btn-gradient-danger btn-fw" onclick="close()">cancel</button>
 			</center>
 	</form>
@@ -351,4 +351,34 @@ onclick="addEngineer(1)">New</button>
   //  Developed By Yasser Mas
   // yasser.mas2@gmail.com
   
+</script>
+
+<!--Button Disabled-->
+<script>
+    document.getElementById("save").onclick = function() {
+    //disable
+    this.disabled = true;
+
+    //do some validation stuff
+}
+</script>
+
+<!--Form Validation-->
+<script>
+	function engFormValidation(){
+		var name = document.forms["EngForm"]["eic_prno"]; 
+        var email = document.forms["EngForm"]["name"]; 
+
+		if (name.value == "") { 
+            window.alert("Please enter your name."); 
+            name.focus(); 
+            return false; 
+        } 
+  
+        if (email.value == "") { 
+            window.alert("Please enter your address."); 
+            email.focus(); 
+            return false; 
+        } 
+	}
 </script>

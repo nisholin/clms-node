@@ -22,11 +22,6 @@ router.get('/contractornew',(req,res,next)=>{
         res.render('contractor_master/contractornew',{user_Id:user_Id,user_name:user_name,data})
     }) 
 	}
-	/* dboperations.contractor_data().then(result=>{
-        var data = result[0];        
-        //console.table(data);
-        res.render('contractor_master/contractornew',{data})
-    }) */
 });
 
 //Contractor Insert
@@ -52,6 +47,8 @@ router.post('/contractor/new',(req,res,next)=>{
    var compliance_Mail_id   =   req.body.compliance_Mail_id;
    var hr_department        =   req.body.hr_department;
    var status               =   req.body.status;
+   var username             = req.body.username;
+   var password             = req.body.Password;
   
 //console.log(req.body);
 
@@ -60,9 +57,9 @@ router.post('/contractor/new',(req,res,next)=>{
 
         let pool=await sql.connect(config);
         await pool.request().query(`insert into cpcl_contractor_master (contractor_code ,contractor_name, address,prefix_code,proprietor,owner,
-            md,partner,contractor_mail,ESI_Code_No,PF_Code_No,Contractor_PAN_No,Contractor_LIN,Mobile_No,Name_of_person,compliance_Mail_id,hr_department,status,created_by,created_on)
+            md,partner,contractor_mail,ESI_Code_No,PF_Code_No,Contractor_PAN_No,Contractor_LIN,Mobile_No,Name_of_person,compliance_Mail_id,hr_department,status,user_name,password)
         values('${contractor_code}','${contractor_name}','${address}','${prefix_code}','${proprietor}','${owner}','${md}','${partner}','${contractor_mail}','${ESI_Code_No}','${PF_Code_No}',
-        '${Contractor_PAN_No}','${Contractor_LIN}','${Mobile_No}','${Name_of_person}','${compliance_Mail_id}','${hr_department}','${status}','1','2021-01-30')`,(req,res)=>{
+        '${Contractor_PAN_No}','${Contractor_LIN}','${Mobile_No}','${Name_of_person}','${compliance_Mail_id}','${hr_department}','${status}','${username}','${password}')`,(req,res)=>{
 
             console.log("successfully inserted");
         })

@@ -26,16 +26,16 @@
 <body>
 	<div class="limiter">
 		<div class="container-login100">
+			<div  id="position_absolute" class="panel-body" style="position: absolute;top: 3%;width: 50%;left: 25%;">
+				<% if (message.length > 0) { %>
+				<div class="alert alert-danger col-sm-12"><%= message %></div>
+				<% } %>
+			</div>
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="images/img-01.png" alt="IMG">
 				</div>
-                <div style="padding-top:30px" class="panel-body" >
-                    <% if (message.length > 0) { %>
-                    <div class="alert alert-danger col-sm-12"><%= message %></div>
-                    <% } %>
-                </div>
-
+                
 				<form id="loginform" class="form-horizontal" role="form" method="post" action="/login_val">
 					<span class="login100-form-title">
 						Member Login

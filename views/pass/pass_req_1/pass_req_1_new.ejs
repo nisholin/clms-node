@@ -126,8 +126,9 @@
                     </thead>                    
                 </table>
                 <table class="table table-striped" id="rsa">
-                      
-                </tbody>
+
+                </table>  
+               
                 <!--Table End-->
                 </div>
                 <br/><br/>
@@ -176,34 +177,44 @@
             var len=$('#rsa tr').length;
              $.each(data, function (index, addressObj) {
                   //  $('#emp').append("<input type="text" >");
-                  $('.table-striped').append('<tr class="row_'+addressObj.id+'"><td><input type="checkbox" name="check" id="check_value_'+addressObj.id+'" value="'+addressObj.id+'" "></td><td>'+addressObj.id+'</td><td>'+addressObj.ECODE+'</td><td>'+addressObj.ENAME+'</td><td>'+addressObj.FATHER+'</td><td>'+addressObj.PRE_ADDRESS+'</td><td>'+addressObj.GENDER+'</td><td>'+addressObj.WROK_SPOT+'</td><td>'+addressObj.SAFETY_TRAINING_FROM+'</td><td>'+addressObj.SAFETY_TRAINING_TO+'</td><td>'+addressObj.WORK_ORDER_No+'</td><td>'+addressObj.WORK_OR_DATE+'</td></tr>');
+                  $('.table-striped').append('<tr class="row_'+addressObj.id+'"><td><input type="checkbox" name="check" id="check_value_'+addressObj.ECODE+'" value="'+addressObj.id+'" "></td><td>'+addressObj.id+'</td><td>'+addressObj.ECODE+'</td><td>'+addressObj.ENAME+'</td><td>'+addressObj.FATHER+'</td><td>'+addressObj.PRE_ADDRESS+'</td><td>'+addressObj.GENDER+'</td><td>'+addressObj.WROK_SPOT+'</td><td>'+addressObj.SAFETY_TRAINING_FROM+'</td><td>'+addressObj.SAFETY_TRAINING_TO+'</td><td>'+addressObj.WORK_ORDER_No+'</td><td>'+addressObj.WORK_OR_DATE+'</td></tr>');
                 });
             }
         });         
     } 
     
 
-
-
-$("#sub_btn").click(function (event) {
+ $("#sub_btn").click(function (event) {
     event.preventDefault();
-    var form_data=$('form').serialize();
-    
-    var searchIDs = $("#rsa input:checkbox:checked").map(function () {
+   
+    var ccode=$('#contractor_code').val(); 
+    var workorder_no=$('#workorder_no').val();
+    var pass_from=$('#pass_from').val();
+    var pass_to=$('#pass_to').val();
+    var no_of_pass=$('#no_of_pass').val();
+    var nature_of_jobs=$('#nature_of_jobs').val();
+    var job_completion_date=$('#job_completion_date').val();
+    var contractor_sap_no=$('#contractor_sap_no').val();
+    var pass_type=$('#pass_type').val();
+   
+ /*    var searchIDs = $("#rsa input:checkbox:checked").map(function () {
         return $(this).val();
-    }).get();
-
-    var form_array=[];
-
-    form_array.push(form_data,searchIDs);
-    console.log("selected::::" + searchIDs);
+    }).get(); */
+  
+  var favorite = [];
+            $.each($("input[name='check']:checked"), function(){
+                favorite.push($(this).val());
+            });
+            alert("My favourite sports are: " + favorite[0]);
+        console.log(favorite);
+    
     $.ajax({
        url:'/pass_req_new_1/add',
        type:'post',
-       data:{form_array:form_array},
+       data:{favorite:favorite},
        success:function(response){
           console.log(response);
        }
     });
-});
+}); 
 </script>

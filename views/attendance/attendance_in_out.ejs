@@ -27,7 +27,7 @@
 					<input type="date" class="form-control" id="to_date" name="to_date" placeholder="to date" >
 				
 				 
-				  <button type="submit" class="btn btn-gradient-primary mb-2" onclick="getdata()">Go</button>
+				  <button  class="btn btn-gradient-primary mb-2" onclick="get_contractor()">Go</button>
 				</form>
 			  </div>
 	
@@ -77,25 +77,26 @@
 		
 		<script>
 
-			function getdata(){
-		var contractor_code =document.getElementById("contract_code_data").value;
-		var from_date =document.getElementById("from_date").value;
-		var to_date =document.getElementById("to_date").value;
-				//alert(contractor_code);
-				////alert(from_date);
-				//alert(to_date);
-					$.ajax({
-					type:'POST',
-					data: { contractor_code: contractor_code,from_date: from_date,to_date: to_date },
-				    url:'/a_in_out',
-					success: function(attendance_details){
-						//console.log(data);
-						$('#in_outdatas').empty();
-					$.each(attendance_details, function(index, attendancedetails) {
-							$('#in_outdatas').append('<tr><td>' + attendancedetails.EMPCODE+ '</td><td>' + attendancedetails.Employee_Name + '</td><td>' + attendancedetails.Shift + '</td><td>' + attendancedetails.Shift_date + '</td><td>' + attendancedetails.IN + '</td><td>' + attendancedetails.Out + '</td><td>' + attendancedetails.CNAME + '</td><td>' + attendancedetails.Gate + '</td><td>' + attendancedetails.PO_NUM + '</td></tr>');
-						});
-					}
-				});
+		function get_contractor(){
+
+			var contractor_code =document.getElementById("contract_code_data").value;
+			var from_date =document.getElementById("from_date").value;
+			var to_date =document.getElementById("to_date").value;
+					//alert(contractor_code);
+					////alert(from_date);
+					//alert(to_date);
+						$.ajax({
+						type:'POST',
+						data: { contractor_code: contractor_code,from_date: from_date,to_date: to_date },
+						url:'/contractor_attendance',
+						success: function(data){
+							//console.log(data);
+						//	$('#in_outdatas').empty();
+						$.each(data, function(index, attendancedetails) {
+								$('#in_outdatas').append('<tr><td>' + attendancedetails.EMPCODE+ '</td><td>' + attendancedetails.Employee_Name + '</td><td>' + attendancedetails.Shift + '</td><td>' + attendancedetails.Shift_date + '</td><td>' + attendancedetails.IN + '</td><td>' + attendancedetails.Out + '</td><td>' + attendancedetails.CNAME + '</td><td>' + attendancedetails.Gate + '</td><td>' + attendancedetails.PO_NUM + '</td></tr>');
+							});
+						}
+					}); 
 		
 			}
 		</script>

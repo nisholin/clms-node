@@ -6,7 +6,7 @@ var sql = require('mssql');
 async function getGateValues(){
     try{
         let pool = await sql.connect(config);
-        let products = await pool.request().query("SELECT [id],[name],[status]  FROM [CLMS_V].[dbo].[cpcl_gate_master]");
+        let products = await pool.request().query("SELECT [id],[name],[status]  FROM cpcl_gate_master");
         return products.recordsets;
     }
     catch(error){

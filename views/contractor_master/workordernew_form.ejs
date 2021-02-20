@@ -6,11 +6,12 @@
 
                 <h4 class="card-title">Work Order Cat1</h4>
 
-                <form class="forms-sample" method="POST" action="/workordernew/add"> 
+                <form class="forms-sample" method="POST" action="/workordernew/add" autocomplete="off"> 
                     <div class="form-group row">
                         <label for="exampleInputContractor Code" class="col-sm-3 col-form-label">Contractor Code</label>
                         <div class="col-sm-9">
-                            <input list="Contractor_Code" class="form-control" name="Contractor_Code" placeholder="Select Contractor Code">
+                            <input list="Contractor_Code" class="form-control" name="Contractor_Code" 
+                            autocomplete="off" placeholder="Select Contractor Code">
                             <datalist id="Contractor_Code">
                                 <% codename.forEach(function(code) { %>
                                     <option value="<%= code.contractor_code %>">
@@ -137,7 +138,7 @@
 						  <div class="form-check">
 							<label class="form-check-label">
                               <input type="radio" class="form-check-input" name="extra_workman" id="extra_workman" value="0"
-                              onchange="getWorkmanTable(0)"> No </label>
+                              onchange="getWorkmanTable(0)" checked> No </label>
 						  </div>
 						</div>
 					  </div>
@@ -195,7 +196,7 @@
 						  <div class="form-check">
 							<label class="form-check-label">
                               <input type="radio" class="form-check-input" name="extra_contractor" id="extra_contractor" value="0"
-                              onchange="getContractorTable(0)"> No </label>
+                              onchange="getContractorTable(0)" checked> No </label>
 						  </div>
 						</div>
 					  </div>

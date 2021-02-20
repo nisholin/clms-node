@@ -2,768 +2,301 @@
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
 
-        <div class="card" id="newform">
-            <div class="card-body dis-block">
-                <h4 class="card-title">Employee Master</h4>
-                <p class="card-description"> </p>
-                <form class="forms-sample" method="POST" action="/employee/add">
-
-                    <div class="form-group row">
-                        <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
-                        <div class="col-sm-9">
-                            <input list="cont_code" class="form-control" name="ccode" id="ccode" 
-                            onchange="getContractorDetails(this.value)"  required>
-                            <datalist id="cont_code">
-                                <% contcode.forEach(function(ccode){ %>
-                                    <option value="<%= ccode.contractor_code %>"><%= ccode.contractor_name %></option>
-                                    <%})%>
-                            </datalist>
-                        </div>
-                    </div>
-                    <!-- <div class="form-group row">
-                        <label for="file" class="col-sm-3 col-form-label">File upload</label>
-                        <label>File upload</label>
-                        <div class="col-sm-9">
-                            <input type="file" name="filetoupload" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-gradient-primary"
-                                        type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div> -->
-                   
-
-
-                    <div class="form-group row">
-                        <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="work_order_no" id="work_order_no" onchange="getWoDate(this.value)">
-                                <option  selected>Select Work Order Number</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Work Order Date</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="workorder_date" name="workorder_date"
-                            placeholder="Work Order Date Comes Here..."  required readonly/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Total Work Man</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="workman_total"
-                            placeholder="Total Work Man Comes Here..."  required readonly/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Available Work Man</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="available_workman"
-                            placeholder="Available Work Man Comes Here..."  required readonly/>
-                        </div>
-                    </div>
-                       <!-- <div class="form-group row">
-                        <label for="no_of_employees" class="col-sm-3 col-form-label">Number Of Employees</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="no_of_employees" name="no_of_employees"
-                                placeholder="no of employees">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="sub_contractor" class="col-sm-3 col-form-label">Sub Contractor</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="sub_contractor" name="sub_contractor"
-                                placeholder="sub contractor">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="sub_con_code" class="col-sm-3 col-form-label">Sub Con Code</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="sub_con_code" name="sub_con_code"
-                                placeholder="sub con code">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="licence_no" class="col-sm-3 col-form-label">Licence No</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="licence_no" name="licence_no"
-                                placeholder="licence no">
-                        </div>
-                    </div>   -->
-  
-                    <div class="form-group row">
-                        <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="emp_code" name="emp_code"
-                                placeholder="emp code" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="emp_name" name="emp_name"
-                                placeholder="Enter Emp Name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Wo validity from</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="wo_val_from" name="wo_val_from" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Wo validity To</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="wo_val_to" name="wo_val_to" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="ci_name" name="ci_name" placeholder="ci name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Father" class="col-sm-3 col-form-label">Father Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Father" name="Father" placeholder="Father Name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Husband Name" class="col-sm-3 col-form-label">Husband Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Husband" name="Husband"
-                                placeholder="Husband Name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="designation" class="col-sm-3 col-form-label">Designation</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="designation" name="designation"
-                                placeholder="designation" required> 
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">DOB</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="dob" name="dob" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Engaged Date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="Engaged_Date" name="Engaged_Date" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Gender</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="gender1" value="1"
-                                        checked required>
-                                    Male </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender" id="gender2" value="2" required>
-                                    Female </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Marital Status</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="1"
-                                        checked required>
-                                    Married </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="2" required>
-                                    Un married</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Present_address" name="Present_address"
-                                placeholder="Present address" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="permanent_address" name="permanent_address"
-                                placeholder="permanent address" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="phone_no" name="phone_no"
-                                placeholder="phone no" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="email_id" name="email_id"
-                                placeholder="email id" required>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Incase Of Emergency</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="emergency" id="emergency"
-                                        value="1" checked required> Inform </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="emergency" id="emergency"
-                                        value="2" required> Not Inform </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Emergency_Mobile_Number" class="col-sm-3 col-form-label">Emergency Mobile Number</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Emergency_Mobile_Number"
-                                name="Emergency_Mobile_Number" placeholder="Emergency Mobile Number" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nominee_name" name="nominee_name"
-                                placeholder="nominee name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nominee_relation" class="col-sm-3 col-form-label">Nominee Relation</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nominee_relation" name="nominee_relation"
-                                placeholder="nominee relation" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nominee_dob" class="col-sm-3 col-form-label">Nominee DOB</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="nominee_relation" name="nominee_dob"
-                                placeholder="nominee dob" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="category" class="col-sm-3 col-form-label">Category</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="category" name="category"
-                                placeholder="category" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="wage_per_day" name="wage_per_day"
-                                placeholder="wage per day" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day"
-                                placeholder="Incentive per day" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day"
-                                placeholder="Allowance per day" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages"
-                                placeholder="Any other wages" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="uan" name="uan" placeholder="UAN" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="ESI_no" name="ESI_no" placeholder="ESI no" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no"
-                                placeholder="Aadhar card no" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1"
-                                placeholder="Identical mark1" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Bank_name" name="Bank_name"
-                                placeholder="Bank name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Account_no" name="Account_no"
-                                placeholder="Account no" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Blood_grp" name="Blood_grp"
-                                placeholder="Blood grp" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Entry_gate" name="Entry_gate"
-                                placeholder="Entry gate" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Work_spot" name="Work_spot"
-                                placeholder="Work spot" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Area Of Work</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
-                                        value="1" checked required> Plant</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
-                                        value="2" required> Non Plant</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Pass Validity From</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="pass_val_from" id="pass_val_from"
-                            required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Pass Validity To</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="pass_val_to" id="pass_val_to"
-                            required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Safety Training From</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="safety_training_from"
-                                id="safety_training_from" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Safety Training To</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" name="safety_training_to" id="safety_training_to"
-                            required/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="gender1" value="1"
-                                        checked required>
-                                    Active </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="gender2" value="2" required>
-                                    Inactive </label>
-                            </div>
-                        </div>
-                    </div>
-                    <center>
-                        <button type="submit" class="btn btn-gradient-success btn-rounded btn-fw">Save</button>
-                        <button class="btn btn-gradient-danger btn-rounded btn-fw">Cancel</button>
-                    </center>
-                </form>
-            </div>
-        </div>
-        <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
-            onclick="addContractor(1)">New</button>
-        <br />
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card overflow-x overflow-y-hidden" id="table">
-                <div class="card-body">
-                    <h4 class="card-title">Employee Master</h4>
-                    <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-                        <select class  ="form-control" name="state" id="maxRows">
-                            <option value="5000">Show ALL Rows</option>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="70">70</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-                    <table class="table table-striped table-class" id= "table-id">
-                        <thead>
-                            <tr>
-                                <th>Contractor Code</th>
-                                <th>Contractor Name</th>
-                                <th> Work Order No</th>
-                                <th> Work Order Date</th>
-                                <th> Employee Code</th>
-                                <th> Employee Name</th>
-                                <th> Wo validity From</th>
-                                <th> Wo validity To</th>
-                                <th> Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <% view.forEach(function(emp_master){ %>
-                                <tr>
-                                    <td class="py-1">
-                                        <%= emp_master.CCODE %>
-                                    </td>
-                                    <td>
-                                        <%= emp_master.ENAME %>
-                                    </td>
-                                    <td>
-                                        <%= emp_master.WORK_ORDER_No %>
-                                    </td>
-                                    <td>
-                                        <label class="badge badge-gradient-success"><%= emp_master.WORK_OR_DATE.toISOString().substring(0, 10); %></label>
-                                        
-                                    </td>
-                                    <td>
-                                        <%= emp_master.ECODE %>
-                                    </td>
-                                    <td>
-                                        <label class="badge badge-gradient-danger"> <%= emp_master.ENAME %></label>
-                                       
-                                    </td>
-                                    <td>
-                                        <%= emp_master.WO_FROM.toISOString().substring(0, 10); %> %>
-                                    </td>
-                                    <td>
-                                        <%= emp_master.WO_TO.toISOString().substring(0, 10); %> %>
-                                    </td>
-                                    <td>
-                                        <%= emp_master.STATUS %>
-                                    </td>
-                                    <td>
-                                        <a href="employee_edit/<%= emp_master.id %>"
-                                            class="btn btn-sm btn-primary">Edit</a>
-                                    </td>
-                                </tr>
-
-                                <% }) %>
-                        </tbody>
-                    </table>
-                    <br/><br/>
-                    <!--		Start Pagination -->
-                    <div class='pagination-container'>
-                      <nav>
-                        <ul class="pagination ">
-          
-                          <li data-page="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-                            <span>
-                              < <span class="sr-only">(current)
-                            </span></span>
-                          </li>
-                          <!--	Here the JS Function Will Add the Rows -->
-                          <li data-page="next" id="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-                            <span> > <span class="sr-only">(current)</span></span>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
         
+    <div class="card" id="transferform"></div>
+    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+    href="/employee/add">New</a>
+    <br/>
+   
+    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card overflow-x overflow-y-hidden" id="table">
+        <div class="card-body">
+            <h4 class="card-title">Employee Master</h4>
+            <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
+                <select class  ="form-control" name="state" id="maxRows">
+                    <option value="5000">Show ALL Rows</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="70">70</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <table class="table table-striped table-class" id= "table-id">
+                <thead>
+                    <tr>
+                        <th>Contractor Code</th>
+                        <th>Contractor Name</th>
+                        <th> Work Order No</th>
+                        <th> Work Order Date</th>
+                        <th> Employee Code</th>
+                        <th> Employee Name</th>
+                        <th> Wo validity From</th>
+                        <th> Wo validity To</th>
+                        <th> Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <!-- <tbody>
 
-<!-- Footer Page-->
-<%- include('../nav/footer') %>
+                    <% view.forEach(function(emp_master){ %>
+                        <tr>
+                            <td class="py-1">
+                                <%= emp_master.CCODE %>
+                            </td>
+                            <td>
+                                <%= emp_master.ENAME %>
+                            </td>
+                            <td>
+                                <%= emp_master.WORK_ORDER_No %>
+                            </td>
+                            <td>
+                                <label class="badge badge-gradient-success"><%= emp_master.WORK_OR_DATE %></label>
+                                
+                            </td>
+                            <td>
+                                <%= emp_master.ECODE %>
+                            </td>
+                            <td>
+                                <label class="badge badge-gradient-danger"> <%= emp_master.ENAME %></label>
+                                
+                            </td>
+                            <td>
+                                <%= emp_master.WO_FROM %> %>
+                            </td>
+                            <td>
+                                <%= emp_master.WO_TO %> %>
+                            </td>
+                            <td>
+                                <%= emp_master.STATUS %>
+                            </td>
+                            <td>
+                                <a href="/employee_edit/<%= emp_master.id %>"
+                                    class="btn btn-sm btn-primary">Edit</a>
+                            </td>
+                        </tr>
+
+                        <% }) %>
+                </tbody> -->
+            </table>
+            <br/><br/>
+            <!--		Start Pagination -->
+            <div class='pagination-container'>
+                <nav>
+                <ul class="pagination ">
+
+                    <li data-page="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
+                    <span>
+                        < <span class="sr-only">(current)
+                    </span></span>
+                    </li>
+                    <!--	Here the JS Function Will Add the Rows -->
+                    <li data-page="next" id="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
+                    <span> > <span class="sr-only">(current)</span></span>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </div>
 
 
-<!--Onload Funcation-->
-<script type="text/javascript">
+    <!-- Footer Page-->
+    <%- include('../nav/footer') %>
+
+
+    <!--Onload Funcation-->
+    <script type="text/javascript">
 
     window.onload = function () {
 
-        document.getElementById("newform").style.display = "none";
+    document.getElementById("newform").style.display = "none";
 
-        //Get Current Date
-        var today = new Date();
+    //Get Current Date
+    var today = new Date();
 
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
-        today = yyyy + '/' + mm + '/' + dd;
-        //alert(today);
+    today = yyyy + '/' + mm + '/' + dd;
+    //alert(today);
 
     };
 
     function addContractor(a) {
 
-        if (a == 1) {
-            document.getElementById("newform").style.display = "block";
-            document.getElementById("table").style.display = "none";
-            document.getElementById("addbutton").style.display = "none";
-        } else {
-            document.getElementById("newform").style.display = "none";
-        }
+    if (a == 1) 
+    {
+        document.getElementById("newform").style.display = "block";
+        document.getElementById("table").style.display = "none";
+        document.getElementById("addbutton").style.display = "none";
+    } else {
+    document.getElementById("newform").style.display = "none";
+    }
 
     }
-</script>
 
-<!--Data Bind -->
-<script>
-    function getContractorDetails(ccode) {
-        //alert(ccode)
-        $.ajax({
-            type:'POST',
-            data: { "ccode": ccode },
-            url:'/get/contractor',
-            success: function(data){
-                //console.log(data);
-               // $('#work_order_no').empty();
-                //$('work_order_no').append("<option> Select Address..</option>");
-                $.each(data, function (index, addressObj) {
-                    $('#work_order_no').append("<option value = '" + addressObj.WORK_ORDER + "' > " + addressObj.WORK_ORDER + " </option > ");
-                    //$('#workorder_date').append("<input value = '" + addressObj.WORK_OR_DATE + "' >");
-                });
-            }
-        });
-    }
-</script>
+    </script>
 
-<!--Get Work Order Date-->
-<script>
-    function getWoDate(WoNumber) {
-        //var WoNumber = document.getElementById("work_order_no").value;
-        //alert(WoNumber);
-        $.ajax({
-            type:'POST',
-            data: { "wonumber": WoNumber },
-            url:'/get/contractor/work_order_date',
-             success: function(data){
-                //console.log(data);
-                //var wodate = data[0].WORK_OR_DATE;
-                //var worktot = data[0].WORKMEN_TOT;
-                $.each(data, function (index, addressObj) {
-                    //alert(addressObj.avilable_count);
-                 $('#workorder_date').val(addressObj[0].WORK_OR_DATE.substring(0, 10));
-                 $('#workman_total').val(addressObj[0].WORKMEN_TOT);
-                 $('#available_workman').val(addressObj.avilable_count); 
-            });
-            } 
-        }); 
-    }
-</script>
-<!-- Pagination Start-->
-<script>
+
+    <!-- Pagination Start-->
+    <script>
     getPagination('#table-id');
-  
+
     function getPagination(table) {
-      var lastPage = 1;
-  
-      $('#maxRows')
-        .on('change', function (evt) {
-          //$('.paginationprev').html('');						// reset pagination
-  
-          lastPage = 1;
-          $('.pagination')
-            .find('li')
-            .slice(1, -1)
-            .remove();
-          var trnum = 0; // reset tr counter
-          var maxRows = parseInt($(this).val()); // get Max Rows from select option
-  
-          if (maxRows == 5000) {
-            $('.pagination').hide();
-          } else {
-            $('.pagination').show();
-          }
-  
-          var totalRows = $(table + ' tbody tr').length; // numbers of rows
-          $(table + ' tr:gt(0)').each(function () {
-            // each TR in  table and not the header
-            trnum++; // Start Counter
-            if (trnum > maxRows) {
-              // if tr number gt maxRows
-  
-              $(this).hide(); // fade it out
-            }
-            if (trnum <= maxRows) {
-              $(this).show();
-            } // else fade in Important in case if it ..
-          }); //  was fade out to fade it in
-          if (totalRows > maxRows) {
-            // if tr total rows gt max rows option
-            var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
-            //	numbers of pages
-            for (var i = 1; i <= pagenum;) {
-              // for each page append pagination li
-              $('.pagination #prev')
-                .before(
-                  '<li data-page="' +
-                  i +
-                  '">\
-  <span class="btn m-t-10 btn-icon fs-20">' +
-                  i++ +
-                  '<span class="sr-only">(current)</span></span>\
-  </li>'
-                )
-                .show();
-            } // end for i
-          } // end if row count > max rows
-          $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
-          $('.pagination li').on('click', function (evt) {
-            // on click each page
-            evt.stopImmediatePropagation();
-            evt.preventDefault();
-            var pageNum = $(this).attr('data-page'); // get it's number
-  
-            var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
-  
-            if (pageNum == 'prev') {
-              if (lastPage == 1) {
-                return;
-              }
-              pageNum = --lastPage;
-            }
-            if (pageNum == 'next') {
-              if (lastPage == $('.pagination li').length - 2) {
-                return;
-              }
-              pageNum = ++lastPage;
-            }
-  
-            lastPage = pageNum;
-            var trIndex = 0; // reset tr counter
-            $('.pagination li').removeClass('active'); // remove active class from all li
-            $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
-            // $(this).addClass('active');					// add active class to the clicked
-            limitPagging();
-            $(table + ' tr:gt(0)').each(function () {
-              // each tr in table not the header
-              trIndex++; // tr index counter
-              // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
-              if (
-                trIndex > maxRows * pageNum ||
-                trIndex <= maxRows * pageNum - maxRows
-              ) {
-                $(this).hide();
-              } else {
-                $(this).show();
-              } //else fade in
-            }); // end of for each tr in table
-          }); // end of on click pagination list
-          limitPagging();
-        })
-        .val(5)
-        .change();
-  
-      // end of on select change
-  
-      // END OF PAGINATION
+    var lastPage = 1;
+
+    $('#maxRows')
+    .on('change', function (evt) {
+    //$('.paginationprev').html('');						// reset pagination
+
+    lastPage = 1;
+    $('.pagination')
+    .find('li')
+    .slice(1, -1)
+    .remove();
+    var trnum = 0; // reset tr counter
+    var maxRows = parseInt($(this).val()); // get Max Rows from select option
+
+    if (maxRows == 5000) {
+    $('.pagination').hide();
+    } else {
+    $('.pagination').show();
     }
-  
-    function limitPagging() {
-      // alert($('.pagination li').length)
-  
-      if ($('.pagination li').length > 7) {
-        if ($('.pagination li.active').attr('data-page') <= 3) {
-          $('.pagination li:gt(5)').hide();
-          $('.pagination li:lt(5)').show();
-          $('.pagination [data-page="next"]').show();
-        } if ($('.pagination li.active').attr('data-page') > 3) {
-          $('.pagination li:gt(0)').hide();
-          $('.pagination [data-page="next"]').show();
-          for (let i = (parseInt($('.pagination li.active').attr('data-page')) - 2); i <= (parseInt($('.pagination li.active').attr('data-page')) + 2); i++) {
-            $('.pagination [data-page="' + i + '"]').show();
-  
-          }
-  
+
+    var totalRows = $(table + ' tbody tr').length; // numbers of rows
+    $(table + ' tr:gt(0)').each(function () {
+    // each TR in  table and not the header
+    trnum++; // Start Counter
+    if (trnum > maxRows) {
+        // if tr number gt maxRows
+
+        $(this).hide(); // fade it out
+    }
+    if (trnum <= maxRows) {
+        $(this).show();
+    } // else fade in Important in case if it ..
+    }); //  was fade out to fade it in
+    if (totalRows > maxRows) {
+    // if tr total rows gt max rows option
+    var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
+    //	numbers of pages
+    for (var i = 1; i <= pagenum;) {
+        // for each page append pagination li
+        $('.pagination #prev')
+        .before(
+            '<li data-page="' +
+            i +
+            '">\
+    <span class="btn m-t-10 btn-icon fs-20">' +
+            i++ +
+            '<span class="sr-only">(current)</span></span>\
+    </li>'
+        )
+        .show();
+    } // end for i
+    } // end if row count > max rows
+    $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
+    $('.pagination li').on('click', function (evt) {
+    // on click each page
+    evt.stopImmediatePropagation();
+    evt.preventDefault();
+    var pageNum = $(this).attr('data-page'); // get it's number
+
+    var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
+
+    if (pageNum == 'prev') {
+        if (lastPage == 1) {
+        return;
         }
-      }
+        pageNum = --lastPage;
     }
-  
+    if (pageNum == 'next') {
+        if (lastPage == $('.pagination li').length - 2) {
+        return;
+        }
+        pageNum = ++lastPage;
+    }
+
+    lastPage = pageNum;
+    var trIndex = 0; // reset tr counter
+    $('.pagination li').removeClass('active'); // remove active class from all li
+    $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
+    // $(this).addClass('active');					// add active class to the clicked
+    limitPagging();
+    $(table + ' tr:gt(0)').each(function () {
+        // each tr in table not the header
+        trIndex++; // tr index counter
+        // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+        if (
+        trIndex > maxRows * pageNum ||
+        trIndex <= maxRows * pageNum - maxRows
+        ) {
+        $(this).hide();
+        } else {
+        $(this).show();
+        } //else fade in
+    }); // end of for each tr in table
+    }); // end of on click pagination list
+    limitPagging();
+    })
+    .val(5)
+    .change();
+
+    // end of on select change
+
+    // END OF PAGINATION
+    }
+
+    function limitPagging() {
+    // alert($('.pagination li').length)
+
+    if ($('.pagination li').length > 7) {
+    if ($('.pagination li.active').attr('data-page') <= 3) {
+    $('.pagination li:gt(5)').hide();
+    $('.pagination li:lt(5)').show();
+    $('.pagination [data-page="next"]').show();
+    } if ($('.pagination li.active').attr('data-page') > 3) {
+    $('.pagination li:gt(0)').hide();
+    $('.pagination [data-page="next"]').show();
+    for (let i = (parseInt($('.pagination li.active').attr('data-page')) - 2); i <= (parseInt($('.pagination li.active').attr('data-page')) + 2); i++) {
+    $('.pagination [data-page="' + i + '"]').show();
+
+    }
+
+    }
+    }
+    }
+
     $(function () {
-      // Just to append id number for each row
-      $('table tr:eq(0)').prepend('<th> ID </th>');
-  
-      var id = 0;
-  
-      $('table tr:gt(0)').each(function () {
-        id++;
-        $(this).prepend('<td>' + id + '</td>');
-      });
+    // Just to append id number for each row
+    $('table tr:eq(0)').prepend('<th> ID </th>');
+
+    var id = 0;
+
+    $('table tr:gt(0)').each(function () {
+    id++;
+    $(this).prepend('<td>' + id + '</td>');
     });
-  
-  //  Developed By Yasser Mas
-  // yasser.mas2@gmail.com
-  
-</script>
+    });
+
+    //  Developed By Yasser Mas
+    // yasser.mas2@gmail.com
+
+    </script>
+
+    <!--Button Disabled-->
+    <script>
+    document.getElementById("save").onclick = function() {
+    //disable
+    this.disabled = true;
+
+    //do some validation stuff
+    }
+    </script>
+
+

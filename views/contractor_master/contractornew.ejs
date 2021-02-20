@@ -132,11 +132,12 @@
 
 				<h4 class="card-title">Contractor Master</h4>
 
-				<form class="forms-sample" method="POST" action="/contractor/new">
+				<form class="forms-sample" method="POST" action="/contractor/new" autocomplete="off">
 					<div class="form-group row">
 						<label for="Contractor_Code" class="col-sm-3 col-form-label">Contractor Code</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="Contractor_Code" placeholder="Enter Contractor Code" required>
+							<input type="text" class="form-control" name="Contractor_Code" placeholder="Enter Contractor Code" 
+							  required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -275,6 +276,22 @@
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="hr_department" name="hr_department"
 								placeholder="HR Department" required>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="Name_of_person" class="col-sm-3 col-form-label">User Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="username" name="username"
+								placeholder="User Name" required>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="Name_of_person" class="col-sm-3 col-form-label">Password</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="Password" name="Password"
+								placeholder="Password" required>
 						</div>
 					</div>
 					

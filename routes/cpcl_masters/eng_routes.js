@@ -8,7 +8,6 @@ var sql = require('mssql');
 
  
 //Engineer table view query
-
 router.get('/engineer',(req, res)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)

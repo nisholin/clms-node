@@ -13581,3 +13581,12 @@ dl {
 table {
   text-align: center;
 }
+input [type = text] {
+  font-family:Arial, FontAwesome
+}
+#position_absolute {
+  position: absolute;
+  top: 3%;
+  width: 50%;
+  left: 25%;
+}

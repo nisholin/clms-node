@@ -184,6 +184,7 @@ router.post('/workordernew/add',(req,res,next)=>{
         }
     }
     getWorkOrderValues();
+    //window.alert("Successfully Saved");
     res.redirect("/workordernew")
 	 
 });

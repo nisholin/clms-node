@@ -114,3 +114,10 @@
 @import './sidebar';
 @import './layouts';
 @import './vertical-wrapper';
+
+#position_absolute {
+  position: absolute;
+  top: 3%;
+  width: 50%;
+  left: 25%;
+}
