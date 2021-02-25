@@ -3,83 +3,52 @@
     <%- include('../nav/sidebar') %>
 
         
-    <div class="card" id="transferform"></div>
+    
     <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
     href="/employee/add">New</a>
+    
+ 
     <br/>
-   
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card overflow-x overflow-y-hidden" id="table">
         <div class="card-body">
             <h4 class="card-title">Employee Master</h4>
-            <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-                <select class  ="form-control" name="state" id="maxRows">
-                    <option value="5000">Show ALL Rows</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="70">70</option>
-                    <option value="100">100</option>
-                </select>
+            <div class="form-group"> 
+                <input type="search" placeholder="Search Here" class="form-control search-input" data-table="customers-list"/>
             </div>
-            <table class="table table-striped table-class" id= "table-id">
+            <table class="table table-striped mt32 customers-list">
                 <thead>
                     <tr>
+                        <th>New Code</th>
+                        <th>Biometric Number</th>
+                        <th>Previous Code</th>
                         <th>Contractor Code</th>
-                        <th>Contractor Name</th>
-                        <th> Work Order No</th>
-                        <th> Work Order Date</th>
-                        <th> Employee Code</th>
-                        <th> Employee Name</th>
-                        <th> Wo validity From</th>
-                        <th> Wo validity To</th>
-                        <th> Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <!-- <tbody>
-
+                <tbody>
                     <% view.forEach(function(emp_master){ %>
                         <tr>
                             <td class="py-1">
-                                <%= emp_master.CCODE %>
-                            </td>
-                            <td>
-                                <%= emp_master.ENAME %>
-                            </td>
-                            <td>
-                                <%= emp_master.WORK_ORDER_No %>
-                            </td>
-                            <td>
-                                <label class="badge badge-gradient-success"><%= emp_master.WORK_OR_DATE %></label>
-                                
+                                <%= emp_master.NEW_CODE %>
                             </td>
                             <td>
                                 <%= emp_master.ECODE %>
                             </td>
                             <td>
-                                <label class="badge badge-gradient-danger"> <%= emp_master.ENAME %></label>
+                                <%= emp_master.PRE_CODE %>
+                            </td>
+                            <td>
+                                <label class="badge badge-gradient-success"><%= emp_master.CCODE %></label>
                                 
                             </td>
                             <td>
-                                <%= emp_master.WO_FROM %> %>
-                            </td>
-                            <td>
-                                <%= emp_master.WO_TO %> %>
-                            </td>
-                            <td>
-                                <%= emp_master.STATUS %>
-                            </td>
-                            <td>
-                                <a href="/employee_edit/<%= emp_master.id %>"
-                                    class="btn btn-sm btn-primary">Edit</a>
+                                <a href="employee_Edit/<%= emp_master.ID %>" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                         </tr>
 
                         <% }) %>
-                </tbody> -->
+                </tbody> 
             </table>
             <br/><br/>
             <!--		Start Pagination -->
@@ -100,9 +69,11 @@
                 </nav>
             </div>
         </div>
-    </div>
+        
     </div>
 
+    </div>
+   
 
     <!-- Footer Page-->
     <%- include('../nav/footer') %>
@@ -114,7 +85,7 @@
     window.onload = function () {
 
     document.getElementById("newform").style.display = "none";
-
+    //document.getElementById("transferform").style.display = "none";
     //Get Current Date
     var today = new Date();
 
@@ -127,24 +98,11 @@
 
     };
 
-    function addContractor(a) {
-
-    if (a == 1) 
-    {
-        document.getElementById("newform").style.display = "block";
-        document.getElementById("table").style.display = "none";
-        document.getElementById("addbutton").style.display = "none";
-    } else {
-    document.getElementById("newform").style.display = "none";
-    }
-
-    }
-
     </script>
 
 
     <!-- Pagination Start-->
-    <script>
+   <!--  <script>
     getPagination('#table-id');
 
     function getPagination(table) {
@@ -287,16 +245,47 @@
     //  Developed By Yasser Mas
     // yasser.mas2@gmail.com
 
-    </script>
+    </script> -->
 
-    <!--Button Disabled-->
+    <!--Table Sort-->
     <script>
-    document.getElementById("save").onclick = function() {
-    //disable
-    this.disabled = true;
+        (function(document) {
+            'use strict';
 
-    //do some validation stuff
-    }
+            var TableFilter = (function(myArray) {
+                var search_input;
+
+                function _onInputSearch(e) {
+                    search_input = e.target;
+                    var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+                    myArray.forEach.call(tables, function(table) {
+                        myArray.forEach.call(table.tBodies, function(tbody) {
+                            myArray.forEach.call(tbody.rows, function(row) {
+                                var text_content = row.textContent.toLowerCase();
+                                var search_val = search_input.value.toLowerCase();
+                                row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+                            });
+                        });
+                    });
+                }
+
+                return {
+                    init: function() {
+                        var inputs = document.getElementsByClassName('search-input');
+                        myArray.forEach.call(inputs, function(input) {
+                            input.oninput = _onInputSearch;
+                        });
+                    }
+                };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'complete') {
+                    TableFilter.init();
+                }
+            });
+
+        })(document);
     </script>
 
 

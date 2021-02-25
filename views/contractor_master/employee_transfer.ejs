@@ -1,0 +1,165 @@
+    <%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+    <div class="card" id="transferform">
+        <div class="card-body">
+        <!-- member transfer start -->
+        <div class="box-header with-border">
+            <h4 class="card-title">Employee Transfer</h4>
+            <p class="card-description"> </p>
+        </div><!-- /.box-header -->
+           <!-- form start -->
+    <form class="forms-sample" name="frm_details" id="frm_details" method="post" action="/employee/transfer" autocomplete="off"> 
+    <div class="form-group row">
+    <label for="ccode" class="col-sm-3 col-form-label">Employee Code</label>
+    <div class="col-sm-9">
+        <input list="emp_code" class="form-control" name="ecode" id="ecode"  required onchange="check_emp_code(this.value)" placeholder="Enter Employee Code">
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label for="Contractor_Name" class="col-sm-3 col-form-label">Employee Name</label>
+    <div class="col-sm-9">
+        <input type="text" class="form-control" id="employee_name" name="employee_name"
+            placeholder="Employee Name" readonly>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control" id="work_order_no" name="work_order_no" placeholder="Work Order No" readonly>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="workorder" class="col-sm-3 col-form-label">Transfer To</label>
+    <div class="col-sm-9">
+        <input list="cont_code" class="form-control" name="transfer_to" id="transfer_to" onchange="check_new_po_code(this.value)" required placeholder="Select Transfer Work Order Number">
+        <datalist id="cont_code">
+            <option  selected>Select Transfer Work Order Number</option>
+            <% woDetailsCode.forEach(function(workorderdatas){ %>
+                <option value="<%= workorderdatas.WORK_ORDER %>">CCODE:<%= workorderdatas.CCODE %></option>
+                <%})%>
+        </datalist>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="workorder" class="col-sm-3 col-form-label">Transfer CCODE</label>
+        <div class="col-sm-9">
+            <input  class="form-control" name="transfer_ccode" id="transfer_ccode" readonly>
+         </div>
+     </div>
+     <div class="form-group row">
+        <label for="workorder" class="col-sm-3 col-form-label">Transfer CNAME</label>
+            <div class="col-sm-9">
+                <input  class="form-control" name="transfer_cname" id="transfer_cname" readonly>
+             </div>
+         </div>
+         <div class="form-group row">
+            <label for="workorder" class="col-sm-3 col-form-label">Work Order From </label>
+                <div class="col-sm-9">
+                    <input  class="form-control" name="old_wo_from" id="old_wo_from" readonly>
+                 </div>
+        </div>  
+        <div class="form-group row">
+            <label for="workorder" class="col-sm-3 col-form-label">Work Order To</label>
+                <div class="col-sm-9">
+                    <input  class="form-control" name="old_wo_to" id="old_wo_to" readonly>
+                 </div>
+        </div>
+    <center>
+    <input type="hidden" class="form-control" id="ccode" name="ccode" value="">
+    <button type="submit" class="btn btn-gradient-success btn-fw">Transfer</button>
+
+    <button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
+    </center>
+    </form>
+
+    </div>
+    </div>
+    <!-- Footer Page-->
+    <%- include('../nav/footer') %>
+
+
+    <!--Onload Funcation-->
+   <!-- <script type="text/javascript">
+         $(document).ready(function () {
+        var currentDate = new Date();
+            $('#val_from').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#val_from').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+    });
+    $(document).ready(function () {
+        var currentDate = new Date();
+            $('#val_to').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                endDate: "currentDate",
+                //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('#val_to').keyup(function () {
+                if (this.value.match(/[^0-9]/g)) {
+                    this.value = this.value.replace(/[^0-9^-]/g, '');
+                }
+            });
+    });
+    </script>-->
+   <script>
+    function check_emp_code(v){
+    var ecode = v; 
+   // $('#work_order_no').empty();
+    //alert(v)
+    $.ajax({
+        type:'POST',
+        data: { "ecode" : ecode },
+        url:'/employee/workorder_details/onchange',
+        success: function(EmpCodeDetails){
+         $.each(EmpCodeDetails, function (index, EmpCode) {
+            $('#employee_name').val(EmpCode.ENAME); 
+            $('#ccode').val(EmpCode.CCODE);  
+            $('#work_order_no').val(EmpCode.WORK_ORDER_No);
+         });
+        }
+    });
+
+    }
+
+    function check_new_po_code(v){
+    
+   // $('#work_order_no').empty();
+    //alert(v)
+    $.ajax({
+        type:'POST',
+        data: { "WONO" : v },
+        url:'/employee/check_workorder_details/onchange',
+        success: function(checkWODetails){
+           
+         $.each(checkWODetails, function (index, WOCode) {
+            $('#transfer_ccode').val(WOCode.CCODE); 
+            $('#transfer_cname').val(WOCode.CNAME); 
+            //$('#work_order_todate').val(WOCode.WORK_OR_DATE);  
+            $('#old_wo_from').val(WOCode.WORK_OR_DATE);  
+            //alert(WOCode.todate);
+            //$WORK_OR_DATE = WOCode.WORK_OR_DATE;
+            //alert($WORK_OR_DATE);
+           // alert(($WORK_OR_DATE,2).toString());
+            //$TO_DATE = date($WORK_OR_DATE, strtotime('+2 years'));
+            //alert($TO_DATE);
+            $('#old_wo_to').val($TO_DATE);  
+         });
+        }
+    });
+
+    }
+    </script>

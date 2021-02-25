@@ -8,345 +8,441 @@
 
         <% Emp_edit_data.forEach(function(empdata) { %>
 
-          <form class="forms-sample" method="POST" action="/employee/update">
-              <input type="hidden" name="id" value="<%= empdata.id %>" />
+          <form class="forms-sample" method="POST" action="/employee/update" autocomplete="off">
+
+            <input type="hidden" name="id" value="<%= empdata.ID %>" />
             <div class="form-group row">
               <label for="code" class="col-sm-3 col-form-label">Contractor Code</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="ccode" id="code" value="<%= empdata.CCODE %>">
               </div>
             </div>
+            
             <div class="form-group row">
-              <label for="work_order_no" class="col-sm-3 col-form-label">Work Order No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="work_order_no" id="work_order_no" value="<%= empdata.WORK_ORDER_No %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Work Order Date</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.WORK_OR_DATE.toISOString().substring(0, 10); %>" id="workorder_date" name="workorder_date">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.ECODE %>" name="emp_code" id="emp_code">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
-              <div class="col-sm-9">
-                  <input type="text" class="form-control" id="emp_name" name="emp_name"
-                      value="<%= empdata.ENAME %>">
-              </div>
-           </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Wo validity from</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="wo_val_from" name="wo_val_from" value="<%= empdata.WO_FROM.toISOString().substring(0, 10); %>"  >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Wo validity To</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="wo_val_to" name="wo_val_to" value="<%= empdata.WO_TO.toISOString().substring(0, 10); %>"  >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.CI_NAME %>" id="ci_name" name="ci_name" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Father Name" class="col-sm-3 col-form-label">Father Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.FATHER %>" id="Father" >
-              </div>
-            </div>
-			<div class="form-group row">
-              <label for="Husband Name" class="col-sm-3 col-form-label">Husband Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="<%= empdata.HUSBAND %>" id="Husband" name="Husband">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="designation" class="col-sm-3 col-form-label">Designation</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="designation" name="designation" value="<%= empdata.DESIGNATION %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">DOB</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="dob" name="dob" value="<%= empdata.DOB.toISOString().substring(0, 10); %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Engaged Date</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Engaged_Date" name="Engaged_Date" value="<%= empdata.ENGAGED_DATE.toISOString().substring(0, 10); %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Gender</label>
-              <div class="col-sm-4">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="gender" id="gender1" value="<%= empdata.GENDER %>" checked>Male
-                    </label>
+                <label for="work_order_no" class="col-sm-3 col-form-label">Work Order No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="work_order_no" id="work_order_no" value="<%= empdata.WORK_ORDER_No %>" >
                 </div>
               </div>
-              <div class="col-sm-5">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="gender" id="gender2" value="<%= empdata.GENDER %>" checked>Female
-                    </label>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Work Order Date</label>
+                <div class="col-sm-9">
+                <input type="text" class="form-control" value="<%= empdata.WORK_OR_DATE %>" id="workorder_date" name="workorder_date" readonly>
                 </div>
-              </div>
             </div>
+            
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Marital Status</label>
-              <div class="col-sm-4">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="<%= empdata.MARITAL_STATUS %>" checked>
-                    married</label>
-                  </label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Employee Code</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="<%= empdata.NEW_CODE %>" name="emp_code" id="emp_code">
                 </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="<%= empdata.MARITAL_STATUS %>" checked>Un
-                    married</label>
+            </div>
+            
+            <div class="form-group row">
+                <label for="emp_code" class="col-sm-3 col-form-label">Card Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="card_number" name="card_number"
+                    value="<%= empdata.ECODE %>" required>
                 </div>
-              </div>
             </div>
+            
             <div class="form-group row">
-              <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Present_address" name="Present_address" value="<%= empdata.PRE_ADDRESS %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="permanent_address" name="permanent_address" value="<%= empdata.PERMANENT_ADDRESS %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="phone_no" name="phone_no" value="<%= empdata.PHONE_NO %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="email_id" name="email_id" value="<%= empdata.EMAIL_ID %>" >
-              </div>
-            </div>
-
-
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Incase Of Emergency</label>
-              <div class="col-sm-4">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="emergency" id="emergency" value="<%= empdata.EMERGENCY_PERSON %>"
-                      checked> Inform </label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Code</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
+                      value="<%= empdata.PRE_CODE %>" required>
                 </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="form-check">
-                  <label class="form-check-label">
-                   <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2"
-                    value="<%= empdata.PRE_ADDRESS %>"> Not Inform </label>
-                 </div>
-             </div>
-         </div>   
-			  
- <div class="form-group row">
-              <label for="nominee_name" class="col-sm-3 col-form-label">Mobile No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Emergency_Mobile_Number" name="Emergency_Mobile_Number" value="<%= empdata.MOBILE_NO %>" >
-              </div>
             </div>
-
+            
             <div class="form-group row">
-              <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_name" name="nominee_name" value="<%= empdata.NOMINEE_NAME %>" >
-              </div>
-            </div>
- <div class="form-group row">
-              <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Relation</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_relation" name="nominee_relation" value="<%= empdata.NOMINEE_RELATION %>" >
-              </div>
-            </div>
-			 <div class="form-group row">
-              <label for="nominee_name" class="col-sm-3 col-form-label">Nominee DOB</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="nominee_dob" name="nominee_dob" value="<%= empdata.NOMINEE_DOB.toISOString().substring(0, 10); %>" >
-              </div>
-            </div>
-           
-            <div class="form-group row">
-              <label for="category" class="col-sm-3 col-form-label">Category</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="category" name="category" value="<%= empdata.CAT %>">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="wage_per_day" name="wage_per_day" value="<%= empdata.WAGE %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day" value="<%= empdata.INCENTIVE %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day" value="<%= empdata.ALLOWANCE %>" >
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages" value="<%= empdata.OTHERS %>" >
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="UAN" name="uan" value="<%= empdata.UAN %>">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="ESI_no" name="ESI_no" value="<%= empdata.ESI %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no" value="<%= empdata.AADHAR %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1" value="<%= empdata.IDENTY_MARK %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Bank_name" name="Bank_name" value="<%= empdata.BANK_NAME %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Account_no" name="Account_no" value="<%= empdata.ACCOUNT_NO %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Blood_grp" name="Blood_grp" value="<%= empdata.BLOOD_GROUP %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Entry_gate" name="Entry_gate" value="<%= empdata.ENTRY_GATE %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="Work_spot" name="Work_spot" value="<%= empdata.WROK_SPOT %>" >
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Area Of Work</label>
-              <div class="col-sm-4">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>"  checked>
-                    Plant</label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="emp_name" name="emp_name"
+                        value="<%= empdata.ENAME %>">
                 </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>">
-                    Non Plant</label>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Wo validity from</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="wo_val_from" name="wo_val_from" value="<%= empdata.WO_FROM %>"  >
                 </div>
-              </div>
             </div>
+            
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Pass Validity From</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="pass_val_from" id="pass_val_from" value="<%= empdata.PASS_VALID_FROM.toISOString().substring(0, 10); %>" >
-              </div>
+                <label class="col-sm-3 col-form-label">Wo validity To</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="wo_val_to" name="wo_val_to" value="<%= empdata.WO_TO %>"  >
+                </div>
             </div>
+            
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Pass Validity To</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="pass_val_to" id="pass_val_to" value="<%= empdata.PASS_VALID_TO.toISOString().substring(0, 10); %>" >
-              </div>
+                <label for="Father" class="col-sm-3 col-form-label">Father / Husband Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" value="<%= empdata.FATHER %>" id="Father" name="Father">
+                </div>
             </div>
+            
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Safety Training From</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="safety_training_from" id="safety_training_from" value="<%= empdata.SAFETY_TRAINING_FROM.toISOString().substring(0, 10); %>" >
-              </div>
+                <label for="designation" class="col-sm-3 col-form-label">Designation</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="designation" name="designation" value="<%= empdata.DESIGNATION %>" >
+                </div>
             </div>
+            
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Safety Training To</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="safety_training_to" id="safety_training_to" value="<%= empdata.SAFETY_TRAINING_TO.toISOString().substring(0, 10); %>" />
-              </div>
+                <label class="col-sm-3 col-form-label">DOB</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="dob" name="dob" value="<%= empdata.DOB %>" >
+                </div>
             </div>
-<div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Status</label>
-                        <div class="col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="gender1" value="1"
-                                        checked>
-                                    Active </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="gender2" value="2">
-                                    Inactive </label>
-                            </div>
-                        </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Engaged Date</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Engaged_Date" name="Engaged_Date" value="<%= empdata.ENGAGED_DATE %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="<%= empdata.GENDER %>"
+                                checked required>
+                            Male </label>
                     </div>
-                     <% }) %>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="<%= empdata.GENDER %>" required>
+                            Female </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Marital Status</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus" value="<%= empdata.MARITAL_STATUS %>" checked>
+                      married</label>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus" value="<%= empdata.MARITAL_STATUS %>" >Un
+                      married</label>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="Present_address" name="Present_address" value="<%= empdata.PRE_ADDRESS %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="permanent_address" name="permanent_address" value="<%= empdata.PERMANENT_ADDRESS %>" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="permanent_address" class="col-sm-3 col-form-label">State</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="state" name="state"
+                    value="<%= empdata.STATE %>" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="phone_no" name="phone_no" value="<%= empdata.PHONE_NO %>" >
+                </div>
+              </div>
+            
+              <div class="form-group row">
+                <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="email_id" name="email_id" value="<%= empdata.EMAIL_ID %>" >
+                </div>
+              </div>
+            
+            <div class="form-group row">
+                <label for="Emergency_Mobile_Number" class="col-sm-3 col-form-label">Emergency Mobile Number</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Emergency_Mobile_Number" name="Emergency_Mobile_Number" value="<%= empdata.MOBILE_NO %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_name" name="nominee_name" value="<%= empdata.NOMINEE_NAME %>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nominee_relation" class="col-sm-3 col-form-label">Nominee Relation</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_relation" name="nominee_relation"
+                     value="<%= empdata.NOMINEE_RELATION %>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nominee_dob" class="col-sm-3 col-form-label">Nominee DOB</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nominee_dob" name="nominee_dob" value="<%= empdata.NOMINEE_DOB %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="category" class="col-sm-3 col-form-label">Category</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="category" name="category" value="<%= empdata.Catogery %>">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="wage_per_day" name="wage_per_day" value="<%= empdata.WAGE %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day" value="<%= empdata.INCENTIVE %>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day" value="<%= empdata.ALLOWANCE %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages" value="<%= empdata.OTHERS %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="UAN" name="uan" value="<%= empdata.UAN %>">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ESI_no" name="ESI_no" value="<%= empdata.ESI %>" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no" value="<%= empdata.AADHAR %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1" value="<%= empdata.IDENTY_MARK %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Bank_name" name="Bank_name" value="<%= empdata.BANK_NAME %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Account_no" name="Account_no" value="<%= empdata.ACCOUNT_NO %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Ifsc" class="col-sm-3 col-form-label">IFSC CODE</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ifsc_code" name="ifsc_code"
+                        value="<%= empdata.ifsc_code %>">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Blood_grp" name="Blood_grp" value="<%= empdata.BLOOD_GROUP %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Entry_gate" name="Entry_gate" value="<%= empdata.ENTRY_GATE %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Work_spot" name="Work_spot" value="<%= empdata.WROK_SPOT %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Work</label>
+                <div class="col-sm-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>"  checked>
+                      Plant</label>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>">
+                      Non Plant</label>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Place</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="area_of_place" id="area_of_place" value="<%= empdata.area_of_place %>"/>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity From</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="pass_val_from" id="pass_val_from" value="<%= empdata.PASS_VALID_FROM %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Pass Validity To</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="pass_val_to" id="pass_val_to" value="<%= empdata.PASS_VALID_TO %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training From</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="safety_training_from" id="safety_training_from" value="<%= empdata.SAFETY_TRAINING_FROM %>" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Safety Training To</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="safety_training_to" id="safety_training_to" value="<%= empdata.SAFETY_TRAINING_TO %>" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Payroll</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="<%= empdata.payroll %>"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="<%= empdata.payroll %>" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">ESI ELIGIBLE</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="<%= empdata.esi_eligible %>"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="<%= empdata.esi_eligible %>" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">PF ELIGIBLE</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="<%= empdata.pf_eligible %>"
+                                checked required>
+                            Yes </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="<%= empdata.pf_eligible %>" required>
+                            No </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="status" id="gender1" value="<%= empdata.STATUS %>"
+                                checked required>
+                            Active </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="status" id="gender2" value="<%= empdata.STATUS %>" required>
+                            Inactive </label>
+                    </div>
+                </div>
+            </div>
+                    
             <center>
              	<button type="submit" class="btn btn-primary">Update</button>
             </center>
 
           </form>
+          <% }) %>
 
          
 
@@ -359,161 +455,112 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#safety_training_to').datepicker({
-       format: 'yyyy/mm/dd',
-       autoclose:true,
-       endDate: "currentDate",
-       //maxDate: currentDate
-       }).on('changeDate', function (ev) {
-           $(this).datepicker('hide');
-       });
-       $('#safety_training_to').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
-       });
-       });
+            dateFormat: 'yy/mm/dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+
        $(document).ready(function () {
        var currentDate = new Date();
        $('#safety_training_from').datepicker({
-       format: 'dd/mm/yyyy',
+       dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#safety_training_from').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#pass_val_from').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#pass_val_from').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#pass_val_to').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#pass_val_to').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#nominee_dob').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#nominee_dob').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#Engaged_Date').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#Engaged_Date').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#dob').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#dob').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#workorder_date').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#workorder_date').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#wo_val_from').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#wo_val_from').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
        $(document).ready(function () {
        var currentDate = new Date();
        $('#wo_val_to').datepicker({
-       format: 'dd/mm/yyyy',
+        dateFormat: 'yy/mm/dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
        }).on('changeDate', function (ev) {
            $(this).datepicker('hide');
-       });
-       $('#wo_val_to').keyup(function () {
-           if (this.value.match(/[^0-9]/g)) {
-               this.value = this.value.replace(/[^0-9^-]/g, '');
-           }
        });
        });
    </script>

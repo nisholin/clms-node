@@ -56,7 +56,7 @@ router.get('/workordernew/add', function (req, res) {
 router.post('/workordernew/add',(req,res,next)=>{
     var data = req.body;
     //var ismw_rcno = req.body.ismw_rcno;
-    console.log(data);
+    //console.log(data);
     var CCODE               = req.body.Contractor_Code;
     var VENDOR_NO           = req.body.Vendor_No;
     var WORK_ORDER          = req.body.Work_order_no;
@@ -64,6 +64,7 @@ router.post('/workordernew/add',(req,res,next)=>{
     var CVALUE              = req.body.Contractor_Value;
     var DURATION            = req.body.Duration_Date;
     var CDURATION           = req.body.Contract_Duration;
+    //console.log(CDURATION);
     var EIC_PRNO            = req.body.EIC_PRNO;
     var EIC                 = req.body.Engineer_In_Charge;
     var JOB_DESC            = req.body.Job_Desc;
@@ -184,7 +185,6 @@ router.post('/workordernew/add',(req,res,next)=>{
         }
     }
     getWorkOrderValues();
-    //window.alert("Successfully Saved");
     res.redirect("/workordernew")
 	 
 });

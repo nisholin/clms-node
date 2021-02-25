@@ -7,7 +7,7 @@
 					<h4 class="card-title">Contractor Master Edit</h4>
 
 					<% con_edit_data.forEach(function(cont_data){ %>
-						    <form class="forms-sample" action="/contractornew/update" method="POST">
+						    <form class="forms-sample" action="/contractornew/update" method="POST" autocomplete="off">
 								<input type="hidden" value="<%= cont_data.id %>" name="id"> 
 							<div class="form-group row">
 								<label for="exampleInputContractor_Code" class="col-sm-3 col-form-label">Contractor
@@ -177,9 +177,9 @@
 		<%- include('../nav/footer') %>
 
 		<script>
-			//Active function
 			$('#active').each(function(e){
 			if($(this).val() == 1){
+				alert($(this).val());
 				$(this).attr("checked", "checked");
 			} else if ($(this).val() == 0) {
 				$(this).attr("unchecked", "unchecked");

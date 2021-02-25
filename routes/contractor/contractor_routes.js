@@ -47,8 +47,8 @@ router.post('/contractor/new',(req,res,next)=>{
    var compliance_Mail_id   =   req.body.compliance_Mail_id;
    var hr_department        =   req.body.hr_department;
    var status               =   req.body.status;
-   var username             = req.body.username;
-   var password             = req.body.Password;
+   var username             =   req.body.username;
+   var password             =   req.body.Password;
   
 //console.log(req.body);
 
@@ -140,7 +140,6 @@ router.post('/contractornew/update',(req, res) => {
             status='${req.body.status}',Name_of_person='${req.body.Name_of_person}',
 			compliance_Mail_id='${req.body.compliance_Mail_id}',
             hr_department='${req.body.hr_department}'   where id='${req.body.id}'`);
-            //return products.recordsets;
         }
         catch(error){
             console.log(error);

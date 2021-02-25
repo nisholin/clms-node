@@ -2,112 +2,132 @@
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
 
-<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
-    onclick="addContractor(1)">New</button>
+  <div class="card">
+  <div class="card-body">
+  <section id="upload-data-panel">
+  <form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">
+  <fieldset>
+  <legend>Upload Data</legend>
+  <div>
+  <!-- The name here is important, and will be used later to reference the data -->
+  <input type="file" name="csvdata" accept="text/cvs">
+  </div>
+  <div>
+  <input type="submit" value="Submit"/>
+  </div>
+  </fieldset>
+  </form>
+  </section>
+  <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">
+  New</button>
+  </div>
+  </div>
+
+
 <br/>
 <div class="col-lg-12 grid-margin stretch-card">
-	<div class="card" id="table">
-		<div class="card-body">
-			<h4 class="card-title">Gate Master</h4>
+<div class="card" id="table">
+<div class="card-body">
+<h4 class="card-title">Gate Master</h4>
 
-			<div class="form-group"> <!--Show Numbers Of Rows-->
-				<select class  ="form-control" name="state" id="maxRows">
-					<option value="5000">Show ALL Rows</option>
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-					<option value="20">20</option>
-					<option value="50">50</option>
-					<option value="70">70</option>
-					<option value="100">100</option>
-				</select>
-			</div>
-
-			<table class="table table-class" id= "table-id">
-				<thead>
-					<tr>
-						<!-- <th>user</th> -->
-						<th> Name </th>
-						<th> Status </th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<% data.forEach(function(gate) { %>
-						<tr>
-							<!-- <td>
-								<%= gate.id %>
-							</td> -->
-							<td>
-								<%= gate.name %>
-							</td>
-							<td >
-								<label class="badge badge-danger"><%= gate.status %></label>
-							</td>
-							<td>
-								<a href="gate_edit/<%= gate.id %>" class="btn btn-sm btn-primary">Edit</a>
-							</td>
-						</tr>
-						<% }) %>
-				</tbody>
-			</table>
-			<!--Start Pagination -->
-			<div class='pagination-container'>
-				<nav>
-				<ul class="pagination ">
-
-					<li data-page="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-					<span>
-						< <span class="sr-only">(current)
-					</span></span>
-					</li>
-					<!--	Here the JS Function Will Add the Rows -->
-					<li data-page="next" id="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-					<span> > <span class="sr-only">(current)</span></span>
-					</li>
-				</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
+<div class="form-group"> <!--Show Numbers Of Rows-->
+<select class  ="form-control" name="state" id="maxRows">
+<option value="5000">Show ALL Rows</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="50">50</option>
+<option value="70">70</option>
+<option value="100">100</option>
+</select>
 </div>
 
-<!--Form Start-->
-<div class="card" id="newform">
-	<div class="card-body">
-		<h4 class="card-title">Gate Master</h4>
-		<form class="forms-sample" method="POST" action="/gate/new">
-		  <div class="form-group row">
-			<label for="name" class="col-sm-3 col-form-label">Name</label>
-			<div class="col-sm-9">
-			  <input type="text" class="form-control" id="name" name="name" placeholder="name">
-			</div>
-		  </div>
-		  
-			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">Status</label>
-				<div class="col-sm-4">
-				  <div class="form-check">
-					<label class="form-check-label">
-					  <input type="radio" class="form-check-input" name="status" id="status" value="1" checked> Active </label>
-				  </div>
-				</div>
-				<div class="col-sm-5">
-				  <div class="form-check">
-					<label class="form-check-label">
-					  <input type="radio" class="form-check-input" name="status" id="status" value="2"> In Active </label>
-				  </div>
-				</div>
-			  </div>
-		 
-		<center>
-		   <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-		  <button type="button" class="btn btn-gradient-danger btn-fw">Cancel</button>
-		  </center>
-		</form>
-	</div>
+<table class="table table-class" id= "table-id">
+<thead>
+<tr>
+<!-- <th>user</th> -->
+<th> Name </th>
+<th> Status </th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+
+<% data.forEach(function(gate) { %>
+<tr>
+<!-- <td>
+<%= gate.id %>
+</td> -->
+<td>
+<%= gate.name %>
+</td>
+<td >
+<label class="badge badge-danger"><%= gate.status %></label>
+</td>
+<td>
+<a href="gate_edit/<%= gate.id %>" class="btn btn-sm btn-primary">Edit</a>
+</td>
+</tr>
+<% }) %>
+</tbody>
+</table>
+<!--Start Pagination -->
+<div class='pagination-container'>
+<nav>
+<ul class="pagination ">
+
+<li data-page="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
+<span>
+< <span class="sr-only">(current)
+</span></span>
+</li>
+<!--	Here the JS Function Will Add the Rows -->
+<li data-page="next" id="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
+<span> > <span class="sr-only">(current)</span></span>
+</li>
+</ul>
+</nav>
 </div>
+</div>
+</div>
+</div>
+
+  <!--Form Start-->
+  <div class="card" id="newform">
+  <div class="card-body">
+  <h4 class="card-title">Gate Master</h4>
+  <form class="forms-sample" method="POST" action="/gate/new">
+  <div class="form-group row">
+  <label for="name" class="col-sm-3 col-form-label">Name</label>
+  <div class="col-sm-9">
+  <input type="text" class="form-control" id="name" name="name" placeholder="name">
+  </div>
+  </div>
+
+  <div class="form-group row">
+  <label class="col-sm-3 col-form-label">Status</label>
+  <div class="col-sm-4">
+    <div class="form-check">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="status" id="status" value="1" checked> Active </label>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="form-check">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="status" id="status" value="2"> In Active </label>
+    </div>
+  </div>
+  </div>
+
+  <center>
+  <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
+  <button type="button" class="btn btn-gradient-danger btn-fw">Cancel</button>
+  </center>
+  </form>
+  </div>
+  </div>
 
 <!-- Footer Page-->
 <%- include('../nav/footer') %>

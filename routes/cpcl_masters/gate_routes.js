@@ -125,5 +125,5 @@ gateupdate();
 
 
 module.exports = { 
-	routes:router
+	gate:router
 }

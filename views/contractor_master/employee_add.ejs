@@ -1,22 +1,30 @@
+<head>
+    
+    
+</head>
+
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="addbutton"
+    href="/employeenew">Back</a>
+<br/><br/>
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Employee Master</h4>
         <p class="card-description"> </p>
-        <form class="forms-sample"  method="POST" action="/employee/add" autocomplete="off">
+        <form class="forms-sample"  method="POST" action="/employee/add" autocomplete="off" onsubmit="showAlert()">
 
             <div class="form-group row">
                 <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
                 <div class="col-sm-9">
-                    <input list="cont_code" class="form-control" name="ccode" id="ccode"
-                    onchange="getuniqcode(this.value)"  required>
+                     <input list="cont_code" class="form-control" name="ccode" id="ccode" onchange="getuniqcode(this.value)" required>
                     <datalist id="cont_code">
                         <% conDetailsCode.forEach(function(concode){ %>
-                            <option value="<%= concode.contractor_code %>"><%= concode.contractor_name %></option>
+                            <option value="<%= concode.CODE_NAME %>">
+                            </option>
                             <%})%>
-                    </datalist>
+                    </datalist> 
                 </div>
             </div>
 
@@ -66,7 +74,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Number</label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Code</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
                         placeholder="Card Number" required>
@@ -82,7 +90,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Wo validity from</label>
-                <div class="col-sm-9">
+                <div class="col-sm-9"> 
                     <input type="text" class="form-control" id="wo_val_from" name="wo_val_from"
                       placeholder="Choose Wo validity from &#xf073" style="font-family:Arial, FontAwesome" required/>
                 </div>
@@ -94,37 +102,37 @@
                     placeholder="Choose Wo validity To &#xf073" style="font-family:Arial, FontAwesome" required/>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">CI.Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ci_name" name="ci_name" placeholder="ci name" required>
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="Father" class="col-sm-3 col-form-label">Father / Husband Name</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Father" name="Father" placeholder="Father Name" required>
                 </div>
             </div>
-            <!-- <div class="form-group row">
-                <label for="Husband Name" class="col-sm-3 col-form-label">Husband Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Husband" name="Husband"
-                        placeholder="Husband Name" required>
-                </div>
-            </div> -->
+
             <div class="form-group row">
                 <label for="designation" class="col-sm-3 col-form-label">Designation</label>
                 <div class="col-sm-9">
-                   <!--  <input type="text" class="form-control" id="designation" name="designation"
-                        placeholder="designation" required>  -->
-
-                        <select class="form-control" id="designation" name="designation" required>
-                            <option  selected>Select Designation</option>
-                            <option value="Civil">Civil</option>
-                        </select>
+                    <select class="form-control" id="designation" name="designation" required>
+                        <option value="" selected disabled>--Select Designation--</option>
+                        <option>SITE INCHARGE</option>
+                        <option>MANAGER</option>
+                        <option>OWNER</option>
+                        <option>CONTRACT WORKMAN</option>
+                        <option>SUPERVISOR</option>
+                        <option>ENGINEER</option>
+                        <option>DRIVER</option>
+                        <option>ACCOUNTANT</option>
+                        <option>PROPRIETRO</option>
+                        <option>SECURITY GUARD</option>
+                        <option>CLEANER</option>
+                        <option>VICE PRESIDENT</option>
+                        <option>AUDITOR</option>
+                        <option>STAFF NURSE</option>
+                    </select>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">DOB</label>
                 <div class="col-sm-9">
@@ -132,6 +140,7 @@
                       placeholder="Choose DOB &#xf073" style="font-family:Arial, FontAwesome" required/>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Engaged Date</label>
                 <div class="col-sm-9">
@@ -139,12 +148,13 @@
                       placeholder="Coose Engaged Date &#xf073" style="font-family:Arial, FontAwesome" required/>
                 </div>
             </div>
+            
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Gender</label>
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="1"
+                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="M"
                                 checked required>
                             Male </label>
                     </div>
@@ -152,7 +162,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="2" required>
+                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="F" required>
                             Female </label>
                     </div>
                 </div>
@@ -162,7 +172,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="1"
+                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="M"
                                  required>
                             Married </label>
                     </div>
@@ -170,7 +180,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="2" 
+                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="S" 
                             checked required>
                             Un married</label>
                     </div>
@@ -190,6 +200,15 @@
                         placeholder="permanent address" required>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="permanent_address" class="col-sm-3 col-form-label">State</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="state" name="state"
+                        placeholder="Enter State" required>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
                 <div class="col-sm-9">
@@ -205,24 +224,6 @@
                 </div>
             </div>
 
-
-            <!-- <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Incase Of Emergency</label>
-                <div class="col-sm-4">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="emergency" id="emergency"
-                                value="1" checked required> Inform </label>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="emergency" id="emergency"
-                                value="2" required> Not Inform </label>
-                    </div>
-                </div>
-            </div> -->
             <div class="form-group row">
                 <label for="Emergency_Mobile_Number" class="col-sm-3 col-form-label">Emergency Mobile Number</label>
                 <div class="col-sm-9">
@@ -256,21 +257,21 @@
             <div class="form-group row">
                 <label for="category" class="col-sm-3 col-form-label">Category</label>
                 <div class="col-sm-9">
-                    <select id="category" name="category"  class="form-control" required>
-                        <option selected>Select Category</option>
-                        <option value="">Bike</option>
+                    <select id="category" name="category"  class="form-control" onchange="getWage(this.value)" required>
+                        <option value="" selected disabled>--Select Skill--</option>
+                        <option>UN SKILLED</option>
+                        <option>SEMI SKILLED</option>
+                        <option>SKILLED</option>
+                        <option>HIGHLY SKILLED</option>
                     </select>
                     
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
                 <div class="col-sm-9">
-                    <select id="wage_per_day" name="wage_per_day"  class="form-control" required>
-                        <option selected>Select Wage Per day</option>
-                        <option value="">200</option>
-                    </select>
-                  
+                    <input type="text" class="form-control" name="wage_per_day" id="wage_per_day" readonly required/>
                 </div>
             </div>
             <div class="form-group row">
@@ -356,8 +357,22 @@
                 <label for="Entry_gate" class="col-sm-3 col-form-label">Entry Gate</label>
                 <div class="col-sm-9">
                     <select class="form-control" id="Entry_gate" name="Entry_gate">
-                        <option selected>Select Entry Gate</option>
-                        <option value="Gate">Gate I</option>
+                        <option value="" selected disabled>--Select Entry Gate--</option>
+                        <option>ETP-II</option>
+                        <option>LCG</option>
+                        <option>LCG/LG/ETP-II</option>
+                        <option>LG</option>
+                        <option>LG/ETP-II</option>
+                        <option>LG/ETP-II/TTP</option>
+                        <option>LG/TTP</option>
+                        <option>LG/WG-I/ETP-II/TTP</option>
+                        <option>LG/WG-II/TTP/WG-I</option>
+                        <option>TTP</option>
+                        <option>WG-I</option>
+                        <option>WG-I/ETP-II</option>
+                        <option>WG-I/ETP-II/TTP</option>
+                        <option>WG-I/TTP</option>
+                        <option>WG-II</option>
                     </select>
                    
                 </div>
@@ -365,39 +380,63 @@
             <div class="form-group row">
                 <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Work_spot" name="Work_spot"
-                        placeholder="Work spot" required>
+                    <select class="form-control" id="Work_spot" name="Work_spot" required>
+                        <option value="" selected disabled>--Select Department--</option>
+                        <option>FINANCE</option>
+                        <option>HR</option>
+                        <option>LOGISTICS</option>
+                        <option>MAINTENANCE</option>
+                        <option>OPERATION</option>
+                        <option>PROJECTS</option>
+                        <option>TECHNICAL</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Area Of Work</label>
+                <div class="col-sm-9">
+                    <select class="form-control" name="Area_of_work" id="Area_of_work" placeholder="Area Of Work" required>
+                        <option value="" selected disabled>--Select Area Of Work--</option>
+                        <option> ADMIN </option>
+                        <option> E&I </option>
+                        <option> F&S </option>
+                        <option> GENERAL </option>
+                        <option> IT&S </option>
+                        <option> MAINTENANCE </option>
+                        <option> MATERIALS & CONTRACTS </option>
+                        <option> OHS </option>
+                        <option> OPERATION </option>
+                        <option> OTHERS </option>
+                        <option> PE </option>
+                        <option> POWER & UTILITIES </option>
+                        <option> PROJECTS </option>
+                        <option> PT&S </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Area Of Place</label>
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                            <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place"
                                 value="1" checked required> Plant</label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work"
+                            <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place"
                                 value="2" required> Non Plant</label>
                     </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Area Of Place</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="area_of_place" id="area_of_place"
-                    required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Pass Validity From</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="pass_val_from" id="pass_val_from"
-                      placeholder="Pass Validity From" required/>
+                      placeholder="Pass Validity From &#xf073" style="font-family:Arial, FontAwesome" required/>
                 </div>
             </div>
             <div class="form-group row">
@@ -426,7 +465,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="1"
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="Y"
                                 checked required>
                             Yes </label>
                     </div>
@@ -434,7 +473,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="2" required>
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="N" required>
                             No </label>
                     </div>
                 </div>
@@ -444,7 +483,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="1"
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="Y"
                                 checked required>
                             Yes </label>
                     </div>
@@ -452,7 +491,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="2" required>
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="N" required>
                             No </label>
                     </div>
                 </div>
@@ -462,7 +501,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="1"
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="Y"
                                 checked required>
                             Yes </label>
                     </div>
@@ -470,7 +509,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="2" required>
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="N" required>
                             No </label>
                     </div>
                 </div>
@@ -480,7 +519,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status" id="gender1" value="1"
+                            <input type="radio" class="form-check-input" name="status" id="status" value="1"
                                 checked required>
                             Active </label>
                     </div>
@@ -488,14 +527,14 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status" id="gender2" value="2" required>
+                            <input type="radio" class="form-check-input" name="status" id="status" value="2" required>
                             Inactive </label>
                     </div>
                 </div>
             </div>
             <center>
                 <button type="submit" class="btn btn-gradient-success btn-rounded btn-fw">Save</button>
-                <button class="btn btn-gradient-danger btn-rounded btn-fw">Cancel</button>
+               <!--  <button class="btn btn-gradient-danger btn-rounded btn-fw">Cancel</button> -->
             </center>
         </form>
     </div>
@@ -505,26 +544,31 @@
 
     <!--Contractor Data Bind -->
     <script>
-        function getuniqcode(ccode) {
-           // alert('hello');
-           // alert(ccode)
+        function getuniqcode(ccodeName) {
+           // alert(ccodeName);
+            var ccode = ccodeName.split("-",1);
+            console.log(ccode[0])
             $.ajax({
                 type: 'POST',
-                data: { "ccode": ccode },
+                data: { "ccode": ccode[0] },
                 url: '/get/contractor',
-                success: function (data) {
-                    //console.log(data);
+                success: function (data) {    
                     $('#work_order_no').empty();
-                    $('#work_order_no').append("<option>Select Work Order Number</option>");
-
-                    // console.log(data);
-                    //$('#work_order_no').append("Select Work Order Number");
-                    $('#work_order_no').empty();
+                    $('#emp_code').empty();
                     $('#work_order_no').append("<option>Select Work Order Number</option >"); 
-                    $.each(data, function (index, addressObj) {
-                        $('#work_order_no').append("<option value = '" + addressObj.WORK_ORDER + "' > " + addressObj.WORK_ORDER + " </option > ");
-                        //$('#workorder_date').append("<input value = '" + addressObj.WORK_OR_DATE + "' >");
-                    });
+                        //alert(data.length);
+                       //console.log(data);
+                        //$('#emp_code').val(data.prfxCode.prefix_code);
+                        for(i=0;i<data.length;i++){
+                            var EmpCode = data[1][0].prefix_code;
+                            var EmpCodeCount = data[2][0].availableCount;
+                            //var newEmpCodeCount = Number(data[2][0].availableCount) + Number(1);
+                            var NewEmpCode = String(EmpCode) + String(EmpCodeCount);
+                            $('#emp_code').val(NewEmpCode);
+                            for(j=0;data[j].length;j++){
+                                $('#work_order_no').append("<option value = '" + data[i][j].WORK_ORDER + "' > " + data[i][j].WORK_ORDER + " </option > ");
+                            }
+                        }
                 }
             });
         }
@@ -552,7 +596,7 @@
                         var WORKMEN_TOT = data[0].WORKMEN_TOT;
                         var availableCount = data[1].availableCount;
 
-                        if (WORKMEN_TOT == null) {
+                        if (WORKMEN_TOT == Null) {
                             $('#available_workman').val(availableCount);
                         } else {
                             var availableWorkman = Number(WORKMEN_TOT) - Number(availableCount);
@@ -577,156 +621,142 @@
         }
     </script>
 
-    <!--Date Format-->
+  <!--   Date Format-->
     <script>
         $(document).ready(function () {
             var currentDate = new Date();
             $('#wo_val_from').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#wo_val_from').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
-            });
+            }); 
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#wo_val_to').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#wo_val_to').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#dob').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#dob').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#Engaged_Date').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#Engaged_Date').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#nominee_dob').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#nominee_dob').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#pass_val_from').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#pass_val_from').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
 
         $(document).ready(function () {
             var currentDate = new Date();
             $('#pass_val_to').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#pass_val_to').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
         $(document).ready(function () {
             var currentDate = new Date();
             $('#safety_training_from').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
-            });
-            $('#safety_training_from').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
             });
         });
         $(document).ready(function () {
             var currentDate = new Date();
             $('#safety_training_to').datepicker({
-                format: 'yyyy/mm/dd',
+                dateFormat: 'yy/mm/dd',
                 autoclose: true,
                 endDate: "currentDate",
                 //maxDate: currentDate
             }).on('changeDate', function (ev) {
                 $(this).datepicker('hide');
             });
-            $('#safety_training_to').keyup(function () {
-                if (this.value.match(/[^0-9]/g)) {
-                    this.value = this.value.replace(/[^0-9^-]/g, '');
-                }
-            });
         });
+    </script> 
+
+    <!--Show Alert-->
+    <script>
+        function showAlert() {
+            alert("Employee Details Successfully Inserted");
+        }
+    </script>
+
+    <!--Get Wage Value-->
+    <script>
+        function getWage(wage) {
+
+            if ( wage == "UN SKILLED"){
+
+                $('#wage_per_day').val(639);
+
+            }else if( wage == "SEMI SKILLED"){
+
+                $('#wage_per_day').val(707);
+
+            }else if( wage == "SKILLED") {
+
+                $('#wage_per_day').val(777);
+
+            }else if( wage == "HIGHLY SKILLED") {
+
+                $('#wage_per_day').val(845);
+
+            }
+        }
     </script>

@@ -55,12 +55,13 @@ router.post('/shift/new',(req,res,next)=>{
  router.get('/shift_edit/:shiftid',(req, res) => {
 
     const shiftId = req.params.shiftid;
+    console.log(shiftId);
 
     async function Shiftupdate(){
         try{
                 let pool = await sql.connect(config);
-                let products = await pool.request().query(`select * from cpcl_shift_master where id = ${shiftId}`); 
-                return products.recordsets;
+                let shift = await pool.request().query(`select * from cpcl_shift_master where id = '${shiftId}'`); 
+                return shift.recordsets;
             }
         catch(error){
             console.log(error);
@@ -71,6 +72,7 @@ router.post('/shift/new',(req,res,next)=>{
 
     Shiftupdate().then(result=>{
         var Shift_edit_data = result[0];
+        //console.log(Shift_edit_data);
         res.render('menu_master/shiftedit',{user_Id:user_Id,user_name:user_name,Shift_edit_data:Shift_edit_data});
     })
 
@@ -106,5 +108,5 @@ router.post('/shift/update',(req, res) => {
 
 module.exports= { 
 	
-    routes:router		
+    shift:router		
 }  

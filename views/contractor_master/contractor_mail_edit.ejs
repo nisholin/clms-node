@@ -1,0 +1,124 @@
+<%- include ('../nav/header') %>
+<!-- Sidebar Page -->
+<%- include('../nav/sidebar') %>
+<div class="card">
+<div class="card-body">
+
+<h4 class="card-title">Contractor Mail Master Edit</h4>
+
+<% con_edit_data.forEach(function(cont_data){ %>
+		<form class="forms-sample" action="/contractor_Mail/update" method="POST">
+			<input type="hidden" value="<%= cont_data.id %>" name="id"> 
+		<div class="form-group row">
+			<label for="exampleInputContractor_Code" class="col-sm-3 col-form-label">Contractor
+				Code</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Code" name="CCODE"
+					value="<%= cont_data.CCODE %>" placeholder="Contractor Code" readonly>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">Contractor
+				Name</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="CNAME"
+					value="<%= cont_data.CNAME %>"	placeholder="Contractor Name" readonly>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Primary Mail</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="Primary_Mail"
+					value="<%= cont_data.primary_mail %>"	placeholder="Primary Mail">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 1</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_one"
+					value="<%= cont_data.secondary_mail_one %>"	placeholder="secondary_mail_one">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 2</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_two"
+					value="<%= cont_data.secondary_mail_two %>"	placeholder="secondary_mail_two">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 3</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_three"
+					value="<%= cont_data.secondary_mail_three %>"	placeholder="secondary_mail_three">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 4</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_four"
+					value="<%= cont_data.secondary_mail_four %>"	placeholder="secondary_mail_four">
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 5</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_five"
+					value="<%= cont_data.secondary_mail_five %>"	placeholder="secondary_mail_five">
+			</div>
+		</div>		
+		
+		<div class="form-group row">
+			<label for="exampleInputContractor_Name" class="col-sm-3 col-form-label">
+				Sec Mail 6</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="exampleInputContractor_Name" name="secondary_mail_six"
+					value="<%= cont_data.secondary_mail_six %>"	placeholder="secondary_mail_six">
+			</div>
+		</div>
+
+		<% }) %>
+		
+		<center>
+		<button type="submit" class="btn btn-primary">Update</button>
+		</center>
+	</form>
+
+	
+
+</div>
+</div>
+<!-- Footer Page-->
+<%- include('../nav/footer') %>
+
+<script>
+//Active function
+$('#active').each(function(e){
+if($(this).val() == 1){
+$(this).attr("checked", "checked");
+} else if ($(this).val() == 0) {
+$(this).attr("unchecked", "unchecked");
+}
+});
+//Inactive Function
+$('#inactive').each(function(e){
+if($(this).val() == 0){
+$(this).attr("checked", "checked");
+}else if($(this).val() == 1){
+$(this).attr("unchecked", "unchecked");
+}
+});
+
+</script>
