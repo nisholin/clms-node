@@ -123,8 +123,9 @@
 								<div class="col-sm-4">
 									<div class="form-check">
 										<label class="form-check-label">
+											<input type="hidden" value="<%= cont_data.status %>" id="STATUS" />
 											<input type="radio" class="form-check-input" name="status" 
-												id="active" value="<%= cont_data.status %>">
+												id="active" value="1">
 											Active </label>
 									</div>
 								</div>
@@ -132,7 +133,7 @@
 									<div class="form-check">
 										<label class="form-check-label">
 											<input type="radio" class="form-check-input" name="status"
-												id="inactive" value="<%= cont_data.status %>"> In Active
+												id="inactive" value="2"> In Active
 										</label>
 									</div>
 								</div>
@@ -173,25 +174,19 @@
 
 				</div>
 			</div>
-		<!-- Footer Page-->
-		<%- include('../nav/footer') %>
+<!-- Footer Page-->
+<%- include('../nav/footer') %>
 
-		<script>
-			$('#active').each(function(e){
-			if($(this).val() == 1){
-				alert($(this).val());
-				$(this).attr("checked", "checked");
-			} else if ($(this).val() == 0) {
-				$(this).attr("unchecked", "unchecked");
-			}
-			});
-			//Inactive Function
-			$('#inactive').each(function(e){
-			if($(this).val() == 0){
-				$(this).attr("checked", "checked");
-			}else if($(this).val() == 1){
-				$(this).attr("unchecked", "unchecked");
-			}
-			});
-		
-		</script>
+<!--Radio Button Ckecked-->
+<script>
+	//Status 
+	var status = document.getElementById("STATUS").value;
+	if (status == '1') {
+		document.getElementById("active").checked = true;
+	}else if(status == '2'){
+		document.getElementById("inactive").checked = true;
+	}else if(status == '' || status == 'NULL'){
+		document.getElementById("active").checked = false;
+		document.getElementById("inactive").checked = false;
+	}
+</script>

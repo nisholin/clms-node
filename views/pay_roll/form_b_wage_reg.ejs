@@ -1,103 +1,157 @@
 <%- include ('../nav/header')  %>        
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
-
-
-	 <div class="content-wrapper">
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">		
-    <div class="card-body">
-        <h4 class="card-title">Wage Register</h4>
-       <form class="form-inline" method="POST" action="/formbwage/formbwage">
-            <label class="sr-only" for="Contractor">Contractor</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="Contractor" name="Contractor" placeholder="Contractor">
-            <label class="sr-only" for="Month">Month</label>
-			 <input type="text" class="form-control mb-2 mr-sm-2" id="month" name="month" placeholder="Month">
-            <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-        </form>
-    </div>
+<!--form b wage register design-->
+<div class="content-wrapper">  
+	<div class="col-lg-12 grid-margin stretch-card" id="table">
+	<div class="card overflow-x overflow-y-hidden">		
+		<div class="card-body">
+			<h4 class="card-title">Wage Register</h4>
+			<form class="form-inline">
+				<label class="sr-only" for="contractor">Contractor</label>
+				<select class="form-control mb-2 mr-sm-2" name="contract_code_data" id="contract_code_data" placeholder="Select Contractor"> 
+					<option value="">Select Contractor</option>
+					<% conDetailsCode.forEach(function(contractorlist)  { %>
+					<option value="<%= contractorlist.CCODE %>"><%= contractorlist.CNAME %></option>
+					<% }) %>
+				</select>
+				<label class="sr-only" for="from_date">Month</label>
+				<select class="form-control mb-2 mr-sm-2" name="month_data" id="month_data" placeholder="Select Month"> 
+					<option value="">Select Month</option>
+					<% MonthDetails.forEach(function(Monthlist)  { %>
+					<option value="<%= Monthlist.MONTH %>"><%= Monthlist.MONTH %></option>
+					<% }) %>
+				</select>
+				<button  class="btn btn-gradient-primary mb-2" onclick="get_form_b_wage_reg()">Go</button>
+			</form>
+		</div>
 	<div class="col-sm-12 text-right">
-				 	   <div class="w3-show-inline-block">
-  <div class="w3-bar"> 
-					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-					  </button>
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
-					  </button>
-					</div>
-					</div> 
+     <div class="w3-show-inline-block">
+        <div class="w3-bar"> 
+			<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i></button>
+			<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i></button>
+		</div>
+	</div> 
   </div>
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">	
-<div class="card-body">			
-<table class="table table-bordered"> 				
-<thead>
-<center>					
-<h5>FORM B</br>
-Wage Register</h5>
-</center>
-<tr>
-	  <th>Name and address of Contractor :</th>			 
-      <th>A J ASSOCIATES</th>
-      <th>Name and address of Principal employer :</th>
-	  <th>CHENNAI PETROLEUM CORPORATION LIMITED MANALI, CHENNAI-600068</th>
-	  <th>Name of Owner LIN</th>
-</tr>	
-<tr>
- <th>Wage period</th>	
- <th colspan="3">From :01/02/03/ To 31/32/33/</th>	
- 	
- <th colspan="12">(Monthly/Fortnight/Weekly/Daily/Piece Rated)</th>	
-  <th colspan="3">Work order</th>
-   <th colspan="3">25757787</th>
-   </tr>
-</thead>
-<tbody>
-<tr>
- 
-					<td>S.NO</td> 
-					<td>Sl. No. in Employee Register</td>
-					<td>ID Card No</td>
-					<td>Name</td>
-					<td>Rate of wage</td>
-					<td>No. of days Worked</td>
-					<td>Over time Hours Worked</td>
-					<td>Basic</td>
-					<td>Special Basic</td>
-					<td>DA</td>
-					<td>Payments Overtime</td>
-					<td>HRA</td>
-					<td>Other Allowance</td>
-					<td>Incentive</td>
-					<td>Arrear Basic</td>
-					<td>Misc.Credit</td>
-					<td>Total</td>
-					<td>PF</td>
-					<td>ESIC</td>
-										<td>Society</td>
-
-					<td>	Income Tax</td>
-
-					<td>Insurance</td>
-
-					<td>Others</td>
-					<td>Recoveries</td>
-
-					<td>PTAX</td>
-					<td>LWF</td>
-					<td>Misc.Ded	</td>
-					<td>Total Deduction</td>
-					<td>Net Payment</td>
-					<td>Employee share PF Welfare</td>
-										<td>Receipt by Employee/Bank Transaction ID</td>
-
-					<td>Date of paymen</td>
-</tr> 
-
-</tbody>
-</table>
+  <!--form b wage data list part-->
+  <div class="col-lg-12 grid-margin stretch-card" id="table">
+	<div class="card overflow-x overflow-y-hidden">	
+		<div class="card-body">			
+			<table class="table table-bordered"> 				
+			<thead>
+				<caption><center><b><H5>FORM B</br>WAGE REGISTER</H5></b></center></caption>
+					<center>
+						<table class="table table-bordered"align="center" style='font-size: 12px;width: 50%; text-align:center;'>
+						<thead>
+						 <tr>
+						   <td colspan="5" align="center">Rate of Minimum Wages and since the date  </td>
+						 </tr>
+						 <tr>
+							<td></td>
+							<td align="center">Highly Skilled</td>
+							<td align="center">Skilled</td>
+							<td align="center">Semi-Skilled</td>
+							<td align="center">Un Skilled</td>
+						 </tr>
+						 <tr>
+							<td>Minimum Basic</td>
+							<td align="center">845.00</td>
+							<td align="center">777.00</td>
+							<td align="center">707.00</td>
+							<td align="center">639.00</td>
+						 </tr>
+						 <tr>
+							<td>DA</td>
+							<td colspan='4'align="center">Include in Minimum Basic</td>
+							
+						 </tr>
+						 <tr>
+							<td>Overtime</td>
+							<td colspan='4' align="center">Double The Rate Of Wages</td>
+							
+						 </tr>
+						</thead>
+						</table></center>
+			<tr>
+				<th>Name and address of Contractor :</th>			 
+				<th>A J ASSOCIATES</th>
+				<th>Name and address of Principal employer :</th>
+				<th>CHENNAI PETROLEUM CORPORATION LIMITED MANALI, CHENNAI-600068</th>
+				<th>Name of Owner LIN</th>
+			</tr>	
+			<tr>
+			  <th>Wage period</th>	
+			  <th colspan="3">From :01/02/03/ To 31/32/33/</th>	
+			  <th colspan="12">(Monthly/Fortnight/Weekly/Daily/Piece Rated)</th>	
+			  <th colspan="3">Work order</th>
+			  <th colspan="3">25757787</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			  <td>S.NO</td> 
+			  <td>Sl. No. in Employee Register</td>
+			  <td>ID Card No</td>
+			  <td>Name</td>
+			  <td>Rate of wage</td>
+			  <td>No. of days Worked</td>
+			  <td>Over time Hours Worked</td>
+			  <td>Basic</td>
+			  <td>Special Basic</td>
+			  <td>DA</td>
+			  <td>Payments Overtime</td>
+			  <td>HRA</td>
+			  <td>Other Allowance</td>
+			  <td>Incentive</td>
+			  <td>Arrear Basic</td>
+				<td>Misc.Credit</td>
+				<td>Total</td>
+				<td>PF</td>
+				<td>ESIC</td>
+				<td>Society</td>
+				<td>Income Tax</td>
+				<td>Insurance</td>
+				<td>Others</td>
+				<td>Recoveries</td>
+				<td>PTAX</td>
+				<td>LWF</td>
+				<td>Misc.Ded</td>
+				<td>Total Deduction</td>
+				<td>Net Payment</td>
+				<td>Employee share PF Welfare</td>
+				<td>Receipt by Employee/Bank Transaction ID</td>
+				<td>Date of paymen</td>
+			</tr> 
+			</tbody>
+			</table>
+		</div>
+	</div>
 </div>
-</div>
-</div>
-
 <!-- Footer Page-->
 		<%- include('../nav/footer') %>
+		<script>
+
+			function get_contractor(){
+	
+				var contractor_code =document.getElementById("contract_code_data").value;
+				var from_date =document.getElementById("from_date").value;
+				var to_date =document.getElementById("to_date").value;
+						//alert(contractor_code);
+						////alert(from_date);
+						//alert(to_date);
+							$.ajax({
+							type:'POST',
+							data: { contractor_code: contractor_code,from_date: from_date,to_date: to_date },
+							url:'/contractor_attendance',
+							success: function(data){
+								//console.log(data);
+							//	$('#in_outdatas').empty();
+							$.each(data, function(index, attendancedetails) {
+									$('#in_outdatas').append('<tr><td>' + attendancedetails.EMPCODE+ '</td><td>' + attendancedetails.Employee_Name + '</td><td>' + attendancedetails.Shift + '</td><td>' + attendancedetails.Shift_date + '</td><td>' + attendancedetails.IN + '</td><td>' + attendancedetails.Out + '</td><td>' + attendancedetails.CNAME + '</td><td>' + attendancedetails.Gate + '</td><td>' + attendancedetails.PO_NUM + '</td></tr>');
+								});
+							}
+						}); 
+			
+				}
+			</script>
+			

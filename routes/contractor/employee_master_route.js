@@ -31,7 +31,7 @@ router.get('/employeenew',(req,res)=>{
 //Add Employee 
 router.post('/employee/add',(req,res)=>{
    var data = req.body;
-    console.log(data);
+    //console.log(data);
     //var ccodeName             = req.body.ccode;
     var ccodeName               = req.body.ccode.split("-",1);
     var ccode                   = ccodeName[0];
@@ -96,8 +96,8 @@ router.post('/employee/add',(req,res)=>{
                 AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,ifsc_code,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,area_of_place,
                 PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,payroll,esi_eligible,pf_eligible,STATE,STATUS) 
 
-                values ('${ccode}','${emp_name}','${work_order_no}','${workorder_date}','${emp_code}','${card_number}',
-                '${old_emp_number}','${wo_val_from}','${wo_val_to}','${Father}','${designation}','${dob}',
+                values ('${ccode}','${emp_name}','${work_order_no}','${workorder_date}','${emp_code}','${old_emp_number}',
+                '${card_number}','${wo_val_from}','${wo_val_to}','${Father}','${designation}','${dob}',
                 '${Engaged_Date}','${gender}','${mstatus}','${Present_address}','${permanent_address}','${phone_no}',
                 '${email_id}','${Emergency_Mobile_Number}','${nominee_name}','${nominee_relation}','${nominee_dob}','${category}',
                 '${wage_per_day}','${Incentive_per_day}','${Allowance_per_day}','${Any_other_wages}',
@@ -105,7 +105,7 @@ router.post('/employee/add',(req,res)=>{
                 '${Blood_grp}','${Entry_gate}','${Work_spot}','${Area_of_work}','${area_of_place}','${pass_val_from}',
                 '${pass_val_to}','${safety_training_from}','${safety_training_to}','${payroll}','${esi_eligible}','${pf_eligible}',
                 '${state}','${status}')`,(req,res)=>{
-                 console.log("Employee successfully inserted");
+                 //console.log("Employee successfully inserted");
              });
         }
         catch(error){
@@ -144,7 +144,7 @@ router.get('/employee_edit/:empid',(req, res) => {
 //Employee update process
 router.post('/employee/update',(req, res) => {
     var data = req.body;
-   console.table(data);
+   //console.table(data);
 
     async function employeeupdate(){
         try{
@@ -155,8 +155,8 @@ router.post('/employee/update',(req, res) => {
             WORK_ORDER_No           =   '${req.body.work_order_no}',
             WORK_OR_DATE            =   '${req.body.workorder_date}',
             NEW_CODE                =   '${req.body.emp_code}',
-            PRE_CODE                =   '${req.body.card_number}',
-            ECODE                   =   '${req.body.old_emp_number}',
+            PRE_CODE                =   '${req.body.old_emp_number}',
+            ECODE                   =   '${req.body.card_number}',
             WO_FROM                 =   '${req.body.wo_val_from}',
             WO_TO                   =   '${req.body.wo_val_to}',
             FATHER                  =   '${req.body.Father}',
@@ -204,11 +204,10 @@ router.post('/employee/update',(req, res) => {
         catch(error){
             console.log(error);
         }
-        console.log("Employee Updated Successfully");
+        //console.log("Employee Updated Successfully");
     } 
 
     employeeupdate();
-
      res.redirect('/employeenew'); 
 });
 
@@ -378,7 +377,7 @@ router.get('/employee/add',(req,res)=>{
     })  */
 })
 
-
+//Employee Transfer View
 wodetails = {};
   router.get('/employee/employee_transfer',(req,res)=>{
     var user_Id = req.session.userId, user_name = req.session.user_name;
@@ -404,6 +403,7 @@ wodetails = {};
 
 })
 
+//Employee Work Order Details Onchange
 router.post('/employee/workorder_details/onchange',(req,res)=>{
     var ecode = req.body.ecode;
     async function get_employee_code() {

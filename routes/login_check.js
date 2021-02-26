@@ -10,10 +10,10 @@ exports.login_check=(req,res)=>{
 
         console.log(name+pass);
 
-        if(name=='admin' && pass==123)
+        if(name=='admin' && pass== 'admin@123')
         {
             req.session.userId = 'admin';
-            req.session.user_name = 123;
+            req.session.user_name = 'admin@123';
             req.session.cont_code = 'CON-001';
             console.log(req.session.userId+req.session.user_name)
             res.redirect('/home');        
@@ -27,7 +27,7 @@ exports.login_check=(req,res)=>{
     
 }
 
-exports.main_page = function(req,res,next){
+exports.main_page = function(req,res){
     var user_Id = req.session.userId;
     var user_name = req.session.user_name;
     var con_code = req.session.cont_code;

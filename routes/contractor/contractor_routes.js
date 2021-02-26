@@ -61,7 +61,7 @@ router.post('/contractor/new',(req,res,next)=>{
         values('${contractor_code}','${contractor_name}','${address}','${prefix_code}','${proprietor}','${owner}','${md}','${partner}','${contractor_mail}','${ESI_Code_No}','${PF_Code_No}',
         '${Contractor_PAN_No}','${Contractor_LIN}','${Mobile_No}','${Name_of_person}','${compliance_Mail_id}','${hr_department}','${status}','${username}','${password}')`,(req,res)=>{
 
-            console.log("successfully inserted");
+        //console.log("successfully inserted");
         })
     }
 catch(error)
@@ -144,7 +144,7 @@ router.post('/contractornew/update',(req, res) => {
         catch(error){
             console.log(error);
         }
-        console.log("Contractor Updated Successfully");
+        //console.log("Contractor Updated Successfully");
     } 
 
     contractornewupdate();

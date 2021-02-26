@@ -2,13 +2,16 @@
    <%- include ('../nav/header') %>
   <!-- Sidebar Page -->
   <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="addbutton"
+    href="/employeenew">Back</a>
+    <br/><br/>
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Employee Edit</h4>
 
         <% Emp_edit_data.forEach(function(empdata) { %>
 
-          <form class="forms-sample" method="POST" action="/employee/update" autocomplete="off">
+          <form class="forms-sample" method="POST" action="/employee/update" autocomplete="off" onsubmit="showAlert()">
 
             <input type="hidden" name="id" value="<%= empdata.ID %>" />
             <div class="form-group row">
@@ -43,7 +46,7 @@
                 <label for="emp_code" class="col-sm-3 col-form-label">Card Number</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="card_number" name="card_number"
-                    value="<%= empdata.PRE_CODE %>" required>
+                    value="<%= empdata.ECODE %>">
                 </div>
             </div>
             
@@ -51,7 +54,7 @@
                 <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Code</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
-                      value="<%= empdata.ECODE %>" required>
+                      value="<%= empdata.PRE_CODE %>">
                 </div>
             </div>
             
@@ -110,15 +113,16 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="<%= empdata.GENDER %>"
-                                checked required>
+                            <input type="hidden" value="<%= empdata.GENDER %>" id="GENDER" />
+                            <input type="radio" class="form-check-input" name="gender" id="gender1" value="M"
+                             >
                             Male </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="<%= empdata.GENDER %>" required>
+                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="F" >
                             Female </label>
                     </div>
                 </div>
@@ -129,7 +133,8 @@
                 <div class="col-sm-4">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus" value="<%= empdata.MARITAL_STATUS %>" checked>
+                        <input type="hidden" value="<%= empdata.MARITAL_STATUS %>" id="MARITALSTATUS" />
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="M">
                       married</label>
                     </label>
                   </div>
@@ -137,7 +142,7 @@
                 <div class="col-sm-5">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus" value="<%= empdata.MARITAL_STATUS %>" >Un
+                      <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="S" >Un
                       married</label>
                   </div>
                 </div>
@@ -161,7 +166,7 @@
                 <label for="permanent_address" class="col-sm-3 col-form-label">State</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="state" name="state"
-                    value="<%= empdata.STATE %>" required>
+                    value="<%= empdata.STATE %>" >
                 </div>
             </div>
             
@@ -312,26 +317,43 @@
             
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Area Of Work</label>
-                <div class="col-sm-4">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>"  checked>
-                      Plant</label>
-                  </div>
-                </div>
-                <div class="col-sm-5">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="Area_of_work" id="Area_of_work" value="<%= empdata.AREA_OF_WORK %>">
-                      Non Plant</label>
-                  </div>
+                <div class="col-sm-9">
+                    <select class="form-control" name="Area_of_work" id="Area_of_work" placeholder="Area Of Work">
+                        <option value="<%= empdata.AREA_OF_WORK %>" selected><%= empdata.AREA_OF_WORK %></option>
+                        <option> ADMIN </option>
+                        <option> E&I </option>
+                        <option> F&S </option>
+                        <option> GENERAL </option>
+                        <option> IT&S </option>
+                        <option> MAINTENANCE </option>
+                        <option> MATERIALS & CONTRACTS </option>
+                        <option> OHS </option>
+                        <option> OPERATION </option>
+                        <option> OTHERS </option>
+                        <option> PE </option>
+                        <option> POWER & UTILITIES </option>
+                        <option> PROJECTS </option>
+                        <option> PT&S </option>
+                    </select>
                 </div>
             </div>
             
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Area Of Place</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="area_of_place" id="area_of_place" value="<%= empdata.area_of_place %>"/>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="hidden" value="<%= empdata.area_of_place %>" id="AREAOFPLACE" />
+                            <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place1"
+                                value="P"> Plant</label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place2"
+                            value="NP"> Non Plant</label>
+                    </div>
                 </div>
             </div>
             
@@ -368,15 +390,15 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="<%= empdata.payroll %>"
-                                checked required>
+                            <input type="hidden" value="<%= empdata.payroll %>" id="PAYROLL" />
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll1" value="1">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="<%= empdata.payroll %>" required>
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll2" value="2">
                             No </label>
                     </div>
                 </div>
@@ -387,15 +409,16 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="<%= empdata.esi_eligible %>"
-                                checked required>
+                            <input type="hidden" value="<%= empdata.esi_eligible %>" id="ESIELIGIBLE" />
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible1" 
+                                value="1">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="<%= empdata.esi_eligible %>" required>
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible2" value="2">
                             No </label>
                     </div>
                 </div>
@@ -405,15 +428,16 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="<%= empdata.pf_eligible %>"
-                                checked required>
+                            <input type="hidden" value="<%= empdata.pf_eligible %>" id="PFELIGIBLE" />
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible1" 
+                                value="1">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="<%= empdata.pf_eligible %>" required>
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible2" value="2" >
                             No </label>
                     </div>
                 </div>
@@ -423,15 +447,15 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status" id="gender1" value="<%= empdata.STATUS %>"
-                                checked required>
+                            <input type="hidden" value="<%= empdata.STATUS %>" id="STATUS" />
+                            <input type="radio" class="form-check-input" name="status" id="status1" value="1">
                             Active </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status" id="gender2" value="<%= empdata.STATUS %>" required>
+                            <input type="radio" class="form-check-input" name="status" id="status2" value="2" >
                             Inactive </label>
                     </div>
                 </div>
@@ -450,6 +474,87 @@
     </div>
     <%- include('../nav/footer') %>
    
+    <!--Radio Button Ckecked-->
+    <script>
+        //Gender 
+        var gender = document.getElementById("GENDER").value;
+        if (gender == 'M') {
+            document.getElementById("gender1").checked = true;
+        }else if(gender == 'F'){
+            document.getElementById("gender2").checked = true;
+        }else if(gender == '' || status == 'NULL'){
+            document.getElementById("gender1").checked = false;
+            document.getElementById("gender2").checked = false;
+        }
+
+        //Marital Status
+        var ms = document.getElementById("MARITALSTATUS").value;
+        if (ms == 'M') {
+        document.getElementById("mstatus1").checked = true;
+        }else if(ms == 'S'){
+            document.getElementById("mstatus2").checked = true;
+        }else if(ms == '' || status == 'NULL'){
+            document.getElementById("mstatus1").checked = false;
+            document.getElementById("mstatus2").checked = false;
+        }
+        
+        //Area Of Place
+        var ap = document.getElementById("AREAOFPLACE").value;
+        if (ap == 'P') {
+        document.getElementById("area_of_place1").checked = true;
+        }else if(ap == 'NP'){
+            document.getElementById("area_of_place2").checked = true;
+        }else if(ap == '' || status == 'NULL'){
+            document.getElementById("area_of_place1").checked = false;
+            document.getElementById("area_of_place2").checked = false;
+        }
+
+        //Pay Roll
+        var pr = document.getElementById("PAYROLL").value;
+        //alert(pr)
+        if (pr == 1) {
+            document.getElementById("payroll1").checked = true;
+        }else if(pr == 2){
+            document.getElementById("payroll2").checked = true;
+        }else if(pr == '' || status == 'NULL'){
+            document.getElementById("payroll1").checked = false;
+            document.getElementById("payroll2").checked = false;
+        }
+
+        //ESI ELIGIBLE
+        var ee = document.getElementById("ESIELIGIBLE").value;
+        if (ee == 1) {
+        document.getElementById("esi_eligible1").checked = true;
+        }else if(ee == 2){
+            document.getElementById("esi_eligible2").checked = true;
+        }else if(ee == '' || status == 'NULL'){
+            document.getElementById("esi_eligible1").checked = false;
+            document.getElementById("esi_eligible2").checked = false;
+        }
+
+        //PF ELIGIBLE
+        var pe = document.getElementById("PFELIGIBLE").value;
+        if (pe == 1) {
+        document.getElementById("pf_eligible1").checked = true;
+        }else if(pe == 2){
+            document.getElementById("pf_eligible2").checked = true;
+        }else if(pe == '' || status == 'NULL'){
+            document.getElementById("pf_eligible1").checked = false;
+            document.getElementById("pf_eligible2").checked = false;
+        }
+
+        //Status
+        var status = document.getElementById("STATUS").value;
+        if (status == 1) {
+            document.getElementById("status1").checked = true;
+        }else if(status == 2 ){
+            document.getElementById("status2").checked = true;
+        }else if(status == '' || status == 'NULL'){
+            document.getElementById("status1").checked = false;
+            document.getElementById("status2").checked = false;
+        }
+    </script>
+
    <!--Hide Future Dates-->
    <script>
        $(document).ready(function () {
@@ -564,3 +669,10 @@
        });
        });
    </script>
+
+    <!--Show Alert-->
+    <script>
+        function showAlert() {
+            alert("Employee Details Successfully Updated");
+        }
+    </script>

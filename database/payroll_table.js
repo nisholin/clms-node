@@ -1,6 +1,5 @@
-var config = require('./dbconfig');
-
-var sql = require('mssql');
+var config = require('../database/dbconfig');
+var sql = require ('mssql');
 
 
 async function getpayrollValues(){
@@ -13,8 +12,32 @@ async function getpayrollValues(){
         console.log(error);
     }
 }
+//contractor List fetch query
+async function payroll_contract_data (){
+    try{
+        let pool = await sql.connect(config);
+        let payroll = await pool.request().query("select CCODE,CNAME from Cpcl_Contract_Master where CNAME in (select CNAME from cpcl_work_order_master group by CNAME) order by CNAME");
+        return payroll.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+//month and year list fetch query
+async function get_month_data (){
+    try{
+        let pool = await sql.connect(config);
+        let payroll = await pool.request().query(" select datepart(year,Shift_date) as YEAR, datepart(month,Shift_date) as MONTH From  Employee_Daily_Attendance group by datepart(year,Shift_date), datepart(month,Shift_date)");
+        return payroll.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
-//let data = {name: req.body.name, status: req.body.status};
-/* let sql = "update cpcl_gate_master SET name='"+req.body.name+"', status='"+req.body.status+"' where id ="+Id; */
 
-module.exports = {  getpayrollValues }
+module.exports = {  
+    getpayrollValues,
+    payroll_contract_data,
+    get_month_data
+ }
