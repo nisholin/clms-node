@@ -7,7 +7,7 @@ var sql = require('mssql');
 
 
 
-router.get('/shift',(req, res, next)=>{
+router.get('/shift',(req, res)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
 	  if(user_Id == null)
     {
@@ -23,8 +23,11 @@ router.get('/shift',(req, res, next)=>{
     } 
 
 });
- 
-router.post('/shift/new',(req,res,next)=>{
+
+//Shift Add
+router.post('/shift/new',(req,res)=>{
+    //var new = req.body;
+    //console.log(new);
     var shift_name = req.body.shift_name;
    
 	 var from_time = req.body.from_time;
@@ -51,7 +54,6 @@ router.post('/shift/new',(req,res,next)=>{
 });
 
 //shift edit
-
  router.get('/shift_edit/:shiftid',(req, res) => {
 
     const shiftId = req.params.shiftid;
@@ -82,16 +84,14 @@ router.post('/shift/new',(req,res,next)=>{
 
 //Shift update process
 router.post('/shift/update',(req, res) => {
-    var data = req.body;
-    //console.table(data);
+    var update = req.body;
+    //console.table(update);
 
     async function shiftupdate(){
-
         try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query(`update cpcl_shift_master SET shift_name ='${req.body.shift_name}',
-            from_time ='${req.body.from_time}',to_time ='${req.body.to_time}',status ='${req.body.status}' where id ='${req.body.id}'`); 
-            return products.recordsets;
+            await pool.request().query(`update cpcl_shift_master SET shift_name ='${req.body.shift_name}',
+            from_time ='${req.body.from_time}',to_time ='${req.body.to_time}',status ='${req.body.membershipRadios}' where id ='${req.body.id}'`);
         }
         catch(error){
             console.log(error);
@@ -106,7 +106,4 @@ router.post('/shift/update',(req, res) => {
 
 
 
-module.exports= { 
-	
-    shift:router		
-}  
+module.exports= { shift:router } 

@@ -2263,6 +2263,9 @@
 .lh-2-8 {line-height: 2.8;}
 .lh-2-9 {line-height: 2.9;}
 
+.b-r-1 {border-radius: 1px;}
+.b-r-25 {border-radius: 25px;}
+
 /*[ Display ]*/
 .w-9-rem {
 	width: 9rem;

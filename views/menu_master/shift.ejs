@@ -1,7 +1,11 @@
+<!--Header-->
 <%- include ('../nav/header')  %> 
-<!-- Sidebar Page -->
-<%- include('../nav/sidebar') %>
-<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" onclick="addContractor(1)">New</button>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+	<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" 
+	onclick="addShift(1)">New</button>
+	<button type="button" class="btn btn-gradient-danger btn-fw f-r b-r-25 dis-none" id="backbutton"
+	onclick="addShift(2)">Back</button>
 	<div class="col-lg-12 grid-margin stretch-card">
 		
 		<div class="card overflow-x overflow-y-hidden" id="table">
@@ -9,20 +13,12 @@
 			<div class="card-body">
 				<h4 class="card-title">Shift  Master</h4>
 
-				<div class="form-group"> <!--Show Numbers Of Rows-->
-					<select class  ="form-control" name="state" id="maxRows">
-						<option value="5000">Show ALL Rows</option>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-						<option value="20">20</option>
-						<option value="50">50</option>
-						<option value="70">70</option>
-						<option value="100">100</option>
-					</select>
+				<div class="form-group"> 
+          <!--Search Filter-->
+			    <input type="search" placeholder="Search Here" class="form-control search-input" data-table="customers-list"/>
 				</div>
 
-				<table class="table table-striped table-class" id= "table-id">
+				<table class="table table-striped mt32 customers-list" id= "table-id">
 					<thead>
 						<tr>
 							<th>Name </th>
@@ -51,23 +47,6 @@
 					</tbody>
 				</table>
 				<br/><br/>
-				<!--Start Pagination -->
-				<div class='pagination-container'>
-					<nav>
-					<ul class="pagination ">
-
-						<li data-page="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-						<span>
-							< <span class="sr-only">(current)
-						</span></span>
-						</li>
-						<!--	Here the JS Function Will Add the Rows -->
-						<li data-page="next" id="prev" class="btn btn-gradient-danger btn-rounded btn-icon fs-30">
-						<span> > <span class="sr-only">(current)</span></span>
-						</li>
-					</ul>
-					</nav>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -76,8 +55,8 @@
 	<div class="card" id="newform">
 	  <div class="card-body">
 		<h4 class="card-title">Shift Master</h4>
-		<p class="card-description">  </p>
-		<form class="forms-sample" method="POST" action="/shift/new">
+
+		<form class="forms-sample" method="POST" action="/shift/new" onsubmit="showAlert()">
 		  <div class="form-group row">
 			<label for="shift_name" class="col-sm-3 col-form-label">Name</label>
 			<div class="col-sm-9">
@@ -87,13 +66,13 @@
 		   <div class="form-group row">
 				<label class="col-sm-3 col-form-label">From Time</label>
 				<div class="col-sm-9">
-				  <input type="time" class="form-control" id="from_time" name="from_time"  placeholder="dd/mm/yyyy" />
+				  <input type="time" class="form-control" id="from_time" name="from_time"/>
 				</div>
 			  </div>
 		   <div class="form-group row">
 				<label class="col-sm-3 col-form-label">To Time</label>
 				<div class="col-sm-9">
-				  <input type="time"class="form-control" id="to_time" name="to_time" placeholder="dd/mm/yyyy" />
+				  <input type="time"class="form-control" id="to_time" name="to_time"/>
 				</div>
 			  </div>
 			 <div class="form-group row">
@@ -107,14 +86,13 @@
 				<div class="col-sm-5">
 				  <div class="form-check">
 					<label class="form-check-label">
-					  <input type="radio" class="form-check-input" name="status" id="status" value="0"> In Active </label>
+					  <input type="radio" class="form-check-input" name="status" id="status" value="2"> In Active </label>
 				  </div>
 				</div>
 			  </div>
 		 
-		<center>
-		   <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-		  <button  class="btn btn-gradient-danger btn-fw">Cancel</button>
+			<center>
+				<button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
 		  </center>
 		</form>
 	  </div>
@@ -130,13 +108,20 @@
 
 	};
 
-	function addContractor(a) {
+	function addShift(a) {
 	
 	if (a == 1) {
 		document.getElementById("newform").style.display = "block";
 		document.getElementById("table").style.display = "none";
 		document.getElementById("addbutton").style.display = "none";
-	} 
+		document.getElementById("backbutton").style.display = "block";
+	}else if (a == 2){
+		document.getElementById("newform").style.display = "none";
+		document.getElementById("table").style.display = "block";
+		document.getElementById("addbutton").style.display = "block";
+		document.getElementById("backbutton").style.display = "none";
+		location.reload();
+	}
 	else {
 		document.getElementById("newform").style.display = "none";
 	}
@@ -144,148 +129,9 @@
 	}
 </script>
 
-<!-- Pagination Start-->
+<!--Show Alert-->
 <script>
-    getPagination('#table-id');
-  
-    function getPagination(table) {
-      var lastPage = 1;
-  
-      $('#maxRows')
-        .on('change', function (evt) {
-          //$('.paginationprev').html('');						// reset pagination
-  
-          lastPage = 1;
-          $('.pagination')
-            .find('li')
-            .slice(1, -1)
-            .remove();
-          var trnum = 0; // reset tr counter
-          var maxRows = parseInt($(this).val()); // get Max Rows from select option
-  
-          if (maxRows == 5000) {
-            $('.pagination').hide();
-          } else {
-            $('.pagination').show();
-          }
-  
-          var totalRows = $(table + ' tbody tr').length; // numbers of rows
-          $(table + ' tr:gt(0)').each(function () {
-            // each TR in  table and not the header
-            trnum++; // Start Counter
-            if (trnum > maxRows) {
-              // if tr number gt maxRows
-  
-              $(this).hide(); // fade it out
-            }
-            if (trnum <= maxRows) {
-              $(this).show();
-            } // else fade in Important in case if it ..
-          }); //  was fade out to fade it in
-          if (totalRows > maxRows) {
-            // if tr total rows gt max rows option
-            var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
-            //	numbers of pages
-            for (var i = 1; i <= pagenum;) {
-              // for each page append pagination li
-              $('.pagination #prev')
-                .before(
-                  '<li data-page="' +
-                  i +
-                  '">\
-  <span class="btn m-t-10 btn-icon fs-20">' +
-                  i++ +
-                  '<span class="sr-only">(current)</span></span>\
-  </li>'
-                )
-                .show();
-            } // end for i
-          } // end if row count > max rows
-          $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
-          $('.pagination li').on('click', function (evt) {
-            // on click each page
-            evt.stopImmediatePropagation();
-            evt.preventDefault();
-            var pageNum = $(this).attr('data-page'); // get it's number
-  
-            var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
-  
-            if (pageNum == 'prev') {
-              if (lastPage == 1) {
-                return;
-              }
-              pageNum = --lastPage;
-            }
-            if (pageNum == 'next') {
-              if (lastPage == $('.pagination li').length - 2) {
-                return;
-              }
-              pageNum = ++lastPage;
-            }
-  
-            lastPage = pageNum;
-            var trIndex = 0; // reset tr counter
-            $('.pagination li').removeClass('active'); // remove active class from all li
-            $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
-            // $(this).addClass('active');					// add active class to the clicked
-            limitPagging();
-            $(table + ' tr:gt(0)').each(function () {
-              // each tr in table not the header
-              trIndex++; // tr index counter
-              // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
-              if (
-                trIndex > maxRows * pageNum ||
-                trIndex <= maxRows * pageNum - maxRows
-              ) {
-                $(this).hide();
-              } else {
-                $(this).show();
-              } //else fade in
-            }); // end of for each tr in table
-          }); // end of on click pagination list
-          limitPagging();
-        })
-        .val(5)
-        .change();
-  
-      // end of on select change
-  
-      // END OF PAGINATION
+    function showAlert() {
+        alert("Shift Details Successfully Inserted");
     }
-  
-    function limitPagging() {
-      // alert($('.pagination li').length)
-  
-      if ($('.pagination li').length > 7) {
-        if ($('.pagination li.active').attr('data-page') <= 3) {
-          $('.pagination li:gt(5)').hide();
-          $('.pagination li:lt(5)').show();
-          $('.pagination [data-page="next"]').show();
-        } if ($('.pagination li.active').attr('data-page') > 3) {
-          $('.pagination li:gt(0)').hide();
-          $('.pagination [data-page="next"]').show();
-          for (let i = (parseInt($('.pagination li.active').attr('data-page')) - 2); i <= (parseInt($('.pagination li.active').attr('data-page')) + 2); i++) {
-            $('.pagination [data-page="' + i + '"]').show();
-  
-          }
-  
-        }
-      }
-    }
-  
-    $(function () {
-      // Just to append id number for each row
-      $('table tr:eq(0)').prepend('<th> ID </th>');
-  
-      var id = 0;
-  
-      $('table tr:gt(0)').each(function () {
-        id++;
-        $(this).prepend('<td>' + id + '</td>');
-      });
-    });
-  
-  //  Developed By Yasser Mas
-  // yasser.mas2@gmail.com
-  
 </script>

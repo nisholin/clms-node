@@ -1,6 +1,9 @@
+<!--Header-->
 <%- include ('../nav/header') %>
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
+	<a type="button" class="btn btn-gradient-danger btn-fw m-b-20 b-r-25" id="addbutton"
+    href="/shift">Back</a>
 		<div class="card" id="table">
 			<div class="card-body">
 				<div class="container">
@@ -8,7 +11,7 @@
 
 					<% Shift_edit_data.forEach(function(Shift_edit_data) { %>
 
-						<form class="forms-sample" method="POST" action="/shift/update">
+						<form class="forms-sample" method="POST" action="/shift/update" onsubmit="showAlert()">
 							<input type="hidden" value="<%= Shift_edit_data.id %>" name="id">
 							<div class="form-group row">
 								<label for="name" class="col-sm-3 col-form-label">Name</label>
@@ -21,14 +24,14 @@
 								<label class="col-sm-3 col-form-label">From Time</label>
 								<div class="col-sm-9">
 									<input type="time" class="form-control" id="from_time" name="from_time"
-										value="<%=Shift_edit_data.from_time %>" />
+										value="<%= Shift_edit_data.from_time %>" /> 
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">To Time</label>
 								<div class="col-sm-9">
 									<input type="time" class="form-control" id="to_time" name="to_time"
-										value="<%=Shift_edit_data.to_time %>" />
+										value="<%= Shift_edit_data.to_time %>" />
 								</div>
 							</div> 
 
@@ -39,8 +42,9 @@
 								<div class="col-sm-4">
 									<div class="form-check">
 										<label class="form-check-label">
+											<input type="hidden" value="<%=Shift_edit_data.status %>" id="STATUS" />
 											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios1" value="<%=Shift_edit_data.status %>" checked>
+												id="status1" value="1">
 											Active </label>
 									</div>
 								</div>
@@ -48,21 +52,42 @@
 									<div class="form-check">
 										<label class="form-check-label">
 											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios2" value="<%=Shift_edit_data.status %>"> In Active
+												id="status2" value="2"> In Active
 										</label>
 									</div>
 								</div>
 							</div>
 
-							<% }) %>
-							
-								<center>
-									<button type="submit" class="btn btn-primary">Update</button>
-
-								</center>
+							<center>
+								<button type="submit" class="btn btn-primary">Update</button>
+							</center>
 						</form>
+
+					<% }) %>
 				</div>
 			</div>
 		</div>
 
+<!--Footer-->
 <%- include('../nav/footer') %>
+
+<!--Show Alert-->
+<script>
+    function showAlert() {
+        alert("Shift Details Successfully Updated");
+    }
+</script>
+
+<!--Radio Buttton Checked-->
+<script>
+	//Status
+	var status = document.getElementById("STATUS").value;
+        if (status == 1) {
+            document.getElementById("status1").checked = true;
+        }else if(status == 2 ){
+            document.getElementById("status2").checked = true;
+        }else if(status == '' || status == 'NULL'){
+            document.getElementById("status1").checked = false;
+            document.getElementById("status2").checked = false;
+        }
+</script>

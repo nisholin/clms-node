@@ -72,7 +72,7 @@
                 <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Code</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
-                        placeholder="Card Number" required>
+                        placeholder="Old Employee Code" required>
                 </div>
             </div>
 
@@ -534,224 +534,225 @@
         </form>
     </div>
 </div>
-    <!-- Footer Page-->
-    <%- include('../nav/footer') %>
 
-    <!--Contractor Data Bind -->
-    <script>
-        function getuniqcode(ccodeName) {
-           // alert(ccodeName);
-            var ccode = ccodeName.split("-",1);
-            console.log(ccode[0])
-            $.ajax({
-                type: 'POST',
-                data: { "ccode": ccode[0] },
-                url: '/get/contractor',
-                success: function (data) {    
-                    $('#work_order_no').empty();
-                    $('#emp_code').empty();
-                    $('#work_order_no').append("<option>Select Work Order Number</option >"); 
-                        //alert(data.length);
-                       //console.log(data);
-                        //$('#emp_code').val(data.prfxCode.prefix_code);
-                        for(i=0;i<data.length;i++){
-                            var EmpCode = data[1][0].prefix_code;
-                            var EmpCodeCount = data[2][0].availableCount;
-                            //var newEmpCodeCount = Number(data[2][0].availableCount) + Number(1);
-                            var NewEmpCode = String(EmpCode) + String(EmpCodeCount);
-                            $('#emp_code').val(NewEmpCode);
-                            for(j=0;data[j].length;j++){
-                                $('#work_order_no').append("<option value = '" + data[i][j].WORK_ORDER + "' > " + data[i][j].WORK_ORDER + " </option > ");
-                            }
-                        }
-                }
-            });
-        }
-    </script>
+<!-- Footer Page-->
+<%- include('../nav/footer') %>
 
-    <!--Get Work Order Date-->
-    <script>
-        function getWoDate(WoNumber) {
-            //var WoNumber = document.getElementById("work_order_no").value;
-           // alert(WoNumber);
-            $.ajax({
-                type: 'POST',
-                data: { "wonumber": WoNumber },
-                url: '/get/contractor/work_order_date',
-                success: function (data) {
+<!--Contractor Data Bind -->
+<script>
+    function getuniqcode(ccodeName) {
+        // alert(ccodeName);
+        var ccode = ccodeName.split("-",1);
+        console.log(ccode[0])
+        $.ajax({
+            type: 'POST',
+            data: { "ccode": ccode[0] },
+            url: '/get/contractor',
+            success: function (data) {    
+                $('#work_order_no').empty();
+                $('#emp_code').empty();
+                $('#work_order_no').append("<option>Select Work Order Number</option >"); 
+                    //alert(data.length);
                     //console.log(data);
-                    $('#available_workman').empty();
-                    $('#workman_total').empty();
-                    $('#available_workman').empty();
-                    var i;
-                    for (i = 0; i < data.length; i++) {
-                        //alert(addressObj.availableCount);
-                        $('#workorder_date').val(data[0].WORK_OR_DATE.substring(0, 10));
-                        $('#workman_total').val(data[0].WORKMEN_TOT);
-                        var WORKMEN_TOT = data[0].WORKMEN_TOT;
-                        var availableCount = data[1].availableCount;
-
-                        if (WORKMEN_TOT == Null) {
-                            $('#available_workman').val(availableCount);
-                        } else {
-                            var availableWorkman = Number(WORKMEN_TOT) - Number(availableCount);
-                            $('#available_workman').val(availableWorkman);
+                    //$('#emp_code').val(data.prfxCode.prefix_code);
+                    for(i=0;i<data.length;i++){
+                        var EmpCode = data[1][0].prefix_code;
+                        var EmpCodeCount = data[2][0].availableCount;
+                        //var newEmpCodeCount = Number(data[2][0].availableCount) + Number(1);
+                        var NewEmpCode = String(EmpCode) + String(EmpCodeCount);
+                        $('#emp_code').val(NewEmpCode);
+                        for(j=0;data[j].length;j++){
+                            $('#work_order_no').append("<option value = '" + data[i][j].WORK_ORDER + "' > " + data[i][j].WORK_ORDER + " </option > ");
                         }
-
                     }
+            }
+        });
+    }
+</script>
+
+<!--Get Work Order Date-->
+<script>
+    function getWoDate(WoNumber) {
+        //var WoNumber = document.getElementById("work_order_no").value;
+        // alert(WoNumber);
+        $.ajax({
+            type: 'POST',
+            data: { "wonumber": WoNumber },
+            url: '/get/contractor/work_order_date',
+            success: function (data) {
+                //console.log(data);
+                $('#available_workman').empty();
+                $('#workman_total').empty();
+                $('#available_workman').empty();
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    //alert(addressObj.availableCount);
+                    $('#workorder_date').val(data[0].WORK_OR_DATE.substring(0, 10));
+                    $('#workman_total').val(data[0].WORKMEN_TOT);
+                    var WORKMEN_TOT = data[0].WORKMEN_TOT;
+                    var availableCount = data[1].availableCount;
+
+                    if (WORKMEN_TOT == Null) {
+                        $('#available_workman').val(availableCount);
+                    } else {
+                        var availableWorkman = Number(WORKMEN_TOT) - Number(availableCount);
+                        $('#available_workman').val(availableWorkman);
+                    }
+
                 }
-            });
-        }
-    </script>
-
-    <!--Available Work Man Validation-->
-    <script>
-        function empFormValidation() {
-            if (document.getElementById("available_workman").value === 21) {
-                document.getElementById('Submit').disabled = true;
-                window.alert("Available Work Man 0");
-            } else {
-                document.getElementById('Submit').disabled = false;
             }
+        });
+    }
+</script>
+
+<!--Available Work Man Validation-->
+<script>
+    function empFormValidation() {
+        if (document.getElementById("available_workman").value === 21) {
+            document.getElementById('Submit').disabled = true;
+            window.alert("Available Work Man 0");
+        } else {
+            document.getElementById('Submit').disabled = false;
         }
-    </script>
+    }
+</script>
 
-  <!--   Date Format-->
-    <script>
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#wo_val_from').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            }); 
-        });
+<!--   Date Format-->
+<script>
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#wo_val_from').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        }); 
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#wo_val_to').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#wo_val_to').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#dob').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#dob').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#Engaged_Date').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#Engaged_Date').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#nominee_dob').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#nominee_dob').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#pass_val_from').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#pass_val_from').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
+    });
 
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#pass_val_to').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#pass_val_to').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#safety_training_from').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#safety_training_from').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
-        $(document).ready(function () {
-            var currentDate = new Date();
-            $('#safety_training_to').datepicker({
-                dateFormat: 'yy/mm/dd',
-                autoclose: true,
-                endDate: "currentDate",
-                //maxDate: currentDate
-            }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
+    });
+    $(document).ready(function () {
+        var currentDate = new Date();
+        $('#safety_training_to').datepicker({
+            dateFormat: 'yy/mm/dd',
+            autoclose: true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+        }).on('changeDate', function (ev) {
+            $(this).datepicker('hide');
         });
-    </script> 
+    });
+</script> 
 
-    <!--Show Alert-->
-    <script>
-        function showAlert() {
-            alert("Employee Details Successfully Inserted");
+<!--Show Alert-->
+<script>
+    function showAlert() {
+        alert("Employee Details Successfully Inserted");
+    }
+</script>
+
+<!--Get Wage Value-->
+<script>
+    function getWage(wage) {
+
+        if ( wage == "UN SKILLED"){
+
+            $('#wage_per_day').val(639);
+
+        }else if( wage == "SEMI SKILLED"){
+
+            $('#wage_per_day').val(707);
+
+        }else if( wage == "SKILLED") {
+
+            $('#wage_per_day').val(777);
+
+        }else if( wage == "HIGHLY SKILLED") {
+
+            $('#wage_per_day').val(845);
+
         }
-    </script>
-
-    <!--Get Wage Value-->
-    <script>
-        function getWage(wage) {
-
-            if ( wage == "UN SKILLED"){
-
-                $('#wage_per_day').val(639);
-
-            }else if( wage == "SEMI SKILLED"){
-
-                $('#wage_per_day').val(707);
-
-            }else if( wage == "SKILLED") {
-
-                $('#wage_per_day').val(777);
-
-            }else if( wage == "HIGHLY SKILLED") {
-
-                $('#wage_per_day').val(845);
-
-            }
-        }
-    </script>
+    }
+</script>

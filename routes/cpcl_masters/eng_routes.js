@@ -27,7 +27,7 @@ router.get('/engineer',(req, res)=>{
 });
 
 //New Enginner Creation process
-router.post('/engineer/new',(req,res,next)=>{
+router.post('/engineer/new',(req,res)=>{
     var eic_prno = req.body.eic_prno;
     var name = req.body.name;
 	var department = req.body.department;
@@ -43,7 +43,6 @@ router.post('/engineer/new',(req,res,next)=>{
              await pool.request().query("insert into cpcl_engineer_master (EIC_PRNO,name,department,designation,email,mobile,status) values ('"+eic_prno+"','"+name+"','"+department+"','"+designation+"','"+email+"','"+mobile+"','"+status+"')",(req,res)=>{
                  console.log("successfully inserted");
              });
-            //return products.recordsets;
         }
         catch(error){
             console.log(error);
@@ -54,7 +53,7 @@ router.post('/engineer/new',(req,res,next)=>{
 	 
 });
 
-//single engineer  data edit page   
+//Engineer  data edit page   
 router.get('/Engineer_edit/:engineerId',(req, res) => {
 
     const engineerId = req.params.engineerId;
@@ -80,7 +79,7 @@ router.get('/Engineer_edit/:engineerId',(req, res) => {
 
 });
 
-//engineer update process
+//Engineer update process
 router.post('/update',(req, res) => {
     var data = req.body;
     //console.table(data);

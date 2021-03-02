@@ -311,7 +311,16 @@
             <div class="form-group row">
                 <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Work_spot" name="Work_spot" value="<%= empdata.WROK_SPOT %>" >
+                    <select class="form-control" id="Work_spot" name="Work_spot">
+                        <option value="<%= empdata.WROK_SPOT %>" selected>--<%= empdata.WROK_SPOT %>--</option>
+                        <option>FINANCE</option>
+                        <option>HR</option>
+                        <option>LOGISTICS</option>
+                        <option>MAINTENANCE</option>
+                        <option>OPERATION</option>
+                        <option>PROJECTS</option>
+                        <option>TECHNICAL</option>
+                    </select>
                 </div>
             </div>
             
@@ -319,7 +328,7 @@
                 <label class="col-sm-3 col-form-label">Area Of Work</label>
                 <div class="col-sm-9">
                     <select class="form-control" name="Area_of_work" id="Area_of_work" placeholder="Area Of Work">
-                        <option value="<%= empdata.AREA_OF_WORK %>" selected><%= empdata.AREA_OF_WORK %></option>
+                        <option value="<%= empdata.AREA_OF_WORK %>" selected>--<%= empdata.AREA_OF_WORK %>--</option>
                         <option> ADMIN </option>
                         <option> E&I </option>
                         <option> F&S </option>

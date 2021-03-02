@@ -1,50 +1,77 @@
-<%- include ('../nav/header')  %>        
-<!-- Sidebar Page -->
-<%- include('../nav/sidebar') %>
-	<div class="card">
-		<div class="card-body">
-		<h4 class="card-title">Gate Master Edit</h4>
-		
-		<% gate_edit_data.forEach(function(gate_edit_data) { %>
-					
-		<form class="forms-sample" method="POST" action="/gate/update"> 
-		<input type="hidden" value="<%= gate_edit_data.id %>" name="id">
-			<div class="form-group row">
-			<label for="name" class="col-sm-3 col-form-label">Name</label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" id="name" name="name" placeholder="name" value="<%=gate_edit_data.name %>">
-			</div>
-			</div>
-			
-			
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">Status</label>
+<!--Header-->
+<%- include ('../nav/header') %>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+	<a type="button" class="btn btn-gradient-danger btn-fw m-b-20 b-r-25" id="addbutton"
+    href="/gate">Back</a>
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Gate Master Edit</h4>
 
-								<div class="col-sm-4">
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios1" value="1" checked>
-											Active </label>
-									</div>
-								</div>
-								<div class="col-sm-5">
-									<div class="form-check">
-										<label class="form-check-label">
-											<input type="radio" class="form-check-input" name="membershipRadios"
-												id="membershipRadios2" value="0"> In Active
-										</label>
-									</div>
+				<% gate_edit_data.forEach(function(gate_edit_data) { %>
+
+					<form class="forms-sample" method="POST" action="/gate/update" onsubmit="showAlert()">
+						<input type="hidden" value="<%= gate_edit_data.id %>" name="id">
+						<div class="form-group row">
+							<label for="name" class="col-sm-3 col-form-label">Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="name" name="name" placeholder="name"
+									value="<%=gate_edit_data.name %>">
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label">Status</label>
+
+							<div class="col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input type="hidden" value="<%=gate_edit_data.status %>" id="STATUS" />
+										<input type="radio" class="form-check-input" name="membershipRadios"
+											id="status1" value="1">
+										Active </label>
 								</div>
 							</div>
+							<div class="col-sm-5">
+								<div class="form-check">
+									<label class="form-check-label">
+										<input type="radio" class="form-check-input" name="membershipRadios"
+											id="status2" value="0"> In Active
+									</label>
+								</div>
+							</div>
+						</div>
 
-							<% }) %>
-				
-		<center>      
-		<button type="submit" class="btn btn-primary">Update</button>
-			</center>
-		</form>
+						<center>
+							<button type="submit" class="btn btn-primary">Update</button>
+						</center>
+					</form>
+
+					<% }) %>
+			</div>
 		</div>
-	</div>
-		  
-<%- include('../nav/footer') %>
+
+		<!--Footer-->
+		<%- include('../nav/footer') %>
+
+			<!--Show Alert-->
+			<script>
+				function showAlert() {
+					alert("Gate Details Successfully Updated");
+				}
+			</script>
+
+			<!--Radio Buttton Checked-->
+			<script>
+				//Status
+				var status = document.getElementById("STATUS").value;
+					if (status == 1) {
+						document.getElementById("status1").checked = true;
+					}else if(status == 2 ){
+						document.getElementById("status2").checked = true;
+					}else if(status == '' || status == 'NULL'){
+						document.getElementById("status1").checked = false;
+						document.getElementById("status2").checked = false;
+					}
+			</script>

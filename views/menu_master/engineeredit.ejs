@@ -1,14 +1,18 @@
 <%- include ('../nav/header') %>
   <!-- Sidebar Page -->
   <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-danger btn-fw m-b-20 b-r-25" id="addbutton"
+    href="/Engineer">Back</a>
+    <br/>
     <div class="card" id="table">
       <div class="card-body">
-
         <div class="container">
+
           <h4 class="card-title">Engineer Master Edit</h4>
+
           <% Engineer_edit_data.forEach(function(Engineer_edit_data) { %>
 
-            <form action="/update" method="POST">
+            <form action="/update" method="POST" onsubmit="showAlert()">
               <input type="hidden" value="<%= Engineer_edit_data.id %>" name="id">
 
               <div class="form-group row">
@@ -53,15 +57,25 @@
                     value="<%= Engineer_edit_data.mobile %>" placeholder="Mobile">
                 </div>
               </div>
+
+              <center>
+                <button type="submit" class="btn btn-primary">Update</button>
+              </center>
+            </form>
+
+            <% }) %>
+
         </div>
 
-        <center>
-          <button type="submit" class="btn btn-primary">Update</button>
-        </center>
-
-        </form>
-        <% }) %>
       </div>
     </div>
-    <!-- Footer Page-->
-    <%- include('../nav/footer') %>
+
+<!-- Footer Page-->
+<%- include('../nav/footer') %>
+
+<!--Show Alert-->
+<script>
+  function showAlert() {
+      alert("Engineer Details Successfully Updated");
+  }
+</script>
