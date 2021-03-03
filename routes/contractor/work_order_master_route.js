@@ -57,7 +57,8 @@ router.post('/workordernew/add',(req,res,next)=>{
     var data = req.body;
     //var ismw_rcno = req.body.ismw_rcno;
     //console.log(data);
-    var CCODE               = req.body.Contractor_Code;
+    var ccodeName               = req.body.Contractor_Code.split("-",1);
+    var CCODE                   = ccodeName[0];
     var VENDOR_NO           = req.body.Vendor_No;
     var WORK_ORDER          = req.body.Work_order_no;
     var WORK_OR_DATE        = req.body.Work_order_date;
@@ -104,78 +105,92 @@ router.post('/workordernew/add',(req,res,next)=>{
     var e_c_total_workmen = req.body.e_c_total_workmen;
     //console.log(extra_contractor);
     //console.log(extra_workman);
+    //Date
+    var date = new Date();
+    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+    .toISOString()
+    .split("T")[0];
+    //console.log(dateString);
+
+
     async function getWorkOrderValues(){
         try{
             let pool = await sql.connect(config);
             if(extra_workman == 1 && extra_contractor == 1){
                 await pool.request().query(`insert into cpcl_work_order_master 
                 (CCODE,VENDOR_NO,WORK_ORDER,WORK_OR_DATE,CVALUE,DURATION,CDURATION,EIC_PRNO,EIC,JOB_DESC,DEPARTMENT,
-                CLRA,ISMW,WORKMEN_TOT)
+                CLRA,ISMW,WORKMEN_TOT,CREATED_ON)
                 values('${CCODE}','${VENDOR_NO}','${WORK_ORDER}','${WORK_OR_DATE}','${CVALUE}','${DURATION}','${CDURATION}',
                 '${EIC_PRNO}','${EIC}','${JOB_DESC}','${DEPARTMENT}','${CLRA}','${ISMW}',
-                '${WORKMEN_TOT}')`,(req,res)=>{
+                '${WORKMEN_TOT}','${dateString}')`,(req,res)=>{
                     console.log("work order successfully inserted");
                 });
-                await pool.request().query(`insert into clra (clra_rcno,clra_rc_str,licence_no,period_from,period_to,workmen,ccode,workorder_no)
+                await pool.request().query(`insert into clra (clra_rcno,clra_rc_str,licence_no,period_from,period_to,workmen,ccode,
+                    workorder_no,CREATED_ON)
                 values('${clra_rcno}','${clra_rc_str}','${clra_lic_no}','${clra_period_from}','${clra_period_to}','${clra_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,
+                '${CCODE}','${req.body.Work_order_no}','${dateString}')`,
                 (req,res)=>{
                     console.log("clra successfully inserted");
                 });
-                await pool.request().query(`insert into ismw (ismw_rcno,ismw_rc_str,licence_no,period_from,period_to,workmen,ccode,workorder_no)
+                await pool.request().query(`insert into ismw (ismw_rcno,ismw_rc_str,licence_no,period_from,period_to,workmen,ccode,
+                    workorder_no,CREATED_ON)
                 values('${ismw_rcno}','${ismw_rc_str}','${ismw_lic_no}','${ismw_period_from}','${ismw_period_to}','${ismw_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,(req,res)=>{
+                '${CCODE}','${req.body.Work_order_no}','${dateString}')`,(req,res)=>{
                     console.log("ismw successfully inserted");
                 });
-                await pool.request().query(`insert into work_order_extra_contractor (cname,licence_no,period_from,period_to,workmen,total_workmen,ccode,workorder_no)
+                await pool.request().query(`insert into work_order_extra_contractor (cname,licence_no,period_from,period_to,workmen,
+                    total_workmen,ccode,workorder_no,CREATED_ON)
                 values('${e_contractor_name}','${e_c_lic_no}','${e_c_period_from}','${e_c_period_to}','${e_c_workmen}','${e_c_total_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,(req,res)=>{
+                '${CCODE}','${req.body.Work_order_no}','${dateString}')`,(req,res)=>{
                     console.log("Extra Contractor successfully inserted");
                 });
             }
             else if(extra_workman == 1 && extra_contractor == 0){
                 await pool.request().query(`insert into cpcl_work_order_master 
                 (CCODE,VENDOR_NO,WORK_ORDER,WORK_OR_DATE,CVALUE,DURATION,CDURATION,EIC_PRNO,EIC,JOB_DESC,DEPARTMENT,
-                CLRA,ISMW,WORKMEN_TOT)
+                CLRA,ISMW,WORKMEN_TOT,CREATED_ON)
                 values('${CCODE}','${VENDOR_NO}','${WORK_ORDER}','${WORK_OR_DATE}','${CVALUE}','${DURATION}','${CDURATION}',
                 '${EIC_PRNO}','${EIC}','${JOB_DESC}','${DEPARTMENT}','${CLRA}','${ISMW}',
-                '${WORKMEN_TOT}')`,(req,res)=>{
+                '${WORKMEN_TOT}','${dateString}')`,(req,res)=>{
                     console.log("work order successfully inserted");
                 });
-                await pool.request().query(`insert into clra (clra_rcno,clra_rc_str,licence_no,period_from,period_to,workmen,ccode,workorder_no)
+                await pool.request().query(`insert into clra (clra_rcno,clra_rc_str,licence_no,period_from,period_to,workmen,ccode,
+                    workorder_no,CREATED_ON)
                 values('${clra_rcno}','${clra_rc_str}','${clra_lic_no}','${clra_period_from}','${clra_period_to}','${clra_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,
+                '${req.body.Contractor_Code}','${req.body.Work_order_no}','${dateString}')`,
                 (req,res)=>{
                     console.log("clra successfully inserted");
                 });
-                await pool.request().query(`insert into ismw (ismw_rcno,ismw_rc_str,licence_no,period_from,period_to,workmen,ccode,workorder_no)
+                await pool.request().query(`insert into ismw (ismw_rcno,ismw_rc_str,licence_no,period_from,period_to,workmen,ccode,
+                    workorder_no,CREATED_ON)
                 values('${ismw_rcno}','${ismw_rc_str}','${ismw_lic_no}','${ismw_period_from}','${ismw_period_to}','${ismw_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,(req,res)=>{
+                '${req.body.Contractor_Code}','${req.body.Work_order_no}','${dateString}')`,(req,res)=>{
                     console.log("ismw successfully inserted");
                 });
             }
             else if (extra_workman == 0 && extra_contractor == 1){
                 await pool.request().query(`insert into cpcl_work_order_master 
                 (CCODE,VENDOR_NO,WORK_ORDER,WORK_OR_DATE,CVALUE,DURATION,CDURATION,EIC_PRNO,EIC,JOB_DESC,DEPARTMENT,
-                CLRA,ISMW,WORKMEN_TOT)
+                CLRA,ISMW,WORKMEN_TOT,CREATED_ON)
                 values('${CCODE}','${VENDOR_NO}','${WORK_ORDER}','${WORK_OR_DATE}','${CVALUE}','${DURATION}','${CDURATION}',
                 '${EIC_PRNO}','${EIC}','${JOB_DESC}','${DEPARTMENT}','${CLRA}','${ISMW}',
-                '${WORKMEN_TOT}')`,(req,res)=>{
+                '${WORKMEN_TOT}','${dateString}')`,(req,res)=>{
                     console.log("work order successfully inserted");
                 });
-                await pool.request().query(`insert into work_order_extra_contractor (cname,licence_no,period_from,period_to,workmen,total_workmen,ccode,workorder_no)
+                await pool.request().query(`insert into work_order_extra_contractor (cname,licence_no,period_from,period_to,workmen,
+                    total_workmen,ccode,workorder_no,CREATED_ON)
                 values('${e_contractor_name}','${e_c_lic_no}','${e_c_period_from}','${e_c_period_to}','${e_c_workmen}','${e_c_total_workmen}',
-                '${req.body.Contractor_Code}','${req.body.Work_order_no}')`,(req,res)=>{
+                '${req.body.Contractor_Code}','${req.body.Work_order_no}','${dateString}')`,(req,res)=>{
                     console.log("Extra Contractor successfully inserted");
                 });
             }
             else {
                 await pool.request().query(`insert into cpcl_work_order_master 
                 (CCODE,VENDOR_NO,WORK_ORDER,WORK_OR_DATE,CVALUE,DURATION,CDURATION,EIC_PRNO,EIC,JOB_DESC,DEPARTMENT,
-                CLRA,ISMW,WORKMEN_TOT)
+                CLRA,ISMW,WORKMEN_TOT,CREATED_ON)
                 values('${CCODE}','${VENDOR_NO}','${WORK_ORDER}','${WORK_OR_DATE}','${CVALUE}','${DURATION}','${CDURATION}',
                 '${EIC_PRNO}','${EIC}','${JOB_DESC}','${DEPARTMENT}','${CLRA}','${ISMW}',
-                '${WORKMEN_TOT}')`,(req,res)=>{
+                '${WORKMEN_TOT}','${dateString}')`,(req,res)=>{
                     console.log("work order successfully inserted");
                 });
             } 
@@ -299,7 +314,7 @@ router.get('/work_edit/:shiftid/:worder',(req,res) => {
 			licence_no          =   '${req.body.clra_lic_no}',
 			period_from         =   '${req.body.clra_period_from}',
 			period_to           =   '${req.body.clra_period_to}',
-			workmen             =   '${req.body.clra_workmen}' where id ='${req.body.id}'`);
+			workmen             =   '${req.body.clra_workmen}' where workorder_no ='${req.body.Work_order_no}'`);
 
             await pool.request().query(`update ismw SET 
             ismw_rcno           =   '${req.body.ismw_rcno}',
@@ -307,14 +322,14 @@ router.get('/work_edit/:shiftid/:worder',(req,res) => {
 			licence_no          =   '${req.body.ismw_lic_no}',
 			period_from         =   '${req.body.ismw_period_from}',
 			period_to           =   '${req.body.ismw_period_to}',
-			workmen             =   '${req.body.ismw_workmen}'  where id ='${req.body.id}'`);
+			workmen             =   '${req.body.ismw_workmen}'  where workorder_no ='${req.body.Work_order_no}'`);
 
             await pool.request().query(`update work_order_extra_contractor SET 
             cname               =   '${req.body.e_contractor_name}',
             licence_no          =   '${req.body.e_c_lic_no}',
             period_from	        =   '${req.body.e_c_period_from}',
             period_to           =   '${req.body.e_c_period_to}',
-            workmen             =   '${req.body.e_c_workmen}' where id ='${req.body.id}'`);
+            workmen             =   '${req.body.e_c_workmen}' where workorder_no ='${req.body.Work_order_no}'`);
         }
         catch(error){
             console.log(error);

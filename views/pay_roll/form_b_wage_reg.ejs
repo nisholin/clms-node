@@ -176,13 +176,13 @@
 <script type="text/javascript">
 	function get_form_b_wage_data(){
 		var ccode=document.getElementById("contract_code_data").value;
-		
 		var month=document.getElementById("month_data").value;
 		
 		$.ajax({
 		method:'POST',
 		url:'/pay_roll/form_b_wage_reg_data',
 		data: { ccode: ccode,month: month },
+		dtatype:json,
 		success: function(data){
 			console.log(data);
 		    var n=1;

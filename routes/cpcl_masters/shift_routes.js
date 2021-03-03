@@ -18,6 +18,7 @@ router.get('/shift',(req, res)=>{
     else{
 		shift_table_operations.get_shift_values().then(result =>{
         var data = result[0];
+        console.log(data);
         res.render('menu_master/shift',{user_Id:user_Id,user_name:user_name,data});
     });
     } 

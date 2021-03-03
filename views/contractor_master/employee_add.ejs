@@ -27,7 +27,7 @@
                 <label for="workorder" class="col-sm-3 col-form-label">Work Order No</label>
                 <div class="col-sm-9">
                     <select class="form-control" name="work_order_no" id="work_order_no" onchange="getWoDate(this.value)">
-                        <option  selected>Select Work Order Number</option>
+                        <option value="NULL" selected>Select Work Order Number</option>
                     </select>
                 </div>
             </div>
@@ -461,7 +461,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="payroll" id="payroll" value="Y"
-                                checked required>
+                                checked>
                             Yes </label>
                     </div>
                 </div>
@@ -479,7 +479,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="Y"
-                                checked required>
+                                checked>
                             Yes </label>
                     </div>
                 </div>
@@ -497,7 +497,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="Y"
-                                checked required>
+                                checked>
                             Yes </label>
                     </div>
                 </div>
@@ -515,7 +515,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="status" id="status" value="1"
-                                checked required>
+                                checked>
                             Active </label>
                     </div>
                 </div>
@@ -622,7 +622,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#wo_val_from').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -634,7 +634,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#wo_val_to').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -646,7 +646,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#dob').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -658,7 +658,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#Engaged_Date').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -670,7 +670,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#nominee_dob').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -682,7 +682,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#pass_val_from').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -694,7 +694,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#pass_val_to').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -705,7 +705,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#safety_training_from').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -716,7 +716,7 @@
     $(document).ready(function () {
         var currentDate = new Date();
         $('#safety_training_to').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose: true,
             endDate: "currentDate",
             //maxDate: currentDate

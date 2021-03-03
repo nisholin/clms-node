@@ -14,9 +14,7 @@
                             autocomplete="off" placeholder="Select Contractor Code">
                             <datalist id="Contractor_Code">
                                 <% codename.forEach(function(code) { %>
-                                    <option value="<%= code.contractor_code %>">
-                                        <%= code.contractor_name %>" 
-                                    </option>
+                                    <option value="<%= code.CODE_NAME %>"></option>
                                     <% }) %>
                             </datalist> 
                         </div>
@@ -41,7 +39,7 @@
                         <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Work_order_date" name="Work_order_date"
-                              placeholder="Work order date" data-date-format='yy-mm-dd'>
+                                placeholder="Work Order Date &#xf073" style="font-family:Arial, FontAwesome">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -77,10 +75,10 @@
                         <label for="exampleInputEngineer In Charge" class="col-sm-3 col-form-label">Engineer In
                             Charge</label>
                         <div class="col-sm-9">
-                        <input list="engcode" class="form-control" placeholder="Select Engineer Code">
+                        <input list="engcode" class="form-control" placeholder="Select Engineer Code" autocomplete="off">
                             <datalist id="engcode">
                                 <% engcode.forEach(function(code) { %>
-                                    <option value="<%= code.EIC_PRNO %>" />
+                                    <option value="<%= code.EIC_PRNO %>">
                                     <% }) %>
                             </datalist> 
                         </div>
@@ -148,8 +146,10 @@
                                 <td><input type="text" class="form-control w-11-rem" name="clra_rcno" id="clra_rcno"></td>
                                 <td><input type="text" class="form-control w-11-rem" name="clra_rc_str" id="clra_rc_str"></td>
                                 <td><input type="text" class="form-control w-11-rem" name="clra_lic_no" id="lic_no"></td>
-                                <td><input type="date" class="form-control w-11-rem" name="clra_period_from" id="period_from"></td>
-                                <td><input type="date" class="form-control w-11-rem" name="clra_period_to" id="period_to"></td>
+                                <td><input type="text" class="form-control w-11-rem" name="clra_period_from" id="clra_period_from"
+                                    placeholder="Period From &#xf073" style="font-family:Arial, FontAwesome"></td>
+                                <td><input type="text" class="form-control w-11-rem" name="clra_period_to" id="clra_period_to"
+                                    placeholder="Period To &#xf073" style="font-family:Arial, FontAwesome"></td>
                                 <td><input type="number" class="form-control w-11-rem" name="clra_workmen" id="clra_workmen" min="0"
                                     value="0" oninput="calc();"></td>
                                <!--  <td><input type="text" class="form-control w-11-rem" name="Total_Workmen" id="total_workmen"
@@ -160,8 +160,10 @@
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_rcno" id="ismw_rcno"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_rc_str" id="ismw_rc_str"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_lic_no" id="lic_no"></td>
-                                <td><input type="date" class=" form-control w-11-rem" name="ismw_period_from" id="period_from"></td>
-                                <td><input type="date" class=" form-control w-11-rem" name="ismw_period_to" id="period_to"></td>
+                                <td><input type="text" class=" form-control w-11-rem" name="ismw_period_from" id="ismw_period_from"
+                                    placeholder="Period From &#xf073" style="font-family:Arial, FontAwesome"></td>
+                                <td><input type="text" class=" form-control w-11-rem" name="ismw_period_to" id="ismw_period_to"
+                                    placeholder="Period To &#xf073" style="font-family:Arial, FontAwesome"></td>
                                 <td><input type="number" class=" form-control w-11-rem" name="ismw_workmen" id="ismw_workmen" min="0"
                                 value="0" oninput="calc();"></td>
                                 <!-- <td><input type="text" class=" form-control w-11-rem" name="ismw_total_workmen" id="total_workmen"></td> -->
@@ -203,10 +205,10 @@
                                         placeholder="Contractor Name"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="e_c_lic_no" id="e_c_lic_no"
                                         placeholder="Licence no"></td>
-                                <td><input type="date" class=" form-control w-11-rem" name="e_c_period_from" id="e_c_period_from"
-                                        placeholder="Period from"></td>
-                                <td><input type="date" class=" form-control w-11-rem" name="e_c_period_to" id="e_c_period_to"
-                                        placeholder="Period To"></td>
+                                <td><input type="text" class=" form-control w-11-rem" name="e_c_period_from" id="e_c_period_from"
+                                    placeholder="Period From &#xf073" style="font-family:Arial, FontAwesome"></td>
+                                <td><input type="text" class=" form-control w-11-rem" name="e_c_period_to" id="e_c_period_to"
+                                    placeholder="Period To &#xf073" style="font-family:Arial, FontAwesome"></td>
                                 <td><input type="number" class=" form-control w-11-rem" name="e_c_workmen" id="e_c_workmen" min="0" 
                                 value="0" oninput="calc();"></td>
                                <!--  <td><input type="text" class=" form-control w-11-rem" name="e_c_total_workmen" id="Total_Workmen"
@@ -299,23 +301,92 @@
 			})
         }
     </script>
-    <!--Hide Future Dates-->
+
+    <!-- Dates Fromat-->
     <script>
+        //Work Order Date
         $(document).ready(function () {
-        var currentDate = new Date();
-        $('#Work_order_date').datepicker({
-        format: 'dd/mm/yyyy',
-        autoclose:true,
-        endDate: "currentDate",
-        //maxDate: currentDate
-        }).on('changeDate', function (ev) {
-            $(this).datepicker('hide');
+            var currentDate = new Date();
+            $('#Work_order_date').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
         });
-        $('#Work_order_date').keyup(function () {
-            if (this.value.match(/[^0-9]/g)) {
-                this.value = this.value.replace(/[^0-9^-]/g, '');
-            }
+        //ClRA Period From
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#clra_period_from').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
         });
+        //ClRA Period To
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#clra_period_to').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+        //ISMW Period From
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#ismw_period_from').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+        //ISMW Period To
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#ismw_period_to').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+        //Extra Contractor Workman Period From
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#e_c_period_from').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+        //Extra Contractor Workman Period To
+        $(document).ready(function () {
+            var currentDate = new Date();
+            $('#e_c_period_to').datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose:true,
+            endDate: "currentDate",
+            //maxDate: currentDate
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
         });
     </script> 
 

@@ -16,7 +16,7 @@ async function get_workOrder(){
 async function get_contractor_code(){
     try{
             let pool = await sql.connect(config);
-            let product = await pool.request().query("select contractor_code,contractor_name from cpcl_contractor_master");
+            let product = await pool.request().query("select CCODE ,CONCAT(CCODE,'-',CNAME) as CODE_NAME from [Cpcl_Contract_Master]");
             return product.recordsets;
     }
     catch(error){

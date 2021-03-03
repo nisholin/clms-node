@@ -49,17 +49,23 @@ router.post('/contractor/new',(req,res,next)=>{
    var status               =   req.body.status;
    var username             =   req.body.username;
    var password             =   req.body.Password;
-  
-//console.log(req.body);
+  //Date
+  var date = new Date();
+  var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+  .toISOString()
+  .split("T")[0];
+  //console.log(dateString);
 
    async function insertcontractor(){
     try{
 
         let pool=await sql.connect(config);
         await pool.request().query(`insert into cpcl_contractor_master (contractor_code ,contractor_name, address,prefix_code,proprietor,owner,
-            md,partner,contractor_mail,ESI_Code_No,PF_Code_No,Contractor_PAN_No,Contractor_LIN,Mobile_No,Name_of_person,compliance_Mail_id,hr_department,status,user_name,password)
-        values('${contractor_code}','${contractor_name}','${address}','${prefix_code}','${proprietor}','${owner}','${md}','${partner}','${contractor_mail}','${ESI_Code_No}','${PF_Code_No}',
-        '${Contractor_PAN_No}','${Contractor_LIN}','${Mobile_No}','${Name_of_person}','${compliance_Mail_id}','${hr_department}','${status}','${username}','${password}')`,(req,res)=>{
+            md,partner,contractor_mail,ESI_Code_No,PF_Code_No,Contractor_PAN_No,Contractor_LIN,Mobile_No,Name_of_person,compliance_Mail_id,
+            hr_department,status,user_name,password,created_on)
+        values('${contractor_code}','${contractor_name}','${address}','${prefix_code}','${proprietor}','${owner}','${md}','${partner}',
+        '${contractor_mail}','${ESI_Code_No}','${PF_Code_No}','${Contractor_PAN_No}','${Contractor_LIN}','${Mobile_No}',
+        '${Name_of_person}','${compliance_Mail_id}','${hr_department}','${status}','${username}','${password}','${dateString}')`,(req,res)=>{
 
         //console.log("successfully inserted");
         })
@@ -94,7 +100,7 @@ router.get('contractor_edit/:contractorid',(req,res)=>{
     })
 });
 
-
+//Edit View
 router.get('/contractor_edit/:contractorid',(req, res) => {
 
     const cid = req.params.contractorid;
@@ -129,6 +135,13 @@ router.post('/contractornew/update',(req, res) => {
     var id = req.body.status;
     //console.log(hr_department);
     //console.log(id);
+    //Date
+    var date = new Date();
+    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+    .toISOString()
+    .split("T")[0];
+    //console.log(dateString);
+
     async function contractornewupdate(){
         try{
             let pool = await sql.connect(config);
@@ -139,7 +152,7 @@ router.post('/contractornew/update',(req, res) => {
             Contractor_PAN_No='${req.body.Contractor_PAN_No}',Contractor_LIN='${req.body.Contractor_LIN}',Mobile_No='${req.body.Mobile_No}',
             status='${req.body.status}',Name_of_person='${req.body.Name_of_person}',
 			compliance_Mail_id='${req.body.compliance_Mail_id}',
-            hr_department='${req.body.hr_department}'   where id='${req.body.id}'`);
+            hr_department='${req.body.hr_department}',modified_on='${dateString}'   where id='${req.body.id}'`);
         }
         catch(error){
             console.log(error);

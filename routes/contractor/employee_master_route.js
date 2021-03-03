@@ -87,6 +87,13 @@ router.post('/employee/add',(req,res)=>{
     var state                   = req.body.state;
     var status                  = req.body.status;
     //console.log(ccode);
+    //Date
+    var date = new Date();
+            var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+            .toISOString()
+            .split("T")[0];
+            //console.log(dateString);
+
     async function geteEmployeeValues(){
         try{
             let pool = await sql.connect(config);
@@ -94,7 +101,7 @@ router.post('/employee/add',(req,res)=>{
                 WO_FROM,WO_TO,FATHER,DESIGNATION,DOB,ENGAGED_DATE,GENDER,MARITAL_STATUS,PRE_ADDRESS,PERMANENT_ADDRESS,PHONE_NO,
                 EMAIL_ID,MOBILE_NO,NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_DOB,Catogery,WAGE,INCENTIVE,ALLOWANCE,OTHERS,UAN,ESI,
                 AADHAR,IDENTY_MARK,BANK_NAME,ACCOUNT_NO,ifsc_code,BLOOD_GROUP,ENTRY_GATE,WROK_SPOT,AREA_OF_WORK,area_of_place,
-                PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,payroll,esi_eligible,pf_eligible,STATE,STATUS) 
+                PASS_VALID_FROM,PASS_VALID_TO,SAFETY_TRAINING_FROM,SAFETY_TRAINING_TO,payroll,esi_eligible,pf_eligible,STATE,STATUS,CREATED_ON) 
 
                 values ('${ccode}','${emp_name}','${work_order_no}','${workorder_date}','${emp_code}','${old_emp_number}',
                 '${card_number}','${wo_val_from}','${wo_val_to}','${Father}','${designation}','${dob}',
@@ -104,7 +111,7 @@ router.post('/employee/add',(req,res)=>{
                 '${uan}','${ESI_no}','${Aadhar_card_no}','${Identical_mark1}','${Bank_name}','${Account_no}','${ifsc_code}',
                 '${Blood_grp}','${Entry_gate}','${Work_spot}','${Area_of_work}','${area_of_place}','${pass_val_from}',
                 '${pass_val_to}','${safety_training_from}','${safety_training_to}','${payroll}','${esi_eligible}','${pf_eligible}',
-                '${state}','${status}')`,(req,res)=>{
+                '${state}','${status}','${dateString}')`,(req,res)=>{
                  //console.log("Employee successfully inserted");
              });
         }
@@ -144,8 +151,13 @@ router.get('/employee_edit/:empid',(req, res) => {
 //Employee update process
 router.post('/employee/update',(req, res) => {
     var data = req.body;
-   //console.table(data);
-
+    //console.table(data);
+    //Date
+    var date = new Date();
+    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+        .toISOString()
+        .split("T")[0];
+    //console.log(dateString);
     async function employeeupdate(){
         try{
             let pool = await sql.connect(config);
@@ -198,7 +210,8 @@ router.post('/employee/update',(req, res) => {
             esi_eligible            =   '${req.body.esi_eligible}',
             pf_eligible             =   '${req.body.pf_eligible}',
             STATE                   =   '${req.body.state}',
-            STATUS                  =   '${req.body.status}'  
+            STATUS                  =   '${req.body.status}',
+            MODIFIED_ON             =   '${dateString}'  
             where id ='${req.body.id}'`); 
         }
         catch(error){

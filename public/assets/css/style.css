@@ -13564,8 +13564,8 @@ dl {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: scroll !important;
-  height: 500px !important;
+ /*  overflow-y: scroll !important;
+  height: 500px !important; */
  }
   @media (max-width: 991px) {
     .main-panel {

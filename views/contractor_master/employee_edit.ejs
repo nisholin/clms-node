@@ -400,14 +400,14 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="hidden" value="<%= empdata.payroll %>" id="PAYROLL" />
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll1" value="1">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll1" value="Y">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll2" value="2">
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll2" value="N">
                             No </label>
                     </div>
                 </div>
@@ -420,14 +420,14 @@
                         <label class="form-check-label">
                             <input type="hidden" value="<%= empdata.esi_eligible %>" id="ESIELIGIBLE" />
                             <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible1" 
-                                value="1">
+                                value="Y">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible2" value="2">
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible2" value="N">
                             No </label>
                     </div>
                 </div>
@@ -439,14 +439,14 @@
                         <label class="form-check-label">
                             <input type="hidden" value="<%= empdata.pf_eligible %>" id="PFELIGIBLE" />
                             <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible1" 
-                                value="1">
+                                value="Y">
                             Yes </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible2" value="2" >
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible2" value="N" >
                             No </label>
                     </div>
                 </div>
@@ -521,9 +521,9 @@
         //Pay Roll
         var pr = document.getElementById("PAYROLL").value;
         //alert(pr)
-        if (pr == 1) {
+        if (pr == 'Y') {
             document.getElementById("payroll1").checked = true;
-        }else if(pr == 2){
+        }else if(pr == 'N'){
             document.getElementById("payroll2").checked = true;
         }else if(pr == '' || status == 'NULL'){
             document.getElementById("payroll1").checked = false;
@@ -532,9 +532,9 @@
 
         //ESI ELIGIBLE
         var ee = document.getElementById("ESIELIGIBLE").value;
-        if (ee == 1) {
+        if (ee == 'Y') {
         document.getElementById("esi_eligible1").checked = true;
-        }else if(ee == 2){
+        }else if(ee == 'N'){
             document.getElementById("esi_eligible2").checked = true;
         }else if(ee == '' || status == 'NULL'){
             document.getElementById("esi_eligible1").checked = false;
@@ -543,9 +543,9 @@
 
         //PF ELIGIBLE
         var pe = document.getElementById("PFELIGIBLE").value;
-        if (pe == 1) {
+        if (pe == 'Y') {
         document.getElementById("pf_eligible1").checked = true;
-        }else if(pe == 2){
+        }else if(pe == 'N'){
             document.getElementById("pf_eligible2").checked = true;
         }else if(pe == '' || status == 'NULL'){
             document.getElementById("pf_eligible1").checked = false;
@@ -564,12 +564,12 @@
         }
     </script>
 
-   <!--Hide Future Dates-->
+   <!-- Dates-->
    <script>
        $(document).ready(function () {
        var currentDate = new Date();
        $('#safety_training_to').datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             autoclose:true,
             endDate: "currentDate",
             //maxDate: currentDate
@@ -581,7 +581,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#safety_training_from').datepicker({
-       dateFormat: 'yy/mm/dd',
+       dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -592,7 +592,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#pass_val_from').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy/-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -603,7 +603,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#pass_val_to').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -614,7 +614,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#nominee_dob').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -625,7 +625,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#Engaged_Date').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -636,7 +636,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#dob').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -647,7 +647,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#workorder_date').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -658,7 +658,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#wo_val_from').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
@@ -669,7 +669,7 @@
        $(document).ready(function () {
        var currentDate = new Date();
        $('#wo_val_to').datepicker({
-        dateFormat: 'yy/mm/dd',
+        dateFormat: 'yy-mm-dd',
        autoclose:true,
        endDate: "currentDate",
        //maxDate: currentDate
