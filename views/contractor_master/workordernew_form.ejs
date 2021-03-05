@@ -1,10 +1,12 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-danger btn-fw b-r-25 m-b-20" id="addbutton"
+    href="/workordernew">Back</a>
         <div class="card" id="newform">
             <div class="card-body">
 
-                <h4 class="card-title">Work Order Cat1</h4>
+                <h4 class="card-title">Work Order</h4>
 
                 <form class="forms-sample" method="POST" action="/workordernew/add" autocomplete="off" onsubmit="getAlert()"> 
                     <div class="form-group row">
@@ -226,8 +228,6 @@
                     <br /><br />
                     <center>
                         <button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-
-                        <button class="btn btn-gradient-danger btn-fw">cancel</button>
                     </center>
                 </form>
             </div>

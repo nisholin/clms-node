@@ -45,8 +45,11 @@ const attendance_edit = (req,res,next) => {
     res.render('attendance/attendance_edit');
 }
 //PAY ROLL
-const payGeneration = (req,res,next) => {
+/*const payGeneration = (req,res,next) => {
     res.render('pay_roll/pay_roll_generation');
+}*/
+const payGeneration = (req,res,next) => {
+    res.render('pay_roll/pay_roll_generationnew');
 }
 //Reports
 const contractorMaster = (req,res,next) => {

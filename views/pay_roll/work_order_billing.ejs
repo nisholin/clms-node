@@ -1,71 +1,123 @@
 <%- include ('../nav/header') %>
-    <!-- Sidebar Page -->
-    <%- include('../nav/sidebar') %>
-	
-<div class="content-wrapper">
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">	
-			  <div class="card-body">
-				<h4 class="card-title">WorkOrder Billing</h4>
-				
-				<form class="form-inline">
-				  <label class="sr-only" for="inlineFormInputName2">Contractor</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"  placeholder="contractor">
-				  <label class="sr-only" for="inlineFormInputName2">Sub Contractor</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="sub_contractor" name="sub_contractor"  placeholder="Sub Contractor">
-				  <label class="sr-only" for="inlineFormInputName2">Employee</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"  placeholder="Employee">
-				  <label class="sr-only" for="inlineFormInputName2">Month</label>
-				  <input type="date" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="Month">
-				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-				  </form>
-			  
-				</div> 
-				 
-					<div class="col-sm-12 text-right">
-					
-				 	   <div class="w3-show-inline-block">
-  <div class="w3-bar"> 
-					
-					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-					  </button>
-					 
-					 
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
-					  </button>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
+
+		<div class="content-wrapper">
+			<div class="col-lg-12 grid-margin stretch-card" id="table">
+				<div class="card overflow-x overflow-y-hidden">
+					<div class="card-body">
+						<h4 class="card-title">WorkOrder Billing</h4>
+
+						<form class="form-inline">
+							<label class="sr-only" for="inlineFormInputName2">Contractor</label>
+							<select class="form-control mb-2 mr-sm-2" name="contract_code_data" id="contract_code_data"
+								placeholder="Select Contractor">
+								<option value="">Select Contractor</option>
+								<% conDetailsCode.forEach(function(contractorlist) { %>
+									<option value="<%= contractorlist.CCODE %>">
+										<%= contractorlist.CNAME %>
+									</option>
+									<% }) %>
+							</select>
+							<label class="sr-only" for="inlineFormInputName2">Month</label>
+							<select class="form-control mb-2 mr-sm-2" name="month_data" id="month_data"
+								placeholder="Select Month">
+								<option value="">Select Month</option>
+								<% MonthDetails.forEach(function(Monthlist) { %>
+									<option value="<%= Monthlist.MONTH+'-'+Monthlist.YEAR%>">
+										<%= Monthlist.MONTH+'-'+Monthlist.YEAR %>
+									</option>
+									<% }) %>
+							</select>
+							<input type="button"  class="btn btn-gradient-primary mb-2" value="Go" onClick="get_work_order_billing_report()">
+						</form>
+
 					</div>
-					</div> 
-  </div>
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">
-				<div class="card-body">				
-					
-<table class="table table-bordered"> 				
-<thead>
-<center>
-					
+
+					<div id="hide_details" class="dis-none">
+					<div class="col-sm-12 text-right">
+
+						<div class="w3-show-inline-block">
+							<div class="w3-bar">
+
+								<button type="button" class="btn btn-gradient-info btn-icon-text"
+									onclick="print()"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+								</button>
 
 
-</center>
+								<button type="button" class="btn btn-gradient-info btn-icon-text"
+									onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 grid-margin stretch-card" id="table">
+						<div class="card overflow-x overflow-y-hidden">
+							<div class="card-body">
 
-</thead>
-<tbody>
-<tr>
- 
-					<td>S.NO:</td> 
-					<td>	Emp.No :</td>
-					<td>Employee Name :</td>
-					<td>Gross Wages :</td>
-					<td>Total Deduction:</td>
-					<td>Net wages</td>
-					<td>Signature of Workmen</td>
-					
-</tr> 
+								<table class="table table-bordered" id="table_print">
+									<center>
+										<p>FormXIX Wage Slip Received for the month of</p>
+									</center>
+									<thead>
+										<tr>
+											<td>S.NO:</td>
+											<td> Emp.No :</td>
+											<td>Employee Name :</td>
+											<td>Gross Wages :</td>
+											<td>Total Deduction:</td>
+											<td>Net wages</td>
+											<td>Signature of Workmen</td>
+										</tr>
+									</thead>
+									<tbody class="wo_billing_data">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>
+			<!--Initial View-->
+			<script>
+				function get_work_order_billing_report() {
+					var ccode = document.getElementById("contract_code_data").value;
+					var month = document.getElementById("month_data").value;
+					//alert(ccode);
+					//alert(month)
+					$.ajax({
+						method: 'POST',
+						url: '/wo_billing/report',
+						data: { ccode: ccode, month: month },
+						success: function (data) {
+							document.getElementById("hide_details").style.display = "block";
+							//console.log(data);
+							$('.wo_billing_data').empty();
+							var n = 1;
+							$.each(data, function (index, wo_order_details) {
+								//console.log(wo_order_details);
+								$('.wo_billing_data').append('<tr><td>' + n + '</td><td>' + wo_order_details.emp_new_code + '</td><td>' + wo_order_details.emp_name + '</td><td>' + wo_order_details.gross_salary + '</td><td>' + wo_order_details.payroll_year + '</td><td>' + wo_order_details.basic + '</td><td>' + wo_order_details.pd_allow + '</td>');
+							});
+						}
+					});
+				}
+			</script>
 
-</tbody>
-</table>
-</div>
-</div>
-</div>
-        <!-- Footer Page-->
-        <%- include('../nav/footer') %>
+			<!--Print-->
+			<script>
+				function print(){
+					var divContents = document.getElementById("table_print").innerHTML; 
+					var a = window.open('', '', 'height=500, width=1000'); 
+					a.document.write('<html>'); 
+					a.document.write('<style type="text/css">tr,td{border: 1px solid;}</style>');
+					a.document.write('<body >'); 
+					a.document.write(divContents); 
+					a.document.write('</body></html>'); 
+					a.document.close(); 
+					a.print(); 
+				}
+			</script>

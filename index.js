@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//var moment = require('moment');
-//app.locals.moment = moment; 
+var moment = require('moment');
+app.locals.moment = moment; 
 //const expressLayouts = require('express-ejs-layouts');
 //parse application/x-www-form-urlencoded
 //parse application/json
@@ -44,6 +44,47 @@ app.post('/login_val',user.login_check);
 app.get('/home',user.main_page);
 
 
+//excel template download code start here by JAI
+
+app.get('/gate_master_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  res.download(file); 
+});
+
+app.get('/engineer_master_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  res.download(file); 
+});
+
+app.get('/shift_master_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  res.download(file); 
+});
+
+app.get('/contractor_master_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/cpcl_contractor_master.csv`;
+  res.download(file); 
+});
+
+app.get('/contractor_mail_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/cpcl_contractor_email.csv`;
+  res.download(file); 
+});
+
+app.get('/workorder_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/cpcl_work_order_master.csv`;
+  res.download(file); 
+});
+
+app.get('/employee_excell_download', function(req, res){
+  const file = `${__dirname}/excel_templates/cpcl_employee_master.csv`;
+  res.download(file); 
+});
+
+app.get('/Employee_Daily_Attendance', function(req, res){
+  const file = `${__dirname}/excel_templates/Employee_Daily_Attendance.csv`;
+  res.download(file); 
+});
 
 //Import Routes
 //const homeRoutes = require('./routes/home-routes');
@@ -65,7 +106,10 @@ const transferRoutes = require('./routes/contractor/transfer_route');
 //ADMIN
 const adminRoutes = require('./routes/admin/register_routes');
 //PAYROLL
-const payrollgeneration = require('./routes/payroll/pay_roll_gen_routes');
+
+//const payrollgeneration = require('./routes/payroll/pay_roll_gen_routes');
+
+const payrollgenerationnew = require('./routes/payroll/pay_roll_gen_new_routes');
 const wageslip = require('./routes/payroll/wage_slip_routes');
 const formbwageregister = require('./routes/payroll/form_b_wage_routes');
 const workorderbilling = require('./routes/payroll/work_order_bill_routes');
@@ -110,7 +154,8 @@ app.use(transferRoutes.transfer);
 //ADMIN
 app.use(adminRoutes.routes);
 //PAY ROLL GENERATION
-app.use(payrollgeneration.payroll);
+//app.use(payrollgeneration.payroll);
+app.use(payrollgenerationnew.payrollnew);
 app.use(wageslip.wageslip);
 app.use(formbwageregister.formbwage);
 app.use(workorderbilling.workOrderBill);
@@ -138,8 +183,8 @@ app.use(eicreportsroutes.eicReports);
 
 app.use(roleroutes.role);
 
-
-/*
+var config  = require('./database/dbconfig');
+var sql  = require('mssql');
 //For csv Uploads
  const fs = require('fs');
 const csv = require('fast-csv');
@@ -154,20 +199,21 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
        cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname)
     }
-  }); 
+  });
 
 
- const upload = multer({storage: storage});
+const upload = multer({storage: storage});
 
+//Gate
 // -> Express Upload RestAPIs
 app.post('/excel_upload/gate_data', upload.single("csvdata"), (req, res) =>{
     importCsvData2MySQL(__basedir + '/uploads/' + req.file.filename);
     res.json({
           'msg': 'File uploaded/import successfully!', 'file': req.file
         });
-  }); 
+ 
 
- function importCsvData2MySQL(filePath){
+    function importCsvData2MySQL(filePath){
     let stream = fs.createReadStream(filePath);
     let csvData = [];
     let csvStream = csv
@@ -178,72 +224,166 @@ app.post('/excel_upload/gate_data', upload.single("csvdata"), (req, res) =>{
         .on("end", function () {
             // Remove Header ROW
             csvData.shift();
+    // connect to your database
+         
+    var pool = sql.connect(config, function (err) {
+      if (err) throw err;
+        console.log("Connected!");
 
-            console.log(csvData); 
-
-
-           //Create a connection to the database
-  var sql = require("mssql");
-  const config = {
-  server:'127.0.0.1',
-  user:'sqladmin',
-  password:'Mykeyin@123',
-  port :1433,
-  database:'CLMS_V',
-  options:{
-  encrypt:true,
-  trustedConnection:true,
-  enableArithPort:true,
-  enableArithAbort: true,
-  instancename:'BSPLNEWASSETSRV\SQLEXPRESS'          
-  }              
-  } 
-
-
- 
-  sql.connect(config, function (err) {
-
-    if (err) throw err;
-      console.log("Connected!");
-      var table_insert_sql = "INSERT INTO cpcl_gate_master  (name, status) VALUES ?";
-      var values = [csvData];
-          sql.query(table_insert_sql, values, function (err, result) {
-            if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);   });
-    });
- 
-  
-//var insert_query = `INSERT INTO cpcl_gate_master  (name)  VALUES ${csvData.join().split(",").map(i => '(' + i + ')').join()}` ; 
- // var insert_query = `INSERT INTO cpcl_gate_master  (name)  VALUES ${csvData.map(function(subarray) { return subarray; })}` ; 
-
-   /* //var scores = [[2, 7], [13, 47], [55, 77]];
-   csvData.map(function(subarray) {//this block will map  [2,7], [13, 47], [55,77] as in their own arrays individually?         
-    return console.log(subarray);
-    //return subarray.map(function(insert_value) {//this will iterate each index of the above array? })\
-    }) */
-    
-  /* async function getEngvalues(){
-  try{
-  let pool = await sql.connect(config);
-  await pool.request().query(insert_query,function (err, result) {
-  if (err) throw err;
-  });
-  }
-  catch(error){
-  console.log(error);
-  }
-  }
-  getEngvalues();
-
+        //console.log(csvData);
+        for(i=0;i<csvData.length;i++){
+        for(j=0;j<csvData.length;j++){
+        //console.log(csvData[j][i]);
+        var data = csvData[i][0];
+        var data2 = csvData[i][1];
+        //var data2 = csvData[1][j];
+        //var data2 = csvData[i][1];
+        console.log(data);
+        console.log(data2);     
+       
         
-  fs.unlinkSync(filePath)  
+           
+        }
+        var sql = "INSERT INTO cpcl_gate_master (name, status) VALUES ('"+data+"','"+data2+"')";
+       
+        pool.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("Number of records inserted: " + result.affectedRows);   }); 
+        }       
+    });
+           
+      fs.unlinkSync(filePath)
+    });
 
+stream.pipe(csvStream);
+}
 });
 
-  stream.pipe(csvStream);
-}
+//Attendance In-Out
+app.post('/excel_upload/attendance_in_out', upload.single("csvdata"), (req, res) =>{
+  importCsvData2MySQL(__basedir + '/uploads/' + req.file.filename);
+  res.json({
+        'msg': 'File uploaded/import successfully!', 'file': req.file
+      });
 
- */
+
+  function importCsvData2MySQL(filePath){
+  let stream = fs.createReadStream(filePath);
+  let csvData = [];
+  let csvStream = csv
+      .parse()
+      .on("data", function (data) {
+          csvData.push(data);
+      })
+      .on("end", function () {
+          // Remove Header ROW
+          csvData.shift();
+  // connect to your database
+       
+  var pool = sql.connect(config, function (err) {
+    if (err) throw err;
+      console.log("Connected!");
+
+      //console.log(csvData);
+      for(i=0;i<csvData.length;i++){
+      for(j=0;j<csvData.length;j++){
+      //console.log(csvData[i][j]);
+      var ccode       = csvData[i][0];
+      var cname       = csvData[i][1];
+      var empcode     = csvData[i][2];
+      var idcardno    = csvData[i][3];
+      var empname       = csvData[i][4];
+      var shiftdate       = csvData[i][5];
+      var shift       = csvData[i][6];
+      var indata       = csvData[i][7];
+      var outdata       = csvData[i][8];
+      var gate      = csvData[i][9];
+      var ponum       = csvData[i][10];
+      var status       = csvData[i][11];  
+      }
+      var sql = `INSERT INTO employee_attendance_jan (CCODE,CNAME,EMPCODE,IDCARDNO,Employee_Name,Shift_date,Shift,[IN],Out,Gate,PO_NUM,Status) 
+      VALUES ('${ccode}','${cname}','${empcode}','${idcardno}','${empname}','${shiftdate}','${shift}','${indata}','${outdata}','${gate}',
+      '${ponum}','${status}')`;
+     
+      pool.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);   
+      });   
+      }       
+  });
+         
+    fs.unlinkSync(filePath)
+  });
+
+stream.pipe(csvStream);
+}
+});
+//Contractor
+app.post('/uploads/Contractor_csv', upload.single("csvdata"), (req, res) =>{
+  importCsvData2MySQL(__basedir + '/uploads' + req.file.filename);
+  res.json({
+        'msg': 'File uploaded/import successfully!', 'file': req.file
+      });
+
+
+  function importCsvData2MySQL(filePath){
+  let stream = fs.createReadStream(filePath);
+  let csvData = [];
+  let csvStream = csv
+      .parse()
+      .on("data", function (data) {
+          csvData.push(data);
+      })
+      .on("end", function () {
+          // Remove Header ROW
+          csvData.shift();
+          console.log(csvData);
+  // connect to your database
+       
+  var pool = sql.connect(config, function (err) {
+    if (err) throw err;
+      console.log("Connected!");
+
+      
+      /* for(i=0;i<csvData.length;i++){
+      for(j=0;j<csvData.length;j++){
+      //console.log(csvData[i][j]);
+      var ccode       = csvData[i][0];
+      var cname       = csvData[i][1];
+      var empcode     = csvData[i][2];
+      var idcardno    = csvData[i][3];
+      var empname       = csvData[i][4];
+      var shiftdate       = csvData[i][5];
+      var shift       = csvData[i][6];
+      var indata       = csvData[i][7];
+      var outdata       = csvData[i][8];
+      var gate      = csvData[i][9];
+      var ponum       = csvData[i][10];
+      var status       = csvData[i][11];  
+      }
+      var sql = `INSERT INTO employee_attendance_jan (CCODE,CNAME,EMPCODE,IDCARDNO,Employee_Name,Shift_date,Shift,[IN],Out,Gate,PO_NUM,Status) 
+      VALUES ('${ccode}','${cname}','${empcode}','${idcardno}','${empname}','${shiftdate}','${shift}','${indata}','${outdata}','${gate}',
+      '${ponum}','${status}')`;
+     
+      pool.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);   
+      });   
+      }  */      
+  });
+         
+    fs.unlinkSync(filePath)
+  });
+
+stream.pipe(csvStream);
+}
+});
+//Work Order
+//Employee
+
+
+
+
 
 app.get('/logout',(req,res)=>{ 
   req.session.destroy(function(err) {

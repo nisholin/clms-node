@@ -5,8 +5,8 @@ var sql = require('mssql');
 async function get_shift_values(){
     try{
             let pool = await sql.connect(config);
-            let products = await pool.request().query("select * from cpcl_shift_master");
-            return products.recordsets;
+            let shift = await pool.request().query("select * from cpcl_shift_master");
+            return shift.recordsets;
     }
     catch(error){
         console.log(error);

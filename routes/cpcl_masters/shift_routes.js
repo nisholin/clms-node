@@ -18,7 +18,7 @@ router.get('/shift',(req, res)=>{
     else{
 		shift_table_operations.get_shift_values().then(result =>{
         var data = result[0];
-        console.log(data);
+        //console.log(data);
         res.render('menu_master/shift',{user_Id:user_Id,user_name:user_name,data});
     });
     } 
@@ -30,18 +30,24 @@ router.post('/shift/new',(req,res)=>{
     //var new = req.body;
     //console.log(new);
     var shift_name = req.body.shift_name;
-   
-	 var from_time = req.body.from_time;
-	  var to_time = req.body.to_time;
-	    var status = req.body.status;
-    console.log(shift_name);
-	  console.log(from_time);
-	    console.log(to_time);
-		console.log(status);
+	var from_time = req.body.from_time;
+    var to_time = req.body.to_time;
+    var status = req.body.status;
+    //console.log(shift_name);
+    //console.log(from_time);
+    //console.log(to_time);
+    //console.log(status);
+    //Date
+    var date = new Date();
+    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+    .toISOString()
+    .split("T")[0];
+    //console.log(dateString);
+
     async function getShiftValues(){
         try{
             let pool = await sql.connect(config);
-             await pool.request().query("insert into cpcl_shift_master(shift_name,from_time,to_time,status)  values ('"+shift_name+"','"+from_time+"','"+to_time+"','"+status+"')",(req,res)=>{
+             await pool.request().query("insert into cpcl_shift_master(shift_name,from_time,to_time,status,created_on)  values ('"+shift_name+"','"+from_time+"','"+to_time+"','"+status+"','"+dateString+"')",(req,res)=>{
                  console.log("successfully inserted");
              });
             //return products.recordsets;
@@ -58,8 +64,8 @@ router.post('/shift/new',(req,res)=>{
  router.get('/shift_edit/:shiftid',(req, res) => {
 
     const shiftId = req.params.shiftid;
-    console.log(shiftId);
-
+    //console.log(shiftId);
+    
     async function Shiftupdate(){
         try{
                 let pool = await sql.connect(config);
@@ -87,12 +93,19 @@ router.post('/shift/new',(req,res)=>{
 router.post('/shift/update',(req, res) => {
     var update = req.body;
     //console.table(update);
+    //Date
+    var date = new Date();
+    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+    .toISOString()
+    .split("T")[0];
+    //console.log(dateString);
 
     async function shiftupdate(){
         try{
             let pool = await sql.connect(config);
             await pool.request().query(`update cpcl_shift_master SET shift_name ='${req.body.shift_name}',
-            from_time ='${req.body.from_time}',to_time ='${req.body.to_time}',status ='${req.body.membershipRadios}' where id ='${req.body.id}'`);
+            from_time ='${req.body.from_time}',to_time ='${req.body.to_time}',status ='${req.body.membershipRadios}',
+            modified_on='${dateString}' where id ='${req.body.id}'`);
         }
         catch(error){
             console.log(error);

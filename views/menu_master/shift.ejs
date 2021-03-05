@@ -6,6 +6,29 @@
 	onclick="addShift(1)">New</button>
 	<button type="button" class="btn btn-gradient-danger btn-fw f-r b-r-25 dis-none" id="backbutton"
 	onclick="addShift(2)">Back</button>
+
+	<!--Upload Excel-->
+	<div class="card">
+		<div class="card-body">
+		<section id="upload-data-panel">
+		<a href="/shift_master_excell_download">Download Template</a></p>			
+
+		<form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">              
+		<fieldset>
+		<legend>Upload Data</legend>
+		<div>
+		<!-- The name here is important, and will be used later to reference the data -->
+		<input type="file" name="csvdata" accept="text/cvs">
+		</div>
+		<div>
+		<input type="submit" value="Submit" />
+		</div>
+		</fieldset>
+		</form>
+		</section>
+		</div>
+		</div>
+	 
 	<div class="col-lg-12 grid-margin stretch-card">
 		
 		<div class="card overflow-x overflow-y-hidden" id="table">

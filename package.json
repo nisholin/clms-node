@@ -22,6 +22,7 @@
     "req-flash": "0.0.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "moment": "2.29.1"
   }
 }

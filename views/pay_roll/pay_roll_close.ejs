@@ -1,36 +1,55 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
-	<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">	
-			  <div class="card-body">
-				<h4 class="card-title">PayRoll Close</h4>
-				
-				<form class="form-inline" method="POST" action="/pay_roll/pay_roll_closenew">
-				  <label class="sr-only" for="inlineFormInputName2">Year</label>
-				  <input type="text" class="form-control mb-2 mr-sm-2" id="year" name="year"  placeholder="Year">
-				<label class="sr-only" for="inlineFormInputName2">Month</label>
-				  <input type="month" class="form-control mb-2 mr-sm-2" id="month" name="month"  placeholder="Month">
-				
-				 
-				  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-				  </form>
-			  
-				</div> 
-</head>
-<div class="col-sm-12 text-right">
-					
-				 	   <div class="w3-show-inline-block">
-  <div class="w3-bar"> 
-					
-					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-					  </button>
-					 
-					 
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
-					  </button>
+    <div class="col-lg-12 grid-margin stretch-card" id="table">
+		<div class="card overflow-x overflow-y-hidden">
+			<div class="card-body">
+				<h4 >Payroll Generation</h4><br/><br/>
+				<form class="form-inline" align="center" method="POST" action="/payroll/close">
+					<% Month.forEach(function(Monthlist)  {   %>
+					<div class="form-group row">
+						<div class="col-sm-3">
+						   <h2 class="card-title">Month</h2>
+						</div>
+						<div class="col-sm-5">
+							<%  if(Monthlist.month=='1'){ 
+									month="January"; 
+								}else if(Monthlist.month=='2'){
+									month="February"; 
+								}else if(Monthlist.month=='3'){
+									month ="March";
+								}else if(Monthlist.month=='4'){
+									month = "April";
+								}else if(Monthlist.month=='5'){
+									month ="May";
+								}else if(Monthlist.month=='6'){
+									month ="June";
+								}else if(Monthlist.month=='7'){
+									month ="July";
+								}else if(Monthlist.month=='8'){
+									month ="August";
+								}else if(Monthlist.month=='9'){
+									month ="September";
+								}else if(Monthlist.month=='10'){
+									month ="October";
+								}else if(Monthlist.month=='11'){
+									month ="November";
+								}else if(Monthlist.month=='12'){
+									month ="December";
+								}
+							%>
+							<%= month+'-'+Monthlist.year %>  
+						</div>
+						<div class="col-sm-4">
+							<input type="hidden" value="<%= Monthlist.id %>" name="id">
+						  <input type="button"  class="btn btn-gradient-primary mb-2" value="Payroll_close">
+						</div>
 					</div>
-					</div> 
-  </div>
+					<%  }) %>
+				</form>
+				<br/><br/>
+			</div>
+		</div>
+	</div>	
         <!-- Footer Page-->
         <%- include('../nav/footer') %>

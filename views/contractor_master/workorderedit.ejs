@@ -1,13 +1,13 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-danger btn-fw b-r-25 m-b-20" id="addbutton"
+    href="/workordernew">Back</a>
         <div class="card" id="newform">
             <div class="card-body">
 
                 <h4 class="card-title">Work Order</h4>
                 <% work_edit_data.forEach(function(work_edit_data) { %>
-
-					
                 <form class="forms-sample" method="POST" action="/workordernew/update" onsubmit="showAlert()"> 
                     <input type="hidden" value="<%= work_edit_data.id %>" name="id" />
                     <div class="form-group row">
@@ -36,7 +36,7 @@
                         <label for="exampleInputWork order Date" class="col-sm-3 col-form-label">Work order Date</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="Work_order_date" name="Work_order_date"
-                            value="<%= work_edit_data.WORK_OR_DATE.toISOString().substring(0, 10); %>" %> >
+                            value="<%= moment(work_edit_data.WORK_OR_DATE).format('YYYY-MM-DD'); %>" %> >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -130,9 +130,9 @@
                                 <td><input type="text" class="form-control w-11-rem" name="clra_lic_no" id="lic_no"
                                     value="<%= clradetails.licence_no %>"></td>
                                 <td><input type="text" class="form-control w-11-rem" name="clra_period_from" id="clra_period_from"
-                                    value="<%= clradetails.period_from.toISOString().substring(0, 10); %>"></td>
+                                    value="<%= moment(clradetails.period_from).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="text" class="form-control w-11-rem" name="clra_period_to" id="clra_period_to"
-                                    value="<%= clradetails.period_to.toISOString().substring(0, 10); %>"></td>
+                                    value="<%=  moment(clradetails.period_to).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="number" class="form-control w-11-rem" name="clra_workmen" id="clra_workmen" 
                                     min="0"  value="<%= clradetails.workmen %>" oninput="totWoekman();" >
                                 </td>
@@ -150,9 +150,9 @@
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_lic_no" id="lic_no"
                                     value="<%= ismwdeatils.licence_no %>"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_period_from" id="ismw_period_from"
-                                    value="<%= ismwdeatils.period_from.toISOString().substring(0, 10); %>"></td>
+                                    value="<%= moment(ismwdeatils.period_from).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="ismw_period_to" id="ismw_period_to"
-                                    value="<%= ismwdeatils.period_to.toISOString().substring(0, 10); %>"></td>
+                                    value="<%= moment(ismwdeatils.period_to).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="number" class=" form-control w-11-rem" name="ismw_workmen" id="ismw_workmen"
                                     min="0" value="<%= ismwdeatils.workmen %>"  oninput="totWoekman();">
                                 </td>
@@ -184,9 +184,9 @@
                                 <td><input type="text" class=" form-control w-11-rem" name="e_c_lic_no" id="e_c_lic_no"
                                     value="<%= econtractordetails.licence_no %>"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="e_c_period_from" id="e_c_period_from"
-                                    value="<%= econtractordetails.period_from.toISOString().substring(0, 10); %>"></td>
+                                    value="<%= moment(econtractordetails.period_from).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="text" class=" form-control w-11-rem" name="e_c_period_to" id="e_c_period_to"
-                                    value="<%= econtractordetails.period_to.toISOString().substring(0, 10); %>"></td>
+                                    value="<%= moment(econtractordetails.period_to).format('YYYY-MM-DD'); %>"></td>
                                 <td><input type="number" class=" form-control w-11-rem" name="e_c_workmen" id="e_c_workmen"
                                     min="0" value="<%= econtractordetails.workmen %>"  oninput="totWoekman();"></td>
                                     <% }) %>

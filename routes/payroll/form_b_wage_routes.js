@@ -16,7 +16,6 @@ if(user_Id == null)
 	  return;
   }
   else{
-  //res.render('pay_roll/form_b_wage_reg',{user_Id:user_Id,user_name:user_name})
     dboperations.payroll_contract_data().then(result=>{
       condetails.user_Id = user_Id;
       condetails.user_name = user_name;
@@ -32,23 +31,9 @@ if(user_Id == null)
   }
 });
 
-//////form b wage register fetch data
+//form b wage register fetch data
 router.post('/pay_roll/form_b_wage_reg_data',(req,res,next)=>{
-  /*const output = [
-    {
-       "is_indb":false,
-       "name":"adam",
-       "tokens":29
-    },
-    {
-       "is_indb":true,
-       "name":"aaron",
-       "tokens":2,
-    }]
-    const transform = output.filter(value => /^a/.test(value.name) && !value.is_indb)
-    .map(value => [value.name, value.tokens])
-    console.log(transform)
-    res.send(transform);  */  
+ 
   var ccode = req.body.ccode; 
   var samp_data =[];
   async function get_wo_data() {
@@ -110,21 +95,20 @@ router.post('/pay_roll/form_b_wage_reg_data',(req,res,next)=>{
                     }
                     payroll_data().then(result=>{
                       var newItems = result[0];
-                      //console.log(result[0]);
-                      //console.log(data);
-                      samp_data.push(...newItems);
-                      //console.log(samp_data);
-                      //var payroll_details = result[0];
-                      //payroll_details.result[0] = result[0];
-                    //console.log(sampledata);       
+                      samp_data.push(newItems);
+                      console.log(samp_data);
+                      res.send(newItems);
                     }); 
               } 
           });
         } 
+       
     });
-res.send(samp_data);
-next();
 });
+
+
+
+
 module.exports = {
     formbwage : router
 }

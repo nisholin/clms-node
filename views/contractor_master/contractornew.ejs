@@ -2,11 +2,33 @@
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
 
-		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton"
 			onclick="addContractor(1)">New</button>
-		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20 dis-none" id="backbutton"
+		<button type="button" class="btn btn-gradient-danger btn-fw f-r b-r-25 m-b-20 dis-none" id="backbutton"
 			onclick="addContractor(2)">Back</button>
 		<br/>	
+		<!--Upload Excel-->
+		<a href="/contractor_master_excell_download">Download Template</a></p>
+		<div class="card" id="table">
+			<div class="card-body">
+				<section id="upload-data-panel">
+				<form id="upload-form" action="/uploads/Contractor_csv" method="post" enctype="multipart/form-data">
+					
+					<fieldset>
+					<legend>Upload Data</legend>
+					<div>
+						<!-- The name here is important, and will be used later to reference the data -->
+						<input type="file" name="csvdata" accept="text/cvs">
+					</div>
+					<div>
+						<input type="submit" value="Submit" />
+					</div>
+					</fieldset>
+				</form>
+				</section>
+			</div>
+		</div>
+		<br/>
 		<div class="col-lg-12 grid-margin stretch-card" id="table">
 			<div class="card overflow-x overflow-y-hidden">
 				<div class="card-body">
@@ -228,8 +250,6 @@
 					
 					<center>
 						<button type="submit" class="btn btn-gradient-success btn-fw">Save</button>
-
-						<button type="button" class="btn btn-gradient-danger btn-fw">cancel</button>
 					</center>
 				</form>
 			</div>
@@ -268,7 +288,6 @@
 
 	//function backContractor() {
 </script>
-
 
 <!--Show alert-->
 <script>

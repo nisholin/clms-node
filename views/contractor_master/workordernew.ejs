@@ -1,6 +1,30 @@
 <%- include ('../nav/header')  %>        
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
+
+  <!--Upload Excel-->
+  <a href="/workorder_excell_download">Download Template</a></p>
+  <div class="card" id="table">
+    <div class="card-body">
+      <section id="upload-data-panel">
+      <form id="upload-form" action="/uploads/Contractor_csv" method="post" enctype="multipart/form-data">
+        
+        <fieldset>
+        <legend>Upload Data</legend>
+        <div>
+          <!-- The name here is important, and will be used later to reference the data -->
+          <input type="file" name="csvdata" accept="text/cvs">
+        </div>
+        <div>
+          <input type="submit" value="Submit" />
+        </div>
+        </fieldset>
+      </form>
+      </section>
+    </div>
+  </div>
+  <br/>
+
  <a href="/workordernew/add" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton">New</a>
  <br/>
 <div class="col-lg-12 grid-margin stretch-card">
@@ -18,7 +42,6 @@
                 <th>WORK_ORDER</th>
                 <th>WORK_OR_DATE</th>
                 <th>DURATION</th>
-                <th>WORKMEN_TOT</th>
                 <th>Action</th>
                 </tr>
                 </thead>
@@ -30,13 +53,12 @@
                 <td> <%= work_order.WORK_ORDER  %> </td>
                 <td>
                   <label class="badge badge-gradient-info">
-                    <%= work_order.WORK_OR_DATE.toISOString().substring(0, 10); %>
+                    <%= moment(work_order.WORK_OR_DATE).format('YYYY-MM-DD'); %>
                   </label>
                 </td>
                 <td> <%= work_order.DURATION   %></td>
-                <td> <%= work_order.WORKMEN_TOT  %> </td>
                 <td>
-                  <a href="work_edit/<%= work_order.id %>/<%= work_order.WORK_ORDER   %>" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="work_edit/<%= work_order.id %>/<%= work_order.WORK_ORDER %>" class="btn btn-sm btn-primary">Edit</a>
                 </td>
                 </tr>
                         

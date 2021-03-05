@@ -6,6 +6,7 @@ var config = require('../../database/dbconfig');
 var sql = require('mssql');
 
 
+
 //gate_Master
 router.get('/gate',(req,res,next)=>{
 	 var user_Id = req.session.userId, user_name = req.session.user_name;
@@ -44,6 +45,23 @@ router.post('/gate/new',(req,res,next)=>{
     getGateValues();
 	 
 });
+
+//Excel Upload 
+/* router.post('/excel_upload/gate_data',(req,res)=>{
+    var exceldata = req.body;
+    console.log(exceldata);
+    const csv = require('csv-parser');
+const fs = require('fs');
+
+fs.createReadStream(exceldata)
+  .pipe(csv())
+  .on('data', (row) => {
+    console.log(row);
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
+}) */
 
 //Edit View
 router.get('/gate_edit/:gateid',(req, res) => {
@@ -93,6 +111,12 @@ gateupdate();
 
     res.redirect('/gate');
 });
+
+
+//Download CSV
+router.get('/uploads/gate_csv',(req,res)=>{
+    //window.open('http://localhost:3000/createExcel', '_blank');
+})
 
 
 

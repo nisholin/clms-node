@@ -1,7 +1,31 @@
 <%- include ('../nav/header') %>
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
-
+	
+	
+	
+	<!--Upload Excel-->
+		<a href="/contractor_mail_excell_download">Download Template</a></p>
+		<div class="card" id="table">
+			<div class="card-body">
+				<section id="upload-data-panel">
+				<form id="upload-form" action="/uploads/Contractor_csv" method="post" enctype="multipart/form-data">
+					
+					<fieldset>
+					<legend>Upload Data</legend>
+					<div>
+						<!-- The name here is important, and will be used later to reference the data -->
+						<input type="file" name="csvdata" accept="text/cvs">
+					</div>
+					<div>
+						<input type="submit" value="Submit" />
+					</div>
+					</fieldset>
+				</form>
+				</section>
+			</div>
+		</div>
+		<br/>
 		<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20 dis-none" id="backbutton"
 			onclick="addContractorMail(2)">Back</button>
 		<br/>	

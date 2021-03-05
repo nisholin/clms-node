@@ -27,7 +27,7 @@ async function payroll_contract_data (){
 async function get_month_data (){
     try{
         let pool = await sql.connect(config);
-        let payroll = await pool.request().query(" select datepart(year,Shift_date) as YEAR, datepart(month,Shift_date) as MONTH From  Employee_Daily_Attendance group by datepart(year,Shift_date), datepart(month,Shift_date)");
+        let payroll = await pool.request().query("select datepart(year,Shift_date) as YEAR, datepart(month,Shift_date) as MONTH From  Employee_Daily_Attendance group by datepart(year,Shift_date), datepart(month,Shift_date)");
         return payroll.recordsets;
     }
     catch(error){
@@ -35,9 +35,34 @@ async function get_month_data (){
     }
 }
 
+//month and year list fetch query
+async function get_payroll_month (){
+    try{
+        let pool = await sql.connect(config);
+        let payroll = await pool.request().query(" select id,month,year,flag  from payroll_master where flag ='1' ");
+        return payroll.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+//close payroll month query
+async function get_payroll_close (){
+    try{
+        let pool = await sql.connect(config);
+        let payroll = await pool.request().query(" select id,month,year,flag  from payroll_master where flag ='2' ");
+        return payroll.recordsets;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
 module.exports = {  
     getpayrollValues,
     payroll_contract_data,
-    get_month_data
+    get_month_data,
+    get_payroll_month,
+    get_payroll_close
  }
