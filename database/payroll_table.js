@@ -39,7 +39,7 @@ async function get_month_data (){
 async function get_payroll_month (){
     try{
         let pool = await sql.connect(config);
-        let payroll = await pool.request().query(" select id,month,year,flag  from payroll_master where flag ='1' ");
+        let payroll = await pool.request().query(" select top 1 id,month,year,flag  from payroll_master where flag ='1' ");
         return payroll.recordsets;
     }
     catch(error){

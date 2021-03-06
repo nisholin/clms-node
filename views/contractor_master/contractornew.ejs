@@ -8,20 +8,21 @@
 			onclick="addContractor(2)">Back</button>
 		<br/>	
 		<!--Upload Excel-->
-		<a href="/contractor_master_excell_download">Download Template</a></p>
 		<div class="card" id="table">
 			<div class="card-body">
+				<a href="/contractor_master_excell_download">Download Template</a>
+				<br/>
 				<section id="upload-data-panel">
-				<form id="upload-form" action="/uploads/Contractor_csv" method="post" enctype="multipart/form-data">
-					
+				<form id="upload-form" action="/excel_upload/Contractor_csv" method="post" enctype="multipart/form-data">
 					<fieldset>
 					<legend>Upload Data</legend>
 					<div>
 						<!-- The name here is important, and will be used later to reference the data -->
 						<input type="file" name="csvdata" accept="text/cvs">
 					</div>
+					<br/>
 					<div>
-						<input type="submit" value="Submit" />
+						<input type="submit" class="btn btn-gradient-danger btn-icon-text" value="Upload"  />
 					</div>
 					</fieldset>
 				</form>

@@ -2,7 +2,7 @@
 <%- include ('../nav/header')  %> 
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
-	<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton" 
+	<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton" 
 	onclick="addShift(1)">New</button>
 	<button type="button" class="btn btn-gradient-danger btn-fw f-r b-r-25 dis-none" id="backbutton"
 	onclick="addShift(2)">Back</button>
@@ -13,22 +13,23 @@
 		<section id="upload-data-panel">
 		<a href="/shift_master_excell_download">Download Template</a></p>			
 
-		<form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">              
+		<form id="upload-form" action="/uploads/shift_csv" method="post" enctype="multipart/form-data">              
 		<fieldset>
 		<legend>Upload Data</legend>
 		<div>
 		<!-- The name here is important, and will be used later to reference the data -->
 		<input type="file" name="csvdata" accept="text/cvs">
 		</div>
+		<br/>
 		<div>
-		<input type="submit" value="Submit" />
+		<input type="submit" class="btn btn-gradient-danger btn-icon-text" value="Upload"  />
 		</div>
 		</fieldset>
 		</form>
 		</section>
 		</div>
 		</div>
-	 
+	 <br/>
 	<div class="col-lg-12 grid-margin stretch-card">
 		
 		<div class="card overflow-x overflow-y-hidden" id="table">
@@ -37,7 +38,7 @@
 				<h4 class="card-title">Shift  Master</h4>
 
 				<div class="form-group"> 
-          <!--Search Filter-->
+          		<!--Search Filter-->
 			    <input type="search" placeholder="Search Here" class="form-control search-input" data-table="customers-list"/>
 				</div>
 
@@ -157,4 +158,45 @@
     function showAlert() {
         alert("Shift Details Successfully Inserted");
     }
+</script>
+
+<!--Table Sort-->
+<script>
+	(function(document) {
+		'use strict';
+
+		var TableFilter = (function(myArray) {
+			var search_input;
+
+			function _onInputSearch(e) {
+				search_input = e.target;
+				var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+				myArray.forEach.call(tables, function(table) {
+					myArray.forEach.call(table.tBodies, function(tbody) {
+						myArray.forEach.call(tbody.rows, function(row) {
+							var text_content = row.textContent.toLowerCase();
+							var search_val = search_input.value.toLowerCase();
+							row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+						});
+					});
+				});
+			}
+
+			return {
+				init: function() {
+					var inputs = document.getElementsByClassName('search-input');
+					myArray.forEach.call(inputs, function(input) {
+						input.oninput = _onInputSearch;
+					});
+				}
+			};
+		})(Array.prototype);
+
+		document.addEventListener('readystatechange', function() {
+			if (document.readyState === 'complete') {
+				TableFilter.init();
+			}
+		});
+
+	})(document);
 </script>

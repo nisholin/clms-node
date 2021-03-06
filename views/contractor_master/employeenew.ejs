@@ -3,27 +3,28 @@
     <%- include('../nav/sidebar') %>
 
     <!--Upload Excel-->
-    <a href="/employee_excell_download">Download Template</a></p>
     <div class="card" id="table">
-    <div class="card-body">
-    <section id="upload-data-panel">
-    <form id="upload-form" action="/uploads/Contractor_csv" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <a href="/employee_excell_download">Download Template</a>
+            <section id="upload-data-panel">
+                <form id="upload-form" action="/uploads/employee_csv" method="post" enctype="multipart/form-data">
 
-    <fieldset>
-    <legend>Upload Data</legend>
-    <div>
-    <!-- The name here is important, and will be used later to reference the data -->
-    <input type="file" name="csvdata" accept="text/cvs">
+                    <fieldset>
+                        <legend>Upload Data</legend>
+                        <div>
+                            <!-- The name here is important, and will be used later to reference the data -->
+                            <input type="file" name="csvdata" accept="text/cvs">
+                        </div>
+                        <br/>
+                        <div>
+                            <input type="submit" class="btn btn-gradient-danger btn-icon-text" value="Upload" />
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
+        </div>
     </div>
-    <div>
-    <input type="submit" value="Submit" />
-    </div>
-    </fieldset>
-    </form>
-    </section>
-    </div>
-    </div>
-    <br/>
+    <br />
     
     <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
     href="/employee/add">New</a>

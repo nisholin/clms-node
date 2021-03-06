@@ -1,9 +1,11 @@
+var config = require('../../database/dbconfig');
+var sql = require('mssql');
+
 var dboperations = require('../../database/payroll_table');
 const express = require('express');
 const router = express.Router();
 
-var config = require('../../database/dbconfig');
-var sql = require('mssql');
+
 
 // month fetching for payroll generate 
 payrollmonth = {};
@@ -18,11 +20,12 @@ if(user_Id == null)
   else{
     dboperations.get_payroll_month().then(result=>{
         var MonthlList = result[0];
-        //console.log(MonthDetails);
+        console.log(MonthlList);        
         payrollmonth.MonthlList = MonthlList;
         payrollmonth.user_Id = user_Id;
         payrollmonth.user_name = user_name;
-      res.render('pay_roll/pay_roll_generationnew',payrollmonth);
+        res.render('pay_roll/pay_roll_generationnew.ejs',payrollmonth);
+
     })
   }
 });
@@ -51,7 +54,6 @@ if(user_Id == null)
 
 //payroll generate process
 router.post('/payroll/generate',(req, res) => {
-    //var id = req.body.id;
     async function payroll_generate(){
         try{
             let pool = await sql.connect(config);
@@ -68,7 +70,6 @@ router.post('/payroll/generate',(req, res) => {
 
 //payroll close process
 router.post('/payroll/close',(req, res) => {
-    //var id = req.body.id;
     async function payroll_close(){
         try{
             let pool = await sql.connect(config);

@@ -13,7 +13,7 @@
             <div class="form-group row">
                 <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
                 <div class="col-sm-9">
-                     <input list="cont_code" class="form-control" name="ccode" id="ccode" onchange="getuniqcode(this.value)" required>
+                    <input list="cont_code" class="form-control" name="ccode" id="ccode" onchange="getuniqcode(this.value)" required>
                     <datalist id="cont_code">
                         <% conDetailsCode.forEach(function(concode){ %>
                             <option value="<%= concode.CODE_NAME %>">
@@ -594,7 +594,8 @@
 
                     if (WORKMEN_TOT == Null) {
                         $('#available_workman').val(availableCount);
-                    } else {
+                    }
+                     else {
                         var availableWorkman = Number(WORKMEN_TOT) - Number(availableCount);
                         $('#available_workman').val(availableWorkman);
                     }

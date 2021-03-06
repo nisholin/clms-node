@@ -1,38 +1,34 @@
 <%- include ('../nav/header') %>
 	<!-- Sidebar Page -->
 	<%- include('../nav/sidebar') %>
-	<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+	<button type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton"
 		onclick="addEngineer(1)">New</button>
 	<button type="button" class="btn btn-gradient-danger btn-fw f-r m-b-20 b-r-25 dis-none" id="backbutton"
 		onclick="addEngineer(2)">Back</button>
 	<br />
-
 	<!--Upload Excel-->
-		<div class="card">
+	<div class="card">
 		<div class="card-body">
-		<section id="upload-data-panel">
-		<a href="/engineer_master_excell_download">Download Template</a></p>			
+			<section id="upload-data-panel">
+				<a href="/engineer_master_excell_download">Download Template</a></p>
 
-		<form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">              
-		<fieldset>
-		<legend>Upload Data</legend>
-		<div>
-		<!-- The name here is important, and will be used later to reference the data -->
-		<input type="file" name="csvdata" accept="text/cvs">
+				<form id="upload-form" action="/uploads/enginerr_csv" method="post" enctype="multipart/form-data">
+					<fieldset>
+						<legend>Upload Data</legend>
+						<div>
+							<!-- The name here is important, and will be used later to reference the data -->
+							<input type="file" name="csvdata" accept="text/cvs">
+						</div>
+						<br/>
+						<div>
+							<input type="submit" class="btn btn-gradient-danger btn-icon-text" value="Upload" />
+						</div>
+					</fieldset>
+				</form>
+			</section>
 		</div>
-		<div>
-		<input type="submit" value="Submit" />
-		</div>
-		</fieldset>
-		</form>
-		</section>
-		</div>
-		</div>
-	 
-
-
-
-	<!-- <i class="mdi mdi-arrow-left-bold fs-35 cursor-p" id="back" onclick="close()"></i> -->
+	</div>
+	<br/>
 	<div class="col-lg-12 stretch-card">
 		
 	<div class="card" id="table">

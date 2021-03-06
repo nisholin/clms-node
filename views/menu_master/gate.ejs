@@ -4,29 +4,27 @@
     <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton"
     onclick="addContractor(1)">
     New</button>
-      <!--Upload Excel-->
-      <div class="card">
-      <div class="card-body">
+  <!--Upload Excel-->
+  <div class="card">
+    <div class="card-body">
       <section id="upload-data-panel">
-      <a href="/gate_master_excell_download">Download Template</a></p>
-      <form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">
+        <a href="/gate_master_excell_download">Download Template</a></p>
+        <form id="upload-form" action="/excel_upload/gate_data" method="post" enctype="multipart/form-data">
 
-      <fieldset>
-      <legend>Upload Data</legend>
-      <div>
-      <!-- The name here is important, and will be used later to reference the data -->
-      <input type="file" name="csvdata" accept="text/cvs">
-      </div>
-      <div>
-      <input type="submit" value="Submit" />
-      </div>
-      </fieldset>
-      </form>
+          <fieldset>
+            <legend>Upload Data</legend>
+            <div>
+              <!-- The name here is important, and will be used later to reference the data -->
+              <input type="file" name="csvdata" accept="text/cvs">
+            </div>
+            <div>
+              <input type="submit" class="btn btn-gradient-danger btn-icon-text" value="Upload" />
+            </div>
+          </fieldset>
+        </form>
       </section>
-      </div>
-      </div>
-
-
+    </div>
+  </div>
     <br />
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card" id="table">
