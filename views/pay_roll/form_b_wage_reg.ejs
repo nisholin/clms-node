@@ -184,11 +184,11 @@
 		url:'/pay_roll/form_b_wage_reg_data',
 		data: { ccode: ccode,month: month },
 		success: function(data){
-			console.log(data);
+			//console.log(data);
 		    var n=1;
 			$.each(data, function(index, payroll_details) {
 				console.log(payroll_details);
-					$('.payroll_data').append('<tr><td>'+n+'</td><td>' + payroll_details.emp_new_code+ '</td><td>' + payroll_details.emp_name + '</td><td>' + payroll_details.pd_wages + '</td><td>' + payroll_details.no_of_days + '</td><td></td><td>' + payroll_details.basic + '</td><td></td><td></td><td></td><td></td><td>' + payroll_details.pd_allow + '</td><td>' + payroll_details.pd_incen + '</td><td></td><td></td><td>' + payroll_details.gross_salary + '</td><td>' + payroll_details.pf_amount + '</td><td>' + payroll_details.esi_amount + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + payroll_details.lwf + '</td><td></td><td>' + payroll_details.total_deduction + '</td><td>' + payroll_details.net_pay + '</td><td></td><td></td><td></td><td></td></tr>');
+					$('#form_b_wage').append('<tr><td>'+n+'</td><td>' + payroll_details.emp_new_code+ '</td><td>' + payroll_details.emp_name + '</td><td>' + payroll_details.pd_wages + '</td><td>' + payroll_details.no_of_days + '</td><td></td><td>' + payroll_details.basic + '</td><td></td><td></td><td></td><td></td><td>' + payroll_details.pd_allow + '</td><td>' + payroll_details.pd_incen + '</td><td></td><td></td><td>' + payroll_details.gross_salary + '</td><td>' + payroll_details.pf_amount + '</td><td>' + payroll_details.esi_amount + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + payroll_details.lwf + '</td><td></td><td>' + payroll_details.total_deduction + '</td><td>' + payroll_details.net_pay + '</td><td></td><td></td><td></td><td></td></tr>');
 				});
 			}
 		}); 	

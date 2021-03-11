@@ -1,63 +1,100 @@
-<%- include ('../nav/header') %>
+	<%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
-	 <div class="content-wrapper">
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">
-<div class="card-body">
-<h4 class="card-title">Deduction</h4>
-
-					<div class="col-sm-12 text-right">
-					
-				 	   <div class="w3-show-inline-block">
-  <div class="w3-bar"> 
-					
-					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-					  </button>
-					 
-					 
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
-					  </button>
-					</div>
-					</div> 
-  </div>
+	<div class="content-wrapper">
 	<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">
-				<div class="card-body">						
-<table class="table table-bordered"> 				
-<thead>
-<tr>
-	  <th>#</th>			 
-      <th>Payroll Month</th>
-      <th>Payroll Year</th>
-	  <th>Payroll Date</th>
-      <th>Employee Code</th>
-      <th>Name</th>
-	  <th>Work Order No</th>
-	   <th>Advance Amount</th>
-	    <th>Action</th>
+	<div class="card overflow-x overflow-y-hidden">
+	<div class="card-body">
+	<h4 class="card-title">Deduction</h4>
+	<div class="col-sm-12 text-right">
+	<div class="w3-show-inline-block">
+	<div class="w3-bar"> 
+		<a type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
+		href="/deduction/add">New</a>
+		
+	<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+	</button>
+	<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+	</button>
+	</div>
+	</div> 
+	</div>
 
-</tr>	 
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Payroll Month</td> 
-<td>Payroll Year</td> 
-<td>Payroll Date</td> 
-<td>Employee Code</td> 
-<td>Name</td> 
-<td>Work Order No</td> 
-<td>Advance Amoun</td> 
-<td>Go</td>					
-					
-</tr> 
 
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-        <!-- Footer Page-->
-        <%- include('../nav/footer') %>
+	<!--Form Data-->
+	<div class="card" id="newform">
+	<div class="card-body">
+	
+	</div>
+	</div>
+	<div class="col-lg-12 grid-margin stretch-card" id="table">
+	<div class="card overflow-x overflow-y-hidden">
+	<div class="card-body">						
+	<table class="table table-bordered"> 				
+	<thead>
+	<tr>
+	<th>Payroll Month</th>
+	<th>Payroll Year</th>
+	<th>Payroll Date</th>
+	<th>Employee Code</th>
+	<th>Name</th>
+	<th>Work Order No</th>
+	<th>Advance Amount</th>
+	<th>Action</th>
+	</tr>	 
+	</thead>
+	<tbody>
+		<% deduction_view.forEach(function(deduction){ %>
+			<tr>
+				<td class="py-1">
+					<%= deduction.payroll_month %>
+				</td>
+				<td>
+					<%= deduction.payroll_year %>
+				</td>
+				<td>
+					<%= deduction.date %>
+				</td>
+				<td>
+					<%= deduction.id_card_no %>
+				</td>
+				<td>
+					<%= deduction.name %>
+				</td>
+				<td>
+					<%= deduction.workorder_no %>
+				</td><td>
+					<%= deduction.advance_amount %>
+				</td>
+				<td>
+					<a href="employee_Edit/<%= deduction.ID %>" class="btn btn-sm btn-primary">Edit</a>
+				</td>
+			</tr>
+
+			<% }) %>
+	</tbody> 
+	<tbody>
+	<tr>
+	<td>1</td>
+	<td>Payroll Month</td> 
+	<td>Payroll Year</td> 
+	<td>Payroll Date</td> 
+	<td>Employee Code</td> 
+	<td>Name</td> 
+	<td>Work Order No</td> 
+	<td>Advance Amoun</td> 
+	<td>Go</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	</div>
+
+	
+	<!--Footer-->
+
+	<!-- Footer Page-->
+	<%- include('../nav/footer') %>
+

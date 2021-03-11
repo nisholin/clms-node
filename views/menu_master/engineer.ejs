@@ -5,6 +5,8 @@
 		onclick="addEngineer(1)">New</button>
 	<button type="button" class="btn btn-gradient-danger btn-fw f-r m-b-20 b-r-25 dis-none" id="backbutton"
 		onclick="addEngineer(2)">Back</button>
+		<button type="button" class="col-2 btn btn-info f-r b-r-25" onclick="ExportToExcel('tableid')" id="uploadbutton">
+			<i class="mdi mdi-upload btn-icon-prepend"></i> Excel </button>
 	<br />
 	<!--Upload Excel-->
 	<div class="card">
@@ -25,6 +27,7 @@
 						</div>
 					</fieldset>
 				</form>
+				
 			</section>
 		</div>
 	</div>
@@ -40,7 +43,7 @@
 				<input type="search" placeholder="Search Here" class="form-control search-input" data-table="customers-list"/>
 			</div>
 
-			<table class="table table-striped mt32 customers-list" id= "table-id" >
+			<table class="table table-striped mt32 customers-list">
 				<thead>
 					<tr>
 						<th> User </th>
@@ -75,6 +78,54 @@
 							</td>
 							<td>
 								<a href="Engineer_edit/<%= menu.id %>" class="btn btn-sm btn-primary">Edit</a>
+							</td>
+						</tr>
+						<% }) %>
+				</tbody>
+			</table>
+			<table class="table table-striped mt32 customers-list dis-none" id= "tableid" >
+				<thead>
+					<tr>
+						<th>EIC_PRNO</th>
+						<th>name</th>
+						<th>department</th>
+						<th>designation</th>
+						<th>email</th>
+						<th>mobile</th>
+						<th>status</th>
+						<th>created_by</th>
+						<th>created_on</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% data.forEach(function(menu) { %>
+						<tr>
+							<td>
+								<%= menu.EIC_PRNO %>
+							</td>
+							<td>
+								<%= menu.name %>
+							</td>
+							<td>
+								<%= menu.department %>
+							</td>
+							<td>
+								<%= menu.designation %>
+							</td>
+							<td>
+								<%= menu.email %>
+							</td>
+							<td>
+								<%= menu.mobile %>
+							</td>
+							<td>
+								<%= menu.status %>
+							</td>
+							<td>
+								<%= menu.created_by %>
+							</td>
+							<td>
+								<%= menu.created_on %>
 							</td>
 						</tr>
 						<% }) %>
@@ -188,50 +239,115 @@
 	};
 </script>
 
-<!--Table Sort-->
-<script>
-	(function(document) {
-		'use strict';
+	<!--Table Sort-->
+	<script>
+		(function(document) {
+			'use strict';
 
-		var TableFilter = (function(myArray) {
-			var search_input;
+			var TableFilter = (function(myArray) {
+				var search_input;
 
-			function _onInputSearch(e) {
-				search_input = e.target;
-				var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
-				myArray.forEach.call(tables, function(table) {
-					myArray.forEach.call(table.tBodies, function(tbody) {
-						myArray.forEach.call(tbody.rows, function(row) {
-							var text_content = row.textContent.toLowerCase();
-							var search_val = search_input.value.toLowerCase();
-							row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+				function _onInputSearch(e) {
+					search_input = e.target;
+					var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+					myArray.forEach.call(tables, function(table) {
+						myArray.forEach.call(table.tBodies, function(tbody) {
+							myArray.forEach.call(tbody.rows, function(row) {
+								var text_content = row.textContent.toLowerCase();
+								var search_val = search_input.value.toLowerCase();
+								row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+							});
 						});
 					});
-				});
-			}
-
-			return {
-				init: function() {
-					var inputs = document.getElementsByClassName('search-input');
-					myArray.forEach.call(inputs, function(input) {
-						input.oninput = _onInputSearch;
-					});
 				}
-			};
-		})(Array.prototype);
 
-		document.addEventListener('readystatechange', function() {
-			if (document.readyState === 'complete') {
-				TableFilter.init();
-			}
-		});
+				return {
+					init: function() {
+						var inputs = document.getElementsByClassName('search-input');
+						myArray.forEach.call(inputs, function(input) {
+							input.oninput = _onInputSearch;
+						});
+					}
+				};
+			})(Array.prototype);
 
-	})(document);
-</script>
+			document.addEventListener('readystatechange', function() {
+				if (document.readyState === 'complete') {
+					TableFilter.init();
+				}
+			});
 
-<!--Show Alert-->
-<script>
-    function showAlert() {
-        alert("Engineer Details Successfully Inserted");
-    }
-</script>
+		})(document);
+	</script>
+
+	<!--Show Alert-->
+	<script>
+		function showAlert() {
+			alert("Engineer Details Successfully Inserted");
+		}
+	</script>
+
+   <!--Ecxel Download -->
+   <script>
+    function ExportToExcel(tableid) {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById(tableid);//.getElementsByTagName('table'); // id of table
+            if (tab==null) {
+                return false;
+            }
+            if (tab.rows.length == 0) {
+                return false;
+            }
+
+            for (j = 0 ; j < tab.rows.length ; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Employee.xls");
+            }
+            else                 //other browser not tested on IE 11
+                //sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                try {
+                    var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+                    window.URL = window.URL || window.webkitURL;
+                    link = window.URL.createObjectURL(blob);
+                    a = document.createElement("a");
+                    if (document.getElementById("caption")!=null) {
+                        a.download=document.getElementById("caption").innerText;
+                    }
+                    else
+                    {
+                        a.download = 'engineer_master_details';
+                    }
+
+                    a.href = link;
+
+                    document.body.appendChild(a);
+
+                    a.click();
+
+                    document.body.removeChild(a);
+                } catch (e) {
+                }
+
+
+            return false;
+            //return (sa);
+        }
+    </script>

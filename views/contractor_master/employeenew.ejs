@@ -2,6 +2,12 @@
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
 
+    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton"
+    href="/employee/add">New</a>
+    <!-- <input type="button" class="col-2 btn btn-info f-r b-r-25" onclick="ExportToExcel('tableid')" value="Excel"> -->
+    <a type="button" class="col-2 btn btn-info f-r b-r-25" id="addbutton"
+    href="/employee/Excel_download">Excel</a>
+    <br/>
     <!--Upload Excel-->
     <div class="card" id="table">
         <div class="card-body">
@@ -22,15 +28,12 @@
                     </fieldset>
                 </form>
             </section>
+            
+            <br/>
         </div>
     </div>
     <br />
     
-    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton"
-    href="/employee/add">New</a>
-    
- 
-    <br/>
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card overflow-x overflow-y-hidden" id="table">
         <div class="card-body">
@@ -38,7 +41,7 @@
             <div class="form-group"> 
                 <input type="search" placeholder="Search Here" class="form-control search-input" data-table="customers-list"/>
             </div>
-            <table class="table table-striped mt32 customers-list">
+             <table class="table table-striped mt32 customers-list">
                 <thead>
                     <tr>
                         <th>New Code</th>
@@ -66,12 +69,13 @@
                             </td>
                             <td>
                                 <a href="employee_Edit/<%= emp_master.ID %>" class="btn btn-sm btn-primary">Edit</a>
+                                <button onclick="empDelete('<%= emp_master.ID %>','<%= emp_master.NEW_CODE %>')" class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
 
                         <% }) %>
                 </tbody> 
-            </table>
+            </table> 
         </div>
         
     </div>
@@ -143,6 +147,28 @@
             });
 
         })(document);
+    </script>
+
+    <!--Employee Delete-->
+    <script>
+        function empDelete(empId,empCode) {
+
+            if (confirm("Are you sure you want to delete this employee-->"+empCode)) {
+            // Delete Employee
+            $.ajax({
+                type: 'POST',
+                data: { "empId" : empId,"empCode" : empCode},
+                url: '/employee_delete',
+                success: function(data){
+                    //console.log(data);
+                    alert(data+"-->Deleted Successfully");
+                    location.reload();
+                }
+            });
+            } else {
+            // Do nothing
+            }
+        }
     </script>
 
 

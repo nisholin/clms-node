@@ -8,17 +8,29 @@
 					<div class="card-body">
 						<h4 class="card-title">Wageslip</h4>
 
-						<form class="form-inline" method="POST" action="/wageslip/wageslip">
-							<label class="sr-only" for="inlineFormInputName2">Contractor</label>
-							<input type="text" class="form-control mb-2 mr-sm-2" id="contractor" name="contractor"
-								placeholder="contractor">
-							<label class="sr-only" for="inlineFormInputName2">Employee</label>
-							<input type="text" class="form-control mb-2 mr-sm-2" id="employee" name="employee"
-								placeholder="Employee">
-							<label class="sr-only" for="inlineFormInputName2">Month</label>
-							<input type="date" class="form-control mb-2 mr-sm-2" id="month" name="month"
-								placeholder="Employee">
-							<button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
+						<form class="form-inline">
+							<label class="sr-only" for="contractor">Contractor</label>
+							<select class="form-control mb-2 mr-sm-2" name="contract_code_data" id="contract_code_data"
+								placeholder="Select Contractor">
+								<option value="">Select Contractor</option>
+								<% conDetailsCode.forEach(function(contractorlist) { %>
+									<option value="<%= contractorlist.CCODE %>">
+										<%= contractorlist.CNAME %>
+									</option>
+									<% }) %>
+							</select>
+							<label class="sr-only" for="from_date">Month</label>
+							<select class="form-control mb-2 mr-sm-2" name="month_data" id="month_data"
+								placeholder="Select Month">
+								<option value="">Select Month</option>
+								<% MonthDetails.forEach(function(Monthlist) { %>
+									<option value="<%= Monthlist.MONTH+'-'+Monthlist.YEAR%>">
+										<%= Monthlist.MONTH+'-'+Monthlist.YEAR %>
+									</option>
+									<% }) %>
+							</select>
+							<input type="button" class="btn btn-gradient-primary mb-2" value="Go"
+								onClick="get_form_b_wage_data()">
 						</form>
 
 					</div>
@@ -42,37 +54,11 @@
 					<div class="col-lg-12 grid-margin stretch-card" id="table">
 						<div class="card overflow-x overflow-y-hidden">
 							<div class="card-body">
-								<table class="table table-bordered">
-									<thead>
-										<center>
-
-											<h5>'FORM XIX</br>
-												[See Rule 78(1)(b)]</br>
-												The Contract Labour (Regulation & Abolition) Central Rules, 1971</br>
-												Wage Slip';</h5>
-
-										</center>
-									</thead>
-									<tbody>
-										<tr>
-
-											<td>Name & Address of the Contractor : ADHI VIGNESH ENGINEERING</td>
-										</tr>
-										<tr>
-											<td>Nature and location of Work :</td>
-										</tr>
-										<tr>
-											<td>Name and Fathers/Husbands name of the workman :</td>
-										</tr>
-										<tr>
-											<td>For the Week / Fortnight / Month ending :</td>
-										</tr>
-
-
-
-
-									</tbody>
-								</table>
+								<div class="wageDetails">
+									<br/>
+									<div style="page-break-before:always;"></div>
+								</div>
+								
 							</div>
 						</div>
 
@@ -82,3 +68,126 @@
 
 					<!-- Footer Page-->
 					<%- include('../nav/footer') %>
+					<script>
+						function get_form_b_wage_data(){
+							var ccode=document.getElementById("contract_code_data").value;
+							var month=document.getElementById("month_data").value;
+							//alert(ccode);
+							//alert(month)
+							$.ajax({
+							method:'POST',
+							url:'/pay_roll/wage_slip_view',
+							data: { ccode: ccode,month: month },
+							success: function(data){
+								console.log(data);
+								$('.wageDetails').empty();
+								var i = 1;
+								$.each(data, function(index, wage_details) {
+										$('.wageDetails').append(`<table class="table table-bordered "><thead><tr>
+											<td>
+												<center>
+												<h5>'FORM XIX</br>
+													[See Rule 78(1)(b)]</br>
+													The Contract Labour (Regulation & Abolition) Central Rules, 1971</br>
+													Wage Slip'</h5>
+												</center>
+											</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Name & Address of the Contractor :</td>
+											<td>${wage_details.con_name}</td>
+										</tr>
+										<tr>
+											<td>Nature and location of Work :</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Name and Fathers/Husbands name of the workman :</td>
+											<td>${wage_details.emp_name}</td>
+										</tr>
+										<tr>
+											<td>For the Week / Fortnight / Month ending :</td>
+											<td>${month}</td>
+										</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>No of days worked</td>
+												<td>${wage_details.no_of_days}</td>
+											</tr>
+											<tr>
+												<td>No. of units worked in case of piece rate workers</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Rate of daily wages/Piece rate</td>
+												<td>${wage_details.pd_wages}</td>
+											</tr>
+											<tr>
+												<td>Basic Wages</td>
+												<td>${wage_details.basic}</td>
+											</tr>
+											<tr>
+												<td>Other Allowance</td>
+												<td>${wage_details.pd_allow}</td>
+											</tr>
+											<tr>
+												<td>Incentive</td>
+												<td>${wage_details.pd_incen}</td>
+											</tr>
+											<tr>
+												<td>Arrear Basic</td>
+												<td>${wage_details.pd_incen}</td>
+											</tr>
+											<tr>
+												<td>Misc.Credit</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>OT Amount</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Gross</td>
+												<td>${wage_details.gross_salary}</td>
+											</tr>
+											<tr>
+												<td class="fs-l text-left">Deduction, if any</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>PF</td>
+												<td>${wage_details.pf_amount}</td>
+											</tr>
+											<tr>
+												<td>ESI</td>
+												<td>${wage_details.esi_amount}</td>
+											</tr>
+											<tr>
+												<td>LWF</td>
+												<td>0.00</td>
+											</tr>
+											<tr>
+												<td>PTax</td>
+												<td>${wage_details.ptf_amount}</td>
+											</tr>
+											<tr>
+												<td>Misc.Deduction</td>
+												<td>${wage_details.salary_advance}</td>
+											</tr>
+											<tr>
+												<td>Total Deduction</td>
+												<td>${wage_details.total_deduction}</td>
+											</tr>
+											<tr>
+												<td>Net amount of wages paid</td>
+												<td>${wage_details.net_pay}</td>
+											</tr>
+										</tbody></table>`
+										);
+									});
+								}
+							}); 	
+						}
+					</script>

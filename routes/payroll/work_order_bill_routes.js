@@ -42,9 +42,9 @@ router.post('/wo_billing/report',(req,res)=>{
     var payroll = month.split("-"); 
     var payroll_month = payroll[0];
     var payroll_year = payroll[1];
-    console.log(payroll_month);
-    console.log(payroll_year);
-    console.log(req.body.ccode);
+    //console.log(payroll_month);
+    //console.log(payroll_year);
+    //console.log(req.body.ccode);
 
     async function get_wo_data() {
         try{
@@ -61,7 +61,7 @@ router.post('/wo_billing/report',(req,res)=>{
 
       get_wo_data().then(results=>{
         var woBillData = results[0];
-        console.log(woBillData);
+        //console.log(woBillData);
         res.send(woBillData);
     });
 });

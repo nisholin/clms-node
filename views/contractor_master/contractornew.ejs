@@ -6,9 +6,11 @@
 			onclick="addContractor(1)">New</button>
 		<button type="button" class="btn btn-gradient-danger btn-fw f-r b-r-25 m-b-20 dis-none" id="backbutton"
 			onclick="addContractor(2)">Back</button>
+			<button type="button" class="col-2 btn btn-info f-r b-r-25" onclick="ExportToExcel('tableid')" id="uploadbutton">
+				<i class="mdi mdi-upload btn-icon-prepend"></i> Excel </button>
 		<br/>	
 		<!--Upload Excel-->
-		<div class="card" id="table">
+		<div class="card" id="excel_div">
 			<div class="card-body">
 				<a href="/contractor_master_excell_download">Download Template</a>
 				<br/>
@@ -76,6 +78,122 @@
 						</tbody>
 					</table>
 					<br/><br/>
+					<!--Excel Download Table-->
+					<table class="table table-striped mt32 customers-list dis-none" id="tableid">
+						<thead>
+							<tr>
+								<th>contractor_code</th>
+								<th>contractor_name</th>
+								<th>address</th>
+								<th>prefix_code</th>
+								<th>proprietor</th>
+								<th>owner</th>
+								<th>md</th>
+								<th>partner</th>
+								<th>contractor_mail</th>
+								<th>ESI_Code_No</th>
+								<th>PF_Code_No</th>
+								<th>Contractor_PAN_No</th>
+								<th>Contractor_LIN</th>
+								<th>Mobile_No</th>
+								<th>Name_of_person</th>
+								<th>compliance_Mail_id</th>
+								<th>hr_department</th>
+								<th>sign</th>
+								<th>status</th>
+								<th>created_by</th>
+								<th>created_on</th>
+								<th>modified_by</th>
+								<th>modified_on</th>
+								<th>user_name</th>
+								<th>password</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<% data.forEach(function(contract){ %>
+								<tr>
+									<td>
+										<%= contract.contractor_code %>
+									</td>
+									<td>
+										<%= contract.contractor_name %>
+									</td>
+									<td>
+										<%= contract.address %>
+									</td>
+									<td >
+										<%= contract.prefix_code %>
+									</td>
+									<td>
+										<%= contract.proprietor %>
+									</td>
+									<td>
+										<%= contract.owner %>
+									</td>
+									<td>
+										<%= contract.md %>
+									</td>
+									<td>
+										<%= contract.partner %>
+									</td>
+									<td>
+										<%= contract.contractor_mail %>
+									</td>
+									<td>
+										<%= contract.ESI_Code_No %>
+									</td>
+									<td>
+										<%= contract.PF_Code_No %>
+									</td>
+									<td>
+										<%= contract.Contractor_PAN_No %>
+									</td>
+									<td>
+										<%= contract.Contractor_LIN %>
+									</td>
+									<td>
+										<%= contract.Mobile_No %>
+									</td>
+									<td>
+										<%= contract.Name_of_person %>
+									</td>
+									<td>
+										<%= contract.compliance_Mail_id %>
+									</td>
+									<td>
+										<%= contract.hr_department %>
+									</td>
+									<td>
+										<%= contract.sign %>
+									</td>
+									<td>
+										<%= contract.status %>
+									</td>
+									<td>
+										<%= contract.created_by %>
+									</td>
+									<td>
+										<%= contract.created_on %>
+									</td>
+									<td>
+										<%= contract.modified_by %>
+									</td>
+									<td>
+										<%= contract.modified_on %>
+									</td>
+									<td>
+										<%= contract.user_name %>
+									</td>
+									<td>
+										<%= contract.password %>
+									</td>
+								</tr>
+
+								<% }) %>
+						</tbody>
+					</table>
+					<!--Excel Download Table-->
 				</div>
 			</div>
 		</div>
@@ -277,6 +395,8 @@
 			document.getElementById("newform").style.display = "block";
 			document.getElementById("table").style.display = "none";
 			document.getElementById("addbutton").style.display = "none";
+			document.getElementById("excel_div").style.display = "none";
+			document.getElementById("uploadbutton").style.display = "none";
 		}
 		else if(a == 2) {
 			document.getElementById("table").style.display = "block";
@@ -336,4 +456,69 @@
 		});
 
 	})(document);
+</script>
+
+<!--Ecxel Download -->
+<script>
+	function ExportToExcel(tableid) {
+			var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+			var textRange; var j = 0;
+			tab = document.getElementById(tableid);//.getElementsByTagName('table'); // id of table
+			if (tab==null) {
+				return false;
+			}
+			if (tab.rows.length == 0) {
+				return false;
+			}
+
+			for (j = 0 ; j < tab.rows.length ; j++) {
+				tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+				//tab_text=tab_text+"</tr>";
+			}
+
+			tab_text = tab_text + "</table>";
+			tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+			tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+			tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+			var ua = window.navigator.userAgent;
+			var msie = ua.indexOf("MSIE ");
+
+			if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+			{
+				txtArea1.document.open("txt/html", "replace");
+				txtArea1.document.write(tab_text);
+				txtArea1.document.close();
+				txtArea1.focus();
+				sa = txtArea1.document.execCommand("SaveAs", true, "Employee.xls");
+			}
+			else                 //other browser not tested on IE 11
+				//sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+				try {
+					var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+					window.URL = window.URL || window.webkitURL;
+					link = window.URL.createObjectURL(blob);
+					a = document.createElement("a");
+					if (document.getElementById("caption")!=null) {
+						a.download=document.getElementById("caption").innerText;
+					}
+					else
+					{
+						a.download = 'contractor_master_details';
+					}
+
+					a.href = link;
+
+					document.body.appendChild(a);
+
+					a.click();
+
+					document.body.removeChild(a);
+				} catch (e) {
+				}
+
+
+			return false;
+			//return (sa);
+		}
 </script>

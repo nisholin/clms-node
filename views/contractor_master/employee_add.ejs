@@ -13,7 +13,7 @@
             <div class="form-group row">
                 <label for="ccode" class="col-sm-3 col-form-label">Contractor Code</label>
                 <div class="col-sm-9">
-                    <input list="cont_code" class="form-control" name="ccode" id="ccode" onchange="getuniqcode(this.value)" required>
+                    <input list="cont_code" class="form-control" name="ccode" id="ccode" onchange="getuniqcode(this.value)">
                     <datalist id="cont_code">
                         <% conDetailsCode.forEach(function(concode){ %>
                             <option value="<%= concode.CODE_NAME %>">
@@ -35,7 +35,7 @@
                 <label class="col-sm-3 col-form-label">Work Order Date</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="workorder_date" name="workorder_date"
-                    placeholder="Work Order Date Comes Here..."  required readonly/>
+                    placeholder="Work Order Date Comes Here..." readonly/>
                 </div>
             </div>
             <div class="form-group row">
@@ -56,12 +56,12 @@
                 <label for="emp_code" class="col-sm-3 col-form-label">New Employee Code</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="emp_code" name="emp_code" onkeyup="success()"
-                        placeholder="emp code" required>
+                        placeholder="emp code">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="emp_code" class="col-sm-3 col-form-label">Card Number</label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Card Number *</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="card_number" name="card_number"
                         placeholder="Card Number" required>
@@ -72,12 +72,12 @@
                 <label for="emp_code" class="col-sm-3 col-form-label">Old Employee Code</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="old_emp_number" name="old_emp_number"
-                        placeholder="Old Employee Code" required>
+                        placeholder="Old Employee Code">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="emp_code" class="col-sm-3 col-form-label">Employee Name</label>
+                <label for="emp_code" class="col-sm-3 col-form-label">Employee Name <br/> as per Aadhaar *</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="emp_name" name="emp_name"
                         placeholder="Enter Emp Name" required>
@@ -87,28 +87,28 @@
                 <label class="col-sm-3 col-form-label">Wo validity from</label>
                 <div class="col-sm-9"> 
                     <input type="text" class="form-control" id="wo_val_from" name="wo_val_from"
-                      placeholder="Choose Wo validity from &#xf073" style="font-family:Arial, FontAwesome" required/>
+                      placeholder="Choose Wo validity from &#xf073" style="font-family:Arial, FontAwesome" />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Wo validity To</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="wo_val_to" name="wo_val_to" 
-                    placeholder="Choose Wo validity To &#xf073" style="font-family:Arial, FontAwesome" required/>
+                    placeholder="Choose Wo validity To &#xf073" style="font-family:Arial, FontAwesome"/>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="Father" class="col-sm-3 col-form-label">Father / Husband Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Father" name="Father" placeholder="Father Name" required>
+                    <input type="text" class="form-control" id="Father" name="Father" placeholder="Father Name">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="designation" class="col-sm-3 col-form-label">Designation</label>
                 <div class="col-sm-9">
-                    <select class="form-control" id="designation" name="designation" required>
+                    <select class="form-control" id="designation" name="designation">
                         <option value="" selected disabled>--Select Designation--</option>
                         <option>SITE INCHARGE</option>
                         <option>MANAGER</option>
@@ -129,7 +129,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">DOB</label>
+                <label class="col-sm-3 col-form-label">DOB *</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="dob" name="dob" 
                       placeholder="Choose DOB &#xf073" style="font-family:Arial, FontAwesome" required/>
@@ -137,7 +137,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Engaged Date</label>
+                <label class="col-sm-3 col-form-label">Engaged Date *</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Engaged_Date" name="Engaged_Date" 
                       placeholder="Coose Engaged Date &#xf073" style="font-family:Arial, FontAwesome" required/>
@@ -150,14 +150,14 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="gender" id="gender1" value="M"
-                                checked required>
+                                checked>
                             Male </label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="F" required>
+                            <input type="radio" class="form-check-input" name="gender" id="gender2" value="F">
                             Female </label>
                     </div>
                 </div>
@@ -167,8 +167,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="M"
-                                 required>
+                            <input type="radio" class="form-check-input" name="mstatus" id="mstatus1" value="M">
                             Married </label>
                     </div>
                 </div>
@@ -176,7 +175,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="mstatus" id="mstatus2" value="S" 
-                            checked required>
+                            checked>
                             Un married</label>
                     </div>
                 </div>
@@ -185,19 +184,19 @@
                 <label for="Present_address" class="col-sm-3 col-form-label">Present Address</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Present_address" name="Present_address"
-                        placeholder="Present address" required>
+                        placeholder="Present address">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="permanent_address" class="col-sm-3 col-form-label">Permanent Address</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="permanent_address" name="permanent_address"
-                        placeholder="permanent address" required>
+                        placeholder="permanent address">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="permanent_address" class="col-sm-3 col-form-label">State</label>
+                <label for="permanent_address" class="col-sm-3 col-form-label">State *</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="state" name="state"
                         placeholder="Enter State" required>
@@ -208,14 +207,14 @@
                 <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="phone_no" name="phone_no"
-                        placeholder="phone no" required>
+                        placeholder="phone no">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email_id" class="col-sm-3 col-form-label">Email Id</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="email_id" name="email_id"
-                        placeholder="email id" required>
+                        placeholder="email id">
                 </div>
             </div>
 
@@ -223,7 +222,7 @@
                 <label for="Emergency_Mobile_Number" class="col-sm-3 col-form-label">Emergency Mobile Number</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Emergency_Mobile_Number"
-                        name="Emergency_Mobile_Number" placeholder="Emergency Mobile Number" required>
+                        name="Emergency_Mobile_Number" placeholder="Emergency Mobile Number">
                 </div>
             </div>
 
@@ -231,28 +230,28 @@
                 <label for="nominee_name" class="col-sm-3 col-form-label">Nominee Name</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="nominee_name" name="nominee_name"
-                        placeholder="nominee name" required>
+                        placeholder="nominee name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nominee_relation" class="col-sm-3 col-form-label">Nominee Relation</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="nominee_relation" name="nominee_relation"
-                        placeholder="nominee relation" required>
+                        placeholder="nominee relation">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nominee_dob" class="col-sm-3 col-form-label">Nominee DOB</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="nominee_dob" name="nominee_dob"
-                        placeholder="Nominee dob &#xf073" style="font-family:Arial, FontAwesome" required>
+                        placeholder="Nominee dob &#xf073" style="font-family:Arial, FontAwesome">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="category" class="col-sm-3 col-form-label">Category</label>
                 <div class="col-sm-9">
-                    <select id="category" name="category"  class="form-control" onchange="getWage(this.value)" required>
+                    <select id="category" name="category"  class="form-control" onchange="getWage(this.value)">
                         <option value="" selected disabled>--Select Skill--</option>
                         <option>UN SKILLED</option>
                         <option>SEMI SKILLED</option>
@@ -266,21 +265,21 @@
             <div class="form-group row">
                 <label for="wage_per_day" class="col-sm-3 col-form-label">Wage Per Day</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="wage_per_day" id="wage_per_day" readonly required/>
+                    <input type="text" class="form-control" name="wage_per_day" id="wage_per_day" readonly/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Incentive_per_day" class="col-sm-3 col-form-label">Incentive Per Day</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Incentive_per_day" name="Incentive_per_day"
-                        placeholder="Incentive per day" required>
+                        placeholder="Incentive per day">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Allowance_per_day" class="col-sm-3 col-form-label">Allowance Per Day</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Allowance_per_day" name="Allowance_per_day"
-                        placeholder="Allowance per day" required>
+                        placeholder="Allowance per day">
                 </div>
             </div>
 
@@ -288,49 +287,49 @@
                 <label for="Any_other_wages" class="col-sm-3 col-form-label">Any Other Wages</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Any_other_wages" name="Any_other_wages"
-                        placeholder="Any other wages" required>
+                        placeholder="Any other wages">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="UAN" class="col-sm-3 col-form-label">UAN</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="uan" name="uan" placeholder="UAN" required>
+                    <input type="text" class="form-control" id="uan" name="uan" placeholder="UAN">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="ESI_no" class="col-sm-3 col-form-label">ESI No</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ESI_no" name="ESI_no" placeholder="ESI no" required>
+                    <input type="text" class="form-control" id="ESI_no" name="ESI_no" placeholder="ESI no">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Aadhar_card_no" class="col-sm-3 col-form-label">Aadhar Card No</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Aadhar_card_no" name="Aadhar_card_no"
-                        placeholder="Aadhar card no" required>
+                        placeholder="Aadhar card no">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Identical_mark1" class="col-sm-3 col-form-label">Identical Mark1</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Identical_mark1" name="Identical_mark1"
-                        placeholder="Identical mark1" required>
+                        placeholder="Identical mark1">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Bank_name" class="col-sm-3 col-form-label">Bank Name</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Bank_name" name="Bank_name"
-                        placeholder="Bank name" required>
+                        placeholder="Bank name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Account_no" class="col-sm-3 col-form-label">Account No</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Account_no" name="Account_no"
-                        placeholder="Account no" required>
+                        placeholder="Account no">
                 </div>
             </div>
 
@@ -338,14 +337,14 @@
                 <label for="Ifsc" class="col-sm-3 col-form-label">IFSC CODE</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="ifsc_code" name="ifsc_code"
-                        placeholder="Ifsc code" required>
+                        placeholder="Ifsc code">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Blood_grp" class="col-sm-3 col-form-label">Blood GRP</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="Blood_grp" name="Blood_grp"
-                        placeholder="Blood grp" required>
+                        placeholder="Blood grp">
                 </div>
             </div>
             <div class="form-group row">
@@ -373,7 +372,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department</label>
+                <label for="Work_spot" class="col-sm-3 col-form-label">Work Spot/Department *</label>
                 <div class="col-sm-9">
                     <select class="form-control" id="Work_spot" name="Work_spot" required>
                         <option value="" selected disabled>--Select Department--</option>
@@ -390,7 +389,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Area Of Work</label>
                 <div class="col-sm-9">
-                    <select class="form-control" name="Area_of_work" id="Area_of_work" placeholder="Area Of Work" required>
+                    <select class="form-control" name="Area_of_work" id="Area_of_work" placeholder="Area Of Work">
                         <option value="" selected disabled>--Select Area Of Work--</option>
                         <option> ADMIN </option>
                         <option> E&I </option>
@@ -416,14 +415,14 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place"
-                                value="1" checked required> Plant</label>
+                                value="1" checked> Plant</label>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="area_of_place" id="area_of_place"
-                                value="2" required> Non Plant</label>
+                                value="2"> Non Plant</label>
                     </div>
                 </div>
             </div>
@@ -431,28 +430,28 @@
                 <label class="col-sm-3 col-form-label">Pass Validity From</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="pass_val_from" id="pass_val_from"
-                      placeholder="Pass Validity From &#xf073" style="font-family:Arial, FontAwesome" required/>
+                      placeholder="Pass Validity From &#xf073" style="font-family:Arial, FontAwesome"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Pass Validity To</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="pass_val_to" id="pass_val_to"
-                      placeholder="Choose Pass Validity To &#xf073" style="font-family:Arial, FontAwesome"  required/>
+                      placeholder="Choose Pass Validity To &#xf073" style="font-family:Arial, FontAwesome"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Safety Training From</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="safety_training_from"
-                       placeholder="Choose Safety Training From &#xf073" style="font-family:Arial, FontAwesome" id="safety_training_from" required/>
+                       placeholder="Choose Safety Training From &#xf073" style="font-family:Arial, FontAwesome" id="safety_training_from"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Safety Training To</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="safety_training_to" id="safety_training_to"
-                      placeholder="Choose Safety Training To &#xf073" style="font-family:Arial, FontAwesome"  required/>
+                      placeholder="Choose Safety Training To &#xf073" style="font-family:Arial, FontAwesome"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -468,7 +467,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="N" required>
+                            <input type="radio" class="form-check-input" name="payroll" id="payroll" value="N">
                             No </label>
                     </div>
                 </div>
@@ -486,7 +485,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="N" required>
+                            <input type="radio" class="form-check-input" name="esi_eligible" id="esi_eligible" value="N">
                             No </label>
                     </div>
                 </div>
@@ -504,7 +503,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="N" required>
+                            <input type="radio" class="form-check-input" name="pf_eligible" id="pf_eligible" value="N">
                             No </label>
                     </div>
                 </div>
@@ -522,7 +521,7 @@
                 <div class="col-sm-5">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status" id="status" value="2" required>
+                            <input type="radio" class="form-check-input" name="status" id="status" value="2">
                             Inactive </label>
                     </div>
                 </div>

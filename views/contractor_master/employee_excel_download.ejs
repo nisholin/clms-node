@@ -1,0 +1,325 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+            <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="addbutton"
+            href="/employeenew">Back</a>
+        <br/><br/>
+            <div class="card" id="table">
+                <div class="card-body">
+                    <button type="button" class="col-2 btn btn-info mr-35 m-l-335" onclick="ExportToExcel('tableid')">
+                        <i class="mdi mdi-upload btn-icon-prepend"></i>Download</button>
+                    <!--Excel Upload-->
+                    <table class="table table-striped mt32 customers-list dis-none" id="tableid">
+                        <thead>
+                            <tr>
+                                <th>CCODE</th>
+                                <th>ENAME</th>
+                                <th>WORK_ORDER_No</th>
+                                <th>WORK_OR_DATE</th>
+                                <th>NEW_CODE</th>
+                                <th>PRE_CODE</th>
+                                <th>ECODE</th>
+                                <th>WO_FROM</th>
+                                <th>WO_TO</th>
+                                <th>CI_NAME</th>
+                                <th>FATHER</th>
+                                <th>HUSBAND</th>
+                                <th>DESIGNATION</th>
+                                <th>DOB</th>
+                                <th>ENGAGED_DATE</th>
+                                <th>GENDER</th>
+                                <th>MARITAL_STATUS</th>
+                                <th>PRE_ADDRESS</th>
+                                <th>PERMANENT_ADDRESS</th>
+                                <th>PHONE_NO</th>
+                                <th>EMAIL_ID</th>
+                                <th>EMERGENCY_PERSON</th>
+                                <th>MOBILE_NO</th>
+                                <th>NOMINEE_NAME</th>
+                                <th>NOMINEE_RELATION</th>
+                                <th>NOMINEE_DOB</th>
+                                <th>Catogery</th>
+                                <th>WAGE</th>
+                                <th>INCENTIVE</th>
+                                <th>ALLOWANCE</th>
+                                <th>OTHERS</th>
+                                <th>UAN</th>
+                                <th>ESI</th>
+                                <th>AADHAR</th>
+                                <th>IDENTY_MARK</th>
+                                <th>BANK_NAME</th>
+                                <th>ACCOUNT_NO</th>
+                                <th>ifsc_code</th>
+                                <th>BLOOD_GROUP</th>
+                                <th>ENTRY_GATE</th>
+                                <th>WROK_SPOT</th>
+                                <th>AREA_OF_WORK</th>
+                                <th>area_of_place</th>
+                                <th>PASS_VALID_FROM</th>
+                                <th>PASS_VALID_TO</th>
+                                <th>SAFETY_TRAINING_FROM</th>
+                                <th>SAFETY_TRAINING_TO</th>
+                                <th>payroll</th>
+                                <th>esi_eligible</th>
+                                <th>pf_eligible</th>
+                                <th>photo_upload</th>
+                                <th>sign</th>
+                                <th>STATE</th>
+                                <th>STATUS</th>
+                                <th>CREATED_BY</th>
+                                <th>CREATED_ON</th>
+                                <th>MODIFIED_BY</th>
+                                <th>MODIFIED_ON</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% view.forEach(function(emp_master){ %>
+                                <tr>
+                                    <td class="py-1">
+                                        <%= emp_master.CCODE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ENAME %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WORK_ORDER_No %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WORK_OR_DATE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.NEW_CODE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PRE_CODE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ECODE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WO_FROM %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WO_TO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.CI_NAME %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.FATHER %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.HUSBAND %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.DESIGNATION %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.DOB %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ENGAGED_DATE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.GENDER %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.MARITAL_STATUS %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PRE_ADDRESS %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PERMANENT_ADDRESS %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PHONE_NO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.EMAIL_ID %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.EMERGENCY_PERSON %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.MOBILE_NO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.NOMINEE_NAME %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.NOMINEE_RELATION %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.NOMINEE_DOB %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.Catogery %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WAGE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.INCENTIVE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ALLOWANCE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.OTHERS %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.UAN %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ESI %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.AADHAR %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.IDENTY_MARK %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.BANK_NAME %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ACCOUNT_NO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ifsc_code %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.BLOOD_GROUP %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.ENTRY_GATE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.WROK_SPOT %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.AREA_OF_WORK %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.area_of_place %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PASS_VALID_FROM %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.PASS_VALID_TO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.SAFETY_TRAINING_FROM %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.SAFETY_TRAINING_TO %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.payroll %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.esi_eligible %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.pf_eligible %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.photo_upload %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.sign %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.STATE %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.STATUS %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.CREATED_BY %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.CREATED_ON %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.MODIFIED_BY %>
+                                    </td>
+                                    <td>
+                                        <%= emp_master.MODIFIED_ON %>
+                                    </td>
+                                </tr>
+
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <!-- Footer Page-->
+        <%- include('../nav/footer') %>
+
+            <!--Ecxel Download -->
+    <script>
+        function ExportToExcel(tableid) {
+                var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+                var textRange; var j = 0;
+                tab = document.getElementById(tableid);//.getElementsByTagName('table'); // id of table
+                if (tab==null) {
+                    return false;
+                }
+                if (tab.rows.length == 0) {
+                    return false;
+                }
+
+                for (j = 0 ; j < tab.rows.length ; j++) {
+                    tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                    //tab_text=tab_text+"</tr>";
+                }
+
+                tab_text = tab_text + "</table>";
+                tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+                tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+                tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+
+                if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+                {
+                    txtArea1.document.open("txt/html", "replace");
+                    txtArea1.document.write(tab_text);
+                    txtArea1.document.close();
+                    txtArea1.focus();
+                    sa = txtArea1.document.execCommand("SaveAs", true, "Employee.xls");
+                }
+                else                 //other browser not tested on IE 11
+                    //sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                    try {
+                        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+                        window.URL = window.URL || window.webkitURL;
+                        link = window.URL.createObjectURL(blob);
+                        a = document.createElement("a");
+                        if (document.getElementById("caption")!=null) {
+                            a.download=document.getElementById("caption").innerText;
+                        }
+                        else
+                        {
+                            a.download = 'employee_master_details';
+                        }
+
+                        a.href = link;
+
+                        document.body.appendChild(a);
+
+                        a.click();
+
+                        document.body.removeChild(a);
+                    } catch (e) {
+                    }
+
+
+                return false;
+                //return (sa);
+            }
+    </script>

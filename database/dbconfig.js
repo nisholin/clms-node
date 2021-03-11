@@ -1,5 +1,5 @@
 const config = {
-    server:'127.0.0.1',
+    server:'192.168.200.89',
     user:'sqladmin',
     password:'Mykeyin@123',
     port :1433,

@@ -2,13 +2,16 @@
 <!-- Sidebar Page -->
 <%- include('../nav/sidebar') %>
 
+<a href="/workordernew/add" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton">New</a>
+<button type="button" class="col-2 btn btn-info f-r b-r-25" onclick="ExportToExcel('tableid')">
+  <i class="mdi mdi-upload btn-icon-prepend"></i> Excel </button>
+  <br/>
   <!--Upload Excel-->
-  <a href="/workorder_excell_download">Download Template</a></p>
   <div class="card" id="table">
     <div class="card-body">
       <section id="upload-data-panel">
       <form id="upload-form" action="/uploads/work_order_csv" method="post" enctype="multipart/form-data">
-        
+        <a href="/workorder_excell_download">Download Template</a>
         <fieldset>
         <legend>Upload Data</legend>
         <div>
@@ -26,8 +29,6 @@
   </div>
   <br/>
 
- <a href="/workordernew/add" class="btn btn-gradient-primary btn-rounded btn-fw f-r m-b-20" id="addbutton">New</a>
- <br/>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card overflow-x overflow-y-hidden" id="table">
         <div class="card-body">
@@ -47,26 +48,131 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <% data.forEach(function(work_order){ %>
-                <tr>
-                <td class="py-1"><%= work_order.CCODE   %> </td>
-                <td> <%= work_order.WORK_ORDER  %> </td>
-                <td>
-                  <label class="badge badge-gradient-info">
-                    <%= moment(work_order.WORK_OR_DATE).format('YYYY-MM-DD'); %>
-                  </label>
-                </td>
-                <td> <%= work_order.DURATION   %></td>
-                <td>
-                  <a href="work_edit/<%= work_order.id %>/<%= work_order.WORK_ORDER %>" class="btn btn-sm btn-primary">Edit</a>
-                </td>
-                </tr>
-                        
-                <% }) %>
+                  <% data.forEach(function(work_order){ %>
+                  <tr>
+                  <td class="py-1"><%= work_order.CCODE   %> </td>
+                  <td> <%= work_order.WORK_ORDER  %> </td>
+                  <td>
+                    <label class="badge badge-gradient-info">
+                      <%= moment(work_order.WORK_OR_DATE).format('YYYY-MM-DD'); %>
+                    </label>
+                  </td>
+                  <td> <%= work_order.DURATION   %></td>
+                  <td>
+                    <a href="work_edit/<%= work_order.id %>/<%= work_order.WORK_ORDER %>" class="btn btn-sm btn-primary">Edit</a>
+                  </td>
+                  </tr>
+                  <% }) %>
                 </tbody>
-				</table>
-        <br/><br/>
+				    </table>
+            <br/><br/>
+        <!-- Excel Upload-->
+        <table class="table table-striped mt32 customers-list dis-none" id="tableid">
+          <thead>
+            <tr>
+              <th>CCODE</th>
+              <th>CNAME</th>
+              <th>VENDOR_NO</th>
+              <th>WORK_ORDER</th>
+              <th>WORK_OR_DATE</th>
+              <th>CVALUE</th>
+              <th>DURATION</th>
+              <th>CDURATION</th>
+              <th>EIC_PRNO</th>
+              <th>EIC</th>
+              <th>JOB_DESC</th>
+              <th>DEPARTMENT</th>
+              <th>EMPLOYEE_COUNT</th>
+              <th>CLRA</th>
+              <th>ISMW</th>
+              <th>WORKMEN_TOT</th>
+              <th>EXCESS_CLRA_COUNT</th>
+              <th>EXCESS_CLRA_CONT_COUNT</th>
+              <th>STATUS</th>
+              <th>CREATED_BY</th>
+              <th>CREATED_ON</th>
+              <th>MODIFIED_BY</th>
+              <th>MODIFIED_ON</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <% data.forEach(function(work_order){ %>
+          <tr>
+            <td>
+              <%= work_order.CCODE %> 
+            </td>
+            <td>
+              <%= work_order.CNAME %> 
+            </td>
+            <td>
+              <%= work_order.VENDOR_NO %> 
+          </td>
+          <td>
+              <%= work_order.WORK_ORDER %> 
+            </td>
+            <td>
+                <%= moment(work_order.WORK_OR_DATE).format('YYYY-MM-DD') %>
+            </td>
+            <td>
+              <%= work_order.CVALUE  %>
+            </td>
+            <td>
+              <%= work_order.DURATION %>
+            </td>
+            <td>
+              <%= work_order.CDURATION %>
+            </td>
+            <td>
+              <%= work_order.EIC_PRNO %>
+            </td>
+            <td>
+              <%= work_order.EIC %>
+            </td>
+            <td>
+              <%= work_order.JOB_DESC %>
+            </td>
+            <td>
+              <%= work_order.DEPARTMENT %>
+            </td>
+            <td>
+              <%= work_order.EMPLOYEE_COUNT %>
+            </td>
+            <td>
+              <%= work_order.CLRA %>
+            </td>
+            <td>
+              <%= work_order.ISMW %>
+            </td>
+            <td>
+              <%= work_order.WORKMEN_TOT %>
+            </td>
+            <td>
+              <%= work_order.EXCESS_CLRA_COUNT %>
+            </td>
+            <td>
+              <%= work_order.EXCESS_CLRA_CONT_COUNT %>
+            </td>
+            <td>
+              <%= work_order.STATUS %>
+            </td>
+            <td>
+              <%= work_order.CREATED_BY %>
+            </td>
+            <td>
+              <%= work_order.CREATED_ON %>
+            </td>
+            <td>
+              <%= work_order.MODIFIED_BY %>
+            </td>
+            <td>
+              <%= work_order.MODIFIED_ON %>
+            </td>
+          </tr>
+                  
+          <% }) %>
+          </tbody>
+        </table>
         </div>
     </div>
 </div>
@@ -86,9 +192,6 @@
   function addWorkOrder(a) {
   
     if (a == 1) {
-      //document.getElementById("newform").style.display = "block";
-	  //document.getElementById("table").style.display = "none";
-      //document.getElementById("addbutton").style.display = "none";
       $.ajax({
 			url: '/workordernew/add',
 			type: 'GET',
@@ -142,3 +245,68 @@
   
     })(document);
   </script>
+
+   <!--Ecxel Download -->
+   <script>
+    function ExportToExcel(tableid) {
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange; var j = 0;
+            tab = document.getElementById(tableid);//.getElementsByTagName('table'); // id of table
+            if (tab==null) {
+                return false;
+            }
+            if (tab.rows.length == 0) {
+                return false;
+            }
+
+            for (j = 0 ; j < tab.rows.length ; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Employee.xls");
+            }
+            else                 //other browser not tested on IE 11
+                //sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                try {
+                    var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+                    window.URL = window.URL || window.webkitURL;
+                    link = window.URL.createObjectURL(blob);
+                    a = document.createElement("a");
+                    if (document.getElementById("caption")!=null) {
+                        a.download=document.getElementById("caption").innerText;
+                    }
+                    else
+                    {
+                        a.download = 'workorder_master_details';
+                    }
+
+                    a.href = link;
+
+                    document.body.appendChild(a);
+
+                    a.click();
+
+                    document.body.removeChild(a);
+                } catch (e) {
+                }
+
+
+            return false;
+            //return (sa);
+        }
+    </script>

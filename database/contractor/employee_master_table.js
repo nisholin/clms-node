@@ -26,7 +26,7 @@ async function get_employee_transfer_master(){
 async function get_contractor_code(){
     try{
     let pool = await sql.connect(config);
-    let product = await pool.request().query("select CCODE ,CONCAT(CCODE,'-',CNAME) as CODE_NAME from [Cpcl_Contract_Master]");
+    let product = await pool.request().query("select CCODE ,CONCAT(CCODE,'-',CNAME) as CODE_NAME from [Cpcl_Contract_Master] order by id asc");
     return product.recordsets;
     }
     catch(error){

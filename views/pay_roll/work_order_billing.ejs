@@ -61,11 +61,11 @@
 									</center>
 									<thead>
 										<tr>
-											<td>S.NO:</td>
-											<td> Emp.No :</td>
-											<td>Employee Name :</td>
-											<td>Gross Wages :</td>
-											<td>Total Deduction:</td>
+											<td>S.NO</td>
+											<td> Emp.No</td>
+											<td>Employee Name</td>
+											<td>Gross Wages</td>
+											<td>Total Deduction</td>
 											<td>Net wages</td>
 											<td>Signature of Workmen</td>
 										</tr>
@@ -100,7 +100,7 @@
 							var n = 1;
 							$.each(data, function (index, wo_order_details) {
 								//console.log(wo_order_details);
-								$('.wo_billing_data').append('<tr><td>' + n + '</td><td>' + wo_order_details.emp_new_code + '</td><td>' + wo_order_details.emp_name + '</td><td>' + wo_order_details.gross_salary + '</td><td>' + wo_order_details.payroll_year + '</td><td>' + wo_order_details.basic + '</td><td>' + wo_order_details.pd_allow + '</td>');
+								$('.wo_billing_data').append('<tr><td>' + n + '</td><td>' + wo_order_details.emp_new_code + '</td><td>' + wo_order_details.emp_name + '</td><td>' + wo_order_details.gross_salary + '</td><td>' + Number(wo_order_details.pf_amount + wo_order_details.esi_amount + wo_order_details.esi_amount) + '</td><td>' + wo_order_details.net_pay + '</td><td></td>');
 							});
 						}
 					});

@@ -47,17 +47,17 @@ app.get('/home',user.main_page);
 //excel template download code start here by JAI
 
 app.get('/gate_master_excell_download', function(req, res){
-  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  const file = `${__dirname}/excel_templates/cpcl_gate_master.csv`;
   res.download(file); 
 });
 
 app.get('/engineer_master_excell_download', function(req, res){
-  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  const file = `${__dirname}/excel_templates/cpcl_engineer_master.csv`;
   res.download(file); 
 });
 
 app.get('/shift_master_excell_download', function(req, res){
-  const file = `${__dirname}/excel_templates/contractor_email.csv`;
+  const file = `${__dirname}/excel_templates/cpcl_shift_master.csv`;
   res.download(file); 
 });
 
@@ -248,7 +248,8 @@ app.post('/excel_upload/gate_data', upload.single("csvdata"), (req, res) =>{
        
         pool.query(sql, function (err, result) {
           if (err) throw err;
-          console.log("Number of records inserted: " + result.affectedRows);   }); 
+          console.log("Number of records inserted: " + result.affectedRows);  
+         }); 
         }       
     });
            
@@ -472,9 +473,9 @@ stream.pipe(csvStream);
 //Employee
 app.post('/uploads/employee_csv', upload.single("csvdata"), (req, res) =>{
   importCsvData2MySQL(__basedir + '/uploads/' + req.file.filename);
-  res.json({
-        'msg': 'File uploaded/import successfully!', 'file': req.file
-      });
+  /* res.json({
+    'msg': 'File uploaded/import successfully!', 'file': req.file
+  });  */
 
 
   function importCsvData2MySQL(filePath){
@@ -495,7 +496,7 @@ app.post('/uploads/employee_csv', upload.single("csvdata"), (req, res) =>{
     console.log("Connected!");
     //console.log(csvData);
     for(i=0;i<csvData.length;i++){
-      for(j=0;j<csvData.length;j++){
+      for(j=0;j<csvData[i].length;j++){
       //console.log(csvData[i][j]);
 
       var CCODE      = csvData[i][0];
@@ -552,26 +553,45 @@ app.post('/uploads/employee_csv', upload.single("csvdata"), (req, res) =>{
       var sign      = csvData[i][22];
       var STATE      = csvData[i][22];
       var STATUS      = csvData[i][22];
-      }
-      var sql = `INSERT INTO cpcl_employee_master ([CCODE]
-        ,[ENAME],[WORK_ORDER_No],[WORK_OR_DATE],[NEW_CODE],[PRE_CODE],[ECODE],[WO_FROM],[WO_TO],[CI_NAME],[FATHER],[HUSBAND],[DESIGNATION]
-        ,[DOB],[ENGAGED_DATE],[GENDER],[MARITAL_STATUS],[PRE_ADDRESS],[PERMANENT_ADDRESS],[PHONE_NO],[EMAIL_ID],[EMERGENCY_PERSON]
-        ,[MOBILE_NO],[NOMINEE_NAME],[NOMINEE_RELATION],[NOMINEE_DOB],[Catogery],[WAGE],[INCENTIVE],[ALLOWANCE],[OTHERS],[UAN],[ESI]
-        ,[AADHAR],[IDENTY_MARK],[BANK_NAME],[ACCOUNT_NO],[ifsc_code],[BLOOD_GROUP],[ENTRY_GATE],[WROK_SPOT],[AREA_OF_WORK],[area_of_place]
-        ,[PASS_VALID_FROM],[PASS_VALID_TO],[SAFETY_TRAINING_FROM],[SAFETY_TRAINING_TO],[payroll],[esi_eligible],[pf_eligible],[photo_upload],
-        [sign],[STATE],[STATUS],[CREATED_BY],[CREATED_ON]) 
-      VALUES ('${CCODE}','${ENAME}','${WORK_ORDER_No}','${WORK_OR_DATE}','${NEW_CODE}','${PRE_CODE}','${ECODE}','${WO_FROM}',
-      '${WO_TO}','${CI_NAME}','${FATHER}','${HUSBAND}','${DESIGNATION}','${DOB}','${ENGAGED_DATE}','${GENDER}','${MARITAL_STATUS}',
-      '${PRE_ADDRESS}','${PERMANENT_ADDRESS}','${PHONE_NO}','${EMAIL_ID}','${EMERGENCY_PERSON}','${MOBILE_NO}','${NOMINEE_NAME}',
-      '${NOMINEE_RELATION}','${NOMINEE_DOB}','${Catogery}','${WAGE}','${INCENTIVE}','${ALLOWANCE}','${OTHERS}','${UAN}','${ESI}','${AADHAR}',
-      '${IDENTY_MARK}','${BANK_NAME}','${ACCOUNT_NO}','${ifsc_code}','${BLOOD_GROUP}','${ENTRY_GATE}','${WROK_SPOT}','${AREA_OF_WORK}',
-      '${area_of_place}','${PASS_VALID_FROM}','${PASS_VALID_TO}','${SAFETY_TRAINING_FROM}','${SAFETY_TRAINING_TO}','${payroll}',
-      '${esi_eligible}','${pf_eligible}','${photo_upload}','${sign}','${STATE}','${STATUS}',1,GETDATE())`;
-     
-      pool.query(sql, function (err, result) {
-        if (err) throw err;
-        //console.log("Number of records inserted: " + result.affectedRows);   
-      });   
+ 
+      console.log(ECODE);
+      var check_sql = `select * from cpcl_employee_master where ECODE = '${ECODE}'`;
+      pool.query(check_sql, function (err, result) {
+        var data = result.recordsets;
+        //console.log(data[0].length);
+        if (data[0].length == 0) {
+          //console.log("test 1");
+          var sql = `INSERT INTO cpcl_employee_master ([CCODE]
+            ,[ENAME],[WORK_ORDER_No],[WORK_OR_DATE],[NEW_CODE],[PRE_CODE],[ECODE],[WO_FROM],[WO_TO],[CI_NAME],[FATHER],[HUSBAND],[DESIGNATION]
+            ,[DOB],[ENGAGED_DATE],[GENDER],[MARITAL_STATUS],[PRE_ADDRESS],[PERMANENT_ADDRESS],[PHONE_NO],[EMAIL_ID],[EMERGENCY_PERSON]
+            ,[MOBILE_NO],[NOMINEE_NAME],[NOMINEE_RELATION],[NOMINEE_DOB],[Catogery],[WAGE],[INCENTIVE],[ALLOWANCE],[OTHERS],[UAN],[ESI]
+            ,[AADHAR],[IDENTY_MARK],[BANK_NAME],[ACCOUNT_NO],[ifsc_code],[BLOOD_GROUP],[ENTRY_GATE],[WROK_SPOT],[AREA_OF_WORK],[area_of_place]
+            ,[PASS_VALID_FROM],[PASS_VALID_TO],[SAFETY_TRAINING_FROM],[SAFETY_TRAINING_TO],[payroll],[esi_eligible],[pf_eligible],[photo_upload],
+            [sign],[STATE],[STATUS],[CREATED_BY],[CREATED_ON]) 
+          VALUES ('${CCODE}','${ENAME}','${WORK_ORDER_No}','${WORK_OR_DATE}','${NEW_CODE}','${PRE_CODE}','${ECODE}','${WO_FROM}',
+          '${WO_TO}','${CI_NAME}','${FATHER}','${HUSBAND}','${DESIGNATION}','${DOB}','${ENGAGED_DATE}','${GENDER}','${MARITAL_STATUS}',
+          '${PRE_ADDRESS}','${PERMANENT_ADDRESS}','${PHONE_NO}','${EMAIL_ID}','${EMERGENCY_PERSON}','${MOBILE_NO}','${NOMINEE_NAME}',
+          '${NOMINEE_RELATION}','${NOMINEE_DOB}','${Catogery}','${WAGE}','${INCENTIVE}','${ALLOWANCE}','${OTHERS}','${UAN}','${ESI}','${AADHAR}',
+          '${IDENTY_MARK}','${BANK_NAME}','${ACCOUNT_NO}','${ifsc_code}','${BLOOD_GROUP}','${ENTRY_GATE}','${WROK_SPOT}','${AREA_OF_WORK}',
+          '${area_of_place}','${PASS_VALID_FROM}','${PASS_VALID_TO}','${SAFETY_TRAINING_FROM}','${SAFETY_TRAINING_TO}','${payroll}',
+          '${esi_eligible}','${pf_eligible}','${photo_upload}','${sign}','${STATE}','${STATUS}',1,GETDATE())`;
+         
+          pool.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Number of records inserted: " + result.affectedRows);   
+          }); 
+          res.json({
+            'msg': 'File uploaded/import successfully!'
+          }); 
+        }
+        else {
+          res.json({
+            'msg': 'Duplicate Date is there'
+          }); 
+          //console.log("test 2");
+        }
+      }); 
+    }
       }     
   });
          

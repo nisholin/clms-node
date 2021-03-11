@@ -1,96 +1,131 @@
 <%- include ('../nav/header') %>
-    <!-- Sidebar Page -->
-    <%- include('../nav/sidebar') %>
-	
-	 <div class="content-wrapper">
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">
-			
-    <div class="card-body">
-        <h4 class="card-title">Form D Attendance Register</h4>
+	<!-- Sidebar Page -->
+	<%- include('../nav/sidebar') %>
 
-         <form class="form-inline" method="POST" action="/formDAttendance/formDAttendance">
-            <label class="sr-only" for="Contractor">Contractor</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="Contractor" placeholder="Contractor">
-            <label class="sr-only" for="Month">Month</label>
-            <input type="month" class="form-control mb-2 mr-sm-2" id="month" placeholder="month">
-  <button type="submit" class="btn btn-gradient-primary mb-2">Go</button>
-               
+		<div class="content-wrapper">
+			<div class="col-lg-12 grid-margin stretch-card" id="table">
+				<div class="card overflow-x overflow-y-hidden">
 
-        </form>
-    </div>
-	
-        <div class="col-sm-12 text-right">
-					
-				 	   <div class="w3-show-inline-block">
-  <div class="w3-bar"> 
-					
-					<button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-					  </button>
-					 
-					 
-					  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
-					  </button>
+					<div class="card-body">
+						<h4 class="card-title">Form D Attendance Register</h4>
+
+						<form class="form-inline" method="POST" action="/formDAttendance/formDAttendance">
+							<input list="cont_code" class="form-control" name="ccode" id="ccode">
+							<datalist id="cont_code">
+								<% form_d_data.forEach(function(formddata){ %>
+									<option value="<%= formddata.CODE_NAME %>">
+									</option>
+									<%})%>
+							</datalist> 
+							&nbsp;
+							<select class="form-control mb-2 mr-sm-2 mr-10" name="month_data" id="month_data"
+							placeholder="Select Month">
+							<option value="">Select Month</option>
+							<% MonthDetails.forEach(function(Monthlist) { %>
+								<option value="<%= Monthlist.MONTH+'-'+Monthlist.YEAR%>">
+									<%= Monthlist.MONTH+'-'+Monthlist.YEAR %>
+								</option>
+								<% }) %>
+						</select>
+						<input type="button" class="btn btn-gradient-primary mb-2 mr-10" value="Go"
+						onClick="get_from_d_attendance()">
+						</form>
 					</div>
-					</div> 
-  </div>
-   
- <div class="content-wrapper">
-		<div class="col-lg-12 grid-margin stretch-card" id="table">
-			<div class="card overflow-x overflow-y-hidden">
-		<table class="table table-bordered">   				
-<thead>
-<center>
-					
-<h5>FORM D</br>
 
-Attendance Register</h5>
+					<div class="col-sm-12 text-right">
 
-</center>
+						<div class="w3-show-inline-block">
+							<div class="w3-bar">
 
-				<tr>
-					<th colspan="3">Name and address of Contractor :</th>
-					<td colspan="13"><p>SUN FACILITIES SERVICES
-							NO-82 3RD FLOOR ARCOT ROAD VIRUGAMBAKKAM
-							CHENNAI-600092
-						</p>
-					</td>
-					<th colspan="5">Name and address of Principal employer :</th>
-					<td colspan="13"><p>CHENNAI PETROLEUM CORPORATION LIMITED
-						   MANALI, CHENNAI-600068
-					   </p>
-					</td>
-					<th colspan="4">Name of Owner LIN</th>
-					<th colspan="6"></th>
-				</tr>
-				<tr>
-					<th colspan="3">For the Period</th>
-					<th colspan="13">From : 01/11/2020 &nbsp;&nbsp;&nbsp;&nbsp;To: 30/11/2020</th>
-					<th colspan="5">Work order</th>
-					<td colspan="13">26534923</td>
-					<th colspan="7"></th>
-				</tr>
-				<tr>
-					<th rowspan="2">S.No</th>
-					<th rowspan="2">Sl. No. in Employee Register</th>
-					<th rowspan="2">Name</th>
-					<th rowspan="2">Relay# or SetWork</th>
-					<th rowspan="2">Place of Work*</th>
-					<th rowspan="2">IN OUT</th>
-					<th colspan="31" class="t-a-c">DATES</th>
-					<th rowspan="2">Summary No.of Days</th>
-					<th rowspan="2">RemarksNo.of Hours</th>
-					<th rowspan="2" colspan="2">**Signature of Register Keeper</th>
-				</tr>
+								<button type="button" class="btn btn-gradient-info btn-icon-text"
+									onclick="window.print();"> Print <i class="mdi mdi-printer btn-icon-append"></i>
+								</button>
 
-</thead>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
-        <!-- Footer Page-->
-        <%- include('../nav/footer') %>
+								<button type="button" class="btn btn-gradient-info btn-icon-text"
+									onclick="window.excel();"> Excel <i class="mdi mdi-excel btn-icon-append"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+							<div class="card overflow-x overflow-y-hidden">
+								<table class="table table-bordered">
+									<thead>
+										<center>
+
+											<h5>FORM D</br>
+
+												Attendance Register</h5>
+
+										</center>
+
+										<tr>
+											<th colspan="3">Name and address of Contractor :</th>
+											<td colspan="13">
+												<p>SUN FACILITIES SERVICES
+													NO-82 3RD FLOOR ARCOT ROAD VIRUGAMBAKKAM
+													CHENNAI-600092
+												</p>
+											</td>
+											<th colspan="5">Name and address of Principal employer :</th>
+											<td colspan="13">
+												<p>CHENNAI PETROLEUM CORPORATION LIMITED
+													MANALI, CHENNAI-600068
+												</p>
+											</td>
+											<th colspan="4">Name of Owner LIN</th>
+											<th colspan="6"></th>
+										</tr>
+										<tr>
+											<th colspan="3">For the Period</th>
+											<th colspan="13">From : 01/11/2020 &nbsp;&nbsp;&nbsp;&nbsp;To: 30/11/2020
+											</th>
+											<th colspan="5">Work order</th>
+											<td colspan="13">26534923</td>
+											<th colspan="7"></th>
+										</tr>
+										<tr>
+											<th rowspan="2">S.No</th>
+											<th rowspan="2">Sl. No. in Employee Register</th>
+											<th rowspan="2">Name</th>
+											<th rowspan="2">Relay# or SetWork</th>
+											<th rowspan="2">Place of Work*</th>
+											<th rowspan="2">IN OUT</th>
+											<th colspan="31" class="t-a-c">DATES</th>
+											<th rowspan="2">Summary No.of Days</th>
+											<th rowspan="2">RemarksNo.of Hours</th>
+											<th rowspan="2" colspan="2">**Signature of Register Keeper</th>
+										</tr>
+
+									</thead>
+								</table>
+							</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer Page-->
+		<%- include('../nav/footer') %>
+
+		<script>
+			function get_from_d_attendance(){
+				var ccode	=	document.getElementById("ccode").value;
+				var month	=	document.getElementById("month_data").value;
+				//alert(ccode);
+				//alert(month)
+				$.ajax({
+				method:'POST',
+				url:'/pay_roll/form_d_attendance_data',
+				data: { ccode: ccode,month: month },
+				success: function(data){
+					console.log(data);
+					$('.wageDetails').empty();
+					var i = 1;
+					$.each(data, function(index, wage_details) {
+							$('.wageDetails').append(``);
+						});
+					}
+				}); 	
+			}
+		</script>

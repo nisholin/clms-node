@@ -1,0 +1,37 @@
+<%- include ('../nav/header') %>
+    <!-- Sidebar Page -->
+    <%- include('../nav/sidebar') %>
+    <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="addbutton"
+    href="/employeenew">Back</a>
+<br/><br/>
+<div class="card">
+    <div class="card-body">
+        <p class="card-description"> </p>
+        <form class="forms-sample" method="POST" action="/deduction/new" name="EngForm" onsubmit="showAlert()">
+            <div class="form-group row">
+                <label for="ccode" class="col-sm-3 col-form-label">Employee Code</label>
+                <div class="col-sm-9">
+                    <input list="cont_code" class="form-control" name="ecode" id="ecode" onchange="getuniqcode(this.value)" required>
+                    <datalist id="cont_code">
+                        <% empDetailsCode.forEach(function(empcode){ %>
+                            <option value="<%= empcode.ECODE+'-'+empcode.ENAME %>">
+                            </option>
+                            <%})%>
+                    </datalist> 
+                </div>
+            </div>
+        <div class="form-group row">
+        <label for="exampleInputAmount" class="col-sm-3 col-form-label">Amount</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" id="amount" name="amount" placeholder="amount">
+        </div>
+        </div>
+        <center>
+        <button type="Submit" value="send" name="Submit" class="btn btn-gradient-success btn-fw">Save</button>
+        </center>
+        </form>
+    </div>
+</div>
+
+<!-- Footer Page-->
+<%- include('../nav/footer') %>

@@ -230,7 +230,7 @@ router.post('/get/contractor',(req,res)=>{
     var ccode = req.body.ccode;
     //console.log(ccode);
 
-    async function getcontractor() {
+    async function getcontractor() {                                                                                                   
         try{
             let pool = await sql.connect(config);
             let cont = await pool.request().query( `select * from cpcl_work_order_master where CCODE = '${ccode}'`);
@@ -435,7 +435,47 @@ router.post('/employee/workorder_details/onchange',(req,res)=>{
     })
 })
 
+//Excel Upload Page
+// Employee View
+employeeExcel = {};
+router.get('/employee/Excel_download',(req,res)=>{
+	 var user_Id = req.session.userId, user_name = req.session.user_name;
+	  if(user_Id == null)
+    {
+		message = 'Wrong Credentials.';
+        res.render('login.ejs',{message: message});
+		return;
+    }
+    else{
+		dboperations.get_employee_master().then(result=>{
+            employeeExcel.user_Id = user_Id;
+            employeeExcel.user_name = user_name;
+            var data = result[0]; 
+            employeeExcel.view = data;
+            res.render('contractor_master/employee_excel_download',employeeExcel);
+    })
+    } 
+}); 
 
+//Employee Delete
+router.post('/employee_delete',(req, res) => {
+    var emp_id = req.body.empId;
+    var emp_code = req.body.empCode;
+    //console.log(emp_id);
+    async function employeeupdate(){
+        try{
+            let pool = await sql.connect(config);
+            await pool.request().query(`delete cpcl_employee_master where id = ${emp_id}`); 
+            }
+        catch(error){
+            console.log(error);
+        }
+    }   
+
+    employeeupdate().then(result=>{
+       res.send(emp_code)
+    }) 
+});
 
 
 
