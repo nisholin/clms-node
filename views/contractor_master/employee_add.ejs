@@ -542,7 +542,7 @@
     function getuniqcode(ccodeName) {
         // alert(ccodeName);
         var ccode = ccodeName.split("-",1);
-        console.log(ccode[0])
+        //console.log(ccode[0])
         $.ajax({
             type: 'POST',
             data: { "ccode": ccode[0] },
@@ -550,6 +550,7 @@
             success: function (data) {    
                 $('#work_order_no').empty();
                 $('#emp_code').empty();
+                $('#card_number').empty();
                 $('#work_order_no').append("<option>Select Work Order Number</option >"); 
                     //alert(data.length);
                     //console.log(data);
@@ -557,11 +558,14 @@
                     for(i=0;i<data.length;i++){
                         var EmpCode = data[1][0].prefix_code;
                         var EmpCodeCount = data[2][0].availableCount;
+                        var CardCount = data[3][0].card_count;
                         //var newEmpCodeCount = Number(data[2][0].availableCount) + Number(1);
                         var NewEmpCode = String(EmpCode) + String(EmpCodeCount);
                         $('#emp_code').val(NewEmpCode);
-                        for(j=0;data[j].length;j++){
-                            $('#work_order_no').append("<option value = '" + data[i][j].WORK_ORDER + "' > " + data[i][j].WORK_ORDER + " </option > ");
+                        $('#card_number').val(CardCount);
+                        for(j=0;data[0].length;j++){
+                            console.log(data[0].length);
+                            $('#work_order_no').append("<option value = '" + data[0][j].WORK_ORDER + "' > " + data[0][j].WORK_ORDER + " </option > ");
                         }
                     }
             }

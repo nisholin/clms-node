@@ -1,13 +1,18 @@
 <%- include ('../nav/header') %>
     <!-- Sidebar Page -->
     <%- include('../nav/sidebar') %>
-
+<div class="body">
     <a type="button" class="btn btn-gradient-primary btn-rounded btn-fw m-b-20" id="addbutton"
     href="/employee/add">New</a>
     <!-- <input type="button" class="col-2 btn btn-info f-r b-r-25" onclick="ExportToExcel('tableid')" value="Excel"> -->
     <a type="button" class="col-2 btn btn-info f-r b-r-25" id="addbutton"
     href="/employee/Excel_download">Excel</a>
     <br/>
+   
+<!--     <div class="preload">
+        <img src="assets/loading/Triangles-1s-200px.gif">
+        </div> -->
+
     <!--Upload Excel-->
     <div class="card" id="table">
         <div class="card-body">
@@ -81,16 +86,31 @@
     </div>
 
     </div>
-   
+</div>
 
     <!-- Footer Page-->
     <%- include('../nav/footer') %>
 
 
     <!--Onload Funcation-->
+    
     <script type="text/javascript">
 
-    window.onload = function () {
+    /* document.onreadystatechange = function() { 
+            if (document.readyState !== "complete") { 
+                document.querySelector( 
+                  "body").style.visibility = "hidden"; 
+                document.querySelector( 
+                  ".preload").style.visibility = "visible"; 
+            } else { 
+                document.querySelector( 
+                  ".preload").style.display = "none"; 
+                document.querySelector( 
+                  "body").style.visibility = "visible"; 
+            } 
+        }; */
+
+  /*   window.onload = function () {
 
     document.getElementById("newform").style.display = "none";
     //document.getElementById("transferform").style.display = "none";
@@ -104,7 +124,7 @@
     today = yyyy + '/' + mm + '/' + dd;
     //alert(today);
 
-    };
+    }; */
 
     </script>
 

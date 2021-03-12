@@ -553,13 +553,15 @@ app.post('/uploads/employee_csv', upload.single("csvdata"), (req, res) =>{
       var sign      = csvData[i][22];
       var STATE      = csvData[i][22];
       var STATUS      = csvData[i][22];
+    }     
  
-      console.log(ECODE);
-      var check_sql = `select * from cpcl_employee_master where ECODE = '${ECODE}'`;
+      var check_sql = `select * from cpcl_employee_master where NEW_CODE = '${NEW_CODE}'`;
       pool.query(check_sql, function (err, result) {
         var data = result.recordsets;
         //console.log(data[0].length);
+        console.log(ENAME);
         if (data[0].length == 0) {
+         
           //console.log("test 1");
           var sql = `INSERT INTO cpcl_employee_master ([CCODE]
             ,[ENAME],[WORK_ORDER_No],[WORK_OR_DATE],[NEW_CODE],[PRE_CODE],[ECODE],[WO_FROM],[WO_TO],[CI_NAME],[FATHER],[HUSBAND],[DESIGNATION]
@@ -578,23 +580,17 @@ app.post('/uploads/employee_csv', upload.single("csvdata"), (req, res) =>{
          
           pool.query(sql, function (err, result) {
             if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);   
-          }); 
-          res.json({
-            'msg': 'File uploaded/import successfully!'
+           // console.log("Number of records inserted: " + result.affectedRows);   
           }); 
         }
         else {
-          res.json({
-            'msg': 'Duplicate Date is there'
-          }); 
-          //console.log("test 2");
         }
       }); 
     }
-      }     
   });
-         
+  res.json({
+    'msg': 'File uploaded/import successfully!'
+  });
     fs.unlinkSync(filePath)
   });
 

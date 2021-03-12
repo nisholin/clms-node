@@ -146,8 +146,6 @@ router.get('/employee_edit/:empid',(req, res) => {
     }) 
 });
 
-
-
 //Employee update process
 router.post('/employee/update',(req, res) => {
     var data = req.body;
@@ -224,7 +222,6 @@ router.post('/employee/update',(req, res) => {
      res.redirect('/employeenew'); 
 });
 
-
 // Get Contractor Work Order Number,Contractor Code and prefix code
 router.post('/get/contractor',(req,res)=>{
     var ccode = req.body.ccode;
@@ -263,6 +260,16 @@ router.post('/get/contractor',(req,res)=>{
         }
     }
 
+    async function getCardCount() {
+        try {
+            let pool = await sql.connect(config);
+            let avilablecount = await pool.request().query(`select count(ECODE)+1 as card_count from  cpcl_employee_master`);
+            return avilablecount.recordsets;
+        } catch(error) {
+            console.log(err);
+        }
+    }
+
     prefixcode = [];
     getcontractor().then(result=>{
         var contractor = result[0];
@@ -275,9 +282,15 @@ router.post('/get/contractor',(req,res)=>{
                 var empcodecount = result[0];
                 prefixcode.push(empcodecount);
                 //console.log(prefixcode);
-                res.send(prefixcode);
+                getCardCount().then(result=>{
+                    var card_count = result[0];
+                    //console.log(card_count);
+                    prefixcode.push(card_count);
+                    //console.log(prefixcode);
+                    res.send(prefixcode);
+                })
+                
             })
-            
         })
     })
 })
@@ -383,11 +396,6 @@ router.get('/employee/add',(req,res)=>{
           res.render('contractor_master/employee_add',condetails);
   })
   } 
-   /*  dboperations.get_contractor_code().then(result=>{
-        var conDetails = result[0]; 
-        console.log(conDetails);
-        res.render('contractor_master/employee_add',conDetails);
-    })  */
 })
 
 //Employee Transfer View
